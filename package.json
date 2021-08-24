@@ -26,6 +26,7 @@
     "dev-webpack": "cross-env DEV=1 webpack",
     "build-renderer": "webpack --config webpack.config.renderer.js",
     "dev": "cross-env START=1 npm run watch",
+    "changelog": "gitmoji-changelog",
     "build": "rimraf build && concurrently \"npm run build-renderer\" \"webpack\"",
     "ci-build": "node scripts/ci-build.js",
     "start": "electron .",
@@ -103,5 +104,7 @@
     "webpack-dev-server": "^3.11.2",
     "webpack-merge": "^5.8.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gitmoji-changelog": "^2.2.1"
+  }
 }
