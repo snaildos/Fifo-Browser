@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="color-scheme" content="dark light" />
+
+    <style>
+      body {
+        user-select: none;
+        cursor: default;
+        margin: 0;
+        padding: 0;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .app {
+        margin: 16px;
+        margin-top: 3px;
+        box-shadow: 0 12px 16px rgba(0, 0, 0, 0.12),
+          0 8px 10px rgba(0, 0, 0, 0.16);
+        overflow: hidden;
+        position: relative;
+        transition: 0.3s opacity;
+        background-color: white;
+        width: fit-content;
+        opacity: 0;
+      }
+
+      .visible {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" class="app">
+      <div id="container"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "appId": "fifo",
+  "productName": "Fifo",
+  "nsis": {
+    "include": "static/installer.nsh"
+  },
+  "electronVersion": "13.1.4",
+  "generateUpdatesFilesForAllChannels": true,
+  "asar": true,
+  "directories": {
+    "output": "dist",
+    "buildResources": "static/icons"
+  },
+  "files": ["build/**/*", "package.json", "static/**/*"],
+  "publish": "github",
+  "linux": {
+    "category": "Network",
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": ["x64"]
+      },
+      {
+        "target": "deb",
+        "arch": ["x64"]
+      }
+    ]
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis-web",
+        "arch": ["x64", "ia32"]
+      },
+      {
+        "target": "zip",
+        "arch": ["x64", "ia32"]
+      }
+    ]
+  },
+  "mac": {
+    "category": "public.app-category.navigation"
+  },
+  "fileAssociations": [
+    {
+      "name": "Document",
+      "description": "Fifo",
+      "role": "Viewer",
+      "ext": "html"
+    }
+  ]
+}
