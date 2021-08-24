@@ -363,7 +363,7 @@ export class StorageService {
     }
 
     if (item.order === undefined) {
-      item.order = this.bookmarks.filter((x) => !Boolean(x.static)).length;
+      item.order = this.bookmarks.filter((x) => !x.static).length;
     }
 
     const doc = await this.insert<IBookmark>({ item, scope: 'bookmarks' });

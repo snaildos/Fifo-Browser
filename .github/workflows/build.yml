@@ -31,12 +31,7 @@ jobs:
       - name: Get commit message
         run: echo "::set-output name=message::$(git log --no-merges -1 --oneline)"
 
-      - name: Build the app
-        run: yarn ci-build
+      - name: Lint
+        run: yarn lint
         env:
           GH_TOKEN: ${{ secrets.token }}
-
-          MAC_CERTS: ${{ secrets.mac_certs }}
-          MAC_CERTS_PASSWORD: ${{ secrets.mac_certs_password }}
-
-          RELEASE: ${{ contains(steps.log.outputs.message, 'bump version') }}
