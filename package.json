@@ -33,7 +33,7 @@
     "compile-win32": "npm run build && electron-builder -w",
     "compile-darwin": "npm run build && electron-builder -m",
     "compile-linux": "npm run build && electron-builder -l",
-    "lint": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\"",
+    "lint": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\" --silent",
     "lint-fix": "npm run lint -- --fix",
     "rebuild": "electron-builder install-app-deps"
   },

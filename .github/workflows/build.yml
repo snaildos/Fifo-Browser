@@ -1,4 +1,4 @@
-name: Build
+name: Test
 
 on: [push, pull_request]
 
@@ -8,7 +8,7 @@ jobs:
 
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
+        os: [ubuntu-latest]
 
     steps:
       - name: Check out Git repository
@@ -31,7 +31,9 @@ jobs:
       - name: Get commit message
         run: echo "::set-output name=message::$(git log --no-merges -1 --oneline)"
 
-      - name: Lint
-        run: yarn lint
-        env:
-          GH_TOKEN: ${{ secrets.token }}
+      - name: Does building work?
+        run: yarn run build
+
+
+      - name: Done
+        run: echo Done.
