@@ -170,9 +170,9 @@ export class Store {
 
     this.loadTopSites();
 
-    // window.onscroll = () => {
-    //   this.updateNews();
-    // };
+     window.onscroll = () => {
+       this.updateNews();
+     };
 
     // window.onresize = () => {
     //   this.updateNews();
