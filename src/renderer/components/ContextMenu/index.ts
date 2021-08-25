@@ -11,7 +11,7 @@ export const ContextMenu = styled.div`
   transform: translateZ(0) scale(1, 1);
   width: 150px;
   cursor: default;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
   z-index: 9999;
   box-shadow: ${shadows(8)};
   border-radius: 4px;
@@ -41,7 +41,7 @@ export const ContextMenu = styled.div`
 `;
 
 export const ContextMenuSeparator = styled.div`
-  height: 1px;
+  height: 1.5px;
   width: 100%;
 
   ${({ theme, bigger }: { theme?: ITheme; bigger?: boolean }) => css`
@@ -119,5 +119,5 @@ export const ContextMenuItem = styled.div`
 `;
 
 ContextMenuItem.defaultProps = {
-  iconSize: 18,
+  iconSize: 23,
 };
