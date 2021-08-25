@@ -276,7 +276,7 @@ export default observer(() => {
             {selectedSection === 'search-engines' && <ManageSearchEngines />}
             {selectedSection === 'startup' && <OnStartup />}
             {selectedSection === 'privacy' && <Privacy />}
-            {selectedSection === 'about' && <About />}}
+            {selectedSection === 'about' && <About />}
             {selectedSection === 'downloads' && <Downloads />}
           </LeftContent>
         </Content>
