@@ -5,6 +5,8 @@
 
 ### Miscellaneous
 
+-  Fix broken icon size [[00180cf](https://github.com/snaildos/Fifo-Browser/commit/00180cf9209fa963e4b4744cbc2e24de89deb196)]
+-  v0.0.3 Release! [[2be2542](https://github.com/snaildos/Fifo-Browser/commit/2be2542bd21cce70783e83941379d88d4057fc88)]
 -  Merge pull request [#5](https://github.com/snaildos/Fifo-Browser/issues/5) from snaildos/imgbot [[09f9e0f](https://github.com/snaildos/Fifo-Browser/commit/09f9e0fceff347d27b7188297b4c5e8f2482525e)]
 -  Change logo to new logo, because the idiot bot didn&#x27;t fix it [[99985a2](https://github.com/snaildos/Fifo-Browser/commit/99985a208016c84da9b941797badd3a131959311)]
 -  Merge pull request [#20](https://github.com/snaildos/Fifo-Browser/issues/20) from snaildos/renovate/cliqz-adblocker-electron-1.x [[19b8107](https://github.com/snaildos/Fifo-Browser/commit/19b8107c708cdf9329eb4aae64ea250fe8cf3f7c)]
