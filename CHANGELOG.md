@@ -1,5 +1,27 @@
 # Changelog
 
+<a name="0.0.3"></a>
+## 0.0.3 (2021-08-26)
+
+### Miscellaneous
+
+-  Merge pull request [#5](https://github.com/snaildos/Fifo-Browser/issues/5) from snaildos/imgbot [[09f9e0f](https://github.com/snaildos/Fifo-Browser/commit/09f9e0fceff347d27b7188297b4c5e8f2482525e)]
+-  Change logo to new logo, because the idiot bot didn&#x27;t fix it [[99985a2](https://github.com/snaildos/Fifo-Browser/commit/99985a208016c84da9b941797badd3a131959311)]
+-  Merge pull request [#20](https://github.com/snaildos/Fifo-Browser/issues/20) from snaildos/renovate/cliqz-adblocker-electron-1.x [[19b8107](https://github.com/snaildos/Fifo-Browser/commit/19b8107c708cdf9329eb4aae64ea250fe8cf3f7c)]
+-  Merge pull request [#21](https://github.com/snaildos/Fifo-Browser/issues/21) from snaildos/renovate/file-type-16.x [[bc82072](https://github.com/snaildos/Fifo-Browser/commit/bc82072d456b65cb22e953b1c715caaddf4eb9a5)]
+-  Update dependency file-type to v16.5.3 [[4a65bcf](https://github.com/snaildos/Fifo-Browser/commit/4a65bcfdba4d0b61b740e035ae8f05645387222d)]
+-  Update dependency @cliqz/adblocker-electron to v1.22.5 [[8a1248a](https://github.com/snaildos/Fifo-Browser/commit/8a1248aa163909ae15f3fd0fda913ac5528aac4e)]
+-  New Logo &amp; Dependency Update [[a6da8d4](https://github.com/snaildos/Fifo-Browser/commit/a6da8d43a38eb71e08aed9088e74c172bbc7ba47)]
+-  Revert a update, something broke, and it disabled a lot of things. I fixed it now. [[fff54c4](https://github.com/snaildos/Fifo-Browser/commit/fff54c406e4e42f090391bdc4f7181f2e2e6a43b)]
+-  Merge pull request [#16](https://github.com/snaildos/Fifo-Browser/issues/16) from snaildos/renovate/react-monorepo [[1a097b9](https://github.com/snaildos/Fifo-Browser/commit/1a097b926663404ecff60e7b029e2d0f2b41c4db)]
+-  Merge pull request [#17](https://github.com/snaildos/Fifo-Browser/issues/17) from snaildos/renovate/react-17.x [[edbd4bb](https://github.com/snaildos/Fifo-Browser/commit/edbd4bb4e852899128dc98aa285d1c2a8ea018cc)]
+-  Merge pull request [#18](https://github.com/snaildos/Fifo-Browser/issues/18) from snaildos/renovate/react-dom-17.x [[1de9ea9](https://github.com/snaildos/Fifo-Browser/commit/1de9ea93f561519b3c6e24da887109e24d56d84c)]
+-  Pin dependency react-refresh to 0.10.0 [[7ba3abd](https://github.com/snaildos/Fifo-Browser/commit/7ba3abd4b8653ea09c869ece48d2933d101db14d)]
+-  Update dependency @types/react to v17.0.19 [[d7f855a](https://github.com/snaildos/Fifo-Browser/commit/d7f855a3eb4876abac55fe4ad9a0910436994a51)]
+-  Update dependency @types/react-dom to v17.0.9 [[2f4cb4d](https://github.com/snaildos/Fifo-Browser/commit/2f4cb4d509984d3564299bdfb86b3259e5bda114)]
+-  [ImgBot] Optimize images [[374bd42](https://github.com/snaildos/Fifo-Browser/commit/374bd4285e6afefb74708d3f7277d0d5222dd2f4)]
+
+
 <a name="0.0.2"></a>
 ## 0.0.2 (2021-08-25)
 
