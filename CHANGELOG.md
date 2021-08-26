@@ -5,6 +5,8 @@
 
 ### Miscellaneous
 
+-  Privacy is really important! Let&#x27;s change some settings. [[3ebbee1](https://github.com/snaildos/Fifo-Browser/commit/3ebbee16403f3686b33191ec35c04285268b92ac)]
+-  Update v0.0.3 [[e19d7c1](https://github.com/snaildos/Fifo-Browser/commit/e19d7c1ed9b446dca9429b60e309ba4dea2b85ed)]
 -  Fix broken icon size [[00180cf](https://github.com/snaildos/Fifo-Browser/commit/00180cf9209fa963e4b4744cbc2e24de89deb196)]
 -  v0.0.3 Release! [[2be2542](https://github.com/snaildos/Fifo-Browser/commit/2be2542bd21cce70783e83941379d88d4057fc88)]
 -  Merge pull request [#5](https://github.com/snaildos/Fifo-Browser/issues/5) from snaildos/imgbot [[09f9e0f](https://github.com/snaildos/Fifo-Browser/commit/09f9e0fceff347d27b7188297b4c5e8f2482525e)]
