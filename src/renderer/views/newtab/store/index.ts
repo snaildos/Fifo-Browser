@@ -2,6 +2,7 @@ import { observable, computed, makeObservable } from 'mobx';
 import { ISettings, ITheme, IVisitedItem } from '~/interfaces';
 import { getTheme } from '~/utils/themes';
 import { INewsItem } from '~/interfaces/news-item';
+import { NEWS_API_KEY } from '../../app/constants';
 import { networkMainChannel } from '~/common/rpc/network';
 
 type NewsBehavior = 'on-scroll' | 'always-visible' | 'hidden';
@@ -239,8 +240,10 @@ export class Store {
   }
 
   public async loadNews() {
-    try {
-      const { data } = await networkMainChannel.getInvoker().request(''); // ?lang=
+      const randompage = Math.floor(Math.random() * 10) + 1;
+      const { data } = await networkMainChannel.getInvoker().request(`
+        https://newsapi.org/v2/top-headlines?country=us&page=1&apiKey=${NEWS_API_KEY}
+      `); // ?lang=
       const json = JSON.parse(data);
 
       if (json.articles) {
@@ -248,9 +251,6 @@ export class Store {
       } else {
         throw new Error('Error fetching news');
       }
-    } catch (e) {
-      throw e;
-    }
   }
 
   public async loadTopSites() {
