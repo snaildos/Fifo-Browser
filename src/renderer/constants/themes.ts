@@ -68,3 +68,38 @@ export const darkTheme: ITheme = {
   backgroundColor: '#1c1c1c',
   accentColor: BLUE_500,
 };
+
+export const blueTheme: ITheme = {
+  'titlebar.backgroundColor': '#1919fa',
+  'addressbar.backgroundColor': '#4ca0c7',
+  'addressbar.textColor': '#fff',
+  'toolbar.backgroundColor': 'rgba(69, 62, 171)',
+  'toolbar.bottomLine.backgroundColor': 'rgba(255, 255, 255, 0.08)',
+  'toolbar.lightForeground': true,
+  'toolbar.separator.color': 'rgba(255, 255, 255, 0.12)',
+  'tab.selected.textColor': '#fff',
+  'tab.textColor': 'rgba(255, 255, 255, 0.54)',
+  'control.backgroundColor': 'rgba(69, 62, 171)',
+  'control.hover.backgroundColor': 'rgba(255, 255, 255, 0.12)',
+  'control.valueColor': '#fff',
+  'control.lightIcon': true,
+  'switch.backgroundColor': 'rgba(255, 255, 255, 0.24)',
+  'dialog.backgroundColor': 'rgba(69, 62, 171)',
+  'dialog.separator.color': 'rgba(255, 255, 255, 0.12)',
+  'dialog.textColor': '#fff',
+  'dialog.lightForeground': true,
+  'searchBox.backgroundColor': '1919fa',
+  'searchBox.lightForeground': true,
+  'pages.backgroundColor': '#1919fa',
+  'pages.lightForeground': true,
+  'pages.textColor': '#fff',
+  'dropdown.backgroundColor': 'rgb(66, 66, 66)',
+  'dropdown.backgroundColor.translucent': 'rgb(60, 60, 60, 0.6)',
+  'dropdown.separator.color': 'rgba(255, 255, 255, 0.12)',
+  'pages.navigationDrawer1.backgroundColor': 'rgba(69, 62, 171)',
+  'pages.navigationDrawer2.backgroundColor': 'rgba(69, 62, 171, 0.05)',
+
+  backgroundColor: '#1c1c1c',
+  accentColor: BLUE_500,
+};
+
