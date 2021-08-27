@@ -110,7 +110,7 @@ export const Preferences = observer(() => {
           >
             Inspirational
           </ContextMenuItem>
-          {/* <ContextMenuItem
+           <ContextMenuItem
             bigger
             onClick={onPresetClick('informational')}
             selected={store.preset === 'informational'}
@@ -118,7 +118,7 @@ export const Preferences = observer(() => {
             icon={ICON_WINDOW}
           >
             Informational
-          </ContextMenuItem> */}
+          </ContextMenuItem>
           <ContextMenuItem
             bigger
             selected={store.preset === 'custom'}
@@ -137,8 +137,7 @@ export const Preferences = observer(() => {
             pointerEvents:
               store.preferencesContent === 'custom' ? 'inherit' : 'none',
             transition: '0.3s max-height, 0.3s transform, 0.3s opacity',
-            // maxHeight: store.preferencesContent === 'custom' ? 390 : 200,
-            maxHeight: store.preferencesContent === 'custom' ? 300 : 150,
+             maxHeight: store.preferencesContent === 'custom' ? 390 : 200,
             transform:
               store.preferencesContent === 'custom'
                 ? 'translateX(-100%)'
@@ -163,7 +162,7 @@ export const Preferences = observer(() => {
           <ContextMenuSeparator bigger></ContextMenuSeparator>
           <SwitchItem name="topSitesVisible">Show top sites</SwitchItem>
           <SwitchItem name="quickMenuVisible">Show quick menu</SwitchItem>
-          {/* <ContextMenuSeparator bigger></ContextMenuSeparator>
+          <ContextMenuSeparator bigger></ContextMenuSeparator>
           <SubTitle>News visibility:</SubTitle>
           <Dropdown
             defaultValue={store.newsBehavior}
@@ -174,9 +173,9 @@ export const Preferences = observer(() => {
             <Dropdown.Item value="always-visible">Always visible</Dropdown.Item>
             <Dropdown.Item value="hidden">Hidden</Dropdown.Item>
             <Dropdown.Item value="on-scroll">Visible on scroll</Dropdown.Item>
-          </Dropdown> */}
+          </Dropdown> 
         </div>
-      </div>
+        </div>
     </ContextMenu>
   );
 });

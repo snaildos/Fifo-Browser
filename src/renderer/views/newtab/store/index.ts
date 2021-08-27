@@ -31,15 +31,14 @@ export class Store {
   public set newsBehavior(value: NewsBehavior) {
     this._newsBehavior = value;
 
-   // if (value === 'always-visible') {
+    if (value === 'always-visible') {
       this.loadNews();
-    //}
+    }
   }
 
   @computed
   public get fullSizeImage() {
-    // return this.newsBehavior === 'on-scroll' || this.newsBehavior === 'hidden';
-    return true;
+    return this.newsBehavior === 'on-scroll' || this.newsBehavior === 'hidden';
   }
 
   @observable
@@ -175,9 +174,9 @@ export class Store {
        this.updateNews();
      };
 
-    // window.onresize = () => {
-    //   this.updateNews();
-    // };
+     window.onresize = () => {
+       this.updateNews();
+     };
   }
 
   public async loadImage() {
