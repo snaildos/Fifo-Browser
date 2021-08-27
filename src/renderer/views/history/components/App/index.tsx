@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-
+import { ipcRenderer } from 'electron';
 import store, { QuickRange } from '../../store';
 import { NavigationDrawer } from '~/renderer/components/NavigationDrawer';
 import { ThemeProvider } from 'styled-components';
@@ -80,8 +80,8 @@ const onInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
 const onClearClick = () => {
   store.clear();
-
-  // TODO: ipcRenderer.send('clear-browsing-data');
+  console.log("Cleared");
+  ipcRenderer.send('clear-browsing-data');
 };
 
 export default observer(() => {
