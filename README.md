@@ -110,3 +110,5 @@ Guides and the API reference are located in [`docs`](docs) directory.
 # License
 
 Fork of Wexond. It's up to the official developers.
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsnaildos%2FFifo-Browser.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsnaildos%2FFifo-Browser?ref=badge_large)
