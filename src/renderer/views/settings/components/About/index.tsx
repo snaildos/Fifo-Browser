@@ -12,26 +12,26 @@ const AskToggle = observer(() => {
   
   return (
     <Row>
-      <Title>Fifo is a privacy orientated browser with tons of features such as a built in Ad Blocker. Fifo is made with love by the SnailDOS team. Big thanks to all our contributers on the right!</Title>
-      <p></p>
-      <div>
-      <Title>HzzaAwesome - Graphic Designer</Title>
-      <p></p>
-      <Title>SnailDOS - Development and Code</Title>
-      <p></p>
-      <Title>Wexond Team - For the original Code</Title>
-      <p></p>
-      <Title>Chazzy - Head of innovation</Title>
-      </div>
-    </Row>
+<p></p>
+<Title>HzzaAwesome - Graphic Designer</Title>
+<p></p>
+<Title>SnailDOS - Development and Code</Title>
+<p></p>
+<Title>Wexond Team - For the original Code</Title>
+<p></p>
+<Title>Chazzy - Head of innovation</Title>
+<p></p>
+<Title>Preknowledge - Developer</Title>
+</Row>
+   
   );
 });
-
-
 const Location = observer(() => {
   return (
-<div>
-</div>
+    <Row>
+    <Title>Fifo is a privacy orientated browser with tons of features such as a built in Ad Blocker. Fifo is made with love by the SnailDOS team. Big thanks to all our contributers on the right!</Title>
+    <p></p>
+  </Row>
   );
 });
 
