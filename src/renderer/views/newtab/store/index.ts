@@ -31,9 +31,9 @@ export class Store {
   public set newsBehavior(value: NewsBehavior) {
     this._newsBehavior = value;
 
-    if (value === 'always-visible') {
+   // if (value === 'always-visible') {
       this.loadNews();
-    }
+    //}
   }
 
   @computed
