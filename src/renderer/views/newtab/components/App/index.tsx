@@ -94,11 +94,11 @@ export default observer(() => {
             </Menu>
           )}
         </Wrapper>
-        {/* {store.newsBehavior !== 'hidden' && (
+        
           <Content>
             <News></News>
           </Content>
-        )} */}
+        
       </div>
     </ThemeProvider>
   );
