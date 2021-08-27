@@ -22,6 +22,7 @@ import {
   ICON_SEARCH,
   ICON_DOWNLOAD,
   ICON_SHIELD,
+  ICON_FIRE,
   ICON_TRASH,
   ICON_EDIT,
 } from '~/renderer/constants';
@@ -257,7 +258,7 @@ export default observer(() => {
           <MenuItem icon={ICON_SHIELD} section="privacy">
             Privacy
           </MenuItem>
-          <MenuItem icon={ICON_SHIELD} section="about">
+          <MenuItem icon={ICON_FIRE} section="about">
             About
           </MenuItem>
           {/* <MenuItem section="permissions">Site permissions</MenuItem> */}
