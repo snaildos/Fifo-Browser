@@ -187,7 +187,6 @@ export class Store {
     this.items.map((x) => {
       //(window as any).removeHistory(x._id)
       this.removeItems(x._id);
-      console.log(x._id);
     });
   }
 
