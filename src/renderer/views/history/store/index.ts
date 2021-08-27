@@ -184,10 +184,8 @@ export class Store {
 
   public clear() {
     console.log("Store Executed");
-    this.items.map((x) => {
-      //(window as any).removeHistory(x._id)
-      this.removeItems(x._id);
-    });
+    this.items = [];
+    (window as any).removeHistory(this.items.map((x) => x._id));
   }
 
   public removeItems(id: string[]) {
