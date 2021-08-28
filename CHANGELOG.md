@@ -1,10 +1,11 @@
 # Changelog
 
-<a name="next"></a>
-## next
+<a name="0.0.4"></a>
+## 0.0.4 (2021-08-28)
 
 ### Miscellaneous
 
+-  Bump the version up! [[edcee5c](https://github.com/snaildos/Fifo-Browser/commit/edcee5cc8d048e2eaaf3abd3c647af9ec0b9e4fd)]
 -  Major Logo Changes [[1705ff0](https://github.com/snaildos/Fifo-Browser/commit/1705ff005067e5733da17a4480fb0a1410b9887c)]
 -  Add curves, fixed blue background [[b3aae95](https://github.com/snaildos/Fifo-Browser/commit/b3aae95bc125c1b7bc975fb0d270d2bce9555aa0)]
 -  Update style.ts [[cba76de](https://github.com/snaildos/Fifo-Browser/commit/cba76defeab18932c16f0bc8f4fede538960b81d)]
