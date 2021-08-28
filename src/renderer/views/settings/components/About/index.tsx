@@ -22,6 +22,8 @@ const AskToggle = observer(() => {
 <Title>Chazzy - Head of innovation</Title>
 <p></p>
 <Title>Preknowledge - Developer</Title>
+<p></p>
+<Title>JOshua - Graphic Designer</Title>
 </Row>
    
   );
