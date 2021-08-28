@@ -174,10 +174,10 @@ export const TabContainer = styled.div`
   ${({ pinned, theme, hasTabGroup, selected }: TabContainerProps) => css`
     max-width: ${pinned ? `${TAB_PINNED_WIDTH}px` : '100%'};
     margin-top: ${theme.tabMarginTop}px;
-    height: ${theme.tabHeight}px;
     border-radius: ${theme.isCompact && !hasTabGroup ? '4px' : 'auto'};
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
+    height: ${theme.tabHeight}px;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 10px;
     box-shadow: ${selected ? '0px 0px 6px 0px rgba(0,0,0,0.12)' : 'none'};
   `};
 `;

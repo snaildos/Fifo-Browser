@@ -70,7 +70,7 @@ export const darkTheme: ITheme = {
 };
 
 export const blueTheme: ITheme = {
-  'titlebar.backgroundColor': '#96b0bc',
+  'titlebar.backgroundColor': '#404040',
   'addressbar.backgroundColor': '#4ca0c7',
   'addressbar.textColor': '#fff',
   'toolbar.backgroundColor': 'rgba(69, 62, 171)',
