@@ -1,5 +1,46 @@
 # Changelog
 
+<a name="next"></a>
+## next
+
+### Miscellaneous
+
+-  Major Logo Changes [[1705ff0](https://github.com/snaildos/Fifo-Browser/commit/1705ff005067e5733da17a4480fb0a1410b9887c)]
+-  Add curves, fixed blue background [[b3aae95](https://github.com/snaildos/Fifo-Browser/commit/b3aae95bc125c1b7bc975fb0d270d2bce9555aa0)]
+-  Update style.ts [[cba76de](https://github.com/snaildos/Fifo-Browser/commit/cba76defeab18932c16f0bc8f4fede538960b81d)]
+-  Update README.md [[cf89b2f](https://github.com/snaildos/Fifo-Browser/commit/cf89b2f5f6d8addfde95180fbb13dde63e7a192c)]
+-  Merge pull request [#33](https://github.com/snaildos/Fifo-Browser/issues/33) from PREKNOWLEDGEWEB/patch-11 [[bf3ec03](https://github.com/snaildos/Fifo-Browser/commit/bf3ec03699bcb0cf747af37a22fd9b90a30d4fd3)]
+-  Merge branch &#x27;main&#x27; of https://github.com/snaildos/Fifo-Browser into main [[d555c8a](https://github.com/snaildos/Fifo-Browser/commit/d555c8a1d3db6939a3c7cf095b32ff3c19434c45)]
+-  Recode the about page [[fe7d2e3](https://github.com/snaildos/Fifo-Browser/commit/fe7d2e39d0f9f3f61e5ccde0d00b3a9a69063de7)]
+-  Merge pull request [#32](https://github.com/snaildos/Fifo-Browser/issues/32) from snaildos/renovate/typescript-4.x [[279e806](https://github.com/snaildos/Fifo-Browser/commit/279e806d5259ca6e765cec5a743a5aa76bc6a81c)]
+-  Ew, a bug [[35fa2de](https://github.com/snaildos/Fifo-Browser/commit/35fa2de5e6fffd105d807649ec6d078f4c6ea1f3)]
+-  We don&#x27;t want users changing the search engine. [[053bd97](https://github.com/snaildos/Fifo-Browser/commit/053bd97528e3bbd59d91c11ec13114e7b8fae5f7)]
+-  What if you don&#x27;t like the news? [[46b92e8](https://github.com/snaildos/Fifo-Browser/commit/46b92e8c64f92d28dd014c1f34b00f750da219ff)]
+-  Merge pull request [#29](https://github.com/snaildos/Fifo-Browser/issues/29) from PREKNOWLEDGEWEB/patch-8 [[0d0f1b1](https://github.com/snaildos/Fifo-Browser/commit/0d0f1b1433891f969ee2b0a074b6948c7c025dbf)]
+-  Merge pull request [#30](https://github.com/snaildos/Fifo-Browser/issues/30) from PREKNOWLEDGEWEB/patch-9 [[d564367](https://github.com/snaildos/Fifo-Browser/commit/d5643679d10f1971ab91952c07835d56467b0f15)]
+-  Merge pull request [#28](https://github.com/snaildos/Fifo-Browser/issues/28) from PREKNOWLEDGEWEB/patch-7 [[03c3031](https://github.com/snaildos/Fifo-Browser/commit/03c303134af6d27ccce1d5b822153ae4bdf70cea)]
+-  Merge pull request [#27](https://github.com/snaildos/Fifo-Browser/issues/27) from PREKNOWLEDGEWEB/patch-5 [[376ba30](https://github.com/snaildos/Fifo-Browser/commit/376ba30d5e314417a312487a9fb5bed6d5be0e2d)]
+-  Merge pull request [#26](https://github.com/snaildos/Fifo-Browser/issues/26) from PREKNOWLEDGEWEB/patch-6 [[1c88600](https://github.com/snaildos/Fifo-Browser/commit/1c8860021fa177bf1b9f01b23c3eb2410869ed5e)]
+-  Small changes [[8b0b00e](https://github.com/snaildos/Fifo-Browser/commit/8b0b00eb42b35b09cf53b9836ee5b29d7ab568bf)]
+-  Revert the changes that didn&#x27;t work [[6dc7f34](https://github.com/snaildos/Fifo-Browser/commit/6dc7f34c466d91a7efa59cdb2d5c14e2a754e66c)]
+-  Merge pull request [#25](https://github.com/snaildos/Fifo-Browser/issues/25) from PREKNOWLEDGEWEB/patch-4 [[2b0fb4e](https://github.com/snaildos/Fifo-Browser/commit/2b0fb4e69bf3111b14b073f07d9602fa5392f782)]
+-  Merge pull request [#22](https://github.com/snaildos/Fifo-Browser/issues/22) from PREKNOWLEDGEWEB/patch-1 [[c4ac124](https://github.com/snaildos/Fifo-Browser/commit/c4ac1247b2927d123e2f86a9e169ddd7386531e1)]
+-  Merge pull request [#23](https://github.com/snaildos/Fifo-Browser/issues/23) from PREKNOWLEDGEWEB/patch-2 [[dffc656](https://github.com/snaildos/Fifo-Browser/commit/dffc65696636642690f8d60c914b6435ca41ee6c)]
+-  Merge pull request [#24](https://github.com/snaildos/Fifo-Browser/issues/24) from PREKNOWLEDGEWEB/patch-3 [[9cd0a69](https://github.com/snaildos/Fifo-Browser/commit/9cd0a694718da6c7fb030eef4887095318086dab)]
+-  No need to console.log changes deleted. [[44557d5](https://github.com/snaildos/Fifo-Browser/commit/44557d5e78726c5855266d0b1e06bb0b0cc446fa)]
+-  Update storage.ts [[b403195](https://github.com/snaildos/Fifo-Browser/commit/b403195ba502df1e8980768150ef11a148d51260)]
+-  Update index.ts [[38dc687](https://github.com/snaildos/Fifo-Browser/commit/38dc687b4bc41ed54ef66f86f4905b2191f8f888)]
+-  Update index.tsx [[65d5067](https://github.com/snaildos/Fifo-Browser/commit/65d50672a7dc3952c06db7c9a8de930dc8646b7a)]
+-  Update api.ts [[b2b60d1](https://github.com/snaildos/Fifo-Browser/commit/b2b60d1a81009b61d03be596498ec6737d6accc5)]
+-  Update index.ts [[250d48f](https://github.com/snaildos/Fifo-Browser/commit/250d48fdc3b3384451784d5544f5bad862b12206)]
+-  Update index.tsx [[cdaf5a5](https://github.com/snaildos/Fifo-Browser/commit/cdaf5a5da65b672344d698a278f082180c57aab5)]
+-  Fix Clear Browsing Data [[d05cdcc](https://github.com/snaildos/Fifo-Browser/commit/d05cdcc74c01685f5b81a6b110c1d5c88338056e)]
+-  Added Blue Theme Selection in Settings [[f1f5d55](https://github.com/snaildos/Fifo-Browser/commit/f1f5d551e18ff4eb9242a0529f4eb47120171163)]
+-  Defined Theme Functions [[5c68967](https://github.com/snaildos/Fifo-Browser/commit/5c68967f3d1907cbe7031d4147920876a29858e3)]
+-  Added Blue Theme Props [[163f392](https://github.com/snaildos/Fifo-Browser/commit/163f3928e7674e7969ac0ac5ebaedaf0ceecd99e)]
+-  Update dependency typescript to v4.4.2 [[08ce59f](https://github.com/snaildos/Fifo-Browser/commit/08ce59fde55a1e4fd6318709d0cb1a27328030ad)]
+
+
 <a name="0.0.3"></a>
 ## 0.0.3 (2021-08-26)
 
