@@ -1,5 +1,16 @@
 # Changelog
 
+<a name="0.0.5"></a>
+## 0.0.5 (2021-09-04)
+
+### Miscellaneous
+
+-  Update Security, and ensure modules are up to date. [[6bdea74](https://github.com/snaildos/Fifo-Browser/commit/6bdea744d5bafaad223a7166b3fef9fc32dfdac0)]
+-  [ImgBot] Optimize images [[2a54bec](https://github.com/snaildos/Fifo-Browser/commit/2a54bec26c66e145d82206cdfa582fd36ee69942)]
+-  Dependencies Update [[c31929c](https://github.com/snaildos/Fifo-Browser/commit/c31929c5e090a3c37abdaacc8b20896eecd2b856)]
+-  Update some important stuff [[d97ad84](https://github.com/snaildos/Fifo-Browser/commit/d97ad84e67dcf28c522e15118307ec7b02988843)]
+
+
 <a name="0.0.4"></a>
 ## 0.0.4 (2021-08-28)
 
