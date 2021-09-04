@@ -5,6 +5,8 @@
 
 ### Miscellaneous
 
+-  Update package description [[1a8e47a](https://github.com/snaildos/Fifo-Browser/commit/1a8e47a7f78aced3dca582275c29e63415ebf95f)]
+-  Update Changelog! [[8ef0f19](https://github.com/snaildos/Fifo-Browser/commit/8ef0f19dd7905b6938de948e06e2a1ae755c2ea2)]
 -  Update Security, and ensure modules are up to date. [[6bdea74](https://github.com/snaildos/Fifo-Browser/commit/6bdea744d5bafaad223a7166b3fef9fc32dfdac0)]
 -  [ImgBot] Optimize images [[2a54bec](https://github.com/snaildos/Fifo-Browser/commit/2a54bec26c66e145d82206cdfa582fd36ee69942)]
 -  Dependencies Update [[c31929c](https://github.com/snaildos/Fifo-Browser/commit/c31929c5e090a3c37abdaacc8b20896eecd2b856)]
