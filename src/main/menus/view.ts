@@ -20,7 +20,7 @@ export const getViewMenu = (
   if (params.linkURL !== '') {
     menuItems = menuItems.concat([
       {
-        label: 'Open link in new tab',
+        label: 'Open URL in new tab',
         click: () => {
           appWindow.viewManager.create(
             {
@@ -222,7 +222,7 @@ export const getViewMenu = (
   }
 
   menuItems.push({
-    label: 'Inspect',
+    label: 'Inspect Element',
     accelerator: 'CmdOrCtrl+Shift+I',
     click: () => {
       webContents.inspectElement(params.x, params.y);

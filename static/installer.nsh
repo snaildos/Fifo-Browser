@@ -15,7 +15,7 @@
 
   WriteRegStr SHCTX "SOFTWARE\Clients\StartMenuInternet\Fifo" "" "Fifo"
   WriteRegStr SHCTX "SOFTWARE\Clients\StartMenuInternet\Fifo\DefaultIcon" "" "$INSTDIR\Fifo.exe,0"
-  WriteRegStr SHCTX "SOFTWARE\Clients\StartMenuInternet\Fifo\Capabilities" "ApplicationDescription" "A privacy-focused, extensible and beautiful web browser"
+  WriteRegStr SHCTX "SOFTWARE\Clients\StartMenuInternet\Fifo\Capabilities" "ApplicationDescription" "A privacy-focused, extensible and beautiful web browser, Free and open source."
   WriteRegStr SHCTX "SOFTWARE\Clients\StartMenuInternet\Fifo\Capabilities" "ApplicationName" "Fifo"
   WriteRegStr SHCTX "SOFTWARE\Clients\StartMenuInternet\Fifo\Capabilities" "ApplicationIcon" "$INSTDIR\Fifo.exe,0"
   WriteRegStr SHCTX "SOFTWARE\Clients\StartMenuInternet\Fifo\Capabilities\FileAssociations" ".htm" "Fifo"
