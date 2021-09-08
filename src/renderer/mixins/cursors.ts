@@ -12,6 +12,6 @@ export const defaultCursor = () => `
 
 export const coloredCursor = (cursorColor: string, color = 0) => `
   -webkit-text-fill-color: transparent;
-  text-shadow: 0px 0px 0px rgba(${color}, ${color}, ${color}, ${transparency.text.high});
+  text-shadow: 0px 1px 0px rgba(${color}, ${color}, ${color}, ${transparency.text.high});
   color: ${cursorColor};
 `;
