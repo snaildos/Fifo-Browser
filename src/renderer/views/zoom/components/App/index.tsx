@@ -44,6 +44,7 @@ export const App = observer(() => {
             dense
             iconStyle={{ transform: 'scale(-1,1)' }}
             onClick={onPlus}
+            style={{ cursor: 'pointer', marginRight: '10px' }}
           />
           <Label>{(store.zoomFactor * 100).toFixed(0) + '%'}</Label>
           <ToolbarButton
@@ -53,6 +54,11 @@ export const App = observer(() => {
             dense
             iconStyle={{ transform: 'scale(-1,1)' }}
             onClick={onMinus}
+            style={{
+              cursor: 'pointer',
+              marginLeft: '10px',
+              marginRight: '10px',
+            }}
           />
           <Spacer />
           <Button
@@ -66,7 +72,7 @@ export const App = observer(() => {
               store.theme['dialog.lightForeground'] ? 'white' : 'black'
             }
           >
-            Reset
+            Resetear
           </Button>
         </Buttons>
       </StyledApp>

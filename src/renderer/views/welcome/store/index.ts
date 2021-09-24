@@ -218,6 +218,16 @@ export class Store {
     path.push(parentFolder);
     return path;
   }
+
+  public async save() {
+    try {
+      ipcRenderer.send('save-settings', {
+        settings: JSON.stringify(this.settings),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
 }
 
 export default new Store();

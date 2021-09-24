@@ -5,6 +5,7 @@ import store from '../../store';
 import { ThemeProvider } from 'styled-components';
 import { Wrapper, Content, IconItem, Menu, Image, RightBar } from './style';
 import { TopSites } from '../TopSites';
+import { welcome } from '../../../welcome';
 import { News } from '../News';
 import { Preferences } from '../Preferences';
 import {
@@ -39,6 +40,12 @@ const onRefreshClick = () => {
 };
 
 export default observer(() => {
+
+  if (localStorage.getItem("not_new") != "1" && !store.isIncognito) {
+    window.location.replace(getWebUIURL("welcome"))
+    localStorage.setItem("not_new", "1")
+  }
+
   return (
     <ThemeProvider theme={{ ...store.theme }}>
       <div>
@@ -47,13 +54,14 @@ export default observer(() => {
         <Preferences />
 
         <Wrapper fullSize={store.fullSizeImage}>
+
           <Image src={store.imageVisible ? store.image : ''}></Image>
           <Content>{store.topSitesVisible && <TopSites></TopSites>}</Content>
 
           <RightBar>
             <IconItem
               imageSet={store.imageVisible}
-              title="Dashboard settings"
+              title="Configuracion de el dashboard"
               icon={ICON_TUNE}
               onMouseDown={(e) => e.stopPropagation()}
               onClick={onTuneClick}
@@ -63,31 +71,31 @@ export default observer(() => {
             <Menu>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Settings"
+                title="Configuracion"
                 icon={ICON_SETTINGS}
                 onClick={onIconClick('settings')}
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="History"
+                title="Historial"
                 icon={ICON_HISTORY}
                 onClick={onIconClick('history')}
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Bookmarks"
+                title="Marcadores"
                 icon={ICON_BOOKMARKS}
                 onClick={onIconClick('bookmarks')}
               ></IconItem>
               {/* <IconItem
                 imageSet={store.imageVisible}
-                title="Downloads"
+                title="Descargas"
                 icon={ICON_DOWNLOAD}
                 onClick={onIconClick('downloads')}
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Extensions"
+                title="Extensiones"
                 icon={ICON_EXTENSIONS}
                 onClick={onIconClick('extensions')}
               ></IconItem> */}
@@ -95,11 +103,9 @@ export default observer(() => {
           )}
         </Wrapper>
         {store.newsBehavior !== 'hidden' && (
-
           <Content>
             <News></News>
           </Content>
-          
         )}
       </div>
     </ThemeProvider>

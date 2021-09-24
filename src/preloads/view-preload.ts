@@ -4,9 +4,45 @@ import AutoComplete from './models/auto-complete';
 import { getTheme } from '~/utils/themes';
 import { ERROR_PROTOCOL, WEBUI_BASE_URL } from '~/constants/files';
 import { injectChromeWebstoreInstallButton } from './chrome-webstore';
+import { getWebUIURL } from '~/common/webui';
+
+(async function() {
+  const w = await webFrame.executeJavaScript('window');
+  const id = ipcRenderer.sendSync('get-window-id');
+
+  function getText(text: any) {
+    if(typeof text == 'string') return text;
+
+    return JSON.stringify(text)
+  }
+
+  w.oldAlert=w.alert;
+  w.alert = (msg: any) => {
+    return ipcRenderer.sendSync(`alert-${id}`, {
+      msg: getText(msg),
+      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host
+    })
+  };
+
+  w.oldConfirm=w.confirm;
+  w.confirm = (msg: string) => {
+    return ipcRenderer.sendSync(`confirm-${id}`, {
+      msg: getText(msg),
+      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host
+    })
+  };
+  
+  w.oldPrompt=w.prompt;
+  w.prompt = (msg: string, value: string="") => {
+    return ipcRenderer.sendSync(`prompt-${id}`, {
+      msg: getText(msg),
+      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host,
+      value: getText(value)
+    })
+  };
+})()
 
 const tabId = ipcRenderer.sendSync('get-webcontents-id');
-
 export const windowId: number = ipcRenderer.sendSync('get-window-id');
 
 const goBack = () => {
@@ -94,10 +130,8 @@ ipcRenderer.on('scroll-touch-end', () => {
   resetCounters();
 });
 
-if (process.env.ENABLE_AUTOFILL) {
-  window.addEventListener('load', AutoComplete.loadForms);
-  window.addEventListener('mousedown', AutoComplete.onWindowMouseDown);
-}
+window.addEventListener('load', AutoComplete.loadForms);
+window.addEventListener('mousedown', AutoComplete.onWindowMouseDown);
 
 const postMsg = (data: any, res: any) => {
   window.postMessage(
@@ -125,7 +159,10 @@ if (
   window.location.protocol === `${ERROR_PROTOCOL}:`
 ) {
   (async function () {
+
     const w = await webFrame.executeJavaScript('window');
+  
+    
     w.settings = settings;
     w.require = (id: string) => {
       if (id === 'electron') {
@@ -152,6 +189,7 @@ if (
   })();
 } else {
   (async function () {
+
     if (settings.doNotTrack) {
       const w = await webFrame.executeJavaScript('window');
       Object.defineProperty(w.navigator, 'doNotTrack', { value: 1 });
@@ -165,8 +203,9 @@ if (window.location.href.startsWith(WEBUI_BASE_URL)) {
     else if (hostname.startsWith('history')) document.title = 'History';
     else if (hostname.startsWith('bookmarks')) document.title = 'Bookmarks';
     else if (hostname.startsWith('extensions')) document.title = 'Extensions';
+    else if (hostname.startsWith('welcome')) document.title = 'Welcome to Fifo!';
     else if (hostname.startsWith('newtab')) {
-      document.title = 'New tab';
+      document.title = 'Fifo';
     }
   });
 

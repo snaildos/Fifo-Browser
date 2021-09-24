@@ -7,6 +7,7 @@ export * from './settings';
 export * from './suggestion';
 export * from './theme';
 export * from './weather';
+export * from './welcome';
 export * from './form-fill';
 export * from './storage';
 export * from './bounds';

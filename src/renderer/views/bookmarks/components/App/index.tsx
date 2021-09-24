@@ -53,8 +53,10 @@ const onDeleteClick = () => {
 };
 
 const onRemoveClick = (item: IBookmark) => () => {
-  store.removeItems([item._id]);
-  store.menuVisible = false;
+  if(window.confirm(`Are you sure you want to delete "${item.title}"?`)) {
+    store.removeItems([item._id]);
+    store.menuVisible = false;
+  }
 };
 
 const onInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -155,7 +157,7 @@ const BookmarksList = observer(() => {
 });
 
 export default observer(() => {
-  let dialogTitle = 'New folder';
+  let dialogTitle = 'New Folder';
 
   if (store.dialogContent === 'edit') {
     dialogTitle = 'Edit bookmark';
@@ -178,7 +180,7 @@ export default observer(() => {
             icon={ICON_NEW_FOLDER}
             onClick={onNewFolderClick}
           >
-            New folder
+            New Folder
           </NavigationDrawer.Item>
           <NavigationDrawer.Item icon={ICON_DOWNLOAD} onClick={onImportClick}>
             Import
@@ -196,18 +198,19 @@ export default observer(() => {
           visible={store.menuVisible}
         >
           {store.currentBookmark && !store.currentBookmark.isFolder && (
-            <ContextMenuItem onClick={onEditClick} icon={ICON_EDIT}>
+            <ContextMenuItem style={{ cursor: 'pointer' }} onClick={onEditClick} icon={ICON_EDIT}>
               Edit
             </ContextMenuItem>
           )}
           {store.currentBookmark && store.currentBookmark.isFolder && (
-            <ContextMenuItem onClick={onRenameClick} icon={ICON_EDIT}>
+            <ContextMenuItem style={{ cursor: 'pointer' }} onClick={onRenameClick} icon={ICON_EDIT}>
               Rename
             </ContextMenuItem>
           )}
           <ContextMenuItem
             onClick={onRemoveClick(store.currentBookmark)}
             icon={ICON_TRASH}
+            style={{ cursor: 'pointer' }}
           >
             Delete
           </ContextMenuItem>

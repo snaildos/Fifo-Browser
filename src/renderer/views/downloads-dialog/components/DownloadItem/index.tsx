@@ -13,7 +13,7 @@ import {
 } from './style';
 import { IDownloadItem } from '~/interfaces';
 import prettyBytes = require('pretty-bytes');
-import { shell } from 'electron';
+import { shell, remote } from 'electron';
 
 const onClick = (item: IDownloadItem) => () => {
   if (item.completed) {
@@ -25,6 +25,18 @@ const onMoreClick = (item: IDownloadItem) => (
   e: React.MouseEvent<HTMLDivElement>,
 ) => {
   e.stopPropagation();
+
+  // const { top, left, x, y } = e.currentTarget.getBoundingClientRect();
+  // const menu = remote.Menu.buildFromTemplate([
+  //   {
+  //     label: "Abrir",
+  //     click: () => {
+  //       onClick(item)
+  //     }
+  //   }
+  // ]);
+
+  // menu.popup({});
 };
 
 export const DownloadItem = observer(({ item }: { item: IDownloadItem }) => {
@@ -38,8 +50,8 @@ export const DownloadItem = observer(({ item }: { item: IDownloadItem }) => {
   }
 
   return (
-    <StyledDownloadItem onClick={onClick(item)}>
-      <Icon></Icon>
+    <StyledDownloadItem style={{ cursor: 'pointer' }} onClick={onClick(item)}>
+      <Icon ext={item.fileName.indexOf('.') > -1 ? item.fileName.split(".")[item.fileName.split(".").length - 1] : "none"}></Icon>
       <Info>
         <Title>{item.fileName}</Title>
         {!item.completed && (

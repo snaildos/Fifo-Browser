@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components';
 import { BLUE_500, ICON_PAGE, ICON_MORE } from '~/renderer/constants';
 import { centerIcon } from '~/renderer/mixins';
 import { ITheme } from '~/interfaces';
+import { getIconByExtension } from '~/renderer/constants/get-icon-ext';
 
 export const StyledDownloadItem = styled.div`
   height: 64px;
@@ -73,17 +74,17 @@ export const Info = styled.div`
   white-space: nowrap;
 `;
 
+
 export const Icon = styled.div`
   width: 24px;
   height: 24px;
   ${centerIcon()};
-  background-image: url(${ICON_PAGE});
   margin-right: 16px;
-  opacity: 0.54;
+  /* opacity: 0.54; */
   margin-left: 16px;
 
-  ${({ theme }: { theme?: ITheme }) => css`
-    filter: ${theme['dialog.lightForeground'] ? 'invert(100%)' : ''};
+  ${({ ext }: { ext?: string }) => css`
+    background: url(${getIconByExtension(ext.toLowerCase())})
   `}
 `;
 

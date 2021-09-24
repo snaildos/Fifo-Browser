@@ -14,7 +14,7 @@ export const App = observer(() => {
 
   return (
     <ThemeProvider theme={{ ...store.theme }}>
-      <StyledApp style={{ maxHeight: store.maxHeight }} visible={store.visible}>
+      <StyledApp style={{ maxHeight: "500px" }} visible={store.visible}>
         <UIStyle />
         {store.downloads.map((item) => (
           <DownloadItem item={item} key={item.id}></DownloadItem>

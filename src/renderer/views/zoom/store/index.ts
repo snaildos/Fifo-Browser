@@ -15,14 +15,10 @@ export class Store extends DialogStore {
   }
 
   public async init() {
-    const zoomFactorChange = reaction(
-      () => this.zoomFactor,
-      () => this.resetHideTimer(),
-    );
-
-    ipcRenderer.on('zoom-factor-updated', (e, zoomFactor) => {
-      this.zoomFactor = zoomFactor;
-    });
+    // const zoomFactorChange = reaction(
+    //   () => this.zoomFactor,
+    //   () => this.resetHideTimer(),
+    // );
 
     const tabId = await this.invoke('tab-id');
     this.zoomFactor = await ipcRenderer.invoke('get-tab-zoom', tabId);
