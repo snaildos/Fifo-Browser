@@ -69,8 +69,6 @@ export default observer(() => {
 
   }
 
-  if (localStorage.getItem("not_new") == "1") alreadyMaded();
-
   return (
     <ThemeProvider theme={{ ...store.theme }} style={{position: 'relative'}}>
       <WebUIStyle />
