@@ -1,10 +1,11 @@
 # Changelog
 
-<a name="next"></a>
-## next
+<a name="1.0.0"></a>
+## 1.0.0 (2021-09-24)
 
 ### Miscellaneous
 
+-  Update version [[7c898d8](https://github.com/snaildos/Fifo-Browser/commit/7c898d8bc4c14a73265048540bfb5f64c1ebdab1)]
 -  Fix zoom, Add new bookmark folders, fix dialogue system, added default browser service, get icons have been added. A one time setup has also been added. [[ca6cad2](https://github.com/snaildos/Fifo-Browser/commit/ca6cad26108e99497d6d3ff445a271c42c782a55)]
 -  Repair the &quot;Clear History&quot;. [[cb90ac1](https://github.com/snaildos/Fifo-Browser/commit/cb90ac1ae49dd560647f500a5a3f7eb04a4187a4)]
 -  Pin dependencies [[5fd4aff](https://github.com/snaildos/Fifo-Browser/commit/5fd4aff952b17cca2455c32f74a95abb923f320d)]
