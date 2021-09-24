@@ -26,7 +26,7 @@ var theme = "Light"
 store.settings.theme = "wexond-dark";
 
 const alreadyMaded = () => {
-  window.location.replace(getWebUIURL('newtab'))
+  nextPage()
 }
 
 
@@ -75,13 +75,11 @@ const commit = () => {
   store.settings.themeAuto = false;
 
   store.save();
-
-  alreadyMaded()
+  window.location.replace(getWebUIURL('newtab'))
 }
 
 const addDefault = () => {
   window.location.href = "ms-settings:defaultapps"
-  
   nextPage()
 }
 
