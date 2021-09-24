@@ -32,6 +32,9 @@ export class Store {
   public menuVisible = false;
 
   @observable
+  public notnew = '';
+
+  @observable
   public searched = '';
 
   @observable

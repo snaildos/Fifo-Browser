@@ -39,9 +39,8 @@ const onRefreshClick = () => {
 };
 
 export default observer(() => {
-  if (localStorage.getItem("not_new") != "1") {
+  if (store.settings.notnew != "false") {
     window.location.replace(getWebUIURL("welcome"))
-    if (localStorage.getItem("not_new") == "1") alreadyMaded();
 
   }
 

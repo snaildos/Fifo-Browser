@@ -71,9 +71,8 @@ const themeset = (mode: string) => {
 }
 
 const commit = () => {
-  localStorage.setItem("not_new", "1")
   store.settings.themeAuto = false;
-
+  store.settings.notnew = "false";
   store.save();
   window.location.replace(getWebUIURL('newtab'))
 }

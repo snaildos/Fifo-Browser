@@ -17,6 +17,7 @@ export interface ISettings {
   themeAuto: boolean;
   shield: boolean;
   multrin: boolean;
+  notnew: boolean;
   animations: boolean;
   bookmarksBar: boolean;
   suggestions: boolean;
