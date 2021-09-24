@@ -21,8 +21,6 @@ export type QuickRange =
 export class Store {
   public faviconsDb = new PreloadDatabase<IFavicon>('favicons');
 
-  // Observable
-
   @observable
   public settings: ISettings = { ...(window as any).settings };
 
@@ -183,12 +181,8 @@ export class Store {
   }
 
   public clear() {
-    console.log("Store Executed");
-    this.items.map((x) => {
-      //(window as any).removeHistory(x._id)
-      this.removeItems(x._id);
-      console.log(x._id);
-    });
+    this.items = [];
+    (window as any).removeHistory(this.items.map((x) => x._id));
   }
 
   public removeItems(id: string[]) {
@@ -211,6 +205,7 @@ export class Store {
     this.selectedItems.forEach(item => {
       this.removeItems([item])
     });
+    
     this.selectedItems = [];
   }
 }

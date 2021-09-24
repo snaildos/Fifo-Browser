@@ -7,7 +7,6 @@ import { observer } from 'mobx-react-lite';
 
 export const HistorySection = observer(
   ({ data }: { data: IHistorySection }) => {
-    console.log(data.items.length);
     return (
       <EmptySection>
         <SectionTitle>{data.label}</SectionTitle>

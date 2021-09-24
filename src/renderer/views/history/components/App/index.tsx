@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-import { ipcRenderer } from 'electron';
+
 import store, { QuickRange } from '../../store';
 import { NavigationDrawer } from '~/renderer/components/NavigationDrawer';
 import { ThemeProvider } from 'styled-components';
@@ -8,6 +8,7 @@ import { SelectionDialog } from '~/renderer/components/SelectionDialog';
 import { HistorySection } from '../HistorySection';
 import { Container, Content, LeftContent } from '~/renderer/components/Pages';
 import { GlobalNavigationDrawer } from '~/renderer/components/GlobalNavigationDrawer';
+import { IHistorySection } from '~/interfaces';
 import {
   ICON_HISTORY,
   ICON_ALL,
@@ -78,10 +79,15 @@ const onInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
   store.search(e.currentTarget.value);
 };
 
-const onClearClick = () => {
-  store.clear();
-  console.log("Cleared");
-  ipcRenderer.send('clear-browsing-data');
+const onClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  e.stopPropagation();
+
+  store.sections.map((data) =>
+    data.items.map((item) => store.removeItems([item._id])),
+  );
+
+  // store.clear();
+  // TODO: ipcRenderer.send('clear-browsing-data');
 };
 
 export default observer(() => {
@@ -90,25 +96,25 @@ export default observer(() => {
       <Container>
         <WebUIStyle />
         <GlobalNavigationDrawer></GlobalNavigationDrawer>
-        <NavigationDrawer title="History" search onSearchInput={onInput}>
+        <NavigationDrawer title="Historial" search onSearchInput={onInput}>
           <RangeItem icon={ICON_ALL} range="all">
-            All
+            Todo
           </RangeItem>
           <RangeItem icon={ICON_TODAY} range="today">
-            Today
+            Hoy
           </RangeItem>
           <RangeItem icon={ICON_HISTORY} range="yesterday">
-            Yesterday
+            Ayer
           </RangeItem>
           <RangeItem icon={ICON_WEEK} range="last-week">
-            Last week
+            Semana pasada
           </RangeItem>
           <RangeItem icon={ICON_CALENDAR} range="older">
-            Older
+            Mas antiguo
           </RangeItem>
           <div style={{ flex: 1 }} />
           <NavigationDrawer.Item icon={ICON_TRASH} onClick={onClearClick}>
-            Clear browsing data
+            Eliminar historial
           </NavigationDrawer.Item>
         </NavigationDrawer>
         <Content onScroll={onScroll}>
