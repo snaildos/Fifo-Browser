@@ -23,9 +23,12 @@ import { StyledButton } from '~/renderer/components/Button/styles';
 var page = 1
 var theme = "Light"
 
+store.settings.theme = "wexond-dark";
+
 const alreadyMaded = () => {
   window.location.replace(getWebUIURL('newtab'))
 }
+
 
 const nextPage = () => {
   const _page = JSON.stringify(page)
@@ -34,21 +37,42 @@ const nextPage = () => {
  
   page += 1
   document.getElementsByClassName("banner"+JSON.stringify(page))[0].classList.add("active")
+  document.getElementsByClassName("Dark")[0].classList.add("active")
 }
 
-const changeDarkOrLight = (mode: string) => {
-  localStorage.setItem("not_new", "1")
+const themeset = (mode: string) => {
   theme = mode
-  document.getElementsByClassName(mode)[0].classList.add("active")
 
-  const _mode: any = mode === "Light" ? "Dark" : "Light";
-  document.getElementsByClassName(_mode)[0].classList.remove("active")
+  if (theme == "Light") {
+    document.getElementsByClassName("Dark")[0].classList.remove("active")
+    document.getElementsByClassName("Blue")[0].classList.remove("active")
+    document.getElementsByClassName("Lavender")[0].classList.remove("active")
+    document.getElementsByClassName("Light")[0].classList.add("active")
+    store.settings.theme = "wexond-light";
+  } else if (theme =="Dark") {
+    document.getElementsByClassName("Light")[0].classList.remove("active")
+    document.getElementsByClassName("Blue")[0].classList.remove("active")
+    document.getElementsByClassName("Lavender")[0].classList.remove("active")
+    document.getElementsByClassName("Dark")[0].classList.add("active")
+    store.settings.theme = "wexond-dark";
+  } else if (theme =="Blue") {
+    document.getElementsByClassName("Light")[0].classList.remove("active")
+    document.getElementsByClassName("Lavender")[0].classList.remove("active")
+    document.getElementsByClassName("Dark")[0].classList.remove("active")
+    document.getElementsByClassName("Blue")[0].classList.add("active")
+    store.settings.theme = "fifo-blue";
+  } else if (theme =="Lavender") {
+    document.getElementsByClassName("Light")[0].classList.remove("active")
+    document.getElementsByClassName("Blue")[0].classList.remove("active")
+    document.getElementsByClassName("Dark")[0].classList.remove("active")
+    document.getElementsByClassName("Lavender")[0].classList.add("active")
+    store.settings.theme = "fifo-lavender";
+  }
 }
 
 const commit = () => {
-
+  localStorage.setItem("not_new", "1")
   store.settings.themeAuto = false;
-  store.settings.theme = "wexond-dark";
 
   store.save();
 
@@ -66,7 +90,7 @@ export default observer(() => {
   window.onload = function() {
     page = 1
     document.getElementsByClassName("banner1")[0].classList.add("active")
-    //console.log(await defaultBrowser());
+    // console.log(await defaultBrowser());
 
   }
 
@@ -77,7 +101,7 @@ export default observer(() => {
 
       <StyledSection className="banner1">
         <Description>Welcome to Fifo</Description>
-        <Title>Let's personalize Fifo</Title>
+        <Title>Lets personalize Fifo</Title>
         <Button theme={store.theme} onClick={nextPage}>Next!</Button>
         <StyledLink onClick={alreadyMaded}>Skip setup</StyledLink>
       </StyledSection>
@@ -86,16 +110,28 @@ export default observer(() => {
         <Favicon></Favicon>
         <Description style={{fontSize: "1.5rem", fontWeight: 500, margin: 0, marginBottom: "48px", opacity: '1' }}>Pick your theme!</Description>
         <div style={{ display: 'flex', width: "550px", justifyContent: "space-around" }}>
-          <Option onClick={() => changeDarkOrLight("Light")} className="Light active">
+          <Option onClick={() => themeset("Light")} className="Light">
             <div style={{ border: "1px solid rgb(95, 99, 104)", backgroundColor: "#fff", borderRadius: "50%", display: "flex", height: "3rem", marginBottom: ".50rem", width: "3rem" }}></div>
             <div>
               Light
             </div>
           </Option>
-          <Option onClick={() => changeDarkOrLight("Dark")} className="Dark">
+          <Option onClick={() => themeset("Dark")} className="Dark">
             <div style={{ border: "1px solid rgb(95, 99, 104)", backgroundColor: "rgb(95, 99, 104)", borderRadius: "50%", display: "flex", height: "3rem", marginBottom: ".50rem", width: "3rem" }}></div>
             <div>
               Dark
+            </div>
+          </Option>
+          <Option onClick={() => themeset("Blue")} className="Blue">
+            <div style={{ border: "1px solid #0000FF", backgroundColor: "#0026ff", borderRadius: "50%", display: "flex", height: "3rem", marginBottom: ".50rem", width: "3rem" }}></div>
+            <div>
+              Blue
+            </div>
+          </Option>
+          <Option onClick={() => themeset("Lavender")} className="Lavender">
+            <div style={{ border: "1px solid rgb(95, 99, 104)", backgroundColor: "#b500fc", borderRadius: "50%", display: "flex", height: "3rem", marginBottom: ".50rem", width: "3rem" }}></div>
+            <div>
+              Lavender
             </div>
           </Option>
         </div>
@@ -121,9 +157,10 @@ export default observer(() => {
         </div>
       </StyledSection>
 
-      {/* <StyledSection className="banner3">
+       <StyledSection className="banner3">
         <Favicon></Favicon>
-        <Description style={{fontSize: "1.5rem", fontWeight: 500, margin: 0, marginBottom: "48px", opacity: '1' }}>Let's get Fifo setup for you!</Description>
+        <Title>Fifo Setup</Title>
+        <Description style={{fontSize: "1.5rem", fontWeight: 500, margin: 0, marginBottom: "48px", opacity: '1' }}>For maximum privacy, set Fifo as your default browser!</Description>
         <div style={{ display: 'flex', width: "15%", justifyContent: "space-around" }}>
         </div>
         <div style={{ width: '20%', display: 'flex', justifyContent: 'space-between', marginTop: '3rem' }}>
@@ -146,9 +183,9 @@ export default observer(() => {
             </div>
           </ExtraStyledButton>
         </div>
-      </StyledSection> */}
+      </StyledSection>
 
-      <StyledSection className="banner3">
+      <StyledSection className="banner4">
         <Description>Fifo is the new privacy orientated browser!</Description>
         <Title>Inbuilt adblocker and more, lets start.</Title>
         <Button theme={store.theme} onClick={commit}>Lets get started!</Button>
