@@ -96,25 +96,25 @@ export default observer(() => {
       <Container>
         <WebUIStyle />
         <GlobalNavigationDrawer></GlobalNavigationDrawer>
-        <NavigationDrawer title="Historial" search onSearchInput={onInput}>
+        <NavigationDrawer title="Search History" search onSearchInput={onInput}>
           <RangeItem icon={ICON_ALL} range="all">
-            Todo
+            All
           </RangeItem>
           <RangeItem icon={ICON_TODAY} range="today">
-            Hoy
+            Today
           </RangeItem>
           <RangeItem icon={ICON_HISTORY} range="yesterday">
-            Ayer
+            Yesturday
           </RangeItem>
           <RangeItem icon={ICON_WEEK} range="last-week">
-            Semana pasada
+            Last Week
           </RangeItem>
           <RangeItem icon={ICON_CALENDAR} range="older">
-            Mas antiguo
+            Older
           </RangeItem>
           <div style={{ flex: 1 }} />
           <NavigationDrawer.Item icon={ICON_TRASH} onClick={onClearClick}>
-            Eliminar historial
+           Clear all history!
           </NavigationDrawer.Item>
         </NavigationDrawer>
         <Content onScroll={onScroll}>
