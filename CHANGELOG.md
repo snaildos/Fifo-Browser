@@ -1,5 +1,21 @@
 # Changelog
 
+<a name="next"></a>
+## next
+
+### Miscellaneous
+
+-  Fix zoom, Add new bookmark folders, fix dialogue system, added default browser service, get icons have been added. A one time setup has also been added. [[ca6cad2](https://github.com/snaildos/Fifo-Browser/commit/ca6cad26108e99497d6d3ff445a271c42c782a55)]
+-  Repair the &quot;Clear History&quot;. [[cb90ac1](https://github.com/snaildos/Fifo-Browser/commit/cb90ac1ae49dd560647f500a5a3f7eb04a4187a4)]
+-  Pin dependencies [[5fd4aff](https://github.com/snaildos/Fifo-Browser/commit/5fd4aff952b17cca2455c32f74a95abb923f320d)]
+-  Fix spelling mistake [[487eccb](https://github.com/snaildos/Fifo-Browser/commit/487eccbac051b638645e934895e7d5b375d37ff7)]
+-  EN_US locale patch. [[8ca52e3](https://github.com/snaildos/Fifo-Browser/commit/8ca52e3d8c4be5bf35ef9e6f9037eb7c7cb74711)]
+-  Update add.svg [[957c9d2](https://github.com/snaildos/Fifo-Browser/commit/957c9d27663de930bd6058f09223b81a2c08a53f)]
+-  Fix Selected Items Delete &amp; Add.SVG file &amp; Fix White Screen Bug [[c197ce0](https://github.com/snaildos/Fifo-Browser/commit/c197ce071630ba3792a51a87b6ef7c786788903d)]
+-  New Features! I changed preloader and settings [[9811ceb](https://github.com/snaildos/Fifo-Browser/commit/9811ceb7fc7b6962cb5cc922237298a799e24674)]
+-  Fix some stuff [[1de577f](https://github.com/snaildos/Fifo-Browser/commit/1de577fea94ba23ad3700b66ec01d979d8b94633)]
+
+
 <a name="0.0.5"></a>
 ## 0.0.5 (2021-09-04)
 
