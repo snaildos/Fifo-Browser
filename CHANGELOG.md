@@ -5,6 +5,13 @@
 
 ### Miscellaneous
 
+-  Last patch fix! [[10115ab](https://github.com/snaildos/Fifo-Browser/commit/10115ab8e64b71538b718cf5fc7f90850ee8de87)]
+-  Finish the full setup utility! [[4f33136](https://github.com/snaildos/Fifo-Browser/commit/4f33136bf577c22d5c08a0c0a1cc6edf8b821d4e)]
+-  looks annoying [[3f69b13](https://github.com/snaildos/Fifo-Browser/commit/3f69b131431a60638c0eb291e6a7dfc56d897e1f)]
+-  LAVENDER THEME!!! :P [[9d931e8](https://github.com/snaildos/Fifo-Browser/commit/9d931e8b32c5194a472017dd03f108faff5a16ed)]
+-  Update package.json [[ef405d8](https://github.com/snaildos/Fifo-Browser/commit/ef405d8b33c06a24838783e16f6d15dae4946221)]
+-  Welcome improvments [[1be99a1](https://github.com/snaildos/Fifo-Browser/commit/1be99a1c5d62290611393b6d7a64fcc8d338edd4)]
+-  Update CHANGELOG.md [[5d5cdab](https://github.com/snaildos/Fifo-Browser/commit/5d5cdabdaed42215c3f4786b74d8a99c6f826f37)]
 -  Update CHANGELOG.md [[d2f73d4](https://github.com/snaildos/Fifo-Browser/commit/d2f73d4d2b01ffdb5eb4b0f35069f8e1416e5152)]
 -  Update version [[7c898d8](https://github.com/snaildos/Fifo-Browser/commit/7c898d8bc4c14a73265048540bfb5f64c1ebdab1)]
 -  Fix zoom, Add new bookmark folders, fix dialogue system, added default browser service, get icons have been added. A one time setup has also been added. [[ca6cad2](https://github.com/snaildos/Fifo-Browser/commit/ca6cad26108e99497d6d3ff445a271c42c782a55)]
