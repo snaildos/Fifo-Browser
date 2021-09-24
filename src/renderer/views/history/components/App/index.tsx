@@ -104,7 +104,7 @@ export default observer(() => {
             Today
           </RangeItem>
           <RangeItem icon={ICON_HISTORY} range="yesterday">
-            Yesturday
+            Yesterday
           </RangeItem>
           <RangeItem icon={ICON_WEEK} range="last-week">
             Last Week
