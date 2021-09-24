@@ -37,6 +37,7 @@ const nextPage = () => {
 }
 
 const changeDarkOrLight = (mode: string) => {
+  localStorage.setItem("not_new", "1")
   theme = mode
   document.getElementsByClassName(mode)[0].classList.add("active")
 
@@ -149,8 +150,8 @@ export default observer(() => {
 
       <StyledSection className="banner3">
         <Description>Fifo is the new privacy orientated browser!</Description>
-        <Title>Inbuilt adblocker and more, let's start.</Title>
-        <Button theme={store.theme} onClick={commit}>Let's get started!</Button>
+        <Title>Inbuilt adblocker and more, lets start.</Title>
+        <Button theme={store.theme} onClick={commit}>Lets get started!</Button>
       </StyledSection>
     </ThemeProvider>
   );

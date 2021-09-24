@@ -152,8 +152,6 @@ export const getIconByExtension = (ext?: string) => {
     case 'sfd': return 'https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/master/icons/font.svg';
     case 'cff': return 'https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/master/icons/font.svg';
 
-    // TODO: añadir mas iconos
-
     default: return ICON_DOWNLOAD_PAGE;
   }
 }

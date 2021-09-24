@@ -5,7 +5,6 @@ import store from '../../store';
 import { ThemeProvider } from 'styled-components';
 import { Wrapper, Content, IconItem, Menu, Image, RightBar } from './style';
 import { TopSites } from '../TopSites';
-import { welcome } from '../../../welcome';
 import { News } from '../News';
 import { Preferences } from '../Preferences';
 import {
@@ -40,11 +39,10 @@ const onRefreshClick = () => {
 };
 
 export default observer(() => {
-
-  if (localStorage.getItem("not_new") != "1" && !store.isIncognito) {
+  if (localStorage.getItem("not_new") != "1") {
     window.location.replace(getWebUIURL("welcome"))
     if (localStorage.getItem("not_new") == "1") alreadyMaded();
-    localStorage.setItem("not_new", "1")
+
   }
 
   return (
