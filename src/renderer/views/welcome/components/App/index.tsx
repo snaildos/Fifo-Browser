@@ -37,7 +37,6 @@ const nextPage = () => {
  
   page += 1
   document.getElementsByClassName("banner"+JSON.stringify(page))[0].classList.add("active")
-  document.getElementsByClassName("Dark")[0].classList.add("active")
 }
 
 const themeset = (mode: string) => {
@@ -86,6 +85,7 @@ export default observer(() => {
 
   window.onload = function() {
     page = 1
+    document.getElementsByClassName("Dark")[0].classList.add("active")
     document.getElementsByClassName("banner1")[0].classList.add("active")
     // console.log(await defaultBrowser());
 
