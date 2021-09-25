@@ -1,10 +1,14 @@
 # Changelog
 
 <a name="1.0.0"></a>
-## 1.0.0 (2021-09-24)
+## 1.0.0 (2021-09-25)
 
 ### Miscellaneous
 
+-  Update index.tsx [[00b78b4](https://github.com/snaildos/Fifo-Browser/commit/00b78b42faf780b72e678df84355a3314ac55da2)]
+-  OOBE never updates if you press skip. [[2580c0a](https://github.com/snaildos/Fifo-Browser/commit/2580c0afff5308c971cebb496d2f255fc3b768b2)]
+-  Change welcome first time info into more reliable storage system [[13097f4](https://github.com/snaildos/Fifo-Browser/commit/13097f409180dbd854392df244c4b4ff907becf5)]
+-  Update CHANGELOG.md [[c3e67d0](https://github.com/snaildos/Fifo-Browser/commit/c3e67d0a05f040684723f929314014ba0c7e153a)]
 -  Last patch fix! [[10115ab](https://github.com/snaildos/Fifo-Browser/commit/10115ab8e64b71538b718cf5fc7f90850ee8de87)]
 -  Finish the full setup utility! [[4f33136](https://github.com/snaildos/Fifo-Browser/commit/4f33136bf577c22d5c08a0c0a1cc6edf8b821d4e)]
 -  looks annoying [[3f69b13](https://github.com/snaildos/Fifo-Browser/commit/3f69b131431a60638c0eb291e6a7dfc56d897e1f)]
