@@ -100,7 +100,6 @@ export default observer(() => {
         <Description>Welcome to Fifo</Description>
         <Title>Lets personalize Fifo</Title>
         <Button theme={store.theme} onClick={nextPage}>Next!</Button>
-        <StyledLink onClick={alreadyMaded}>Skip setup</StyledLink>
       </StyledSection>
 
       <StyledSection className="banner2">
