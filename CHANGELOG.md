@@ -5,6 +5,7 @@
 
 ### Miscellaneous
 
+-  Update CHANGELOG.md [[f5f68c4](https://github.com/snaildos/Fifo-Browser/commit/f5f68c4f41cc588e703ef4540f76ea9c3cf49149)]
 -  Update index.tsx [[00b78b4](https://github.com/snaildos/Fifo-Browser/commit/00b78b42faf780b72e678df84355a3314ac55da2)]
 -  OOBE never updates if you press skip. [[2580c0a](https://github.com/snaildos/Fifo-Browser/commit/2580c0afff5308c971cebb496d2f255fc3b768b2)]
 -  Change welcome first time info into more reliable storage system [[13097f4](https://github.com/snaildos/Fifo-Browser/commit/13097f409180dbd854392df244c4b4ff907becf5)]
