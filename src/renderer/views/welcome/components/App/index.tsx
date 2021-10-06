@@ -48,31 +48,40 @@ const themeset = (mode: string) => {
     document.getElementsByClassName("Lavender")[0].classList.remove("active")
     document.getElementsByClassName("Light")[0].classList.add("active")
     store.settings.theme = "wexond-light";
+    store.settings.themeAuto = false;
+    store.settings.notnew = "false";
+    store.save();
   } else if (theme =="Dark") {
     document.getElementsByClassName("Light")[0].classList.remove("active")
     document.getElementsByClassName("Blue")[0].classList.remove("active")
     document.getElementsByClassName("Lavender")[0].classList.remove("active")
     document.getElementsByClassName("Dark")[0].classList.add("active")
     store.settings.theme = "wexond-dark";
+    store.settings.themeAuto = false;
+    store.settings.notnew = "false";
+    store.save();
   } else if (theme =="Blue") {
     document.getElementsByClassName("Light")[0].classList.remove("active")
     document.getElementsByClassName("Lavender")[0].classList.remove("active")
     document.getElementsByClassName("Dark")[0].classList.remove("active")
     document.getElementsByClassName("Blue")[0].classList.add("active")
     store.settings.theme = "fifo-blue";
+    store.settings.themeAuto = false;
+    store.settings.notnew = "false";
+    store.save();
   } else if (theme =="Lavender") {
     document.getElementsByClassName("Light")[0].classList.remove("active")
     document.getElementsByClassName("Blue")[0].classList.remove("active")
     document.getElementsByClassName("Dark")[0].classList.remove("active")
     document.getElementsByClassName("Lavender")[0].classList.add("active")
     store.settings.theme = "fifo-lavender";
+    store.settings.themeAuto = false;
+    store.settings.notnew = "false";
+    store.save();
   }
 }
 
 const commit = () => {
-  store.settings.themeAuto = false;
-  store.settings.notnew = "false";
-  store.save();
   window.location.replace(getWebUIURL('newtab'))
 }
 
@@ -98,13 +107,13 @@ export default observer(() => {
 
       <StyledSection className="banner1">
         <Description>Welcome to Fifo</Description>
-        <Title>Lets personalize Fifo</Title>
-        <Button theme={store.theme} onClick={nextPage}>Next!</Button>
+        <Title>Let's get started!</Title>
+        <Button theme={store.theme} onClick={nextPage}>Start!</Button>
       </StyledSection>
 
       <StyledSection className="banner2">
         <Favicon></Favicon>
-        <Description style={{fontSize: "1.5rem", fontWeight: 500, margin: 0, marginBottom: "48px", opacity: '1' }}>Pick your theme!</Description>
+        <Description style={{fontSize: "1.5rem", fontWeight: 500, margin: 0, marginBottom: "48px", opacity: '1' }}>Pick a theme!</Description>
         <div style={{ display: 'flex', width: "550px", justifyContent: "space-around" }}>
           <Option onClick={() => themeset("Light")} className="Light">
             <div style={{ border: "1px solid rgb(95, 99, 104)", backgroundColor: "#fff", borderRadius: "50%", display: "flex", height: "3rem", marginBottom: ".50rem", width: "3rem" }}></div>

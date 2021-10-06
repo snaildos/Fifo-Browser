@@ -17,13 +17,14 @@ const AskToggle = observer(() => {
 <p></p>
 <Title>SnailDOS - Development and Code</Title>
 <p></p>
-<Title>Wexond Team - For the original Code</Title>
+<Title>Wexond - Original Fork</Title>
 <p></p>
 <Title>Chazzy - Head of innovation</Title>
 <p></p>
 <Title>Preknowledge - Developer</Title>
 <p></p>
 <Title>JOshua - Graphic Designer</Title>
+<p></p>
 </Row>
    
   );
@@ -41,6 +42,7 @@ export const About = () => {
   return (
     <>
       <Header>About Fifo</Header>
+      <Title>Your version of Fifo is 1.0.0 !</Title>
       <Location />
       <AskToggle />
     </>
