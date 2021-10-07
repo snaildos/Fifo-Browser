@@ -1,10 +1,14 @@
 # Changelog
 
 <a name="1.0.0"></a>
-## 1.0.0 (2021-09-25)
+## 1.0.0 (2021-10-06)
 
 ### Miscellaneous
 
+-  Update themes.ts [[003cc07](https://github.com/snaildos/Fifo-Browser/commit/003cc07ac19294d078c6d69846d48ec5085d1f2b)]
+-  Final Bug Fixes! [[e0cdc7f](https://github.com/snaildos/Fifo-Browser/commit/e0cdc7f26ba33360c3437725643a22873297f23e)]
+-  Update Webpack to better version [[35cc0c0](https://github.com/snaildos/Fifo-Browser/commit/35cc0c0a9661e1d7f4c19af48a1fd721f8d0ff1d)]
+-  Update CHANGELOG.md [[d9f7b48](https://github.com/snaildos/Fifo-Browser/commit/d9f7b48873be8eb773949aac4e23cbd490e7d58a)]
 -  Update CHANGELOG.md [[f5f68c4](https://github.com/snaildos/Fifo-Browser/commit/f5f68c4f41cc588e703ef4540f76ea9c3cf49149)]
 -  Update index.tsx [[00b78b4](https://github.com/snaildos/Fifo-Browser/commit/00b78b42faf780b72e678df84355a3314ac55da2)]
 -  OOBE never updates if you press skip. [[2580c0a](https://github.com/snaildos/Fifo-Browser/commit/2580c0afff5308c971cebb496d2f255fc3b768b2)]
