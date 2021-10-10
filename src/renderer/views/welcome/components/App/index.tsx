@@ -20,8 +20,8 @@ import {
 import { getWebUIURL } from '~/common/webui';
 import { StyledButton } from '~/renderer/components/Button/styles';
 
-var page = 1
-var theme = "Light"
+let page = 1
+let theme = "Light"
 
 store.settings.theme = "wexond-dark";
 

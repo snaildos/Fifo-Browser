@@ -33,7 +33,7 @@ import { getWebUIURL } from '~/common/webui';
   };
   
   w.oldPrompt=w.prompt;
-  w.prompt = (msg: string, value: string="") => {
+  w.prompt = (msg: string, value="") => {
     return ipcRenderer.sendSync(`prompt-${id}`, {
       msg: getText(msg),
       url: w.frameElement ? "Una pagina insertada en esta" : w.location.host,

@@ -86,9 +86,9 @@ $ npm i -g windows-build-tools
 ```
 
 ```bash
-$ npm install # Install needed depedencies.
+$ npm install --save --legacy-peer-deps # Install needed depedencies. If you can, please, use yarn install.
 $ npm run build # Rebuild native modules using Electron headers.
-$ npm run dev # Run Wexond in development mode
+$ npm run dev # Run Fifo in development mode
 ```
 
 ### More commands
