@@ -9,6 +9,8 @@ import { PreviewDialog } from '../dialogs/preview';
 import { IFormFillData, IBookmark } from '~/interfaces';
 import { SearchDialog } from '../dialogs/search';
 
+import { showIncognitoDialog } from '../dialogs/incogitoMenu';
+
 import * as bookmarkMenu from '../menus/bookmarks';
 import { showFindDialog } from '../dialogs/find';
 import { getFormFillMenuItems } from '../utils';
@@ -113,6 +115,10 @@ export const runMessagingService = (appWindow: AppWindow) => {
 
   ipcMain.on(`is-incognito-${id}`, (e) => {
     e.returnValue = appWindow.incognito;
+  });
+
+  ipcMain.on(`show-incognitoMenu-dialog-${id}`, (e, x, y) => {
+    showIncognitoDialog(appWindow.win, x, y);
   });
 
   if (process.env.ENABLE_AUTOFILL) {

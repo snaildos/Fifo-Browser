@@ -35,6 +35,12 @@ const onMenuClick = async () => {
   showMenuDialog();
 };
 
+const onIncognitoClick = () => {
+  // incognitoMenu
+  const { right, bottom } = menuRef.getBoundingClientRect();
+  ipcRenderer.send(`show-incognitoMenu-dialog-${store.windowId}`, right, bottom);
+}
+
 const BrowserActions = observer(() => {
   const { selectedTabId } = store.tabs;
 
@@ -76,7 +82,15 @@ export const RightButtons = observer(() => {
           value={store.downloadProgress}
         ></ToolbarButton>
       )}
-      {store.isIncognito && <ToolbarButton icon={ICON_INCOGNITO} size={18} />}
+      {store.isIncognito && (
+        <ToolbarButton
+          icon={ICON_INCOGNITO}
+          style={{ cursor: 'pointer' }}
+          size={18}
+          onMouseDown={onIncognitoClick}
+          toggled={store.dialogsVisibility['incognitoMenu']}
+        />
+      )}
       <ToolbarButton
         divRef={(r) => (menuRef = r)}
         toggled={store.dialogsVisibility['menu']}

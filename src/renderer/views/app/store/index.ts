@@ -76,9 +76,10 @@ export class Store {
   public dialogsVisibility: { [key: string]: boolean } = {
     menu: false,
     'add-bookmark': false,
-    zoom: false,
+    zoom: true,
     'extension-popup': false,
     'downloads-dialog': false,
+    incognitoMenu: false,
   };
 
   // Computed
