@@ -16,6 +16,7 @@ import {
   COMPACT_TAB_HEIGHT,
   DEFAULT_TAB_HEIGHT,
 } from '~/constants/design';
+import { DefaultBrowser } from '../defaultBrowser';
 
 const onAppLeave = () => {
   store.barHideTimer = setTimeout(function () {
@@ -66,6 +67,7 @@ const App = observer(() => {
         <Titlebar />
         {store.settings.object.topBarVariant === 'default' && <Toolbar />}
         <BookmarkBar />
+        <DefaultBrowser />
       </StyledApp>
       <Line
         onMouseOver={onLineEnter}

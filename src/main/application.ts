@@ -13,6 +13,8 @@ import { DialogsService } from './services/dialogs-service';
 import { requestAuth } from './dialogs/auth';
 import { NetworkServiceHandler } from './network/network-service-handler';
 import { ExtensionServiceHandler } from './extension-service-handler';
+import { runDefaultBrowserService } from './services'
+
 
 export class Application {
   public static instance = new Application();
@@ -94,6 +96,8 @@ export class Application {
     NetworkServiceHandler.get();
 
     checkFiles();
+
+    runDefaultBrowserService(app);
 
     this.storage.run();
     this.dialogs.run();

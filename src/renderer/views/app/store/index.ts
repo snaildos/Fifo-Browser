@@ -67,6 +67,14 @@ export class Store {
 
   public isUIpage = true;
 
+  public get _isDefaultBrowser() {
+    var res = true 
+    ipcRenderer.invoke("is-default-browser")
+    .then(_ => { res = _ })
+
+    return res
+  }
+
   public downloadNotification = false;
 
   public downloads: IDownloadItem[] = [];
@@ -74,6 +82,10 @@ export class Store {
   public isBookmarked = false;
 
   public zoomFactor = 1;
+
+  @observable
+  public isDefaultBrowser: boolean = !this._isDefaultBrowser;
+
 
   public dialogsVisibility: { [key: string]: boolean } = {
     menu: false,
