@@ -46,6 +46,7 @@ applyEntries(appConfig, [
   'auth',
   'find',
   'menu',
+  'menuExtra',
   'incognitoMenu',
   'search',
   'preview',

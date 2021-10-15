@@ -10,6 +10,7 @@ import { IFormFillData, IBookmark } from '~/interfaces';
 import { SearchDialog } from '../dialogs/search';
 
 import { showIncognitoDialog } from '../dialogs/incogitoMenu';
+import { showMenuExtraDialog } from '../dialogs/menuExtra';
 
 import * as bookmarkMenu from '../menus/bookmarks';
 import { showFindDialog } from '../dialogs/find';
@@ -99,6 +100,10 @@ export const runMessagingService = (appWindow: AppWindow) => {
 
   ipcMain.on(`show-downloads-dialog-${id}`, (e, left, top) => {
     showDownloadsDialog(appWindow.win, left, top);
+  });
+
+  ipcMain.on(`show-menu_extra-dialog-${id}`, (e, left, top) => {
+    showMenuExtraDialog(appWindow.win, left, top);
   });
 
   ipcMain.on(`show-zoom-dialog-${id}`, (e, left, top) => {

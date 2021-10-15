@@ -65,6 +65,8 @@ export class Store {
 
   public downloadsButtonVisible = false;
 
+  public isUIpage = true;
+
   public downloadNotification = false;
 
   public downloads: IDownloadItem[] = [];
@@ -80,6 +82,7 @@ export class Store {
     'extension-popup': false,
     'downloads-dialog': false,
     incognitoMenu: false,
+    menuExtra: false,
   };
 
   // Computed
@@ -192,11 +195,17 @@ export class Store {
       theme: computed,
       isCompact: computed,
       downloadProgress: computed,
+      isUIpage: observable,
     });
 
     ipcRenderer.on('update-navigation-state', (e, data) => {
       this.navigationState = data;
     });
+
+    ipcRenderer.on("update-navigation-state-ui", (e, url) => {
+      var url = url.url
+      this.isUIpage = url.startsWith(WEBUI_BASE_URL) || url.startsWith(NETWORK_ERROR_HOST);
+    }) 
 
     ipcRenderer.on('fullscreen', (e, fullscreen: boolean) => {
       this.isFullscreen = fullscreen;
@@ -209,6 +218,10 @@ export class Store {
     ipcRenderer.on('update-available', () => {
       this.updateAvailable = true;
     });
+
+    ipcRenderer.on('is-ui-page', (e, data) => {
+      this.isUIpage = data
+    })
 
     ipcRenderer.on('download-started', (e, item) => {
       this.downloads.push(item);

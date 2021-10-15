@@ -56,6 +56,14 @@ export class ViewManager extends EventEmitter {
       this.views.get(this.selectedId).webContents.print();
     });
 
+    ipcMain.on('create-tab-menu-extra', (e, details: any) => {
+      this.create(details);
+    });
+
+    ipcMain.on('Print', (e, details) => {
+      this.views.get(this.selectedId).webContents.print({printBackground: true});
+    });
+
     ipcMain.handle(`view-select-${id}`, (e, id: number, focus: boolean) => {
       if (process.env.ENABLE_EXTENSIONS) {
         extensions.tabs.activate(id, focus);
