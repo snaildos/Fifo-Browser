@@ -68,7 +68,7 @@ export class Store {
   public isUIpage = true;
 
   public get _isDefaultBrowser() {
-    var res = true 
+    let res = true 
     ipcRenderer.invoke("is-default-browser")
     .then(_ => { res = _ })
 
@@ -84,7 +84,7 @@ export class Store {
   public zoomFactor = 1;
 
   @observable
-  public isDefaultBrowser: boolean = !this._isDefaultBrowser;
+  public isDefaultBrowser = !this._isDefaultBrowser;
 
 
   public dialogsVisibility: { [key: string]: boolean } = {
