@@ -42,3 +42,18 @@ export const Privacy = () => {
     </>
   );
 };
+
+const httpsEnforceToggle = observer(() => {
+const { httpsEnforce } = store.settings;
+  
+    return (
+  <><Row onClick={onSwitchChange('httpsEnforce')}>
+        <Title>
+          Enforce https on all websites?
+        </Title>
+        <Control>
+          <Switch value={httpsEnforce} />
+        </Control>
+      </Row><httpsEnforceToggle /></>
+    );
+  });
