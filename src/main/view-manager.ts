@@ -48,6 +48,27 @@ export class ViewManager extends EventEmitter {
       });
     });
 
+    ipcMain.on('save-as-menu-extra', async (e) => {
+      const {
+        title,
+        webContents,
+      } = Application.instance.windows.current.viewManager.selected;
+    
+      const { canceled, filePath } = await dialog.showSaveDialog({
+        defaultPath: title,
+        filters: [
+          { name: 'Webpage, Complete', extensions: ['html', 'htm'] },
+          { name: 'Webpage, HTML Only', extensions: ['htm', 'html'] },
+        ],
+      });
+    
+      if (canceled) return;
+    
+      const ext = extname(filePath);
+    
+      webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
+    });
+
     ipcMain.on(`add-tab-${id}`, (e, details) => {
       this.create(details);
     });
