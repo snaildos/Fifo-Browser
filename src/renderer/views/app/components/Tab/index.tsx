@@ -303,7 +303,7 @@ export default observer(({ tab }: { tab: ITab }) => {
     ? '#393939'
     : '#fcfcfc';
 
-  let invisibleTabs = store.settings.object.invisibleTabs;
+  const invisibleTabs = store.settings.object.invisibleTabs;
   // var dominant_color;
 
   // color.getDominantColor(tab.favicon).then(json => {
