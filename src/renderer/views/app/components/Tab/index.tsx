@@ -17,6 +17,8 @@ import { ITab } from '../../models';
 import store from '../../store';
 import { remote, ipcRenderer } from 'electron';
 import { COMPACT_TAB_MARGIN_TOP } from '~/constants/design';
+import { settings } from 'node:cluster';
+// const color = require('img-color');
 
 const removeTab = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
@@ -107,7 +109,7 @@ const onMouseUp = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
 const onContextMenu = (tab: ITab) => () => {
   const menu = remote.Menu.buildFromTemplate([
     {
-      label: 'New tab to the right',
+      label: 'Add a tab to the left',
       click: () => {
         store.tabs.addTab(
           {
@@ -126,7 +128,7 @@ const onContextMenu = (tab: ITab) => () => {
       },
     },
     {
-      label: 'Remove from group',
+      label: 'Remove from a group',
       visible: !!tab.tabGroup,
       click: () => {
         tab.removeFromGroup();
@@ -149,13 +151,13 @@ const onContextMenu = (tab: ITab) => () => {
       },
     },
     {
-      label: tab.isPinned ? 'Unpin tab' : 'Pin tab',
+      label: tab.isPinned ? 'Unpin Tab' : 'Pin tab',
       click: () => {
         tab.isPinned ? store.tabs.unpinTab(tab) : store.tabs.pinTab(tab);
       },
     },
     {
-      label: tab.isMuted ? 'Unmute tab' : 'Mute tab',
+      label: tab.isMuted ? 'Unmute window' : 'Mute window',
       click: () => {
         tab.isMuted ? store.tabs.unmuteTab(tab) : store.tabs.muteTab(tab);
       },
@@ -164,14 +166,14 @@ const onContextMenu = (tab: ITab) => () => {
       type: 'separator',
     },
     {
-      label: 'Close tab',
+      label: 'Close the tab',
       accelerator: 'CmdOrCtrl+W',
       click: () => {
         tab.close();
       },
     },
     {
-      label: 'Close other tabs',
+      label: 'Close tabs in group',
       click: () => {
         for (const t of store.tabs.list) {
           if (t !== tab) {
@@ -181,7 +183,7 @@ const onContextMenu = (tab: ITab) => () => {
       },
     },
     {
-      label: 'Close tabs to the left',
+      label: 'Close tabs to the right',
       click: () => {
         for (let i = store.tabs.list.indexOf(tab) - 1; i >= 0; i--) {
           store.tabs.list[i].close();
@@ -215,18 +217,22 @@ const onContextMenu = (tab: ITab) => () => {
   menu.popup();
 };
 
+
 const Content = observer(({ tab }: { tab: ITab }) => {
+
   return (
-    <StyledContent>
+    <StyledContent title={store.settings.object.invisibleTabs ? tab.url : null}>
       {!tab.loading && tab.favicon !== '' && (
         <StyledIcon
           isIconSet={tab.favicon !== ''}
-          style={{ backgroundImage: `url(${tab.favicon})` }}
+          style={{ 
+            backgroundImage: `url(${tab.favicon})`, 
+          }}
+          isActive={tab.isSelected}
         >
           <PinnedVolume tab={tab} />
         </StyledIcon>
       )}
-
       {tab.loading && (
         <Preloader
           color={store.theme.accentColor}
@@ -242,10 +248,13 @@ const Content = observer(({ tab }: { tab: ITab }) => {
         </StyledTitle>
       )}
       <ExpandedVolume tab={tab} />
-      <Close tab={tab} />
+      {!(store.settings.object.showTabOnClose && store.tabs.list.length == 1) && (
+        <Close tab={tab} />
+      )}
     </StyledContent>
   );
 });
+
 
 const ExpandedVolume = observer(({ tab }: { tab: ITab }) => {
   return (
@@ -275,6 +284,8 @@ const Close = observer(({ tab }: { tab: ITab }) => {
       onMouseDown={onCloseMouseDown}
       onClick={removeTab(tab)}
       visible={tab.isExpanded && !tab.isPinned}
+      style={{ cursor: 'pointer' }}
+      title={`Close Tab`}
     />
   );
 });
@@ -291,6 +302,19 @@ export default observer(({ tab }: { tab: ITab }) => {
   const defaultSelectedHoverColor = store.theme['toolbar.lightForeground']
     ? '#393939'
     : '#fcfcfc';
+
+  let invisibleTabs = store.settings.object.invisibleTabs;
+  // var dominant_color;
+
+  // color.getDominantColor(tab.favicon).then(json => {
+  //   if (json.dColor) {
+  //     dominant_color = json.dColor
+  //   }
+
+  //   dominant_color = store.theme['toolbar.backgroundColor'];
+  // }).catch(err => {
+  //   dominant_color = store.theme['toolbar.backgroundColor'];
+  // })
 
   return (
     <StyledTab
@@ -312,7 +336,8 @@ export default observer(({ tab }: { tab: ITab }) => {
             ? store.isCompact && tab.isHovered
               ? defaultSelectedHoverColor
               : store.theme['toolbar.backgroundColor']
-            : tab.isHovered
+            : invisibleTabs ? "transparent" :
+            tab.isHovered
             ? defaultHoverColor
             : defaultColor,
           borderColor:
