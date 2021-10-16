@@ -120,6 +120,11 @@
           description: `The webpage at <b>${url}</b> might be temporarily down or it may have moved permanently to a new web address.`,
           code: 'ERR_HTTP_RESPONSE_CODE_FAILURE',
         },
+        '-875': {
+          title: 'This site is unsecure',
+          description: `The webpage at <b>${url}</b> is blocked from loading because https enforce is enabled. You are trying to acess a unsecure server, either disable the setting on Settings->Privacy->Http enforce-->Disable or try adding https:// instead of http://.`,
+          code: 'ERR_HTTP_UNSECURE',
+        },
       };
 
       const { title, description, code, icon } = info[errorCode];

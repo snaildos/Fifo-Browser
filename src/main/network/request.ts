@@ -13,6 +13,10 @@ export const requestURL = (url: string): Promise<ResponseDetails> =>
       request = https.request;
     }
 
+    if (options.protocol === 'http:') {
+      alert("ERROR")
+    }
+
     const req = request(options, (res) => {
       let data = '';
       res.setEncoding('binary');
