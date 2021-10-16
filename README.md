@@ -5,7 +5,7 @@
 <div align="center">
   <h1>Fifo Browser</h1>
 
-[![Actions Status](https://github.com/wexond/desktop/workflows/Build/badge.svg)](https://github.com/snaildos/Fifo-Browser/actions)
+[![Actions Status](https://github.com/snaildos/Fifo-Browser/workflows/Build/badge.svg)](https://github.com/snaildos/Fifo-Browser/actions)
 [![Downloads](https://img.shields.io/github/downloads/snaildos/Fifo-Browser/total.svg?style=flat-square)](https://fifo.snaildos.com)
 
 Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React`, that can also be used as a framework to create a custom web browser (see the [License](#license) section). It's a more, optimized, more updated fork of Wexond. 
@@ -33,25 +33,33 @@ Building a custom browser would be way to hard, therefor, we forked Wexond as ou
 - **Chromium without Google services and low resources usage** - Since Wexond uses Electron under the hood which is based on only several and the most important Chromium components, it's not bloated with redundant Google tracking services and others.
 - **Fast and fluent UI** - The animations are really smooth and their timings are perfectly balanced.
 - **Highly customizable new tab page** - Customize almost an every aspect of the new tab page!
-- **Customizable browser UI** - Choose whether Wexond should have compact or normal UI.
+- **Customizable browser UI** - Choose whether Fifo should have compact or normal UI.
 - **Tab groups** - Easily group tabs, so it's hard to get lost.
 - **Scrollable tabs**
 - **Partial support for Chrome extensions** - Install some extensions directly from Chrome Web Store\* (see [#110](https://github.com/wexond/wexond/issues/110)) (WIP)
 
 ## Other basic features
 
-- Downloads popup with currently downloaded items (download manager WebUI page is WIP)
+- Downloads popup with currently downloaded items
 - History manager
+- Simple menu
+- Perfect Incognito Mode!
 - Bookmarks bar & manager
 - Settings
 - Find in page
 - Dark and light theme
 - Omnibox with autocomplete algorithm similar to Chromium
 - State of the art tab system
+- Security Security SECURITY!
+
+## What can I expect to see in future updates?
+
+- More security Features
+- Auto complete
 
 # Screenshots
 
-![image](https://user-images.githubusercontent.com/11065386/81024159-d9388f80-8e72-11ea-85e7-6c30e3b66554.png)
+![alt text](https://github.com/SnailDOS/Fifo-Browser/blob/main/image-preview/image.jpg?raw=true)
 
 UI normal variant:
 ![image](https://user-images.githubusercontent.com/11065386/81024186-f40b0400-8e72-11ea-976e-cd1ca1b43ad8.png)
@@ -75,7 +83,7 @@ By opening a pull request, you agree to the conditions of the [Contributor Licen
 
 ## Running
 
-Before running Fifo, please ensure you have **latest** [`Node.js`](https://nodejs.org/en/) and [`NPM`] installed on your machine.
+Before running Fifo, please ensure you have **latest** [`Node.js`](https://nodejs.org/en/) and [`YARN`] installed on your machine. You can use NPM but it IS NOT recommended.
 
 ### Windows
 
@@ -85,6 +93,14 @@ Make sure you have build tools installed. You can install them by running this c
 $ npm i -g windows-build-tools
 ```
 
+Yarn:
+```bash
+$ yarn install --save --legacy-peer-deps # Install needed depedencies. If you can, please, use yarn install.
+$ yarn build # Rebuild native modules using Electron headers.
+$ yarn dev # Run Fifo in development mode
+```
+
+NPM: Not recommended
 ```bash
 $ npm install --save --legacy-peer-deps # Install needed depedencies. If you can, please, use yarn install.
 $ npm run build # Rebuild native modules using Electron headers.
@@ -94,11 +110,11 @@ $ npm run dev # Run Fifo in development mode
 ### More commands
 
 ```bash
-$ npm run compile-win32 # Package Wexond for Windows
-$ npm run compile-linux # Package Wexond for Linux
-$ npm run compile-darwin # Package Wexond for macOS
-$ npm run lint # Runs linter
-$ npm run lint-fix # Runs linter and automatically applies fixes
+$ yarn compile-win32 # Package Fifo for Windows
+$ yarn compile-linux # Package Fifo for Linux
+$ yarn compile-darwin # Package Fifo for macOS
+$ yarn lint # Runs linter
+$ yarn lint-fix # Runs linter and automatically applies fixes
 ```
 
 More commands can be found in [`package.json`](package.json).

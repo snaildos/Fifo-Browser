@@ -12,7 +12,7 @@ import { Switch } from '~/renderer/components/Switch';
 import { Dropdown } from '~/renderer/components/Dropdown';
 
 import store, { Preset } from '../../store';
-import { ICON_WINDOW, ICON_BACK } from '~/renderer/constants';
+import { ICON_WINDOW, ICON_BACK, ICON_REFRESH } from '~/renderer/constants';
 
 const onBackClick = () => {
   store.preferencesContent = 'main';
@@ -35,6 +35,18 @@ const onSwitchClick = (name: string) => () => {
 
 const onPresetClick = (name: Preset) => () => {
   store.preset = name;
+};
+
+const getWebUIURL = (hostname: string) =>
+  `${WEBUI_BASE_URL}${hostname}${WEBUI_URL_SUFFIX}`;
+
+const onRefreshImageClick = () => {
+  store.image = '';
+  setTimeout(() => {
+    localStorage.setItem('imageDate', '');
+    localStorage.setItem('imageURL', '');
+    store.loadImage(true);
+  }, 50);
 };
 
 export const SwitchItem = observer(
@@ -127,6 +139,16 @@ export const Preferences = observer(() => {
             icon={ICON_WINDOW}
           >
             Custom
+          </ContextMenuItem>
+          <ContextMenuSeparator bigger></ContextMenuSeparator>
+          <ContextMenuItem
+            bigger
+            onClick={onRefreshImageClick}
+            iconSize={28}
+            icon={ICON_REFRESH}
+            style={{ cursor: 'pointer' }}
+          >
+            Refresh image
           </ContextMenuItem>
         </div>
         <div
