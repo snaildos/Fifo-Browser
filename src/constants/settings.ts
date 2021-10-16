@@ -45,6 +45,7 @@ export const DEFAULT_SETTINGS: ISettings = {
   bookmarksBar: true,
   suggestions: true,
   themeAuto: true,
+  httpsenforce: false,
   searchEngines: DEFAULT_SEARCH_ENGINES,
   searchEngine: 0,
   startupBehavior: {
