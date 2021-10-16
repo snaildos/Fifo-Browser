@@ -1,6 +1,7 @@
 import { ipcRenderer } from 'electron';
 import { observable, computed, makeObservable } from 'mobx';
 import { parse } from 'url';
+import store from '../../store';
 import { WEBUI_BASE_URL, WEBUI_PROTOCOL } from '~/constants/files';
 import { DialogStore } from '~/models/dialog-store';
 
@@ -13,6 +14,9 @@ export class Store extends DialogStore {
   public title = '';
 
   public url = '';
+
+  @observable
+  public httpsforce = '';
 
   public x = 0;
 
@@ -34,6 +38,8 @@ export class Store extends DialogStore {
     }
 
     if (parsed.protocol === 'http:') {
+      if (store.settings.httpsenforce === 'true') alert("sus");
+      alert("Import is SUS")
       return 'Unsecure Website';
     }
     
