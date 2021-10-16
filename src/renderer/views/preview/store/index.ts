@@ -33,6 +33,11 @@ export class Store extends DialogStore {
       return 'local or shared file';
     }
 
+    if (parsed.protocol === 'http:') {
+      alert("sus")
+    }
+    
+
     return parsed.hostname;
   }
 
