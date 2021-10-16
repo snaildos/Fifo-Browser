@@ -49,7 +49,6 @@ const themeset = (mode: string) => {
     document.getElementsByClassName("Light")[0].classList.add("active")
     store.settings.theme = "wexond-light";
     store.settings.themeAuto = false;
-    store.settings.notnew = "false";
     store.save();
   } else if (theme =="Dark") {
     document.getElementsByClassName("Light")[0].classList.remove("active")
@@ -58,7 +57,6 @@ const themeset = (mode: string) => {
     document.getElementsByClassName("Dark")[0].classList.add("active")
     store.settings.theme = "wexond-dark";
     store.settings.themeAuto = false;
-    store.settings.notnew = "false";
     store.save();
   } else if (theme =="Blue") {
     document.getElementsByClassName("Light")[0].classList.remove("active")
@@ -67,7 +65,6 @@ const themeset = (mode: string) => {
     document.getElementsByClassName("Blue")[0].classList.add("active")
     store.settings.theme = "fifo-blue";
     store.settings.themeAuto = false;
-    store.settings.notnew = "false";
     store.save();
   } else if (theme =="Lavender") {
     document.getElementsByClassName("Light")[0].classList.remove("active")
@@ -76,12 +73,13 @@ const themeset = (mode: string) => {
     document.getElementsByClassName("Lavender")[0].classList.add("active")
     store.settings.theme = "fifo-lavender";
     store.settings.themeAuto = false;
-    store.settings.notnew = "false";
     store.save();
   }
 }
 
 const commit = () => {
+  store.settings.notnew = "false"
+  store.save()
   window.location.replace(getWebUIURL('newtab'))
 }
 
@@ -107,7 +105,7 @@ export default observer(() => {
 
       <StyledSection className="banner1">
         <Description>Welcome to Fifo</Description>
-        <Title>Let's get started!</Title>
+        <Title>Lets get started!</Title>
         <Button theme={store.theme} onClick={nextPage}>Start!</Button>
       </StyledSection>
 

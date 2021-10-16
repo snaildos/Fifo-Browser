@@ -124,7 +124,7 @@ export const lavTheme: ITheme = {
   'dialog.lightForeground': false,
   'searchBox.backgroundColor': '#c700bf',
   'searchBox.lightForeground': false,
-  'pages.backgroundColor': '#764c8a',
+  'pages.backgroundColor': '#4e0d6e',
   'pages.lightForeground': false,
   'pages.textColor': '#7a7a7a',
   'dropdown.backgroundColor': 'rgb(66, 66, 66)',
