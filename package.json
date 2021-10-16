@@ -1,6 +1,6 @@
 {
   "name": "Fifo",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "sideEffects": false,
   "description": "Fifo is a nonprofit, fast free and secure Web Browser. It's based on Wexond, and includes news and tons of features out of the box. Fifo is resource effecient, and is updated often. Powered by SnailDOS!",
   "keywords": [
@@ -105,9 +105,8 @@
     "webpack-cli": "4.8.0",
     "webpack-dev-server": "3.11.2",
     "webpack-merge": "5.8.0",
-    "x-default-browser": "^0.4.0"
-  },
-  "dependencies": {
+    "x-default-browser": "^0.4.0",
     "gitmoji-changelog": "^2.2.1"
-  }
+  },
+  "dependencies": {}
 }

@@ -103,10 +103,6 @@ class StartupControl extends React.PureComponent<Props, State> {
           <RadioButton selected={this.state.value === 'empty'} />
           <Title style={titleStyle}>Open the New Tab page</Title>
         </Row>
-        <Row style={rowStyle} onClick={this.select('continue')}>
-          <RadioButton selected={this.state.value === 'continue'} />
-          <Title style={titleStyle}>Continue where you left off</Title>
-        </Row>
         <Row style={rowStyle} onClick={this.select('urls')}>
           <RadioButton selected={this.state.value === 'urls'} />
           <Title style={titleStyle}>Open specific pages</Title>
