@@ -12,7 +12,20 @@ const onClearBrowsingData = () => {
   store.dialogContent = 'privacy';
 };
 
-const DoNotTrackToggle = observer(() => {
+const httpsEnforceToggle = observer(() => {
+const { httpsEnforce } = store.settings;
+
+  return (
+    <Row onClick={onSwitchChange('httpsEnforce')}>
+      <Title>Testing 123</Title>
+      <Control>
+        <Switch value={httpsEnforce} />
+      </Control>
+    </Row>
+  );
+});
+
+  const DoNotTrackToggle = observer(() => {
   const { doNotTrack } = store.settings;
 
   return (
@@ -39,21 +52,7 @@ export const Privacy = () => {
         Clear browsing data
       </Button>
       <DoNotTrackToggle />
+      <httpsEnforceToggle />
     </>
   );
 };
-
-const httpsEnforceToggle = observer(() => {
-const { httpsEnforce } = store.settings;
-  
-    return (
-  <><Row onClick={onSwitchChange('httpsEnforce')}>
-        <Title>
-          Enforce https on all websites?
-        </Title>
-        <Control>
-          <Switch value={httpsEnforce} />
-        </Control>
-      </Row><httpsEnforceToggle /></>
-    );
-  });
