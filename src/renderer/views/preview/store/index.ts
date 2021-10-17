@@ -13,10 +13,7 @@ export class Store extends DialogStore {
   public title = '';
 
   public url = '';
-
-  @observable
-  public httpsforce = '';
-
+  
   public x = 0;
 
   public xTransition = false;
@@ -37,8 +34,6 @@ export class Store extends DialogStore {
     }
 
     if (parsed.protocol === 'http:') {
-      if (store.settings.httpsenforce === 'true') alert("sus");
-      alert("Import is SUS")
       return 'Unsecure Website';
     }
     

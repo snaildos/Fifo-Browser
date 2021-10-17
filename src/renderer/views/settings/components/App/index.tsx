@@ -6,6 +6,7 @@ import { Appearance } from '../Appearance';
 import { AddressBar, ManageSearchEngines } from '../AddressBar';
 import { Privacy } from '../Privacy';
 import { About } from '../About';
+import { Other } from '../Other';
 import store from '../../store';
 import { NavigationDrawer } from '~/renderer/components/NavigationDrawer';
 import { Button } from '~/renderer/components/Button';
@@ -25,6 +26,7 @@ import {
   ICON_FIRE,
   ICON_TRASH,
   ICON_EDIT,
+  ICON_ADD,
 } from '~/renderer/constants';
 import {
   ContextMenuItem,
@@ -261,6 +263,9 @@ export default observer(() => {
           <MenuItem icon={ICON_FIRE} section="about">
             About
           </MenuItem>
+          <MenuItem icon={ICON_ADD} section="other">
+            Other
+          </MenuItem>
           {/* <MenuItem section="permissions">Site permissions</MenuItem> */}
 
           {/* <MenuItem section="language">Languages</MenuItem> */}
@@ -278,6 +283,7 @@ export default observer(() => {
             {selectedSection === 'startup' && <OnStartup />}
             {selectedSection === 'privacy' && <Privacy />}
             {selectedSection === 'about' && <About />}
+            {selectedSection === 'other' && <Other />}
             {selectedSection === 'downloads' && <Downloads />}
           </LeftContent>
         </Content>

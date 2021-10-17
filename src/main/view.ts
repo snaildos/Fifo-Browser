@@ -261,7 +261,6 @@ export class View {
         callback: Function,
       ) => {
         console.log(certificate, error, url);
-        // TODO: properly handle insecure websites.
         event.preventDefault();
         callback(true);
       },
