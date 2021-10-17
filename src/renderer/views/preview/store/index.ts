@@ -1,7 +1,6 @@
 import { ipcRenderer } from 'electron';
 import { observable, computed, makeObservable } from 'mobx';
 import { parse } from 'url';
-import store from '../../store';
 import { WEBUI_BASE_URL, WEBUI_PROTOCOL } from '~/constants/files';
 import { DialogStore } from '~/models/dialog-store';
 
