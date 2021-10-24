@@ -7,6 +7,10 @@ export const loadURL = (url: string) => {
     store.tabs.addTab({ url, active: true });
   } else {
     tab.url = url;
-    tab.callViewMethod('loadURL', url);
+    try {
+      tab.callViewMethod('loadURL', url);
+    } catch (e) {
+      console.error(e);
+    }
   }
 };

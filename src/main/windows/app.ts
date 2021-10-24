@@ -30,9 +30,6 @@ export class AppWindow {
         nodeIntegration: true,
         contextIsolation: false,
         javascript: true,
-        // TODO: get rid of the remote module in renderers
-        enableRemoteModule: true,
-        worldSafeExecuteJavaScript: false,
       },
       icon: resolve(
         app.getAppPath(),
@@ -40,7 +37,7 @@ export class AppWindow {
       ),
       show: false,
     });
-
+    require('@electron/remote/main').enable(this.win.webContents);
     this.incognito = incognito;
 
     this.viewManager = new ViewManager(this, incognito);

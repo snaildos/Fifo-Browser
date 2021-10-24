@@ -1,7 +1,7 @@
 import { makeObservable, observable } from 'mobx';
 
 import { Store } from '.';
-import { remote } from 'electron';
+import * as remote from '@electron/remote';
 import { prefixHttp, isURL } from '~/utils';
 import { Database } from '~/models/database';
 import { IStartupTab } from '~/interfaces/startup-tab';

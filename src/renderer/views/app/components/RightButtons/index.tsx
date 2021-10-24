@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import * as React from 'react';
-import { ipcRenderer, remote } from 'electron';
-
+import { ipcRenderer } from 'electron';
+import * as remote from '@electron/remote';
 import { ToolbarButton } from '../ToolbarButton';
 import { BrowserAction } from '../BrowserAction';
 import {

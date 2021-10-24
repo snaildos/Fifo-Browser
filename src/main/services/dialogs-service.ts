@@ -1,7 +1,6 @@
 import { BrowserView, app, ipcMain } from 'electron';
 import { join } from 'path';
 import { SearchDialog } from '../dialogs/search';
-import { PreviewDialog } from '../dialogs/preview';
 import { PersistentDialog } from '../dialogs/dialog';
 import { Application } from '../application';
 import { IRectangle } from '~/interfaces';
@@ -56,7 +55,6 @@ export class DialogsService {
     this.createBrowserView();
 
     this.persistentDialogs.push(new SearchDialog());
-    this.persistentDialogs.push(new PreviewDialog());
   }
 
   private createBrowserView() {
@@ -64,11 +62,12 @@ export class DialogsService {
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
-        enableRemoteModule: true,
+        // @ts-ignore
+        transparent: true,
         webviewTag: true,
-        worldSafeExecuteJavaScript: false,
       },
     });
+    require('@electron/remote/main').enable(view.webContents);
 
     view.webContents.loadURL(`about:blank`);
 

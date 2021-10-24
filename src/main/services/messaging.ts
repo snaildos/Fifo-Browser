@@ -1,11 +1,9 @@
 import { ipcMain } from 'electron';
-import { parse } from 'url';
 // import { getPassword, setPassword, deletePassword } from 'keytar';
 
 import { AppWindow } from '../windows';
 import { Application } from '../application';
 import { showMenuDialog } from '../dialogs/menu';
-import { PreviewDialog } from '../dialogs/preview';
 import { IFormFillData, IBookmark } from '~/interfaces';
 import { SearchDialog } from '../dialogs/search';
 
@@ -14,7 +12,6 @@ import { showMenuExtraDialog } from '../dialogs/menuExtra';
 
 import * as bookmarkMenu from '../menus/bookmarks';
 import { showFindDialog } from '../dialogs/find';
-import { getFormFillMenuItems } from '../utils';
 import { showAddBookmarkDialog } from '../dialogs/add-bookmark';
 import { showExtensionDialog } from '../dialogs/extension-popup';
 import { showDownloadsDialog } from '../dialogs/downloads';
@@ -63,21 +60,6 @@ export const runMessagingService = (appWindow: AppWindow) => {
 
   ipcMain.handle(`is-dialog-visible-${id}`, (e, dialog) => {
     return Application.instance.dialogs.isVisible(dialog);
-  });
-
-  ipcMain.on(`show-tab-preview-${id}`, (e, tab) => {
-    const dialog = Application.instance.dialogs.getPersistent(
-      'preview',
-    ) as PreviewDialog;
-    dialog.tab = tab;
-    dialog.show(appWindow.win);
-  });
-
-  ipcMain.on(`hide-tab-preview-${id}`, (e, tab) => {
-    const dialog = Application.instance.dialogs.getPersistent(
-      'preview',
-    ) as PreviewDialog;
-    dialog.hide();
   });
 
   ipcMain.on(`find-show-${id}`, () => {
@@ -154,7 +136,7 @@ export const runMessagingService = (appWindow: AppWindow) => {
       `form-fill-update-${id}`,
       async (e, _id: string, persistent = false) => {
         const url = appWindow.viewManager.selected.url;
-        const { hostname } = parse(url);
+        const { hostname } = new URL(url);
 
         const item =
           _id &&
@@ -231,8 +213,6 @@ export const runMessagingService = (appWindow: AppWindow) => {
         );
       }
 
-      await setPassword('fifo', `${hostname}-${username}`, password);
-
       appWindow.send(`has-credentials-${view.id}`, true);
     });
 
@@ -284,3 +264,11 @@ export const runMessagingService = (appWindow: AppWindow) => {
     },
   );
 };
+function getPassword(arg0: string, arg1: string): string | PromiseLike<string> {
+  throw new Error('Function not implemented.');
+}
+
+function deletePassword(arg0: string, arg1: string) {
+  throw new Error('Function not implemented.');
+}
+

@@ -1,4 +1,5 @@
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer } from 'electron';
+import * as remote from '@electron/remote';
 import { makeObservable, observable } from 'mobx';
 import { DialogStore } from '~/models/dialog-store';
 

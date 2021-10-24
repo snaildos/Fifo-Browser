@@ -2,7 +2,8 @@ import * as React from 'react';
 import { observer } from 'mobx-react-lite';
 import { ToolbarButton } from '../ToolbarButton';
 import { IBrowserAction } from '../../models';
-import { ipcRenderer, remote } from 'electron';
+import { ipcRenderer } from 'electron';
+import * as remote from '@electron/remote';
 import store from '../../store';
 import { extensionMainChannel } from '~/common/rpc/extensions';
 
