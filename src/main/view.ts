@@ -71,7 +71,6 @@ export class View {
         javascript: true,
       },
     });
-    require('@electron/remote/main').enable(this.browserView.webContents);
 
     this.incognito = incognito;
 
