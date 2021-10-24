@@ -33,6 +33,10 @@ export class AppWindow {
         contextIsolation: false,
         javascript: true,
       },
+      trafficLightPosition: {
+        x: 18,
+        y: 18,
+      },
       icon: resolve(
         app.getAppPath(),
         `static/${isNightly ? 'nightly-icons' : 'icons'}/icon.png`,
