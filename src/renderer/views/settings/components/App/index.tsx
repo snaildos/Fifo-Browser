@@ -263,9 +263,9 @@ export default observer(() => {
           <MenuItem icon={ICON_FIRE} section="about">
             About
           </MenuItem>
-          <MenuItem icon={ICON_ADD} section="other">
+          {/*<MenuItem icon={ICON_ADD} section="other">
             Other
-          </MenuItem>
+          </MenuItem>*/}
           {/* <MenuItem section="permissions">Site permissions</MenuItem> */}
 
           {/* <MenuItem section="language">Languages</MenuItem> */}

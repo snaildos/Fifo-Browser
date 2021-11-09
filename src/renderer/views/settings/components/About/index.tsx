@@ -9,32 +9,35 @@ import { observer } from 'mobx-react-lite';
 import { NormalButton } from '../App';
 
 const AskToggle = observer(() => {
-  
   return (
     <Row>
-<p></p>
-<Title>HzzaAwesome - Graphic Designer</Title>
-<p></p>
-<Title>SnailDOS - Development and Code</Title>
-<p></p>
-<Title>Wexond - Original Fork</Title>
-<p></p>
-<Title>Chazzy - Head of innovation</Title>
-<p></p>
-<Title>Preknowledge - Developer</Title>
-<p></p>
-<Title>JOshua - Graphic Designer</Title>
-<p></p>
-</Row>
-   
+      <p></p>
+      <Title>HzzaAwesome - Graphic Designer</Title>
+      <p></p>
+      <Title>SnailDOS - Development and Code</Title>
+      <p></p>
+      <Title>Wexond - Original Fork</Title>
+      <p></p>
+      <Title>Chazzy - Head of innovation</Title>
+      <p></p>
+      <Title>Preknowledge - Developer</Title>
+      <p></p>
+      <Title>JOshua - Graphic Designer</Title>
+      <p></p>
+      <Title> Mauro - Developer</Title>
+    </Row>
   );
 });
 const Location = observer(() => {
   return (
     <Row>
-    <Title>Fifo is a privacy orientated browser with tons of features such as a built in Ad Blocker. Fifo is made with love by the SnailDOS team. Big thanks to all our contributers on the right!</Title>
-    <p></p>
-  </Row>
+      <Title>
+        Fifo is a privacy orientated browser with tons of features such as a
+        built in Ad Blocker. Fifo is made with love by the SnailDOS team. Big
+        thanks to all our contributers on the right!
+      </Title>
+      <p></p>
+    </Row>
   );
 });
 
