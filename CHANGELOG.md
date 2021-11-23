@@ -1,5 +1,59 @@
 # Changelog
 
+<a name="1.1.0"></a>
+## 1.1.0 (2021-11-23)
+
+### Miscellaneous
+
+-  Update dependency webpack-bundle-analyzer to v4.5.0 [[02956c5](https://github.com/snaildos/Fifo-Browser/commit/02956c575ce25b6f933e12a712a0b07eb0e0b1a6)]
+-  Update dependency typescript-plugin-styled-components to v2 [[be52ea2](https://github.com/snaildos/Fifo-Browser/commit/be52ea26f90882ac8447e93386b13101aca8cde8)]
+-  Update dependency ts-loader to v9.2.6 [[3b32218](https://github.com/snaildos/Fifo-Browser/commit/3b322180916174ce654b96829fad6fd98d24599f)]
+-  Update dependency @types/react-dom to v17.0.11 [[54e6797](https://github.com/snaildos/Fifo-Browser/commit/54e6797610b48201ebc0cb2da9ce8c5a35cd2ceb)]
+-  Update dependency @types/chrome to v0.0.164 [[149660a](https://github.com/snaildos/Fifo-Browser/commit/149660a7d22b79e8065bb85943495d75e317079c)]
+-  Update dependency copy-webpack-plugin to v10 [[dd36c2c](https://github.com/snaildos/Fifo-Browser/commit/dd36c2c270572a55b2f8492744d1aca4685e392d)]
+-  Create codeql-analysis.yml [[fb3a8a1](https://github.com/snaildos/Fifo-Browser/commit/fb3a8a1da233ff95957e28ea94535119b3dfa766)]
+-  Update typescript-eslint monorepo to v5.4.0 [[1f76914](https://github.com/snaildos/Fifo-Browser/commit/1f76914ea846ab5264fc4213b2a1427e82f5061c)]
+-  Pin dependencies [[b99d395](https://github.com/snaildos/Fifo-Browser/commit/b99d395f328907c36b0556b5fd7aa2c20faac6f4)]
+-  Remove Options page temporarily and Add Mauora [[0d885a1](https://github.com/snaildos/Fifo-Browser/commit/0d885a153176c5d36a794e46460ea231ba317e8c)]
+-  Update dependency @cliqz/adblocker-electron to v1.23.0 [[4e3aded](https://github.com/snaildos/Fifo-Browser/commit/4e3adedc72890694f36c454b2517c221eb34f13e)]
+-  Add new Other options setting [[f233e1b](https://github.com/snaildos/Fifo-Browser/commit/f233e1bcc0fb2afd91b6e5355b59fb6c08397b60)]
+-  Restore to working condition [[7b826ac](https://github.com/snaildos/Fifo-Browser/commit/7b826ac5b47cc5f597b03ac75b42aae370a7e91d)]
+-  Fix webpack dev server. [[1e315ad](https://github.com/snaildos/Fifo-Browser/commit/1e315ad195458ae213a7b947ff8a4a9ac7585534)]
+-  Fix the react bug [[4ab357c](https://github.com/snaildos/Fifo-Browser/commit/4ab357c9fea69d2b82e8d45cd38fbac7f80eaa3c)]
+-  Merge branch &#x27;main&#x27; of https://github.com/snaildos/Fifo-Browser [[4412585](https://github.com/snaildos/Fifo-Browser/commit/4412585097468420451c6893538745538ec866ab)]
+-  add https enforce [[b81663c](https://github.com/snaildos/Fifo-Browser/commit/b81663c1e30fe2c9f2e4deffea528d5a6353db2e)]
+-  Addition to https enforce [[3cc3aae](https://github.com/snaildos/Fifo-Browser/commit/3cc3aaea611e164b6ddb57e2f5464c715b420c0c)]
+-  https enforce shouldn&#x27;t be default [[498698f](https://github.com/snaildos/Fifo-Browser/commit/498698fb0011a180d4ba90212d19df4891c778e0)]
+-  Test some things [[921a0e1](https://github.com/snaildos/Fifo-Browser/commit/921a0e1b1dfc92fc07b3fe4b0e8c1a201462085a)]
+-  More testing. [[86faa00](https://github.com/snaildos/Fifo-Browser/commit/86faa0002d5bc6d0196379a8c0ed2d57f02f13be)]
+-  Add http unsecure error &amp;&amp; add a testing request page. [[f37fc03](https://github.com/snaildos/Fifo-Browser/commit/f37fc03983985f121ceb91a59fbb20a5129f9722)]
+-  Optimise Variables [[1a1f755](https://github.com/snaildos/Fifo-Browser/commit/1a1f75540d9589042e05abfafd9cdbd8f6ea3159)]
+-  New things to NewTab &amp;&amp; Components Tab [[aa5e65a](https://github.com/snaildos/Fifo-Browser/commit/aa5e65ab0fe77f2ea0416f7b6a33c7e5a9abbf0a)]
+-  README UPDATE &amp;&amp; Icon Refresh on NewTab [[bd6528a](https://github.com/snaildos/Fifo-Browser/commit/bd6528acd88b3bba1cd973f9032d1fccc7c42715)]
+-  Optimize Store [[671fb0c](https://github.com/snaildos/Fifo-Browser/commit/671fb0c8fcf5a1487e811657c4cb657243821b68)]
+-  Update ALL the old dependencies that are needed! [[5558136](https://github.com/snaildos/Fifo-Browser/commit/5558136a152f55ab6823b2120f5336fa86831a65)]
+-  BUGFIX: Final Bug fix&#x27;s for release! [[6199f8c](https://github.com/snaildos/Fifo-Browser/commit/6199f8c1cf7f510ae66356bb44c82d1ed5286865)]
+-  BugFix: Lavender theme fix &amp; Welcome fix [[52aaf1a](https://github.com/snaildos/Fifo-Browser/commit/52aaf1a1cd8177a68db632b488490f5f723cabd1)]
+-  BugFix: QuickMenu crash [[f062d6c](https://github.com/snaildos/Fifo-Browser/commit/f062d6c71ec6041d596ffa7aa396b68fa667db43)]
+-  Add popup to set Fifo as your default browser! [[97af9e9](https://github.com/snaildos/Fifo-Browser/commit/97af9e939897636d9ee1ba7af0b1709e9841b121)]
+-  Added Extra Menu [[88280a7](https://github.com/snaildos/Fifo-Browser/commit/88280a7ed3094a6d6ec4d27e0053f7e724ebffbb)]
+-  IncognitoMenu Addition [[b3ba3d8](https://github.com/snaildos/Fifo-Browser/commit/b3ba3d824d93889d9b90622ea6976e3c94c3f4e1)]
+-  Update Lint Configuration [[be64a8b](https://github.com/snaildos/Fifo-Browser/commit/be64a8b4d3ffbf58709e6e51b6910aeaec047bea)]
+-  Update dependency eslint to v8 [[2facdd2](https://github.com/snaildos/Fifo-Browser/commit/2facdd27a36e65c601b27b725b9e8e6fc99769a8)]
+-  Update dependency eslint-plugin-prettier to v4 [[fad4bad](https://github.com/snaildos/Fifo-Browser/commit/fad4badf54105c87961e050b89ba624bd45ec158)]
+-  Update typescript-eslint monorepo to v5 [[e0d73ba](https://github.com/snaildos/Fifo-Browser/commit/e0d73baa55a51130a904f0be8a093fd6ff1c1411)]
+-  Update dependency prettier to v2.4.1 [[b75e6de](https://github.com/snaildos/Fifo-Browser/commit/b75e6de71f1ae8111c98f9150c831352f7ad51ab)]
+-  Remove Qdex Search Engine since it is no longer private. [[40608d4](https://github.com/snaildos/Fifo-Browser/commit/40608d4aa32149c9adcb4a0cba86c05ba4a855aa)]
+-  Lint! [[9134b86](https://github.com/snaildos/Fifo-Browser/commit/9134b8605f600e36825b0962569d602b2f0c7096)]
+-  Security Update [[91a0aac](https://github.com/snaildos/Fifo-Browser/commit/91a0aacd09adf01602f139597233e0ec2833e9b9)]
+-  Update dependency @types/react to v17.0.27 [[f8379e2](https://github.com/snaildos/Fifo-Browser/commit/f8379e2494123468513868615ba0659e8867bfe5)]
+-  Update dependency @cliqz/adblocker-electron to v1.22.7 [[7c3d077](https://github.com/snaildos/Fifo-Browser/commit/7c3d077366c244c2b99dfeeb723cf50f746d2720)]
+-  Update dependency @electron/remote to v1.2.2 [[75df00c](https://github.com/snaildos/Fifo-Browser/commit/75df00cb44935e706152afdc56a175e5605a6f34)]
+-  Update dependency electron-builder to v22.13.1 [[fd0c007](https://github.com/snaildos/Fifo-Browser/commit/fd0c0076e0bbf4fe89b07ca0f1fcfe5cf7e85e03)]
+-  Update dependency eslint-plugin-react to v7.26.1 [[fea8996](https://github.com/snaildos/Fifo-Browser/commit/fea8996a6b736c9c6d048871b16df765e2ff7a6c)]
+-  Update dependency webpack to v5.58.1 [[6af0f6e](https://github.com/snaildos/Fifo-Browser/commit/6af0f6ef90948a52f27f8d5f10cd67502a832d33)]
+
+
 <a name="1.0.0"></a>
 ## 1.0.0 (2021-10-06)
 
