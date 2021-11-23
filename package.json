@@ -45,7 +45,7 @@
     "@electron/remote": "1.2.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
     "@types/animejs": "3.1.4",
-    "@types/chrome": "0.0.155",
+    "@types/chrome": "0.0.164",
     "@types/crypto-js": "4.0.2",
     "@types/jszip": "3.4.1",
     "@types/nedb": "1.8.12",
