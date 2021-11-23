@@ -63,7 +63,7 @@
     "awesome-node-loader": "1.1.1",
     "babel-loader": "8.2.2",
     "concurrently": "6.2.1",
-    "copy-to-clipboard": "^3.3.1",
+    "copy-to-clipboard": "3.3.1",
     "copy-webpack-plugin": "9.0.1",
     "cross-env": "7.0.3",
     "electron": "13.5.2",
@@ -77,7 +77,7 @@
     "file-loader": "6.2.0",
     "file-type": "16.5.3",
     "fork-ts-checker-webpack-plugin": "6.3.2",
-    "gitmoji-changelog": "^2.2.1",
+    "gitmoji-changelog": "2.2.1",
     "html-webpack-plugin": "5.3.2",
     "icojs": "0.16.1",
     "jszip": "3.7.1",
@@ -103,10 +103,10 @@
     "typescript-plugin-styled-components": "1.6.0",
     "webpack": "5.57.1",
     "webpack-bundle-analyzer": "4.4.2",
-    "webpack-cli": "^4.9.0",
+    "webpack-cli": "4.9.1",
     "webpack-dev-server": "3.11.2",
     "webpack-merge": "5.8.0",
-    "x-default-browser": "^0.4.0"
+    "x-default-browser": "0.4.0"
   },
   "dependencies": {}
 }
