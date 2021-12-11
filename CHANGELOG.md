@@ -1,10 +1,19 @@
 # Changelog
 
 <a name="1.1.0"></a>
-## 1.1.0 (2021-11-23)
+## 1.1.0 (2021-12-11)
 
 ### Miscellaneous
 
+-  Fix zoom keybinds [[0d56e65](https://github.com/snaildos/Fifo-Browser/commit/0d56e65924877f6b7537c441055ea68775903dc1)]
+-  Fix the find bug. [[6069ead](https://github.com/snaildos/Fifo-Browser/commit/6069eadd51cd47d4af8fb36138867de3684e9fb4)]
+-  Set a fixed height for the download item progress bar. [[1c03852](https://github.com/snaildos/Fifo-Browser/commit/1c0385234fc29673a6ef6ac22216a9fc285aeb20)]
+-  Create README.md [[6e59be7](https://github.com/snaildos/Fifo-Browser/commit/6e59be7ea260959b462d7ef4ff3616be5ccb329c)]
+-  Update README.md [[de1ecc5](https://github.com/snaildos/Fifo-Browser/commit/de1ecc55efb17be2fea4efe8832c2de9458f8483)]
+-  Create SECURITY.md [[4f64b8c](https://github.com/snaildos/Fifo-Browser/commit/4f64b8c155d6c2a66e3ca592c5cddc72e02694ee)]
+-  Update package.json [[4bd1760](https://github.com/snaildos/Fifo-Browser/commit/4bd1760d9e93fd48faaaec4b807bd697992dd48c)]
+-  Update dependency mobx to v6.3.8 [[761c801](https://github.com/snaildos/Fifo-Browser/commit/761c801cbcb7c819039dc3bb5cf8987e60d8818f)]
+-  Update CHANGELOG.md [[d24ac43](https://github.com/snaildos/Fifo-Browser/commit/d24ac43c3ea0f58e1c8eb2e76bed3a940cb377cb)]
 -  Update dependency webpack-bundle-analyzer to v4.5.0 [[02956c5](https://github.com/snaildos/Fifo-Browser/commit/02956c575ce25b6f933e12a712a0b07eb0e0b1a6)]
 -  Update dependency typescript-plugin-styled-components to v2 [[be52ea2](https://github.com/snaildos/Fifo-Browser/commit/be52ea26f90882ac8447e93386b13101aca8cde8)]
 -  Update dependency ts-loader to v9.2.6 [[3b32218](https://github.com/snaildos/Fifo-Browser/commit/3b322180916174ce654b96829fad6fd98d24599f)]
