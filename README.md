@@ -4,8 +4,7 @@
 
 <div align="center">
   <h1>Fifo Browser</h1>
-
-[![Actions Status](https://github.com/snaildos/Fifo-Browser/workflows/Build/badge.svg)](https://github.com/snaildos/Fifo-Browser/actions)
+[![Build C/I](https://github.com/snaildos/Fifo-Browser/actions/workflows/build.yml/badge.svg)](https://github.com/snaildos/Fifo-Browser/actions/workflows/build.yml)
 [![Downloads](https://img.shields.io/github/downloads/snaildos/Fifo-Browser/total.svg?style=flat-square)](https://fifo.snaildos.com)
 
 Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React`, that can also be used as a framework to create a custom web browser (see the [License](#license) section). It's a more, optimized, more updated fork of Wexond. 
