@@ -31,6 +31,28 @@ export class ViewManager extends EventEmitter {
     this.fixBounds();
   }
 
+  public changeZoom(zoomDirection: 'in' | 'out', e?: any) {
+    const newZoomFactor =
+        this.selected.webContents.zoomFactor +
+        (zoomDirection === 'in'
+          ? ZOOM_FACTOR_INCREMENT
+          : -ZOOM_FACTOR_INCREMENT);
+
+      if (
+        newZoomFactor <= ZOOM_FACTOR_MAX &&
+        newZoomFactor >= ZOOM_FACTOR_MIN
+      ) {
+        this.selected.webContents.zoomFactor = newZoomFactor;
+        this.selected.emitEvent(
+          'zoom-updated',
+          this.selected.webContents.zoomFactor,
+        );
+      } else {
+        e?.preventDefault();
+      }
+      this.emitZoomUpdate();
+  }
+
   public constructor(window: AppWindow, incognito: boolean) {
     super();
 
@@ -112,7 +134,7 @@ export class ViewManager extends EventEmitter {
     });
 
     ipcMain.on('change-zoom', (e, zoomDirection) => {
-      const newZoomFactor =
+        const newZoomFactor =
         this.selected.webContents.zoomFactor +
         (zoomDirection === 'in'
           ? ZOOM_FACTOR_INCREMENT
