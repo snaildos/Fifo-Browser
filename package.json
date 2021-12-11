@@ -81,7 +81,7 @@
     "html-webpack-plugin": "5.3.2",
     "icojs": "0.16.1",
     "jszip": "3.7.1",
-    "mobx": "6.3.8",
+    "mobx": "6.3.3",
     "mobx-react-lite": "3.2.1",
     "nedb": "1.8.0",
     "node-bookmarks-parser": "2.0.0",
