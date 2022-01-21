@@ -43,7 +43,7 @@
     "@babel/core": "7.15.4",
     "@cliqz/adblocker-electron": "1.23.4",
     "@electron/remote": "1.2.2",
-    "@pmmmwh/react-refresh-webpack-plugin": "0.4.3",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.4",
     "@types/animejs": "3.1.4",
     "@types/chrome": "0.0.178",
     "@types/crypto-js": "4.0.2",
