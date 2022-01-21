@@ -18,13 +18,11 @@ const AskToggle = observer(() => {
       <p></p>
       <Title>Wexond - Original Fork</Title>
       <p></p>
-      <Title>Chazzy - Head of innovation</Title>
-      <p></p>
-      <Title>Preknowledge - Developer</Title>
+      <Title>Preknowledge - Contributer</Title>
       <p></p>
       <Title>JOshua - Graphic Designer</Title>
       <p></p>
-      <Title> Mauro - Developer</Title>
+      <Title> Mauro - Contributer</Title>
     </Row>
   );
 });
