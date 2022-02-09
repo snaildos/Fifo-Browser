@@ -1,0 +1,62 @@
+diff --git a/node_modules/@cliqz/adblocker-electron/dist/cjs/adblocker.js b/node_modules/@cliqz/adblocker-electron/dist/cjs/adblocker.js
+index ec18894..76cce81 100644
+--- a/node_modules/@cliqz/adblocker-electron/dist/cjs/adblocker.js
++++ b/node_modules/@cliqz/adblocker-electron/dist/cjs/adblocker.js
+@@ -21,7 +21,7 @@ exports.ElectronBlocker = exports.BlockingContext = exports.fromElectronDetails
+ const electron_1 = require("electron");
+ const tldts_experimental_1 = require("tldts-experimental");
+ const adblocker_1 = require("@cliqz/adblocker");
+-const PRELOAD_PATH = require.resolve('@cliqz/adblocker-electron-preload');
++// const PRELOAD_PATH = require.resolve('@cliqz/adblocker-electron-preload');
+ // https://stackoverflow.com/questions/48854265/why-do-i-see-an-electron-security-warning-after-updating-my-electron-project-t
+ // tslint:disable no-string-literal
+ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+@@ -62,7 +62,7 @@ class BlockingContext {
+     }
+     enable() {
+         if (this.blocker.config.loadCosmeticFilters === true) {
+-            this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
++            // this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
+             electron_1.ipcMain.on('get-cosmetic-filters', this.onGetCosmeticFilters);
+             electron_1.ipcMain.on('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
+         }
+@@ -85,7 +85,7 @@ class BlockingContext {
+             this.session.webRequest.onBeforeRequest(null);
+         }
+         if (this.blocker.config.loadCosmeticFilters === true) {
+-            this.session.setPreloads(this.session.getPreloads().filter((p) => p !== PRELOAD_PATH));
++            // this.session.setPreloads(this.session.getPreloads().filter((p) => p !== PRELOAD_PATH));
+             electron_1.ipcMain.removeListener('get-cosmetic-filters', this.onGetCosmeticFilters);
+             electron_1.ipcMain.removeListener('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
+         }
+diff --git a/node_modules/@cliqz/adblocker-electron/dist/es6/adblocker.js b/node_modules/@cliqz/adblocker-electron/dist/es6/adblocker.js
+index ffc913b..c44e458 100644
+--- a/node_modules/@cliqz/adblocker-electron/dist/es6/adblocker.js
++++ b/node_modules/@cliqz/adblocker-electron/dist/es6/adblocker.js
+@@ -8,7 +8,7 @@
+ import { ipcMain } from 'electron';
+ import { parse } from 'tldts-experimental';
+ import { FiltersEngine, Request } from '@cliqz/adblocker';
+-const PRELOAD_PATH = require.resolve('@cliqz/adblocker-electron-preload');
++// const PRELOAD_PATH = require.resolve('@cliqz/adblocker-electron-preload');
+ // https://stackoverflow.com/questions/48854265/why-do-i-see-an-electron-security-warning-after-updating-my-electron-project-t
+ // tslint:disable no-string-literal
+ process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
+@@ -48,7 +48,7 @@ export class BlockingContext {
+     }
+     enable() {
+         if (this.blocker.config.loadCosmeticFilters === true) {
+-            this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
++            // this.session.setPreloads(this.session.getPreloads().concat([PRELOAD_PATH]));
+             ipcMain.on('get-cosmetic-filters', this.onGetCosmeticFilters);
+             ipcMain.on('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
+         }
+@@ -71,7 +71,7 @@ export class BlockingContext {
+             this.session.webRequest.onBeforeRequest(null);
+         }
+         if (this.blocker.config.loadCosmeticFilters === true) {
+-            this.session.setPreloads(this.session.getPreloads().filter((p) => p !== PRELOAD_PATH));
++            // this.session.setPreloads(this.session.getPreloads().filter((p) => p !== PRELOAD_PATH));
+             ipcMain.removeListener('get-cosmetic-filters', this.onGetCosmeticFilters);
+             ipcMain.removeListener('is-mutation-observer-enabled', this.onIsMutationObserverEnabled);
+         }

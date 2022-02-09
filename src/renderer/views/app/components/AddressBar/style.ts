@@ -38,6 +38,7 @@ export const StyledAddressBar = styled.div`
       }
     `}
   `};
+  transition: background-color 0.25s, color 0.25s;
 `;
 
 export const InputContainer = styled.div`

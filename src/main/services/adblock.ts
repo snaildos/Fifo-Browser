@@ -15,17 +15,6 @@ const loadFilters = async () => {
   const path = resolve(getPath('adblock/cache.dat'));
 
   const downloadFilters = async () => {
-    // Load lists to perform ads and tracking blocking:
-    //
-    //  - https://easylist.to/easylist/easylist.txt
-    //  - https://pgl.yoyo.org/adservers/serverlist.php?hostformat=adblockplus&showintro=1&mimetype=plaintext
-    //  - https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/resource-abuse.txt
-    //  - https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/badware.txt
-    //  - https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/filters.txt
-    //  - https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/unbreak.txt
-    //
-    //  - https://easylist.to/easylist/easyprivacy.txt
-    //  - https://raw.githubusercontent.com/uBlockOrigin/uAssets/master/filters/privacy.txt
     engine = await ElectronBlocker.fromPrebuiltAdsAndTracking(fetch);
 
     try {
@@ -60,11 +49,6 @@ const emitBlockedEvent = (request: Request) => {
 
 let adblockRunning = false;
 let adblockInitialized = false;
-
-interface IAdblockInfo {
-  headersReceivedId?: number;
-  beforeRequestId?: number;
-}
 
 const sessionAdblockInfoMap: Map<Electron.Session, IAdblockInfo> = new Map();
 

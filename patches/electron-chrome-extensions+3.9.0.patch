@@ -1,0 +1,14 @@
+diff --git a/node_modules/electron-chrome-extensions/dist/index.js b/node_modules/electron-chrome-extensions/dist/index.js
+index e21b4d2..019c552 100644
+--- a/node_modules/electron-chrome-extensions/dist/index.js
++++ b/node_modules/electron-chrome-extensions/dist/index.js
+@@ -2631,7 +2631,8 @@ class TabsAPI {
+       this.onRemoved(tabId);
+     });
+     this.onCreated(tabId);
+-    this.onActivated(tabId);
++    const activeTab = this.ctx.store.getActiveTabFromWebContents(tab)
++    if (activeTab?.id === tabId) this.onActivated(tabId);
+     debug(`Observing tab[${tabId}][${tab.getType()}] ${tab.getURL()}`);
+   }
+ 

@@ -1,6 +1,6 @@
 {
   "name": "Fifo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "sideEffects": false,
   "description": "Fifo is a nonprofit, fast free and secure Web Browser. It's based on Wexond, and includes news and tons of features out of the box. Fifo is resource effecient, and is updated often. Powered by SnailDOS!",
   "keywords": [
@@ -30,6 +30,7 @@
     "build": "rimraf build && concurrently \"npm run build-renderer\" \"webpack\"",
     "ci-build": "node scripts/ci-build.js",
     "start": "electron .",
+    "postinstall": "patch-package",
     "watch": "concurrently \"npm run dev-renderer\" \"npm run dev-webpack\"",
     "compile-windows": "npm run build && electron-builder -w",
     "compile-darwin": "npm run build && electron-builder -m",
@@ -49,6 +50,8 @@
     "@types/crypto-js": "4.0.2",
     "@types/jszip": "3.4.1",
     "@types/nedb": "1.8.12",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "@types/node": "15.12.5",
     "@types/node-fetch": "2.5.12",
     "@types/react": "17.0.19",
