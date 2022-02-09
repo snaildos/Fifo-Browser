@@ -13,6 +13,8 @@ import {
 import { ISuggestion } from '~/interfaces';
 import store from '../../store';
 import { ipcRenderer } from 'electron';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { callViewMethod } from '~/utils/view';
 
 interface Props {
@@ -49,7 +51,10 @@ export const Suggestion = observer(({ suggestion }: Props) => {
 
   let { favicon } = suggestion;
 
-  if (favicon == null || favicon.trim() === '') {
+  if (
+    favicon == null ||
+    (typeof favicon === 'string' && favicon.trim() === '')
+  ) {
     favicon = ICON_PAGE;
   }
 
@@ -63,17 +68,23 @@ export const Suggestion = observer(({ suggestion }: Props) => {
       onMouseEnter={onMouseEnter(suggestion)}
       onMouseLeave={onMouseLeave(suggestion)}
     >
-      <Icon
-        style={{
-          backgroundImage: `url(${favicon})`,
-          opacity: customFavicon ? 1 : transparency.icons.inactive,
-          filter: !customFavicon
-            ? store.theme['searchBox.lightForeground']
-              ? 'invert(100%)'
-              : 'none'
-            : 'none',
-        }}
-      />
+{typeof favicon === 'string' ? (
+        <Icon
+          style={{
+            backgroundImage: `url(${favicon})`,
+            opacity: customFavicon ? 1 : transparency.icons.inactive,
+            filter: !customFavicon
+              ? store.theme['searchBox.lightForeground']
+                ? 'invert(100%)'
+                : 'none'
+              : 'none',
+          }}
+        />
+      ) : (
+        <Icon>
+          <FontAwesomeIcon icon={favicon} fixedWidth />
+        </Icon>
+      )}
       {primaryText && <PrimaryText>{primaryText}</PrimaryText>}
       {primaryText && (secondaryText || url) && <Dash>&ndash;</Dash>}
       {url ? <Url>{url}</Url> : <SecondaryText>{secondaryText}</SecondaryText>}

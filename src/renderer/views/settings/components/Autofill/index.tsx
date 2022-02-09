@@ -40,13 +40,9 @@ const Menu = observer(() => {
       visible={store.autoFill.menuVisible}
     >
       {item && item.type === 'address' && (
-        <ContextMenuItem icon={ICON_EDIT} onClick={onEditClick}>
-          Edit
-        </ContextMenuItem>
+        <ContextMenuItem onClick={onEditClick}>Edit</ContextMenuItem>
       )}
-      <ContextMenuItem icon={ICON_TRASH} onClick={onRemoveClick}>
-        Remove
-      </ContextMenuItem>
+    <ContextMenuItem onClick={onRemoveClick}>Remove</ContextMenuItem>
     </ContextMenu>
   );
 });

@@ -76,6 +76,13 @@ const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 const onInput = (e: any) => {
   store.inputText = e.currentTarget.value;
 
+  ipcRenderer.send(`addressbar-update-input-${store.id}`, {
+    id: store.tabId,
+    text: store.inputRef.current.value,
+    selectionStart: store.inputRef.current.selectionStart,
+    selectionEnd: store.inputRef.current.selectionEnd,
+  });
+  
   if (e.currentTarget.value.trim() === '') {
     store.hide({ focus: true });
   }
