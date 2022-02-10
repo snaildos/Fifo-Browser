@@ -1,5 +1,5 @@
 import { ipcMain, dialog } from 'electron';
-import * as Datastore from 'nedb';
+import * as Datastore from '@seald-io/nedb';
 import { fromBuffer } from 'file-type';
 import * as icojs from 'icojs';
 
