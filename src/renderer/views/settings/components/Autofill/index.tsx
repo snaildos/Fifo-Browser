@@ -9,7 +9,6 @@ import {
 import { Passwords } from './Passwords';
 import { Addresses } from './Addresses';
 import { Header } from '../App/style';
-import { ICON_EDIT, ICON_TRASH } from '~/renderer/constants';
 
 const onEditClick = () => {
   store.dialogContent = 'edit-address';

@@ -88,6 +88,8 @@ export class View {
       (details, callback) => {
         const { object: settings } = Application.instance.settings;
         if (settings.doNotTrack) details.requestHeaders['DNT'] = '1';
+        if (settings.globalPrivacyControl)
+        details.requestHeaders['Sec-GPC'] = '1';
         callback({ requestHeaders: details.requestHeaders });
       },
     );

@@ -16,6 +16,8 @@ import { ipcRenderer } from 'electron';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { callViewMethod } from '~/utils/view';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface Props {
   suggestion: ISuggestion;

@@ -191,11 +191,19 @@ if (
   (async function () {
 
     if (settings.doNotTrack) {
-      const w = await webFrame.executeJavaScript('window');
-      Object.defineProperty(w.navigator, 'doNotTrack', { value: 1 });
+      await webFrame.executeJavaScript('window');
+      Object.defineProperty(window.navigator, 'doNotTrack', { value: 1 });
     }
   })();
 }
+
+(async function () {
+  if (settings.globalPrivacyControl) {
+    await webFrame.executeJavaScript(
+      `window.navigator.globalPrivacyControl = true`,
+    );
+  }
+  })();
 
 if (window.location.href.startsWith(WEBUI_BASE_URL)) {
   window.addEventListener('DOMContentLoaded', () => {

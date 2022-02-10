@@ -32,5 +32,6 @@ export interface ISettings {
   downloadsDialog: boolean;
   downloadsPath: string;
   doNotTrack: boolean;
+  globalPrivacyControl: boolean;
   topBarVariant: TopBarVariant;
 }
