@@ -127,11 +127,26 @@
         },
       };
 
-      const { title, description, code, icon } = info[errorCode];
-      titleEl.textContent = title;
+      const certificateError = {
+        title: 'Your connection is not private',
+        description: `This website may be trying to steal information from <b>${url}</b>`,
+        code: errorCode,
+      };
+
+      const isNetworkError = !!errorCode.startsWith('net::');
+
+const { title, description, code, icon } = isNetworkError
+  ? certificateError
+  : info?.[errorCode] ?? {
+      title: 'Unknown error',
+      description: 'Something weird happened',
+      code: 'ERR_UNKNOWN',
+    };
+
+    titleEl.textContent = title;
       descriptionEl.innerHTML = description;
       errorCodeEl.textContent = code;
-      iconEl.style.backgroundImage = `url(${pageUnresolvedIcon})`;
+      
     </script>
   </body>
 </html>

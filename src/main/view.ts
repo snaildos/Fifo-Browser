@@ -255,7 +255,7 @@ export class View {
 
     this.webContents.addListener(
       'certificate-error',
-      (
+      async (
         event: Electron.Event,
         url: string,
         error: string,
@@ -264,7 +264,11 @@ export class View {
       ) => {
         console.log(certificate, error, url);
         event.preventDefault();
-        callback(true);
+        this.errorURL = url;
+        this.webContents.loadURL(
+          `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${error}`,
+        );
+        callback(false);
       },
     );
 

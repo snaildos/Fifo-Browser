@@ -219,16 +219,17 @@ const onContextMenu = (tab: ITab) => () => {
 
 
 const Content = observer(({ tab }: { tab: ITab }) => {
-
+  const favicon = React.useMemo(() => {
+    if (!tab.favicon) return undefined;
+    if (tab.favicon.startsWith('data:undefined')) return undefined;
+    else return tab.favicon !== '' ? tab.favicon : undefined;
+  }, [tab.favicon]);
   return (
     <StyledContent title={store.settings.object.invisibleTabs ? tab.url : null}>
-      {!tab.loading && tab.favicon !== '' && (
+      {!tab.loading && tab.favicon && (
         <StyledIcon
-          isIconSet={tab.favicon !== ''}
-          style={{ 
-            backgroundImage: `url(${tab.favicon})`, 
-          }}
-          isActive={tab.isSelected}
+        isIconSet={favicon !== ''}
+        style={{ backgroundImage: favicon ? `url(${favicon})` : '' }}
         >
           <PinnedVolume tab={tab} />
         </StyledIcon>
@@ -239,7 +240,7 @@ const Content = observer(({ tab }: { tab: ITab }) => {
           thickness={6}
           size={16}
           indeterminate
-          style={{ minWidth: 16 }}
+          style={{ minWidth: 16, marginRight: '8px' }}
         />
       )}
       {!tab.isPinned && (
