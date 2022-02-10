@@ -20,6 +20,7 @@ export class WindowsService {
           const win =
             this.list.find((x) => x.win.id === details.windowId) ||
             this.lastFocused;
+            
 
           if (!win) throw new Error('Window not found');
           const view = win.viewManager.create(details, false, false);
