@@ -1,4 +1,4 @@
-import { existsSync, promises as fs } from 'fs';
+import { promises as fs } from 'fs';
 import { resolve, join } from 'path';
 import fetch from 'node-fetch';
 
@@ -13,32 +13,11 @@ const PRELOAD_PATH = join(__dirname, './preload.js');
 
 const loadFilters = async () => {
   const path = resolve(getPath('adblock/cache.dat'));
-
-  const downloadFilters = async () => {
-    engine = await ElectronBlocker.fromPrebuiltAdsAndTracking(fetch);
-
-    try {
-      await fs.writeFile(path, engine.serialize());
-    } catch (err) {
-      if (err) return console.error(err);
-    }
-  };
-
-  if (existsSync(path)) {
-    try {
-      const buffer = await fs.readFile(resolve(path));
-
-      try {
-        engine = ElectronBlocker.deserialize(buffer);
-      } catch (e) {
-        return downloadFilters();
-      }
-    } catch (err) {
-      return console.error(err);
-    }
-  } else {
-    return downloadFilters();
-  }
+  engine = await ElectronBlocker.fromPrebuiltAdsAndTracking(fetch, {
+    path: path,
+    read: fs.readFile,
+    write: fs.writeFile,
+  });
 };
 
 const emitBlockedEvent = (request: Request) => {
@@ -50,9 +29,7 @@ const emitBlockedEvent = (request: Request) => {
 let adblockRunning = false;
 let adblockInitialized = false;
 
-const sessionAdblockInfoMap: Map<Electron.Session, IAdblockInfo> = new Map();
-
-export const runAdblockService = async (ses: any) => {
+export const runAdblockService = async (ses: Electron.Session) => {
   if (!adblockInitialized) {
     adblockInitialized = true;
     await loadFilters();
@@ -66,27 +43,7 @@ export const runAdblockService = async (ses: any) => {
 
   adblockRunning = true;
 
-  const info = sessionAdblockInfoMap.get(ses) || {};
-
-  if (!info.headersReceivedId) {
-    info.headersReceivedId = ses.webRequest.addListener(
-      'onHeadersReceived',
-      { urls: ['<all_urls>'] },
-      (engine as any).onHeadersReceived,
-      { order: 0 },
-    ).id;
-  }
-
-  if (!info.beforeRequestId) {
-    info.beforeRequestId = ses.webRequest.addListener(
-      'onBeforeRequest',
-      { urls: ['<all_urls>'] },
-      (engine as any).onBeforeRequest,
-      { order: 0 },
-    ).id;
-  }
-
-  sessionAdblockInfoMap.set(ses, info);
+  engine.enableBlockingInSession(ses);
 
   ipcMain.on('get-cosmetic-filters', (engine as any).onGetCosmeticFilters);
   ipcMain.on(
@@ -99,23 +56,12 @@ export const runAdblockService = async (ses: any) => {
   engine.on('request-redirected', emitBlockedEvent);
 };
 
-export const stopAdblockService = (ses: any) => {
-  if (!ses.webRequest.removeListener) return;
+export const stopAdblockService = (ses: Electron.Session) => {
   if (!adblockRunning) return;
 
   adblockRunning = false;
 
-  const info = sessionAdblockInfoMap.get(ses) || {};
-
-  if (info.beforeRequestId) {
-    ses.webRequest.removeListener('onBeforeRequest', info.beforeRequestId);
-    info.beforeRequestId = null;
-  }
-
-  if (info.headersReceivedId) {
-    ses.webRequest.removeListener('onHeadersReceived', info.headersReceivedId);
-    info.headersReceivedId = null;
-  }
+  engine.disableBlockingInSession(ses);
 
   ses.setPreloads(ses.getPreloads().filter((p: string) => p !== PRELOAD_PATH));
 };

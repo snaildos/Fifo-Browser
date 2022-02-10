@@ -69,10 +69,6 @@ export class WindowsService {
     const window = new AppWindow(incognito);
     this.list.push(window);
 
-    if (process.env.ENABLE_EXTENSIONS) {
-      extensions.windows.observe(window.win);
-    }
-
     window.win.on('focus', () => {
       this.lastFocused = window;
     });
