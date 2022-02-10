@@ -169,7 +169,8 @@ export const TabContainer = styled.div`
   transition: 0.1s background-color;
   border-bottom: transparent !important;
   border: 2px solid;
-  transition: background-color 0.45s, color 0.45s;
+  transition: background-color 1.0s, color 1.0s;
+  transition-timing-function: ease-out;
 
   ${({ pinned, theme, hasTabGroup, selected }: TabContainerProps) => css`
     max-width: ${pinned ? `${TAB_PINNED_WIDTH}px` : '100%'};

@@ -12,6 +12,8 @@ export const StyledToolbar = styled.div`
   color: rgba(0, 0, 0, 0.8);
   width: 100%;
   height: ${TOOLBAR_HEIGHT}px;
+  transition: background-color 0.4s, color 0.4s;
+  transition-timing-function: ease-out;
 
   ${({ theme }: { theme: ITheme }) => css`
     background-color: ${theme['toolbar.backgroundColor']};

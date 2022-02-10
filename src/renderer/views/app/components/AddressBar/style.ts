@@ -10,7 +10,8 @@ export const StyledAddressBar = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-
+  transition: background-color 0.4s, color 0.4s;
+  transition-timing-function: ease-out;
   font-size: 15px;
   overflow: hidden;
 
