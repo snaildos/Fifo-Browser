@@ -1,25 +1,26 @@
-import { session, ipcMain, app } from 'electron';
+import { session, ipcMain } from 'electron';
 import { getPath, makeId } from '~/utils';
 import { promises, existsSync } from 'fs';
 import { resolve, basename, parse, extname } from 'path';
 import { Application } from './application';
 import { registerProtocol } from './models/protocol';
-import * as url from 'url';
+import { URL } from 'url';
 import { IDownloadItem, BrowserActionChangeType } from '~/interfaces';
 import { parseCrx } from '~/utils/crx';
 import { pathExists } from '~/utils/files';
 import { extractZip } from '~/utils/zip';
-import { extensions, _setFallbackSession } from 'electron-extensions';
 import { requestPermission } from './dialogs/permissions';
 import * as rimraf from 'rimraf';
 import { promisify } from 'util';
+import { ElectronChromeExtensions } from 'electron-chrome-extensions';
 
 const rf = promisify(rimraf);
 
-// TODO: sessions should be separate.  This structure actually doesn't make sense.
 export class SessionsService {
   public view = session.fromPartition('persist:view');
   public viewIncognito = session.fromPartition('view_incognito');
+
+  public chromeExtensions: ElectronChromeExtensions;
 
   public incognitoExtensionsLoaded = false;
   public extensionsLoaded = false;
@@ -33,13 +34,8 @@ export class SessionsService {
     this.clearCache('incognito');
 
     if (process.env.ENABLE_EXTENSIONS) {
-      extensions.initializeSession(
-        this.view,
-        `${app.getAppPath()}/build/extensions-preload.bundle.js`,
-      );
-
-      ipcMain.on('load-extensions', () => {
-        this.loadExtensions();
+      ipcMain.on('load-extensions', async () => {
+        await this.loadExtensions();
       });
 
       ipcMain.handle('get-extensions', () => {
@@ -67,7 +63,7 @@ export class SessionsService {
           callback(true);
         } else {
           try {
-            const { hostname } = url.parse(details.requestingUrl);
+            const { hostname } = new URL(details.requestingUrl);
             const perm: any = await Application.instance.storage.findOne({
               scope: 'permissions',
               query: {

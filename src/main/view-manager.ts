@@ -9,7 +9,6 @@ import {
   ZOOM_FACTOR_MAX,
   ZOOM_FACTOR_INCREMENT,
 } from '~/constants/web-contents';
-import { extensions } from 'electron-extensions';
 import { EventEmitter } from 'events';
 import { Application } from './application';
 
@@ -109,7 +108,12 @@ export class ViewManager extends EventEmitter {
 
     ipcMain.handle(`view-select-${id}`, (e, id: number, focus: boolean) => {
       if (process.env.ENABLE_EXTENSIONS) {
-        extensions.tabs.activate(id, focus);
+        const view = this.views.get(id);
+        if (focus) {
+          Application.instance.sessions.chromeExtensions.selectTab(
+            view.webContents,
+          );
+        }
       } else {
         this.select(id, focus);
       }
@@ -190,7 +194,10 @@ export class ViewManager extends EventEmitter {
     this.views.set(id, view);
 
     if (process.env.ENABLE_EXTENSIONS) {
-      extensions.tabs.observe(webContents);
+      Application.instance.sessions.chromeExtensions.addTab(
+        webContents,
+        this.window.win,
+      );
     }
 
     webContents.once('destroyed', () => {

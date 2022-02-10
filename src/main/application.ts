@@ -15,27 +15,43 @@ import { NetworkServiceHandler } from './network/network-service-handler';
 import { ExtensionServiceHandler } from './extension-service-handler';
 import { runDefaultBrowserService } from './services'
 
-
 export class Application {
   public static instance = new Application();
 
   public sessions: SessionsService;
 
-  public settings = new Settings();
+  public settings: Settings;
 
-  public storage = new StorageService();
+  public storage: StorageService;
 
-  public windows = new WindowsService();
+  public windows: WindowsService;
 
   public dialogs = new DialogsService();
 
-  public start() {
+  public async start() {
     const gotTheLock = app.requestSingleInstanceLock();
 
     if (!gotTheLock) {
       app.quit();
       return;
     } else {
+      app.on('open-url', async (_, url) => {
+        if (!this.windows.current) {
+          this.windows.current = this.windows.open();
+        }
+        this.windows.current.win.focus();
+        this.windows.current.viewManager.create({
+          url: url,
+          active: true,
+        });
+        this.windows.current.win.webContents.once('dom-ready', () => {
+          this.windows.current.viewManager.create({
+            url: url,
+            active: true,
+          });
+        });
+      });
+
       app.on('second-instance', async (e, argv) => {
         const path = argv[argv.length - 1];
 
@@ -45,20 +61,41 @@ export class Application {
             const ext = extname(path);
 
             if (ext === '.html') {
+              if (!this.windows.current) {
+                this.windows.current = this.windows.open();
+              }
+
               this.windows.current.win.focus();
               this.windows.current.viewManager.create({
                 url: `file:///${path}`,
                 active: true,
               });
+              this.windows.current.win.webContents.once('dom-ready', () => {
+                this.windows.current.viewManager.create({
+                  url: `file:///${path}`,
+                  active: true,
+                });
+              });
             }
           }
           return;
         } else if (isURL(path)) {
+          if (!this.windows.current) {
+            this.windows.current = this.windows.open();
+          }
+
           this.windows.current.win.focus();
           this.windows.current.viewManager.create({
             url: prefixHttp(path),
             active: true,
           });
+          this.windows.current.win.webContents.once('dom-ready', () => {
+            this.windows.current.viewManager.create({
+              url: prefixHttp(path),
+              active: true,
+            });
+          });
+
           return;
         }
 
@@ -85,7 +122,7 @@ export class Application {
       this.windows.open(incognito);
     });
 
-    this.onReady();
+    await this.onReady();
   }
 
   private async onReady() {
@@ -99,12 +136,15 @@ export class Application {
 
     runDefaultBrowserService(app);
 
-    this.storage.run();
-    this.dialogs.run();
+    this.sessions = new SessionsService();
+    this.windows = new WindowsService(this.sessions);
+    this.settings = new Settings();
+    this.storage = new StorageService(this.settings);
+
+    await this.storage.run();
+    await this.dialogs.run();
 
     this.windows.open();
-
-    this.sessions = new SessionsService();
 
     Menu.setApplicationMenu(getMainMenu());
     runAutoUpdaterService();
