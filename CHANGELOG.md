@@ -1,5 +1,24 @@
 # Changelog
 
+<a name="1.2.0"></a>
+## 1.2.0 (2022-02-10)
+
+### Added
+
+- ✨ Fix clear search history in settings &amp; Add a better tracker stopper! [[7d64434](https://github.com/snaildos/Fifo-Browser/commit/7d64434457f96cd176b9ca798c11055ce657fd1e)]
+- ✨ Autocomplete &amp; Icon Improvments [[6d9fd3f](https://github.com/snaildos/Fifo-Browser/commit/6d9fd3f6c3fe977b431f0dbbc3906c4965653b18)]
+- ✨ Styles &amp; Adblocker Patch [[e1febb7](https://github.com/snaildos/Fifo-Browser/commit/e1febb71bd70b1344fc7e6ae1b8509cc74df1c79)]
+
+### Miscellaneous
+
+- 🚀  [[9f768f5](https://github.com/snaildos/Fifo-Browser/commit/9f768f51d4a72475e18e8cef128cd48f573dfb99)]
+-  Remove patch that isn&#x27;t required. [[1553c9e](https://github.com/snaildos/Fifo-Browser/commit/1553c9e7eb2a8733259caf347258d87165350322)]
+-  Bump User Agent &amp; More Animations [[ed02097](https://github.com/snaildos/Fifo-Browser/commit/ed0209720aaa79a520d88e8e351b067e17588218)]
+- 🚀 CHROME EXTENSIONS WORK! [[0162c83](https://github.com/snaildos/Fifo-Browser/commit/0162c83f34604f4f73f0f7dfc4b0ef2220a70e09)]
+-  Migrate to a support version of nedb to fix a security vuln [[ba3b0f9](https://github.com/snaildos/Fifo-Browser/commit/ba3b0f9e32b682d72dc77ce7d27b18ab5e013a26)]
+- 🚀 Unsecure SSL checks [[fbb2074](https://github.com/snaildos/Fifo-Browser/commit/fbb2074bf756b7c0014ec9117b4e9d28a21b40f9)]
+
+
 <a name="1.1.0"></a>
 ## 1.1.0 (2022-02-05)
 
