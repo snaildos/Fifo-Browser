@@ -114,9 +114,8 @@ export class ViewManager extends EventEmitter {
             view.webContents,
           );
         }
-      } else {
-        this.select(id, focus);
       }
+      this.select(id, focus);
     });
 
     ipcMain.on(`view-destroy-${id}`, (e, id: number) => {

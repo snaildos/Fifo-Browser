@@ -1,5 +1,5 @@
 import { app, ipcMain, Menu } from 'electron';
-import { isAbsolute, extname } from 'path';
+import { isAbsolute, extname, resolve } from 'path';
 import { existsSync } from 'fs';
 import { SessionsService } from './sessions-service';
 import { checkFiles } from '~/utils/files';
