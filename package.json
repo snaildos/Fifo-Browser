@@ -86,7 +86,7 @@
     "mobx-react-lite": "3.2.1",
     "node-bookmarks-parser": "2.0.0",
     "node-fetch": "2.6.7",
-    "patch-package": "^6.4.7",
+    "patch-package": "6.4.7",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "2.5.1",
     "pretty-bytes": "5.6.0",
