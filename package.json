@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.15.4",
-    "@electron/remote": "1.2.2",
+    "@electron/remote": "2.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.4",
     "@types/animejs": "3.1.4",
     "@types/chrome": "0.0.178",
@@ -75,7 +75,7 @@
     "patch-package": "6.4.7",
     "postinstall-postinstall": "^2.1.0",
     "prettier": "2.5.1",
-    "@cliqz/adblocker-electron": "1.22.2",
+    "@cliqz/adblocker-electron": "1.23.4",
     "@types/node": "14.14.39",
     "@types/node-fetch": "^2.5.10",
     "@wexond/rpc-core": "^1.0.3",
