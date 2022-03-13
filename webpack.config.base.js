@@ -134,7 +134,7 @@ function getConfig(...cfg) {
 
 const getHtml = (name) => {
   return new HtmlWebpackPlugin({
-    title: 'Wexond',
+    title: 'Fifo',
     template: 'static/pages/app.html',
     filename: `${name}.html`,
     chunks: [name],

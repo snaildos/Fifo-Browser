@@ -17,11 +17,12 @@ const appConfig = getConfig(getBaseConfig('app'), {
   target: 'web',
 
   devServer: {
-    contentBase: join(__dirname, 'build'),
+    static: {
+      directory: join(__dirname, 'build'),
+    },
     port: PORT,
     hot: true,
-    inline: true,
-    disableHostCheck: true,
+    allowedHosts: 'all',
   },
 
   plugins: dev
@@ -46,9 +47,10 @@ applyEntries(appConfig, [
   'auth',
   'find',
   'menu',
+  'search',
   'menuExtra',
   'incognitoMenu',
-  'search',
+  'welcome',
   'preview',
   'tabgroup',
   'downloads-dialog',
@@ -58,7 +60,6 @@ applyEntries(appConfig, [
   'history',
   'newtab',
   'bookmarks',
-  'welcome',
 ]);
 
 if (process.env.ENABLE_EXTENSIONS) {
@@ -67,7 +68,7 @@ if (process.env.ENABLE_EXTENSIONS) {
   ];
   extPopupConfig.plugins.push(
     new HtmlWebpackPlugin({
-      title: 'Wexond',
+      title: 'Fifo',
       template: 'static/pages/extension-popup.html',
       filename: `extension-popup.html`,
       chunks: [`vendor.app`, 'extension-popup'],
