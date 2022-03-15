@@ -9,7 +9,8 @@
   
 [![Downloads](https://img.shields.io/github/downloads/snaildos/Fifo-Browser/total.svg?style=flat-square)](https://fifo.snaildos.com)
 
-Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React`, that can also be used as a framework to create a custom web browser (see the [License](#license) section). It's a more, optimized, more updated fork of Wexond. 
+Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React` that is mean't to be secure. It's a more, optimized, more updated fork of Wexond. This browser is meant for office work, gaming, research and is a secure private browser. Fifo aims to be cross platform. 
+FIFO (Fly In Fly Out for your data.)
 
 </div>
 
@@ -27,17 +28,18 @@ Fifo is a modern web browser, built on top of modern web technologies such as `E
 # Motivation
 
 Building a custom browser would be way to hard, therefor, we forked Wexond as our base, we are theng going to extend from there.
+Fifo has branched off Wexond and we are on our way of desiging our own graphics and icons.
 
 # Features
 
-- **Fifo Anti** - Browse the web without any ads and don't let websites to track you. Thanks to the 'Fifo Anti' powered by [Cliqz](https://github.com/cliqz-oss/adblocker), websites can load even 8 times faster!
-- **Chromium without Google services and low resources usage** - Since Wexond uses Electron under the hood which is based on only several and the most important Chromium components, it's not bloated with redundant Google tracking services and others.
+- **AntiAd** - Browse the web without any ads and don't let websites to track you. Thanks to the 'AntiAd' (Fifo Service) powered by [Cliqz](https://github.com/cliqz-oss/adblocker), websites can load even 8 times faster!
+- **Chromium without Google services and low resources usage** - Since Fifo uses Electron under the hood which is based on only several and the most important Chromium components, it's not bloated with redundant Google tracking services and others.
 - **Fast and fluent UI** - The animations are really smooth and their timings are perfectly balanced.
 - **Highly customizable new tab page** - Customize almost an every aspect of the new tab page!
 - **Customizable browser UI** - Choose whether Fifo should have compact or normal UI.
 - **Tab groups** - Easily group tabs, so it's hard to get lost.
-- **Scrollable tabs**
-- **Partial support for Chrome extensions** - Install some extensions directly from Chrome Web Store\* (see [#110](https://github.com/wexond/wexond/issues/110)) (WIP)
+- **Scrollable tabs** - Scroll between your tabs.
+- **Support Chrome extensions** - From version < 1.2.0 80% of chrome extenions are compatible and work with Fifo.
 
 ## Other basic features
 
@@ -51,15 +53,22 @@ Building a custom browser would be way to hard, therefor, we forked Wexond as ou
 - Dark and light theme
 - Omnibox with autocomplete algorithm similar to Chromium
 - State of the art tab system
+- Newest code
+- Optimization
+- Extensions
+- Updates
 - Security Security SECURITY!
 
 ## What can I expect to see in future updates?
 
 - More security Features
-- Auto complete
+- AutoComplete
+- AutoFill
 
 # Screenshots
 
+
+## These images are from =>0.1.0 and are outdated.
 ![alt text](https://github.com/SnailDOS/Fifo-Browser/blob/main/image-preview/image.jpg?raw=true)
 
 UI normal variant:
@@ -70,9 +79,7 @@ UI compact variant:
 ![image](https://user-images.githubusercontent.com/11065386/81024252-2ddc0a80-8e73-11ea-9f2f-6c9a4a175c60.png)
 
 # Downloads
-- [Stable and beta versions](https://github.com/snaildos/Fifo-Browser/releases)
-
-# [Roadmap](https://github.com/snaildos/Fifo-browser/projects)
+- [Stable and Versions](https://github.com/snaildos/Fifo-Browser/releases)
 
 # Contributing
 
@@ -96,15 +103,15 @@ $ npm i -g windows-build-tools
 
 Yarn:
 ```bash
-$ yarn install --save --legacy-peer-deps # Install needed depedencies. If you can, please, use yarn install.
-$ yarn build # Rebuild native modules using Electron headers.
+$ yarn install --save --legacy-peer-deps # Install needed depedencies.
+$ yarn build # Compile Fifo code and rebuild modules.
 $ yarn dev # Run Fifo in development mode
 ```
 
 NPM: Not recommended
 ```bash
 $ npm install --save --legacy-peer-deps # Install needed depedencies. If you can, please, use yarn install.
-$ npm run build # Rebuild native modules using Electron headers.
+$ npm run build # Compile Fifo code and rebuild modules.
 $ npm run dev # Run Fifo in development mode
 ```
 
@@ -116,6 +123,7 @@ $ yarn compile-linux # Package Fifo for Linux
 $ yarn compile-darwin # Package Fifo for macOS
 $ yarn lint # Runs linter
 $ yarn lint-fix # Runs linter and automatically applies fixes
+$ yarn copyright # Generates auto headers for copyright.
 ```
 
 More commands can be found in [`package.json`](package.json).
@@ -125,7 +133,9 @@ More commands can be found in [`package.json`](package.json).
 Guides and the API reference are located in [`docs`](docs) directory.
 
 # License
-
-Fork of Wexond. It's up to the official developers.
+This browser isn't mean to be rebranded/redistrubted, please follow the LICENSE.MD. 
+Never remove credits in headers.
+(sentialx@gmail.com) wrote original base code. (Wexond).
+By sending a Pull Request, you agree that your code may be relicensed or sublicensed.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsnaildos%2FFifo-Browser.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsnaildos%2FFifo-Browser?ref=badge_large)
