@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { RendererToMainChannel } from '@wexond/rpc-electron';
 
 export interface ExtensionMainService {

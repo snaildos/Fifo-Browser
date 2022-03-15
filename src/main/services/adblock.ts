@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { promises as fs } from 'fs';
 import { resolve, join } from 'path';
 import fetch from 'node-fetch';

@@ -1,3 +1,4 @@
+/* Copyright (c) 2021-2022 SnailDOS */
 import { ipcRenderer } from 'electron';
 import * as remote from '@electron/remote';
 import { makeObservable, observable } from 'mobx';

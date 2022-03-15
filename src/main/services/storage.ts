@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain, dialog } from 'electron';
 import * as Datastore from '@seald-io/nedb';
 import { fromBuffer } from 'file-type';

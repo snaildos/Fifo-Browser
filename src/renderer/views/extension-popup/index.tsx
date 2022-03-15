@@ -1,3 +1,4 @@
+/* Copyright (c) 2021-2022 SnailDOS */
 import { ipcRenderer } from 'electron';
 import { resolve } from 'path';
 import * as remote from '@electron/remote';

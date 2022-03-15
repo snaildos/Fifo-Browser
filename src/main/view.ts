@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { BrowserView, app, ipcMain } from 'electron';
 import { URL } from 'url';
 import { getViewMenu } from './menus/view';

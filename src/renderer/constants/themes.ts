@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ITheme } from '~/interfaces';
 import { BLUE_500 } from './colors';
 

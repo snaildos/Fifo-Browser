@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { daysList, monthsList } from '~/renderer/constants/dictionary';
 
 export const compareDates = (first: Date, second: Date) => {

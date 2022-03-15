@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import styled, { css } from 'styled-components';
 
 import { EASING_FUNCTION, BLUE_500 } from '~/renderer/constants';

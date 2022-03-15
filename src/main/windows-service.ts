@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { AppWindow } from './windows/app';
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { SessionsService } from './sessions-service';

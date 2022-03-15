@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain } from 'electron';
 // import { getPassword, setPassword, deletePassword } from 'keytar';
 

@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export const noButtons = (
   width = '6px',
   color = 'rgba(0, 0, 0, 0.38)',

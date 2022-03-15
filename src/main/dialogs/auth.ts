@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { VIEW_Y_OFFSET } from '~/constants/design';
 import { BrowserWindow } from 'electron';
 import { Application } from '../application';

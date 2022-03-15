@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { IFormFillData } from '~/interfaces';
 import { makeId } from '~/utils/string';
 

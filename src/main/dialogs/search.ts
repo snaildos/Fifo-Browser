@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain, BrowserWindow } from 'electron';
 import {
   DIALOG_MIN_HEIGHT,

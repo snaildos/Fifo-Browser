@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { RpcMainEvent, RpcMainHandler } from '@wexond/rpc-electron';
 import { session, webContents } from 'electron';
 import {

@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export type TabEvent =
   | 'load-commit'
   | 'url-updated'

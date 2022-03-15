@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcRenderer, webFrame } from 'electron';
 
 import AutoComplete from './models/auto-complete';

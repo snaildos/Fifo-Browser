@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import * as ReactDOM from 'react-dom';
 import * as React from 'react';
 

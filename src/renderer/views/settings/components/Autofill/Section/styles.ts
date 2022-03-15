@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import styled, { css } from 'styled-components';
 import { centerIcon } from '~/renderer/mixins';
 import { transparency, ICON_DROPDOWN } from '~/renderer/constants';

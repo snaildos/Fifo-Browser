@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export * from './cursors';
 export * from './images';
 export * from './positioning';

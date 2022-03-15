@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { observable, action, makeObservable } from 'mobx';
 
 import { IFormFillData } from '~/interfaces';

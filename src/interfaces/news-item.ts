@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export interface INewsItem {
   source: {
     id: string;

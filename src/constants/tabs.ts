@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { getWebUIURL } from '~/common/webui';
 
 export const NEWTAB_URL = getWebUIURL('newtab');

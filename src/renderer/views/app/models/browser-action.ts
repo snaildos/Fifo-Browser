@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { observable, computed, makeObservable } from 'mobx';
 import { EXTENSIONS_PROTOCOL } from '~/constants';
 import { format } from 'url';

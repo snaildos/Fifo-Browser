@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import anime from 'animejs';
 import { TAB_ANIMATION_DURATION } from '../constants';
 

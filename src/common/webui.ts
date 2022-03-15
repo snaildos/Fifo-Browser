@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { WEBUI_BASE_URL, WEBUI_URL_SUFFIX } from '~/constants/files';
 
 export const getWebUIURL = (hostname: string) =>

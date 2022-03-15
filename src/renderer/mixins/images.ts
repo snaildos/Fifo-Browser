@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export const centerIcon = (size: number | 'contain' = 'contain') => {
   let s: string = size.toString();
 

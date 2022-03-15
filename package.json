@@ -38,7 +38,8 @@
     "deploy": "npm run build && electron-builder build --win --linux appimage snap --publish never",
     "lint": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\"",
     "lint-fix": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\" --fix",
-    "rebuild": "electron-builder install-app-deps"
+    "rebuild": "electron-builder install-app-deps",
+    "copyright": "copyright-header --templateId 'minimal' --forceModificationYear '2022' --fix --copyrightHolder 'SnailDOS' --include 'src'"
   },
   "devDependencies": {
     "@babel/core": "7.15.4",
@@ -65,7 +66,8 @@
     "babel-loader": "^8.2.2",
     "concurrently": "^6.0.2",
     "copy-to-clipboard": "3.3.1",
-    "copy-webpack-plugin": "^10.2.4",
+    "copy-webpack-plugin": "10.2.1",
+    "copyright-header": "^0.4.6",
     "cross-env": "7.0.3",
     "electron": "^15.3.0",
     "electron-builder": "22.11.7",

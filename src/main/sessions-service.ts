@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { session, ipcMain } from 'electron';
 import { getPath, makeId } from '~/utils';
 import { promises, existsSync } from 'fs';

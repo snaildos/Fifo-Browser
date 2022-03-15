@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import {
   FONT_ROBOTO_REGULAR,
   FONT_ROBOTO_MEDIUM,

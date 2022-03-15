@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { configure } from 'mobx';
 import { setIpcRenderer } from '@wexond/rpc-electron';
 import { ipcRenderer } from 'electron';

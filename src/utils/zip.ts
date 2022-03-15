@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { loadAsync } from 'jszip';
 import { join, dirname } from 'path';
 import { promises } from 'fs';
