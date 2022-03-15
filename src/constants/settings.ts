@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ISettings } from '~/interfaces';
 import { remote, app } from 'electron';
 

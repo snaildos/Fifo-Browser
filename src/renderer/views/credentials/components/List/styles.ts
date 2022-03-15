@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import styled from 'styled-components';
 
 import { robotoRegular, centerIcon } from '~/renderer/mixins';

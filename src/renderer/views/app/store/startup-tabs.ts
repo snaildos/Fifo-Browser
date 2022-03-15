@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { makeObservable, observable } from 'mobx';
 
 import { Store } from '.';

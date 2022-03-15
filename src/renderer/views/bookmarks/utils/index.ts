@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { IBookmark } from '~/interfaces';
 import store from '../store';
 

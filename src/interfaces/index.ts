@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export * from './bookmark';
 export * from './download-item';
 export * from './favicon';

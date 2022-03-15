@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { observable, computed, action, toJS, makeObservable } from 'mobx';
 import { ISettings, IFavicon, ITheme, IBookmark } from '~/interfaces';
 import { getTheme } from '~/utils/themes';

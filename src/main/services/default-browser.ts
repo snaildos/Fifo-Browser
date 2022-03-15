@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain, shell } from 'electron';
 const defaultBrowser = require("x-default-browser");
 const os = require('os');

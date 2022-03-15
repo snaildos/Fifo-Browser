@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { RpcMainEvent, RpcMainHandler } from '@wexond/rpc-electron';
 import { networkMainChannel, NetworkService } from '~/common/rpc/network';
 import { requestURL } from './request';

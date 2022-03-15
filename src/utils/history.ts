@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { IHistoryItem, IVisitedItem } from '~/interfaces';
 
 export const countVisitedTimes = (hItems: IHistoryItem[]): IVisitedItem[] => {

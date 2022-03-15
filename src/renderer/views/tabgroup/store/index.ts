@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcRenderer } from 'electron';
 import * as React from 'react';
 import { Textfield } from '~/renderer/components/Textfield';

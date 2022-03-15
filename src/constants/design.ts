@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export const DEFAULT_TAB_MARGIN_TOP = 4;
 export const COMPACT_TAB_MARGIN_TOP = 3;
 

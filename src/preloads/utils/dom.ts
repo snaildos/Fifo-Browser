@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export const isVisible = (el: HTMLElement) => {
   return el.offsetHeight !== 0;
 };

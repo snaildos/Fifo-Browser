@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export interface IBookmark {
   _id?: string;
   title?: string;

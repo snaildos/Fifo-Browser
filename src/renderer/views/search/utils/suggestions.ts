@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { networkMainChannel } from '~/common/rpc/network';
 import { IHistoryItem } from '~/interfaces';
 

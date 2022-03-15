@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain, app, webContents } from 'electron';
 import { setIpcMain } from '@wexond/rpc-electron';
 setIpcMain(ipcMain);

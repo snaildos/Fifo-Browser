@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import styled, { css } from 'styled-components';
 import { DialogStyle } from '~/renderer/mixins/dialogs';
 import { ICON_ARROW_RIGHT } from '~/renderer/constants/icons';

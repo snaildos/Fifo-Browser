@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import store from '.';
 import { observable } from 'mobx';
 import { animateTab } from '../utils/tabs';

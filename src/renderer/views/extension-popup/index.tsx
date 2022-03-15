@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { remote, ipcRenderer } from 'electron';
 import { resolve } from 'path';
 

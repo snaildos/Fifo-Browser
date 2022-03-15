@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { lightTheme, darkTheme, blueTheme, lavTheme } from '~/renderer/constants/themes';
 
 export const getTheme = (name: string) => {

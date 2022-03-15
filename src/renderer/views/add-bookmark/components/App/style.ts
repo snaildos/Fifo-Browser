@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import styled, { css } from 'styled-components';
 
 import { robotoRegular } from '~/renderer/mixins';

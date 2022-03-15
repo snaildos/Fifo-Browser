@@ -38,13 +38,15 @@
     "deploy": "npm run build && electron-builder build --win --linux appimage snap --publish never",
     "lint": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\"",
     "lint-fix": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\" --fix",
-    "rebuild": "electron-builder install-app-deps"
+    "rebuild": "electron-builder install-app-deps",
+    "copyright": "copyright-header --templateId 'minimal' --forceModificationYear '2022' --fix --copyrightHolder 'SnailDOS' --include 'src'"
   },
   "devDependencies": {
     "@babel/core": "7.15.4",
     "@cliqz/adblocker-electron": "1.23.4",
     "@electron/remote": "1.2.2",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.4",
+    "@seald-io/nedb": "^2.2.1",
     "@types/animejs": "3.1.4",
     "@types/chrome": "0.0.178",
     "@types/crypto-js": "4.0.2",
@@ -65,6 +67,7 @@
     "concurrently": "6.2.1",
     "copy-to-clipboard": "3.3.1",
     "copy-webpack-plugin": "10.2.1",
+    "copyright-header": "^0.4.6",
     "cross-env": "7.0.3",
     "electron": "13.5.2",
     "electron-builder": "22.13.1",
@@ -82,7 +85,6 @@
     "icojs": "0.16.1",
     "jszip": "3.7.1",
     "mobx": "6.3.3",
-    "@seald-io/nedb": "^2.2.1",
     "mobx-react-lite": "3.2.1",
     "node-bookmarks-parser": "2.0.0",
     "node-fetch": "2.6.7",

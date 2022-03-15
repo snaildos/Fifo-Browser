@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import store from '../store';
 
 export const loadURL = (url: string) => {

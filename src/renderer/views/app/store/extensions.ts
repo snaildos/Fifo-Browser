@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 /* eslint @typescript-eslint/camelcase: 0 */
 
 import { action, makeObservable, observable } from 'mobx';

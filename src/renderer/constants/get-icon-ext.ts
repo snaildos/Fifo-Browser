@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ICON_DOWNLOAD_PAGE } from "./icons";
 
 export const getIconByExtension = (ext?: string) => {

@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { remote } from 'electron';
 
 export const getCurrentWindow = () => remote.getCurrentWindow();

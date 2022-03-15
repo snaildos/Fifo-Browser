@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { protocol } from 'electron';
 import { join } from 'path';
 import { parse } from 'url';

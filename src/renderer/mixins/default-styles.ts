@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { css, createGlobalStyle } from 'styled-components';
 import { ITheme } from '~/interfaces';
 import { body2 } from './typography';

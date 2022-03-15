@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import * as React from 'react';
 
 import { Root, StyledRipple } from './style';

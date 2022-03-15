@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export const ICON_ADD = require('~/renderer/resources/icons/add.svg');
 export const ICON_BACK = require('~/renderer/resources/icons/back.svg');
 export const ICON_FORWARD = require('~/renderer/resources/icons/forward.svg');

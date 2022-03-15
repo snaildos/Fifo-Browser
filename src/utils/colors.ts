@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 // @ts-nocheck
 
 /* eslint-disable @typescript-eslint/ban-ts-ignore */

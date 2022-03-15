@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { parse } from 'url';
 
 import { IFormFillData } from '~/interfaces';

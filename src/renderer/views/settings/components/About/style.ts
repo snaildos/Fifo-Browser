@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import styled, { css } from 'styled-components';
 import { ICON_MORE } from '~/renderer/constants';
 import { IconButton } from '../App/style';

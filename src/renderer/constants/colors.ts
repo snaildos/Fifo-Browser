@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export const BLUE_500 = '#21b0f3';
 export const BLUE_300 = '#64B5F6';
 

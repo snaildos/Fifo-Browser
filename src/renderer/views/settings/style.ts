@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { css } from 'styled-components';
 
 import { body2 } from '~/renderer/mixins';

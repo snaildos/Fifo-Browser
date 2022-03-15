@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import styled, { css } from 'styled-components';
 import { ITheme } from '~/interfaces';
 import { BLUE_300 } from '~/renderer/constants';

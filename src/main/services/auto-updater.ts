@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { autoUpdater } from 'electron-updater';
 import { ipcMain } from 'electron';
 import { Application } from '../application';
