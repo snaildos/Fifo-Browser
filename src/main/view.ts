@@ -68,9 +68,7 @@ export class View {
         plugins: true,
         nativeWindowOpen: true,
         webSecurity: true,
-        // @ts-ignore
-        transparent: true,
-        javascript: true,
+        javascript: true
       },
     });
     require('@electron/remote/main').enable(this.browserView.webContents);

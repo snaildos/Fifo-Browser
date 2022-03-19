@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-import { URL } from 'url';
 import {
   ICON_STAR,
   ICON_STAR_FILLED,
