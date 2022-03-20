@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 export const DEFAULT_TAB_MARGIN_TOP = 4;
 export const COMPACT_TAB_MARGIN_TOP = 3;
 
@@ -29,5 +27,5 @@ export const MENU_WIDTH = 330;
 // Dialogs
 export const DIALOG_MIN_HEIGHT = 130;
 export const DIALOG_MARGIN = 16;
-export const DIALOG_TOP = 34;
-export const DIALOG_MARGIN_TOP = 3;
+export const DIALOG_TOP = 0;
+export const DIALOG_MARGIN_TOP = 0;

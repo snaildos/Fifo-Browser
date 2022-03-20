@@ -72,8 +72,8 @@ export const darkTheme: ITheme = {
 };
 
 export const blueTheme: ITheme = {
-  'titlebar.backgroundColor': '#404040',
-  'addressbar.backgroundColor': '#4ca0c7',
+  'titlebar.backgroundColor': '#8e88e3',
+  'addressbar.backgroundColor': '#00008b',
   'addressbar.textColor': '#fff',
   'toolbar.backgroundColor': 'rgba(69, 62, 171)',
   'toolbar.bottomLine.backgroundColor': 'rgba(255, 255, 255, 0.08)',
@@ -92,7 +92,7 @@ export const blueTheme: ITheme = {
   'dialog.lightForeground': true,
   'searchBox.backgroundColor': '1919fa',
   'searchBox.lightForeground': true,
-  'pages.backgroundColor': '#1d5670',
+  'pages.backgroundColor': '#07077a',
   'pages.lightForeground': true,
   'pages.textColor': '#fff',
   'dropdown.backgroundColor': 'rgb(66, 66, 66)',
