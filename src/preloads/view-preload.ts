@@ -8,17 +8,17 @@ import { ERROR_PROTOCOL, WEBUI_BASE_URL } from '~/constants/files';
 import { injectChromeWebstoreInstallButton } from './chrome-webstore';
 import { getWebUIURL } from '~/common/webui';
 
-(async function() {
+(async function () {
   const w = await webFrame.executeJavaScript('window');
   const id = ipcRenderer.sendSync('get-window-id');
 
   function getText(text: any) {
-    if(typeof text == 'string') return text;
+    if (typeof text == 'string') return text;
 
     return JSON.stringify(text)
   }
 
-  w.oldAlert=w.alert;
+  w.oldAlert = w.alert;
   w.alert = (msg: any) => {
     return ipcRenderer.sendSync(`alert-${id}`, {
       msg: getText(msg),
@@ -26,16 +26,16 @@ import { getWebUIURL } from '~/common/webui';
     })
   };
 
-  w.oldConfirm=w.confirm;
+  w.oldConfirm = w.confirm;
   w.confirm = (msg: string) => {
     return ipcRenderer.sendSync(`confirm-${id}`, {
       msg: getText(msg),
       url: w.frameElement ? "Una pagina insertada en esta" : w.location.host
     })
   };
-  
-  w.oldPrompt=w.prompt;
-  w.prompt = (msg: string, value="") => {
+
+  w.oldPrompt = w.prompt;
+  w.prompt = (msg: string, value = "") => {
     return ipcRenderer.sendSync(`prompt-${id}`, {
       msg: getText(msg),
       url: w.frameElement ? "Una pagina insertada en esta" : w.location.host,
@@ -163,15 +163,9 @@ if (
   (async function () {
 
     const w = await webFrame.executeJavaScript('window');
-  
-    
+
+
     w.settings = settings;
-    w.require = (id: string) => {
-      if (id === 'electron') {
-        return { ipcRenderer };
-      }
-      return undefined;
-    };
 
     if (window.location.pathname.startsWith('//network-error')) {
       w.theme = getTheme(w.settings.theme);
@@ -205,7 +199,7 @@ if (
       `window.navigator.globalPrivacyControl = true`,
     );
   }
-  })();
+})();
 
 if (window.location.href.startsWith(WEBUI_BASE_URL)) {
   window.addEventListener('DOMContentLoaded', () => {

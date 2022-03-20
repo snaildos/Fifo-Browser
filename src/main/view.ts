@@ -61,9 +61,8 @@ export class View {
     this.browserView = new BrowserView({
       webPreferences: {
         preload: `${app.getAppPath()}/build/view-preload.bundle.js`,
-        nodeIntegration: false,
-        contextIsolation: true,
-        sandbox: true,
+        nodeIntegration: true,
+        contextIsolation: false,
         partition: incognito ? 'view_incognito' : 'persist:view',
         plugins: true,
         nativeWindowOpen: true,
@@ -92,7 +91,7 @@ export class View {
         const { object: settings } = Application.instance.settings;
         if (settings.doNotTrack) details.requestHeaders['DNT'] = '1';
         if (settings.globalPrivacyControl)
-        details.requestHeaders['Sec-GPC'] = '1';
+          details.requestHeaders['Sec-GPC'] = '1';
         callback({ requestHeaders: details.requestHeaders });
       },
     );
