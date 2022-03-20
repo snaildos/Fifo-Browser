@@ -41,9 +41,8 @@ export const showExtensionDialog = (
   dialog.browserView.webContents.on(
     'will-attach-webview',
     (e, webPreferences, params) => {
-      webPreferences.sandbox = true;
-      webPreferences.nodeIntegration = false;
-      webPreferences.contextIsolation = true;
+      webPreferences.nodeIntegration = true;
+      webPreferences.contextIsolation = false;
     },
   );
 

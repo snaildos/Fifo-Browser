@@ -97,8 +97,8 @@ export class DialogsService {
     let browserView = foundDialog
       ? foundDialog.browserView
       : this.browserViews.find(
-          (x) => !this.browserViewDetails.get(x.webContents.id),
-        );
+        (x) => !this.browserViewDetails.get(x.webContents.id),
+      );
 
     if (!browserView) {
       browserView = this.createBrowserView();

@@ -69,7 +69,7 @@
     "copy-webpack-plugin": "10.2.1",
     "copyright-header": "^0.4.6",
     "cross-env": "7.0.3",
-    "electron": "16.0.0",
+    "electron": "17.1.1",
     "electron-builder": "22.11.7",
     "electron-chrome-extensions": "3.9.0",
     "electron-updater": "4.3.8",

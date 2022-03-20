@@ -149,7 +149,7 @@ export class AppWindow {
       if (
         incognito &&
         Application.instance.windows.list.filter((x) => x.incognito).length ===
-          1
+        1
       ) {
         Application.instance.sessions.clearCache('incognito');
         Application.instance.sessions.unloadIncognitoExtensions();
