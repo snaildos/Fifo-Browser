@@ -35,11 +35,14 @@ const appConfig = getConfig(getBaseConfig('app'), {
           NODE_ENV: JSON.stringify('development')
         }
       }),
-      // new webpack.DefinePlugin({
-      //   process: { env: {} }
-      // })
     ]
-    : [],
+    : [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+    ],
 });
 
 const extPopupConfig = getConfig({

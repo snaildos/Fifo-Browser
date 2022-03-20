@@ -46,6 +46,7 @@ export const showExtensionDialog = (
     },
   );
 
+
   dialog.on('loaded', (e) => {
     e.reply('data', { url, inspect });
   });

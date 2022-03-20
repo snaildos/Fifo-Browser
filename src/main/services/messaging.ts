@@ -8,10 +8,7 @@ import { Application } from '../application';
 import { showMenuDialog } from '../dialogs/menu';
 import { IFormFillData, IBookmark } from '~/interfaces';
 import { SearchDialog } from '../dialogs/search';
-
-import { showIncognitoDialog } from '../dialogs/incogitoMenu';
-import { showMenuExtraDialog } from '../dialogs/menuExtra';
-
+import { URL } from 'url';
 import * as bookmarkMenu from '../menus/bookmarks';
 import { showFindDialog } from '../dialogs/find';
 import { showAddBookmarkDialog } from '../dialogs/add-bookmark';
@@ -148,10 +145,10 @@ export const runMessagingService = (appWindow: AppWindow) => {
           }));
 
         if (item && item.type === 'password') {
-          item.fields.password = await getPassword(
-            'fifo',
-            `${hostname}-${item.fields.username}`,
-          );
+          // item.fields.password = await getPassword(
+          //   'Fifo',
+          //   `${hostname}-${item.fields.username}`,
+          // );
         }
 
         appWindow.viewManager.selected.send(
@@ -215,6 +212,8 @@ export const runMessagingService = (appWindow: AppWindow) => {
         );
       }
 
+      // await setPassword('Fifo', `${hostname}-${username}`, password);
+
       appWindow.send(`has-credentials-${view.id}`, true);
     });
 
@@ -229,7 +228,7 @@ export const runMessagingService = (appWindow: AppWindow) => {
         },
       });
 
-      await deletePassword('fifo', `${view.hostname}-${fields.username}`);
+      // await deletePassword('Fifo', `${view.hostname}-${fields.username}`);
 
       appWindow.viewManager.settingsView.webContents.send(
         'credentials-remove',
@@ -240,8 +239,8 @@ export const runMessagingService = (appWindow: AppWindow) => {
     ipcMain.on(
       'credentials-get-password',
       async (e, id: string, account: string) => {
-        const password = await getPassword('fifo', account);
-        e.sender.send(id, password);
+        // const password = await getPassword('Fifo', account);
+        // e.sender.send(id, password);
       },
     );
   }
@@ -266,11 +265,3 @@ export const runMessagingService = (appWindow: AppWindow) => {
     },
   );
 };
-function getPassword(arg0: string, arg1: string): string | PromiseLike<string> {
-  throw new Error('Function not implemented.');
-}
-
-function deletePassword(arg0: string, arg1: string) {
-  throw new Error('Function not implemented.');
-}
-
