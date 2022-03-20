@@ -12,10 +12,11 @@ export const EnginesTable = styled.div`
 
 export const TableRow = styled.div`
   margin-right: 0;
+  margin-top: 5px;
   display: grid;
   grid-template-columns: 4fr 3fr 3fr 38px;
   line-height: 20px;
-  height: 36px;
+  height: 100px;
   align-items: center;
 
   ${({ bold }: { bold?: boolean }) => css`
@@ -26,11 +27,11 @@ export const TableRow = styled.div`
 export const TableCell = styled.div`
   display: flex;
   align-items: center;
-  line-height: 26px;
+  line-height: 20px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  padding: 0 12px;
+  padding: 20 40px;
 
   &:nth-child(1) {
     grid-column: 1 / auto;
