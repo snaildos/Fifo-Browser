@@ -17,7 +17,7 @@ export const StyledNavigationDrawerItem = styled.div`
   transition: 0.2s background-color;
 
   ${({ theme, selected }: { theme?: ITheme; selected?: boolean }) => css`
-    background-color: ${(selected ? 'rgba(0, 0, 0, 0.084)' : 'white')};
+    background-color: ${(selected ? 'rgba(0, 0, 0, 0.084)' : 'auto')};
   
     &:hover {
       background-color: ${!selected ? (theme['pages.lightForeground']
