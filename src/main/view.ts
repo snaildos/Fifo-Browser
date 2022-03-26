@@ -62,7 +62,7 @@ export class View {
       webPreferences: {
         preload: `${app.getAppPath()}/build/view-preload.bundle.js`,
         nodeIntegration: true,
-        contextIsolation: false,
+        contextIsolation: true,
         partition: incognito ? 'view_incognito' : 'persist:view',
         plugins: true,
         nativeWindowOpen: true,
