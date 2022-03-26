@@ -10,33 +10,27 @@ import { ipcRenderer } from 'electron';
 import { observer } from 'mobx-react-lite';
 import { NormalButton } from '../App';
 
-const AskToggle = observer(() => {
-  return (
-    <Row>
-      <p></p>
-      <Title>HzzaAwesome - Graphic Designer</Title>
-      <p></p>
-      <Title>SnailDOS - Development and Code</Title>
-      <p></p>
-      <Title>Wexond - Original Fork</Title>
-      <p></p>
-      <Title>Preknowledge - Contributer</Title>
-      <p></p>
-      <Title>JOshua - Graphic Designer</Title>
-      <p></p>
-      <Title> Mauro - Contributer</Title>
-    </Row>
-  );
-});
+
 const Location = observer(() => {
   return (
     <Row>
       <Title>
         Fifo is a privacy orientated browser with tons of features such as a
         built in Ad Blocker. Fifo is made with love by the SnailDOS team. Big
-        thanks to all our contributers on the right!
-      </Title>
-      <p></p>
+        thanks to all our contributers...
+        <p></p>
+        <Title>SnailDOS - Development and Code</Title>
+        <p></p>
+        <Title>Wexond - Original Fork</Title>
+        <p></p>
+        <Title>Preknowledge - Contributer</Title>
+        <p></p>
+        <Title>JOshua - Graphic Designer</Title>
+        <p></p>
+        <Title> Mauro - Contributer</Title>
+        <p></p>
+        <Title>HzzaAwesome - Graphic Designer</Title>
+        </Title>
     </Row>
   );
 });
@@ -45,9 +39,8 @@ export const About = () => {
   return (
     <>
       <Header>About Fifo</Header>
-      <Title>Your version of Fifo is 1.1.0 !</Title>
+      <Title>Your version of Fifo is 1.2.0!</Title>
       <Location />
-      <AskToggle />
     </>
   );
 };

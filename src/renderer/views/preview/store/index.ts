@@ -2,7 +2,6 @@
 
 import { ipcRenderer } from 'electron';
 import { observable, computed, makeObservable } from 'mobx';
-import { parse } from 'url';
 import { WEBUI_BASE_URL, WEBUI_PROTOCOL } from '~/constants/files';
 import { DialogStore } from '~/models/dialog-store';
 
@@ -15,7 +14,7 @@ export class Store extends DialogStore {
   public title = '';
 
   public url = '';
-  
+
   public x = 0;
 
   public xTransition = false;
@@ -23,7 +22,7 @@ export class Store extends DialogStore {
   // Computed
 
   public get domain() {
-    const parsed = parse(this.url);
+    const parsed = new URL(this.url);
     if (
       WEBUI_BASE_URL.startsWith(WEBUI_PROTOCOL) &&
       this.url.startsWith(WEBUI_BASE_URL)
@@ -39,7 +38,6 @@ export class Store extends DialogStore {
       return 'Unsecure Website';
     }
     
-
     return parsed.hostname;
   }
 

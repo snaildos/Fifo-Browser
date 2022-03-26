@@ -285,7 +285,6 @@ export class ViewManager extends EventEmitter {
           ipcRenderer.send('resize-height');
         });
         const app = document.getElementById('app');
-        resizeObserver.observe(app);
       `);
 
     this.window.webContents.on('ipc-message', (e, message) => {

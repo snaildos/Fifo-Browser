@@ -17,8 +17,12 @@ export const runAutoUpdaterService = () => {
     return updateAvailable;
   });
 
-  ipcMain.on('update-check', () => {
-    autoUpdater.checkForUpdates();
+  ipcMain.on('update-check', async () => {
+    try {
+      await autoUpdater.checkForUpdates();
+    } catch (e) {
+      console.error(e);
+    }
   });
 
   autoUpdater.on('update-downloaded', () => {

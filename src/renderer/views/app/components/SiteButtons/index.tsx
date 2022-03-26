@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-
 import {
   ICON_STAR,
   ICON_STAR_FILLED,
@@ -12,10 +11,10 @@ import {
   ICON_SHIELD,
   ICON_DOWN
 } from '~/renderer/constants/icons';
-import { ipcRenderer, remote } from 'electron';
-import { parse } from 'url';
+import { ipcRenderer } from 'electron';
 import store from '../../store';
 import { ToolbarButton } from '../ToolbarButton';
+import * as remote from '@electron/remote';
 
 const showAddBookmarkDialog = async () => {
   const star = document.getElementById('star');
@@ -50,7 +49,7 @@ const onMenuClick = (e: React.MouseEvent<HTMLDivElement>) => {
 };
 
 const onKeyClick = () => {
-  const { hostname } = parse(store.tabs.selectedTab.url);
+  const { hostname } = new URL(store.tabs.selectedTab.url);
   const list = store.autoFill.credentials.filter(
     (r) => r.url === hostname && r.fields.username,
   );

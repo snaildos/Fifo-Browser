@@ -20,8 +20,8 @@ export class AppWindow {
   public constructor(incognito: boolean) {
     this.win = new BrowserWindow({
       frame: false,
-      minWidth: 400,
-      minHeight: 450,
+      minWidth: 900,
+      minHeight: 250,
       width: 900,
       height: 700,
       titleBarStyle: 'hiddenInset',
@@ -30,11 +30,13 @@ export class AppWindow {
         plugins: true,
         // TODO: enable sandbox, contextIsolation and disable nodeIntegration to improve security
         nodeIntegration: true,
+        sandbox: false,
         contextIsolation: false,
         javascript: true,
-        // TODO: get rid of the remote module in renderers
-        enableRemoteModule: true,
-        worldSafeExecuteJavaScript: false,
+      },
+      trafficLightPosition: {
+        x: 18,
+        y: 18,
       },
       icon: resolve(
         app.getAppPath(),
@@ -42,7 +44,7 @@ export class AppWindow {
       ),
       show: false,
     });
-
+    require('@electron/remote/main').enable(this.win.webContents);
     this.incognito = incognito;
 
     this.viewManager = new ViewManager(this, incognito);
@@ -147,7 +149,7 @@ export class AppWindow {
       if (
         incognito &&
         Application.instance.windows.list.filter((x) => x.incognito).length ===
-          1
+        1
       ) {
         Application.instance.sessions.clearCache('incognito');
         Application.instance.sessions.unloadIncognitoExtensions();

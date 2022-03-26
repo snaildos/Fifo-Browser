@@ -7,6 +7,7 @@ import {
   ExtensionMainService,
 } from '~/common/rpc/extensions';
 import { Application } from './application';
+import { URL } from 'url';
 
 export class ExtensionServiceHandler
   implements RpcMainHandler<ExtensionMainService> {

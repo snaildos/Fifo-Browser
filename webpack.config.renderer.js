@@ -9,27 +9,40 @@ const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
+
 /* eslint-enable */
 
 const PORT = 4444;
 
 const appConfig = getConfig(getBaseConfig('app'), {
-  target: 'web',
+  target: 'electron-renderer',
 
   devServer: {
-    contentBase: join(__dirname, 'build'),
+    static: {
+      directory: join(__dirname, 'build'),
+    },
     port: PORT,
     hot: true,
-    inline: true,
-    disableHostCheck: true,
+    allowedHosts: 'all',
   },
 
   plugins: dev
     ? [
-        new webpack.HotModuleReplacementPlugin(),
-        new ReactRefreshWebpackPlugin(),
-      ]
-    : [],
+      new webpack.HotModuleReplacementPlugin(),
+      new ReactRefreshWebpackPlugin(),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('development')
+        }
+      }),
+    ]
+    : [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+    ],
 });
 
 const extPopupConfig = getConfig({
@@ -46,9 +59,10 @@ applyEntries(appConfig, [
   'auth',
   'find',
   'menu',
+  'search',
   'menuExtra',
   'incognitoMenu',
-  'search',
+  'welcome',
   'preview',
   'tabgroup',
   'downloads-dialog',
@@ -58,7 +72,6 @@ applyEntries(appConfig, [
   'history',
   'newtab',
   'bookmarks',
-  'welcome',
 ]);
 
 if (process.env.ENABLE_EXTENSIONS) {
@@ -67,7 +80,7 @@ if (process.env.ENABLE_EXTENSIONS) {
   ];
   extPopupConfig.plugins.push(
     new HtmlWebpackPlugin({
-      title: 'Wexond',
+      title: 'Fifo',
       template: 'static/pages/extension-popup.html',
       filename: `extension-popup.html`,
       chunks: [`vendor.app`, 'extension-popup'],

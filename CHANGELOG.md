@@ -1,7 +1,7 @@
 # Changelog
 
 <a name="1.2.0"></a>
-## 1.2.0 (2022-02-10)
+## 1.2.0 (2022-03-19)
 
 ### Added
 
@@ -11,6 +11,28 @@
 
 ### Miscellaneous
 
+-  Package upgrade &amp; Code optimization [[c3a259a](https://github.com/snaildos/Fifo-Browser/commit/c3a259ae19fde15a10ab4bae2bcd0a4b1444638d)]
+-  Merge branch &#x27;fifo_rewrite&#x27; of https://github.com/snaildos/Fifo-Browser into fifo_rewrite [[e4942bb](https://github.com/snaildos/Fifo-Browser/commit/e4942bb5556921dae28d83f360e519c0d2541050)]
+-  Removed: require error [[6ecfe59](https://github.com/snaildos/Fifo-Browser/commit/6ecfe59cf9b4ce4483a93752214744f2fedb1d1b)]
+-  Bump Version [[2f0397c](https://github.com/snaildos/Fifo-Browser/commit/2f0397c8122ab5f5cfe497ebe1eadcf01e5320fc)]
+-  upgraded to electron 15 [[ee8f456](https://github.com/snaildos/Fifo-Browser/commit/ee8f4560dc35c15d510477ac4bb7af49b8c123b2)]
+-  Update README [[b877d6c](https://github.com/snaildos/Fifo-Browser/commit/b877d6c48b9c0f964cbe46ce3a3c9fde0ae4f8ee)]
+-  Update README [[ff253f2](https://github.com/snaildos/Fifo-Browser/commit/ff253f240578c58c10b4828e4cce7c2a786af3e8)]
+-  Update README [[0e8b21e](https://github.com/snaildos/Fifo-Browser/commit/0e8b21e2065a42b56c25bd61b3281b24cd02529d)]
+-  Update README [[34f2162](https://github.com/snaildos/Fifo-Browser/commit/34f21621a787e685cff86fc817a24a083620dd0c)]
+-  Update README [[3e84929](https://github.com/snaildos/Fifo-Browser/commit/3e84929c69b3d627efbb097ba51cd4672915cb2a)]
+-  Add credits to headers [[38c3966](https://github.com/snaildos/Fifo-Browser/commit/38c39662957f64e26458b1c88f25bcabfb72ec97)]
+-  Rewrite updates and security [[5b5d74a](https://github.com/snaildos/Fifo-Browser/commit/5b5d74a2d17e460d9b438fdead6b6c9a9b5ff572)]
+-  Make Fifo usable again [[86fe054](https://github.com/snaildos/Fifo-Browser/commit/86fe0540531e27d19e74dcca6280c3a89f386e40)]
+-  Package upload [[e526112](https://github.com/snaildos/Fifo-Browser/commit/e526112dff9aa83b4ad6bcae9d7487a9caf4d125)]
+-  fixed website loading!??! [[43c42d7](https://github.com/snaildos/Fifo-Browser/commit/43c42d7eb2cf22871174199a65bae86d463161b6)]
+-  Fix security vuln [[a71d622](https://github.com/snaildos/Fifo-Browser/commit/a71d6226d91c1f59ac2b591902174a88f8129a18)]
+-  Update PackageJSON [[5712dc9](https://github.com/snaildos/Fifo-Browser/commit/5712dc902347bf3e3b7d37701b879ba3219ca2db)]
+-  upgraded to electron 15 [[f08f32a](https://github.com/snaildos/Fifo-Browser/commit/f08f32a02ec307b0da9cb4d56acd96c721f80d35)]
+-  patch package fix [[83db706](https://github.com/snaildos/Fifo-Browser/commit/83db7065abb48920266683dcc76a16d58443d714)]
+-  fixed tab selection [[9de6028](https://github.com/snaildos/Fifo-Browser/commit/9de6028543af27590bb983a549494a05b5a7ab17)]
+-  Small Fix [[4db64ca](https://github.com/snaildos/Fifo-Browser/commit/4db64ca7519490c405899504db77a9f9d7850de8)]
+-  Update CHANGELOG.md [[b781f0d](https://github.com/snaildos/Fifo-Browser/commit/b781f0d4ce6704175eb12c85aacd03aa63ee4bbc)]
 - 🚀  [[9f768f5](https://github.com/snaildos/Fifo-Browser/commit/9f768f51d4a72475e18e8cef128cd48f573dfb99)]
 -  Remove patch that isn&#x27;t required. [[1553c9e](https://github.com/snaildos/Fifo-Browser/commit/1553c9e7eb2a8733259caf347258d87165350322)]
 -  Bump User Agent &amp; More Animations [[ed02097](https://github.com/snaildos/Fifo-Browser/commit/ed0209720aaa79a520d88e8e351b067e17588218)]

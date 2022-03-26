@@ -1,7 +1,7 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
 import { BrowserView, app, ipcMain } from 'electron';
-import { parse as parseUrl } from 'url';
+import { URL } from 'url';
 import { getViewMenu } from './menus/view';
 import { AppWindow } from './windows';
 import { IHistoryItem, IBookmark } from '~/interfaces';
@@ -61,18 +61,16 @@ export class View {
     this.browserView = new BrowserView({
       webPreferences: {
         preload: `${app.getAppPath()}/build/view-preload.bundle.js`,
-        nodeIntegration: false,
-        contextIsolation: true,
-        sandbox: true,
-        enableRemoteModule: false,
+        nodeIntegration: true,
+        contextIsolation: false,
         partition: incognito ? 'view_incognito' : 'persist:view',
         plugins: true,
         nativeWindowOpen: true,
         webSecurity: true,
-        javascript: true,
-        worldSafeExecuteJavaScript: false,
+        javascript: true
       },
     });
+    require('@electron/remote/main').enable(this.browserView.webContents);
 
     this.incognito = incognito;
 
@@ -91,7 +89,7 @@ export class View {
         const { object: settings } = Application.instance.settings;
         if (settings.doNotTrack) details.requestHeaders['DNT'] = '1';
         if (settings.globalPrivacyControl)
-        details.requestHeaders['Sec-GPC'] = '1';
+          details.requestHeaders['Sec-GPC'] = '1';
         callback({ requestHeaders: details.requestHeaders });
       },
     );
@@ -120,8 +118,8 @@ export class View {
     });
 
     this.webContents.addListener('did-navigate', async (e, url) => {
+      console.log(url);
       this.emitEvent('did-navigate', url);
-
       await this.addHistoryItem(url);
       this.updateURL(url);
     });
@@ -129,6 +127,7 @@ export class View {
     this.webContents.addListener(
       'did-navigate-in-page',
       async (e, url, isMainFrame) => {
+        console.log('2', url);
         if (isMainFrame) {
           this.emitEvent('did-navigate', url);
 
@@ -163,6 +162,7 @@ export class View {
     this.webContents.on(
       'did-start-navigation',
       (e, url, isInPlace, isMainFrame) => {
+        console.log('3', url);
         if (!isMainFrame) return;
         const newUA = getUserAgentForURL(this.webContents.userAgent, url);
         if (this.webContents.userAgent !== newUA) {
@@ -201,6 +201,7 @@ export class View {
     this.webContents.addListener(
       'did-fail-load',
       (e, errorCode, errorDescription, validatedURL, isMainFrame) => {
+        console.error(errorCode, errorDescription, validatedURL, isMainFrame);
         // ignore -3 (ABORTED) - An operation was aborted (due to user action).
         if (isMainFrame && errorCode !== -3) {
           this.errorURL = validatedURL;
@@ -264,7 +265,7 @@ export class View {
         certificate: Electron.Certificate,
         callback: Function,
       ) => {
-        console.log(certificate, error, url);
+        // TODO: properly handle insecure websites.
         event.preventDefault();
         this.errorURL = url;
         this.webContents.loadURL(
@@ -381,6 +382,7 @@ export class View {
   }
 
   public updateURL = (url: string) => {
+    console.log(this.lastUrl, url);
     if (this.lastUrl === url) return;
 
     this.emitEvent('url-updated', this.hasError ? this.errorURL : url);
@@ -445,7 +447,7 @@ export class View {
   }
 
   public get hostname() {
-    return parseUrl(this.url).hostname;
+    return new URL(this.url).hostname;
   }
 
   public emitEvent(event: TabEvent, ...args: any[]) {

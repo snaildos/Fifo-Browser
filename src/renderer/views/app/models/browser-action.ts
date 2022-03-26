@@ -37,12 +37,13 @@ export class IBrowserAction {
     } else if (url.startsWith(EXTENSIONS_PROTOCOL)) {
       this._popup = url;
     } else {
-      this._popup = format({
-        protocol: EXTENSIONS_PROTOCOL,
-        slashes: true,
-        hostname: this.extensionId,
-        pathname: url,
-      });
+      this._popup = String(
+        Object.assign(new URL('http://snaildos.com'), {
+          protocol: EXTENSIONS_PROTOCOL,
+          hostname: this.extensionId,
+          pathname: url,
+        }),
+      );
     }
   }
 

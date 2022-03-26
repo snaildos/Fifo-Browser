@@ -59,15 +59,19 @@ ipcMain.on('get-window-id', (e) => {
 ipcMain.handle(
   `web-contents-call`,
   async (e, { webContentsId, method, args = [] }) => {
-    const wc = webContents.fromId(webContentsId);
-    const result = (wc as any)[method](...args);
+    try {
+      const wc = webContents.fromId(webContentsId);
+      const result = (wc as any)[method](...args);
 
-    if (result) {
-      if (result instanceof Promise) {
-        return await result;
+      if (result) {
+        if (result instanceof Promise) {
+          return await result;
+        }
+
+        return result;
       }
-
-      return result;
+    } catch (e) {
+      console.log(e);
     }
   },
 );

@@ -1,13 +1,13 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
 import { resolve } from 'path';
-import { remote, app } from 'electron';
+import { app } from 'electron';
 
 export const getPath = (...relativePaths: string[]) => {
   let path: string;
 
-  if (remote) {
-    path = remote.app.getPath('userData');
+  if (process.type !== 'browser') {
+    path = require('@electron/remote').app.getPath('userData');
   } else if (app) {
     path = app.getPath('userData');
   } else {

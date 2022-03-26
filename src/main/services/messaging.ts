@@ -1,22 +1,16 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
 import { ipcMain } from 'electron';
-import { parse } from 'url';
 // import { getPassword, setPassword, deletePassword } from 'keytar';
 
 import { AppWindow } from '../windows';
 import { Application } from '../application';
 import { showMenuDialog } from '../dialogs/menu';
-import { PreviewDialog } from '../dialogs/preview';
 import { IFormFillData, IBookmark } from '~/interfaces';
 import { SearchDialog } from '../dialogs/search';
-
-import { showIncognitoDialog } from '../dialogs/incogitoMenu';
-import { showMenuExtraDialog } from '../dialogs/menuExtra';
-
+import { URL } from 'url';
 import * as bookmarkMenu from '../menus/bookmarks';
 import { showFindDialog } from '../dialogs/find';
-import { getFormFillMenuItems } from '../utils';
 import { showAddBookmarkDialog } from '../dialogs/add-bookmark';
 import { showExtensionDialog } from '../dialogs/extension-popup';
 import { showDownloadsDialog } from '../dialogs/downloads';
@@ -65,21 +59,6 @@ export const runMessagingService = (appWindow: AppWindow) => {
 
   ipcMain.handle(`is-dialog-visible-${id}`, (e, dialog) => {
     return Application.instance.dialogs.isVisible(dialog);
-  });
-
-  ipcMain.on(`show-tab-preview-${id}`, (e, tab) => {
-    const dialog = Application.instance.dialogs.getPersistent(
-      'preview',
-    ) as PreviewDialog;
-    dialog.tab = tab;
-    dialog.show(appWindow.win);
-  });
-
-  ipcMain.on(`hide-tab-preview-${id}`, (e, tab) => {
-    const dialog = Application.instance.dialogs.getPersistent(
-      'preview',
-    ) as PreviewDialog;
-    dialog.hide();
   });
 
   ipcMain.on(`find-show-${id}`, () => {
@@ -156,7 +135,7 @@ export const runMessagingService = (appWindow: AppWindow) => {
       `form-fill-update-${id}`,
       async (e, _id: string, persistent = false) => {
         const url = appWindow.viewManager.selected.url;
-        const { hostname } = parse(url);
+        const { hostname } = new URL(url);
 
         const item =
           _id &&
@@ -166,10 +145,10 @@ export const runMessagingService = (appWindow: AppWindow) => {
           }));
 
         if (item && item.type === 'password') {
-          item.fields.password = await getPassword(
-            'fifo',
-            `${hostname}-${item.fields.username}`,
-          );
+          // item.fields.password = await getPassword(
+          //   'Fifo',
+          //   `${hostname}-${item.fields.username}`,
+          // );
         }
 
         appWindow.viewManager.selected.send(
@@ -233,7 +212,7 @@ export const runMessagingService = (appWindow: AppWindow) => {
         );
       }
 
-      await setPassword('fifo', `${hostname}-${username}`, password);
+      // await setPassword('Fifo', `${hostname}-${username}`, password);
 
       appWindow.send(`has-credentials-${view.id}`, true);
     });
@@ -249,7 +228,7 @@ export const runMessagingService = (appWindow: AppWindow) => {
         },
       });
 
-      await deletePassword('fifo', `${view.hostname}-${fields.username}`);
+      // await deletePassword('Fifo', `${view.hostname}-${fields.username}`);
 
       appWindow.viewManager.settingsView.webContents.send(
         'credentials-remove',
@@ -260,8 +239,8 @@ export const runMessagingService = (appWindow: AppWindow) => {
     ipcMain.on(
       'credentials-get-password',
       async (e, id: string, account: string) => {
-        const password = await getPassword('fifo', account);
-        e.sender.send(id, password);
+        // const password = await getPassword('Fifo', account);
+        // e.sender.send(id, password);
       },
     );
   }

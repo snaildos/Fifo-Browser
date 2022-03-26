@@ -7,9 +7,11 @@ export const callViewMethod = async (
   method: string,
   ...args: any[]
 ): Promise<any> => {
-  return await ipcRenderer.invoke(`web-contents-call`, {
-    args,
-    method,
-    webContentsId: id,
-  });
+  try {
+    return await ipcRenderer.invoke(`web-contents-call`, {
+      args,
+      method,
+      webContentsId: id,
+    });
+  } catch {}
 };

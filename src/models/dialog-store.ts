@@ -110,10 +110,8 @@ export class DialogStore {
 
   public hide(data: any = null) {
     if (this.persistent && !this.visible) return;
-
     this.visible = false;
     this.onHide(data);
-
     setTimeout(() => {
       this.send('hide');
     });

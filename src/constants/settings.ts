@@ -1,7 +1,7 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
 import { ISettings } from '~/interfaces';
-import { remote, app } from 'electron';
+import { app } from 'electron';
 
 export const DEFAULT_SEARCH_ENGINES = [
   {
@@ -49,14 +49,15 @@ export const DEFAULT_SETTINGS: ISettings = {
   startupBehavior: {
     type: 'empty',
   },
-  warnOnQuit: true,
-  version: 4,
-  downloadsDialog: true,
-  downloadsPath: remote
-    ? remote.app.getPath('downloads')
-    : app
-    ? app.getPath('downloads')
-    : '',
+  warnOnQuit: false,
+  version: 2,
+  downloadsDialog: false,
+  downloadsPath:
+    process.type !== 'browser'
+      ? require('@electron/remote').app.getPath('downloads')
+      : app
+      ? app.getPath('downloads')
+      : '',
   doNotTrack: true,
   globalPrivacyControl: true,
   topBarVariant: 'default',

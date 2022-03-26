@@ -17,10 +17,8 @@ import {
 import { ICON_VOLUME_HIGH, ICON_VOLUME_OFF } from '~/renderer/constants';
 import { ITab } from '../../models';
 import store from '../../store';
-import { remote, ipcRenderer } from 'electron';
-import { COMPACT_TAB_MARGIN_TOP } from '~/constants/design';
-import { settings } from 'node:cluster';
-// const color = require('img-color');
+import * as remote from '@electron/remote';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const removeTab = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
@@ -61,33 +59,6 @@ const onMouseDown = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
 
     store.tabs.lastScrollLeft = store.tabs.containerRef.current.scrollLeft;
   }
-
-  ipcRenderer.send(`hide-tab-preview-${store.windowId}`);
-};
-
-const onMouseEnter = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
-  if (!store.tabs.isDragging) {
-    store.tabs.hoveredTabId = tab.id;
-  }
-
-  const { bottom, left } = tab.ref.current.getBoundingClientRect();
-
-  const x = left + 8;
-  const y = store.isCompact ? bottom - COMPACT_TAB_MARGIN_TOP : bottom;
-
-  if (store.tabs.canShowPreview && !store.tabs.isDragging) {
-    ipcRenderer.send(`show-tab-preview-${store.windowId}`, {
-      id: tab.id,
-      x,
-      y,
-    });
-  }
-};
-
-const onMouseLeave = () => {
-  store.tabs.hoveredTabId = -1;
-  ipcRenderer.send(`hide-tab-preview-${store.windowId}`);
-  store.tabs.canShowPreview = true;
 };
 
 const onClick = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
@@ -238,7 +209,6 @@ const Content = observer(({ tab }: { tab: ITab }) => {
       )}
       {tab.loading && (
         <Preloader
-          color={store.theme.accentColor}
           thickness={6}
           size={16}
           indeterminate
@@ -324,10 +294,8 @@ export default observer(({ tab }: { tab: ITab }) => {
       selected={tab.isSelected}
       onMouseDown={onMouseDown(tab)}
       onMouseUp={onMouseUp(tab)}
-      onMouseEnter={onMouseEnter(tab)}
       onContextMenu={onContextMenu(tab)}
       onClick={onClick(tab)}
-      onMouseLeave={onMouseLeave}
       ref={tab.ref}
     >
       <TabContainer

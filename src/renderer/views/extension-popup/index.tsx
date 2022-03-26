@@ -1,7 +1,8 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
-import { remote, ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron';
 import { resolve } from 'path';
+import * as remote from '@electron/remote';
 
 const getWebContentsId = () => ipcRenderer.sendSync('get-webcontents-id');
 
@@ -57,18 +58,21 @@ const createWebview = (url: string, inspect: boolean) => {
   webview.addEventListener('dom-ready', () => {
     remote.webContents
       .fromId(webview.getWebContentsId())
-      .addListener('context-menu', (e, params) => {
-        const menu = remote.Menu.buildFromTemplate([
-          {
-            label: 'Inspect element',
-            click: () => {
-              webview.inspectElement(params.x, params.y);
+      .addListener(
+        'context-menu',
+        (e: any, params: { x: number; y: number }) => {
+          const menu = remote.Menu.buildFromTemplate([
+            {
+              label: 'Inspect element',
+              click: () => {
+                webview.inspectElement(params.x, params.y);
+              },
             },
-          },
-        ]);
+          ]);
 
-        menu.popup();
-      });
+          menu.popup();
+        },
+      );
 
     if (inspect) {
       webview.openDevTools();

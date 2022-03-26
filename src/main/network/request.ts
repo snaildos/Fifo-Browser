@@ -2,12 +2,12 @@
 
 import * as http from 'http';
 import * as https from 'https';
-import { parse } from 'url';
 import { ResponseDetails } from '~/common/rpc/network';
+import { URL } from 'url';
 
 export const requestURL = (url: string): Promise<ResponseDetails> =>
   new Promise((resolve, reject) => {
-    const options = parse(url);
+    const options = new URL(url);
 
     let { request } = http;
 
