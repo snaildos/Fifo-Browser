@@ -20,7 +20,7 @@ FIFO (Fly In Fly Out for your data.)
 - [Downloads](#downloads)
 - [Contributing](#contributing)
 - [Development](#development)
-  - [Running](#running)
+- [Running](#running)
 - [Documentation](#documentation)
 - [License](#license)
 
@@ -68,7 +68,7 @@ Fifo has branched off Wexond and we are on our way of desiging our own graphics 
 
 
 ## These images are from =>0.1.0 and are outdated.
-![alt text](https://github.com/SnailDOS/Fifo-Browser/blob/main/image-preview/image.jpg?raw=true)
+
 
 UI normal variant:
 ![image](https://user-images.githubusercontent.com/11065386/81024186-f40b0400-8e72-11ea-976e-cd1ca1b43ad8.png)
