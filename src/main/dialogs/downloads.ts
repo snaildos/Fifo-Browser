@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { BrowserWindow } from 'electron';
 import { Application } from '../application';
 import {

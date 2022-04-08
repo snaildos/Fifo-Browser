@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain } from 'electron';
 import { VIEW_Y_OFFSET } from '~/constants/design';
 import { View } from './view';

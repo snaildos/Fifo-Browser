@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 export interface ISearchEngine {
   name?: string;
   url?: string;

@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { extname } from 'path';
 import { dialog } from 'electron';
 import { Application } from '../application';

@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { observable, computed, action, makeObservable } from 'mobx';
 import {
   ISettings,

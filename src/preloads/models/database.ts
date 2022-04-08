@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { makeId } from '~/utils/string';
 
 interface IAction<T> {

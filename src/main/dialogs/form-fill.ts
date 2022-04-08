@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { VIEW_Y_OFFSET, DIALOG_MARGIN_TOP } from '~/constants/design';
 import { AppWindow } from '../windows';
 import {PersistentDialog} from "~/main/dialogs/dialog";

@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain, nativeTheme, dialog, app } from 'electron';
 
 import { DEFAULT_SETTINGS, DEFAULT_SEARCH_ENGINES } from '~/constants';

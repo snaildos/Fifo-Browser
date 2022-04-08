@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { IFormFillData } from '~/interfaces';
 import { getFormFillValue, getFormFillSubValue } from '~/utils/form-fill';
 import { Application } from '../application';

@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { Menu, webContents, app, BrowserWindow, MenuItem } from 'electron';
 import { defaultTabOptions } from '~/constants/tabs';
 import { viewSource, saveAs, printPage } from './common-actions';
