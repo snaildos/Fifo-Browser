@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { resolve } from 'path';
 import { app } from 'electron';
 

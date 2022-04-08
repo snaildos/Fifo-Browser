@@ -1,10 +1,9 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { BrowserWindow } from 'electron';
 import { Application } from '../application';
 import { DIALOG_MARGIN_TOP, DIALOG_MARGIN } from '~/constants/design';
+import {IDialog} from "~/main/services/dialogs-service";
 
-export const showZoomDialog = (
+export const showZoomDialog = async (
   browserWindow: BrowserWindow,
   x: number,
   y: number,
@@ -12,7 +11,7 @@ export const showZoomDialog = (
   const tabId = Application.instance.windows.fromBrowserWindow(browserWindow)
     .viewManager.selectedId;
 
-  const dialog = Application.instance.dialogs.show({
+  const dialog: IDialog = await Application.instance.dialogs.show({
     name: 'zoom',
     browserWindow,
     getBounds: () => ({

@@ -55,6 +55,8 @@ const preloadConfig = getConfig({
 
 if (process.env.ENABLE_EXTENSIONS) {
   preloadConfig.entry['popup-preload'] = './src/preloads/popup-preload';
+  preloadConfig.entry['extensions-preload'] =
+    './src/preloads/extensions-preload';
 }
 
 if (process.env.START === '1') {

@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { ipcMain } from 'electron';
 import { VIEW_Y_OFFSET } from '~/constants/design';
 import { View } from './view';
@@ -21,7 +19,7 @@ export class ViewManager extends EventEmitter {
 
   public incognito: boolean;
 
-  private window: AppWindow;
+  private readonly window: AppWindow;
 
   public get fullscreen() {
     return this._fullscreen;
@@ -71,6 +69,14 @@ export class ViewManager extends EventEmitter {
       });
     });
 
+    ipcMain.on(`add-tab-${id}`, (e, details) => {
+      this.create(details);
+    });
+
+    ipcMain.on('create-tab-menu-extra', (e, details: any) => {
+      this.create(details);
+    });
+
     ipcMain.on('save-as-menu-extra', async (e) => {
       const {
         title,
@@ -92,33 +98,16 @@ export class ViewManager extends EventEmitter {
       webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
     });
 
-    ipcMain.on(`add-tab-${id}`, (e, details) => {
-      this.create(details);
+    ipcMain.on('Print', () => {
+      this.selected.webContents.print();
     });
 
-    ipcMain.on('Print', (e, details) => {
-      this.views.get(this.selectedId).webContents.print();
-    });
-
-    ipcMain.on('create-tab-menu-extra', (e, details: any) => {
-      this.create(details);
-    });
-
-    ipcMain.on('Print', (e, details) => {
-      this.views.get(this.selectedId).webContents.print({printBackground: true});
-    });
-
-    ipcMain.handle(`view-select-${id}`, (e, id: number, focus: boolean) => {
-      if (process.env.ENABLE_EXTENSIONS) {
-        const view = this.views.get(id);
-        if (focus) {
-          Application.instance.sessions.chromeExtensions.selectTab(
-            view.webContents,
-          );
-        }
-      }
-      this.select(id, focus);
-    });
+    ipcMain.handle(
+      `view-select-${id}`,
+      async (e, id: number, focus: boolean) => {
+        await this.select(id, focus);
+      },
+    );
 
     ipcMain.on(`view-destroy-${id}`, (e, id: number) => {
       this.destroy(id);
@@ -139,7 +128,7 @@ export class ViewManager extends EventEmitter {
     });
 
     ipcMain.on('change-zoom', (e, zoomDirection) => {
-        const newZoomFactor =
+      const newZoomFactor =
         this.selected.webContents.zoomFactor +
         (zoomDirection === 'in'
           ? ZOOM_FACTOR_INCREMENT
@@ -160,7 +149,7 @@ export class ViewManager extends EventEmitter {
       this.emitZoomUpdate();
     });
 
-    ipcMain.on('reset-zoom', (e) => {
+    ipcMain.on('reset-zoom', () => {
       this.selected.webContents.zoomFactor = 1;
       this.selected.emitEvent(
         'zoom-updated',
@@ -199,6 +188,10 @@ export class ViewManager extends EventEmitter {
         webContents,
         this.window.win,
       );
+
+      if (details.active) {
+        Application.instance.sessions.chromeExtensions.selectTab(webContents);
+      }
     }
 
     webContents.once('destroyed', () => {
@@ -216,14 +209,13 @@ export class ViewManager extends EventEmitter {
     Object.values(this.views).forEach((x) => x.destroy());
   }
 
-  public select(id: number, focus = true) {
+  public async select(id: number, focus = true) {
+    console.trace();
     const { selected } = this;
     const view = this.views.get(id);
-
     if (!view) {
       return;
     }
-
     this.selectedId = id;
 
     if (selected) {
@@ -242,10 +234,11 @@ export class ViewManager extends EventEmitter {
     this.window.updateTitle();
     view.updateBookmark();
 
-    this.fixBounds();
+    await this.fixBounds();
 
     view.updateNavigationState();
 
+    Application.instance.sessions.chromeExtensions.selectTab(view.webContents);
     this.emit('activated', id);
 
     // TODO: this.emitZoomUpdate(false);
@@ -276,15 +269,16 @@ export class ViewManager extends EventEmitter {
     }
   }
 
-  private setBoundsListener() {
+  private async setBoundsListener() {
     // resize the BrowserView's height when the toolbar height changes
     // ex: when the bookmarks bar appears
-    this.window.webContents.executeJavaScript(`
+    await this.window.webContents.executeJavaScript(`
         const {ipcRenderer} = require('electron');
         const resizeObserver = new ResizeObserver(([{ contentRect }]) => {
           ipcRenderer.send('resize-height');
         });
         const app = document.getElementById('app');
+        resizeObserver.observe(app);
       `);
 
     this.window.webContents.on('ipc-message', (e, message) => {

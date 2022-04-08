@@ -1,8 +1,6 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { ipcMain, dialog } from 'electron';
 import * as Datastore from '@seald-io/nedb';
-import { fromBuffer } from 'file-type';
+import { fileTypeFromBuffer } from 'file-type';
 import * as icojs from 'icojs';
 
 import { getPath } from '~/utils';
@@ -21,8 +19,12 @@ import { promises } from 'fs';
 import { Application } from '../application';
 import { requestURL } from '../network/request';
 import * as parse from 'node-bookmarks-parser';
+import fetch from 'node-fetch';
+import { Settings } from '../models/settings';
 
 interface Databases {
+  // TODO: ts moment
+  // @ts-ignore
   [key: string]: Datastore;
 }
 
@@ -45,6 +47,8 @@ const indentLength = 4;
 const indentType = ' ';
 
 export class StorageService {
+  public settings: Settings;
+
   public databases: Databases = {
     favicons: null,
     bookmarks: null,
@@ -60,9 +64,11 @@ export class StorageService {
 
   public historyVisited: IVisitedItem[] = [];
 
-  public favicons: Map<string, string> = new Map();
+  public favicons: Map<any, any> = new Map();
 
-  public constructor() {
+  public constructor(settings: Settings) {
+    this.settings = settings;
+
     ipcMain.handle('storage-get', async (e, data: IFindOperation) => {
       return await this.find(data);
     });
@@ -102,8 +108,12 @@ export class StorageService {
       await this.exportBookmarks();
     });
 
-    ipcMain.handle('bookmarks-get', (e) => {
+    ipcMain.handle('bookmarks-get', () => {
       return this.bookmarks;
+    });
+
+    ipcMain.handle('bookmarks-sync', async () => {
+      await this.loadBookmarks();
     });
 
     ipcMain.on('bookmarks-remove', (e, ids: string[]) => {
@@ -123,7 +133,7 @@ export class StorageService {
       return b;
     });
 
-    ipcMain.handle('bookmarks-get-folders', async (e) => {
+    ipcMain.handle('bookmarks-get-folders', async () => {
       return this.bookmarks.filter((x) => x.isFolder);
     });
 
@@ -131,7 +141,7 @@ export class StorageService {
       await this.updateBookmark(id, change);
     });
 
-    ipcMain.handle('history-get', (e) => {
+    ipcMain.handle('history-get', () => {
       return this.history;
     });
 
@@ -215,9 +225,9 @@ export class StorageService {
     for (const key in this.databases) {
       this.databases[key] = this.createDatabase(key.toLowerCase());
     }
-    this.loadBookmarks();
+    await this.loadBookmarks();
     await this.loadFavicons();
-    this.loadHistory();
+    await this.loadHistory();
   }
 
   private async loadFavicons() {
@@ -261,7 +271,7 @@ export class StorageService {
   }
 
   private async loadBookmarks() {
-    const items = await this.find<IBookmark>({ scope: 'bookmarks', query: {} });
+    let items = await this.find<IBookmark>({ scope: 'bookmarks', query: {} });
 
     items.sort((a, b) => a.order - b.order);
 
@@ -285,21 +295,21 @@ export class StorageService {
     }
 
     if (!otherFolder) {
-      otherFolder = await this.addBookmark({
+      await this.addBookmark({
         static: 'other',
         isFolder: true,
       });
     }
 
     if (!mobileFolder) {
-      mobileFolder = await this.addBookmark({
+      await this.addBookmark({
         static: 'mobile',
         isFolder: true,
       });
     }
   }
 
-  public removeBookmark(id: string) {
+  public async removeBookmark(id: string) {
     const item = this.bookmarks.find((x) => x._id === id);
 
     if (!item) return;
@@ -308,19 +318,23 @@ export class StorageService {
     const parent = this.bookmarks.find((x) => x._id === item.parent);
 
     parent.children = parent.children.filter((x) => x !== id);
-    this.updateBookmark(item.parent, { children: parent.children });
+    await this.updateBookmark(item.parent, { children: parent.children });
 
-    this.remove({ scope: 'bookmarks', query: { _id: id } });
+    await this.remove({ scope: 'bookmarks', query: { _id: id } });
 
     if (item.isFolder) {
       this.bookmarks = this.bookmarks.filter((x) => x.parent !== id);
       const removed = this.bookmarks.filter((x) => x.parent === id);
 
-      this.remove({ scope: 'bookmarks', query: { parent: id }, multi: true });
+      await this.remove({
+        scope: 'bookmarks',
+        query: { parent: id },
+        multi: true,
+      });
 
       for (const i of removed) {
         if (i.isFolder) {
-          this.removeBookmark(i._id);
+          await this.removeBookmark(i._id);
         }
       }
     }
@@ -365,7 +379,7 @@ export class StorageService {
     }
 
     if (item.order === undefined) {
-      item.order = this.bookmarks.filter((x) => !x.static).length;
+      item.order = this.bookmarks.filter((x) => !Boolean(x.static)).length;
     }
 
     const doc = await this.insert<IBookmark>({ item, scope: 'bookmarks' });
@@ -385,6 +399,8 @@ export class StorageService {
   }
 
   private createDatabase = (name: string) => {
+    // TODO: ts moment
+    // @ts-ignore
     return new Datastore({
       filename: getPath(`storage/${name}.db`),
       autoload: true,
@@ -397,22 +413,22 @@ export class StorageService {
         const res = await requestURL(url);
 
         if (res.statusCode === 404) {
-          throw new Error('404 favicon not found');
+          return undefined;
         }
 
         let data = Buffer.from(res.data, 'binary');
 
-        const type = await fromBuffer(data);
+        const type = await fileTypeFromBuffer(data);
 
         if (type && type.ext === 'ico') {
           data = Buffer.from(new Uint8Array(await convertIcoToPng(data)));
         }
 
         const str = `data:${
-          (await fromBuffer(data)).ext
+          (await fileTypeFromBuffer(data))?.ext
         };base64,${data.toString('base64')}`;
 
-        this.insert({
+        await this.insert({
           scope: 'favicons',
           item: {
             url,
@@ -426,8 +442,9 @@ export class StorageService {
       } else {
         return this.favicons.get(url);
       }
-    } catch (e) {
-      console.log(e);
+    } catch (err) {
+      console.error(err);
+      return undefined;
     }
   };
 

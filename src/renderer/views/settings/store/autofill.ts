@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { observable, action, makeObservable } from 'mobx';
 
 import { IFormFillData } from '~/interfaces';
@@ -8,26 +6,28 @@ import { PreloadDatabase } from '~/preloads/models/database';
 export class AutoFillStore {
   public db = new PreloadDatabase<IFormFillData>('formfill');
 
-  @observable
   public credentials: IFormFillData[] = [];
 
-  @observable
   public addresses: IFormFillData[] = [];
 
-  @observable
   public menuVisible = false;
 
-  @observable
   public menuTop = 0;
 
-  @observable
   public menuLeft = 0;
 
-  @observable
   public selectedItem: IFormFillData = null;
 
   public constructor() {
-    makeObservable(this);
+    makeObservable(this, {
+      credentials: observable,
+      addresses: observable,
+      menuVisible: observable,
+      menuTop: observable,
+      menuLeft: observable,
+      selectedItem: observable,
+      load: action,
+    });
 
     this.load();
 
@@ -49,7 +49,6 @@ export class AutoFillStore {
     });
   }
 
-  @action
   public async load() {
     const items = await this.db.get({});
 

@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { promises as fs } from 'fs';
 import { resolve, join } from 'path';
 import fetch from 'node-fetch';
@@ -32,7 +30,6 @@ let adblockRunning = false;
 let adblockInitialized = false;
 
 export const runAdblockService = async (ses: Electron.Session) => {
-  console.log();
   if (!adblockInitialized) {
     adblockInitialized = true;
     await loadFilters();

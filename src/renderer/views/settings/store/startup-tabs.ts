@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { makeObservable, observable } from 'mobx';
 
 import { IStartupTab } from '~/interfaces/startup-tab';
@@ -10,11 +8,12 @@ export class StartupTabsStore {
 
   public isLoaded = false;
 
-  @observable
   public list: IStartupTab[] = [];
 
   constructor() {
-    makeObservable(this);
+    makeObservable(this, {
+      list: observable,
+    });
   }
 
   public async load() {

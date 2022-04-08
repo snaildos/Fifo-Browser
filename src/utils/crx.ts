@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { createHash } from 'crypto';
 
 function calcLength(a: number, b: number, c: number, d: number) {

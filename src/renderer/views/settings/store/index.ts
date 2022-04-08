@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { observable, computed, makeObservable } from 'mobx';
 import * as React from 'react';
 import { ISettings, ITheme, ISearchEngine } from '~/interfaces';
@@ -9,6 +7,7 @@ import { getTheme } from '~/utils/themes';
 import { Textfield } from '~/renderer/components/Textfield';
 
 export type SettingsSection =
+  | 'general'
   | 'appearance'
   | 'autofill'
   | 'address-bar'
@@ -19,7 +18,7 @@ export type SettingsSection =
   | 'shortcuts'
   | 'downloads'
   | 'system'
-  | 'search-engines';
+  | 'search-engines'
 
 export class Store {
   public autoFill = new AutoFillStore();
@@ -33,16 +32,13 @@ export class Store {
   public searchEngineKeywordInputRef = React.createRef<Textfield>();
   public searchEngineUrlInputRef = React.createRef<Textfield>();
 
-  @observable
   public menuInfo = {
     left: 0,
     top: 0,
   };
 
-  @observable
   private _menuVisible = false;
 
-  @computed
   public get menuVisible() {
     return this._menuVisible;
   }
@@ -55,10 +51,8 @@ export class Store {
     }
   }
 
-  @observable
   public dialogVisible = false;
 
-  @observable
   public dialogContent:
     | 'edit-search-engine'
     | 'add-search-engine'
@@ -66,27 +60,33 @@ export class Store {
     | 'edit-password'
     | 'privacy' = null;
 
-  @observable
-  public selectedSection: SettingsSection = 'appearance';
+  public selectedSection: SettingsSection = 'general';
 
-  @observable
   public settings: ISettings = { ...(window as any).settings };
 
-  @observable
   public editedSearchEngine: ISearchEngine = null;
 
-  @computed
   public get theme(): ITheme {
     return getTheme(this.settings.theme);
   }
 
-  @computed
   public get searchEngine() {
     return this.settings.searchEngines[this.settings.searchEngine];
   }
 
   constructor() {
-    makeObservable(this);
+    makeObservable<Store, '_menuVisible'>(this, {
+      menuInfo: observable,
+      _menuVisible: observable,
+      menuVisible: computed,
+      dialogVisible: observable,
+      dialogContent: observable,
+      selectedSection: observable,
+      settings: observable,
+      editedSearchEngine: observable,
+      theme: computed,
+      searchEngine: computed,
+    });
 
     (window as any).updateSettings = (settings: ISettings) => {
       this.settings = { ...this.settings, ...settings };

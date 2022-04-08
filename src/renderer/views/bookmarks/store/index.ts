@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { observable, computed, action, toJS, makeObservable } from 'mobx';
 import { ISettings, IFavicon, ITheme, IBookmark } from '~/interfaces';
 import { getTheme } from '~/utils/themes';
@@ -15,37 +13,26 @@ export class Store {
 
   public urlInputRef = React.createRef<Textfield>();
 
-  @observable
   public settings: ISettings = { ...(window as any).settings };
 
-  @observable
   public list: IBookmark[] = [];
 
-  @observable
   public itemsLoaded = this.getDefaultLoaded();
 
-  @observable
   public menuLeft = 0;
 
-  @observable
   public menuTop = 0;
 
-  @observable
   public menuVisible = false;
 
-  @observable
   public searched = '';
 
-  @observable
   public selectedItems: string[] = [];
 
-  @observable
   public favicons: Map<string, string> = new Map();
 
-  @observable
   public currentFolder: string = null;
 
-  @observable
   private _dialogVisible = false;
 
   public showDialog(content: 'edit' | 'new-folder' | 'rename-folder') {
@@ -64,13 +51,12 @@ export class Store {
     this.nameInputRef.current.inputRef.current.select();
   }
 
-  @observable
   public dialogContent: 'edit' | 'new-folder' | 'rename-folder' = 'new-folder';
 
-  @observable
   public currentBookmark: IBookmark = null;
 
-  @computed
+  // Computed
+
   public get visibleItems() {
     return this.list
       .filter(
@@ -90,7 +76,6 @@ export class Store {
       });
   }
 
-  @computed
   public get dialogVisible() {
     return this._dialogVisible;
   }
@@ -105,23 +90,41 @@ export class Store {
     this._dialogVisible = value;
   }
 
-  @computed
   public get theme(): ITheme {
     return getTheme(this.settings.theme);
   }
 
-  @computed
   public get path() {
     return this.getFolderPath(this.currentFolder);
   }
 
-  @computed
   public get folders() {
     return this.list.filter((x) => x.isFolder);
   }
 
   public constructor() {
-    makeObservable(this);
+    makeObservable<Store, '_dialogVisible'>(this, {
+      settings: observable,
+      list: observable,
+      itemsLoaded: observable,
+      menuLeft: observable,
+      menuTop: observable,
+      menuVisible: observable,
+      searched: observable,
+      selectedItems: observable,
+      favicons: observable,
+      currentFolder: observable,
+      _dialogVisible: observable,
+      dialogContent: observable,
+      currentBookmark: observable,
+      visibleItems: computed,
+      dialogVisible: computed,
+      theme: computed,
+      path: computed,
+      folders: computed,
+      search: action,
+      deleteSelected: action,
+    });
 
     (window as any).updateSettings = (settings: ISettings) => {
       this.settings = { ...this.settings, ...settings };
@@ -191,7 +194,6 @@ export class Store {
     ipcRenderer.send('bookmarks-update', id, toJS(change));
   }
 
-  @action
   public search(str: string) {
     this.searched = str.toLowerCase().toLowerCase();
     this.itemsLoaded = this.getDefaultLoaded();
@@ -201,7 +203,6 @@ export class Store {
     return Math.floor(window.innerHeight / 48);
   }
 
-  @action
   public deleteSelected() {
     this.removeItems(this.selectedItems);
     this.selectedItems = [];

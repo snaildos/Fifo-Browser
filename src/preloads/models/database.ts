@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { makeId } from '~/utils/string';
 
 interface IAction<T> {
@@ -10,7 +8,7 @@ interface IAction<T> {
 }
 
 export class PreloadDatabase<T> {
-  private scope: string;
+  private readonly scope: string;
 
   public constructor(scope: string) {
     this.scope = scope;

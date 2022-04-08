@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { BrowserView, app, ipcMain } from 'electron';
 import { URL } from 'url';
 import { getViewMenu } from './menus/view';
@@ -31,13 +29,14 @@ export class View {
   public isNewTab = false;
   public homeUrl: string;
   public favicon = '';
+  public color = '';
   public incognito = false;
 
   public errorURL = '';
 
   private hasError = false;
 
-  private window: AppWindow;
+  private readonly window: AppWindow;
 
   public bounds: any;
 
@@ -51,7 +50,15 @@ export class View {
   };
 
   public requestedAuth: IAuthInfo;
-  public requestedPermission: any;
+  public requestedPermission: {
+    name: string;
+    url: string;
+    details: {
+      isMainFrame: boolean;
+      requestingUrl: string;
+      [key: string]: any;
+    };
+  };
 
   private historyQueue = new Queue();
 
@@ -61,16 +68,18 @@ export class View {
     this.browserView = new BrowserView({
       webPreferences: {
         preload: `${app.getAppPath()}/build/view-preload.bundle.js`,
-        nodeIntegration: true,
+        nodeIntegration: false,
         contextIsolation: true,
+        sandbox: true,
         partition: incognito ? 'view_incognito' : 'persist:view',
         plugins: true,
         nativeWindowOpen: true,
         webSecurity: true,
-        javascript: true
+        javascript: true,
       },
     });
-    require('@electron/remote/main').enable(this.browserView.webContents);
+
+    this.browserView.setBackgroundColor('#FFFFFFFF');
 
     this.incognito = incognito;
 
@@ -94,7 +103,7 @@ export class View {
       },
     );
 
-    ipcMain.handle(`get-error-url-${this.id}`, async (e) => {
+    ipcMain.handle(`get-error-url-${this.id}`, async () => {
       return this.errorURL;
     });
 
@@ -109,60 +118,69 @@ export class View {
         .browserView.webContents.send('found-in-page', result);
     });
 
-    this.webContents.addListener('page-title-updated', (e, title) => {
+    this.webContents.addListener('page-title-updated', async (e, title) => {
       this.window.updateTitle();
-      this.updateData();
+      await this.updateData();
 
       this.emitEvent('title-updated', title);
-      this.updateURL(this.webContents.getURL());
+      await this.updateURL(this.webContents.getURL());
     });
 
     this.webContents.addListener('did-navigate', async (e, url) => {
-      console.log(url);
+      this.browserView.setBackgroundColor('#FFFFFFFF');
       this.emitEvent('did-navigate', url);
       await this.addHistoryItem(url);
-      this.updateURL(url);
+      await this.updateURL(url);
     });
 
     this.webContents.addListener(
       'did-navigate-in-page',
       async (e, url, isMainFrame) => {
-        console.log('2', url);
         if (isMainFrame) {
+          this.browserView.setBackgroundColor('#FFFFFFFF');
+          this.window.updateTitle();
+          await this.updateData();
+
+          this.emitEvent(
+            'title-updated',
+            this.browserView.webContents.getTitle(),
+          );
           this.emitEvent('did-navigate', url);
 
           await this.addHistoryItem(url, true);
-          this.updateURL(url);
+          await this.updateURL(url);
         }
       },
     );
 
-    this.webContents.addListener('did-stop-loading', () => {
+    this.webContents.addListener('did-stop-loading', async () => {
+      this.browserView.setBackgroundColor('#FFFFFFFF');
       this.updateNavigationState();
       this.emitEvent('loading', false);
-      this.updateURL(this.webContents.getURL());
+      await this.updateURL(this.webContents.getURL());
     });
 
-    this.webContents.addListener('did-start-loading', () => {
+    this.webContents.addListener('did-start-loading', async () => {
+      this.browserView.setBackgroundColor('#FFFFFFFF');
       this.hasError = false;
       this.updateNavigationState();
       this.emitEvent('loading', true);
-      this.updateURL(this.webContents.getURL());
+      await this.updateURL(this.webContents.getURL());
     });
 
     this.webContents.addListener('did-start-navigation', async (e, ...args) => {
+      this.browserView.setBackgroundColor('#FFFFFFFF');
       this.updateNavigationState();
 
       this.favicon = '';
 
       this.emitEvent('load-commit', ...args);
-      this.updateURL(this.webContents.getURL());
+      await this.updateURL(this.webContents.getURL());
     });
 
     this.webContents.on(
       'did-start-navigation',
       (e, url, isInPlace, isMainFrame) => {
-        console.log('3', url);
         if (!isMainFrame) return;
         const newUA = getUserAgentForURL(this.webContents.userAgent, url);
         if (this.webContents.userAgent !== newUA) {
@@ -173,11 +191,11 @@ export class View {
 
     this.webContents.addListener(
       'new-window',
-      (e, url, frameName, disposition) => {
+      async (e, url, frameName, disposition) => {
         if (disposition === 'new-window') {
           if (frameName === '_self') {
             e.preventDefault();
-            this.window.viewManager.selected.webContents.loadURL(url);
+            await this.window.viewManager.selected.webContents.loadURL(url);
           } else if (frameName === '_blank') {
             e.preventDefault();
             this.window.viewManager.create(
@@ -193,14 +211,14 @@ export class View {
           this.window.viewManager.create({ url, active: true }, true);
         } else if (disposition === 'background-tab') {
           e.preventDefault();
-          this.window.viewManager.create({ url, active: false }, true);
+          this.window.viewManager.create({ url, active: true }, true);
         }
       },
     );
 
     this.webContents.addListener(
       'did-fail-load',
-      (e, errorCode, errorDescription, validatedURL, isMainFrame) => {
+      async (e, errorCode, errorDescription, validatedURL, isMainFrame) => {
         console.error(errorCode, errorDescription, validatedURL, isMainFrame);
         // ignore -3 (ABORTED) - An operation was aborted (due to user action).
         if (isMainFrame && errorCode !== -3) {
@@ -208,7 +226,7 @@ export class View {
 
           this.hasError = true;
 
-          this.webContents.loadURL(
+          await this.webContents.loadURL(
             `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${errorCode}`,
           );
         }
@@ -220,7 +238,7 @@ export class View {
       async (e, favicons) => {
         this.favicon = favicons[0];
 
-        this.updateData();
+        await this.updateData();
 
         try {
           let fav = this.favicon;
@@ -232,7 +250,7 @@ export class View {
           this.emitEvent('favicon-updated', fav);
         } catch (e) {
           this.favicon = '';
-          // console.error(e);
+          console.error(e);
         }
       },
     );
@@ -265,10 +283,9 @@ export class View {
         certificate: Electron.Certificate,
         callback: Function,
       ) => {
-        // TODO: properly handle insecure websites.
         event.preventDefault();
         this.errorURL = url;
-        this.webContents.loadURL(
+        await this.webContents.loadURL(
           `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${error}`,
         );
         callback(false);
@@ -285,7 +302,9 @@ export class View {
 
     if (url.startsWith(NEWTAB_URL)) this.isNewTab = true;
 
-    this.webContents.loadURL(url);
+    (async () => {
+      await this.webContents.loadURL(url);
+    })();
 
     this.browserView.setAutoResize({
       width: true,
@@ -381,8 +400,7 @@ export class View {
     }
   }
 
-  public updateURL = (url: string) => {
-    console.log(this.lastUrl, url);
+  public updateURL = async (url: string) => {
     if (this.lastUrl === url) return;
 
     this.emitEvent('url-updated', this.hasError ? this.errorURL : url);
@@ -391,9 +409,9 @@ export class View {
 
     this.isNewTab = url.startsWith(NEWTAB_URL);
 
-    this.updateData();
+    await this.updateData();
 
-    if (process.env.ENABLE_AUTOFILL) this.updateCredentials();
+    if (process.env.ENABLE_AUTOFILL) await this.updateCredentials();
 
     this.updateBookmark();
   };
@@ -412,9 +430,9 @@ export class View {
     if (!this.incognito) {
       const id = this.lastHistoryId;
       if (id) {
-        const { title, url, favicon } = this;
+        const { title, color, url, favicon } = this;
 
-        this.historyQueue.enqueue(async () => {
+        await this.historyQueue.enqueue(async () => {
           await Application.instance.storage.update({
             scope: 'history',
             query: {
@@ -422,6 +440,7 @@ export class View {
             },
             value: {
               title,
+              color,
               url,
               favicon,
             },

@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import * as http from 'http';
 import * as https from 'https';
 import { ResponseDetails } from '~/common/rpc/network';

@@ -1,14 +1,5 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { AppWindow } from '../windows';
-import {
-  clipboard,
-  nativeImage,
-  Menu,
-  session,
-  ipcMain,
-  BrowserView,
-} from 'electron';
+import { clipboard, Menu } from 'electron';
 import { isURL, prefixHttp } from '~/utils';
 import { saveAs, viewSource, printPage } from './common-actions';
 
@@ -22,7 +13,19 @@ export const getViewMenu = (
   if (params.linkURL !== '') {
     menuItems = menuItems.concat([
       {
-        label: 'Open URL in new tab',
+        label: 'Open link in new tab',
+        click: () => {
+          appWindow.viewManager.create(
+            {
+              url: params.linkURL,
+              active: true,
+            },
+            true,
+          );
+        },
+      },
+      {
+        label: 'Open link in background tab',
         click: () => {
           appWindow.viewManager.create(
             {
@@ -57,7 +60,7 @@ export const getViewMenu = (
           appWindow.viewManager.create(
             {
               url: params.srcURL,
-              active: false,
+              active: true,
             },
             true,
           );
@@ -78,6 +81,26 @@ export const getViewMenu = (
         label: 'Save image as...',
         click: () => {
           appWindow.webContents.downloadURL(params.srcURL);
+        },
+      },
+      {
+        type: 'separator',
+      },
+    ]);
+  }
+
+  if (params.mediaFlags.canShowPictureInPicture) {
+    menuItems = menuItems.concat([
+      {
+        type: 'checkbox',
+        label: 'Picture in Picture',
+        checked: params.mediaFlags.isShowingPictureInPicture,
+        click: () => {
+          webContents.executeJavaScript(
+            params.mediaFlags.isShowingPictureInPicture
+              ? `document.exitPictureInPicture()`
+              : `document.elementFromPoint(${params.x}, ${params.y}).requestPictureInPicture()`,
+          );
         },
       },
       {
@@ -200,7 +223,7 @@ export const getViewMenu = (
         label: 'Save as...',
         accelerator: 'CmdOrCtrl+S',
         click: async () => {
-          saveAs();
+          await saveAs();
         },
       },
       {
@@ -216,15 +239,15 @@ export const getViewMenu = (
       {
         label: 'View page source',
         accelerator: 'CmdOrCtrl+U',
-        click: () => {
-          viewSource();
+        click: async () => {
+          await viewSource();
         },
       },
     ]);
   }
 
   menuItems.push({
-    label: 'Inspect Element',
+    label: 'Inspect',
     accelerator: 'CmdOrCtrl+Shift+I',
     click: () => {
       webContents.inspectElement(params.x, params.y);

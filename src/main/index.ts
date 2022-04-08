@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { ipcMain, app, webContents } from 'electron';
 import { setIpcMain } from '@wexond/rpc-electron';
 setIpcMain(ipcMain);
@@ -15,7 +13,6 @@ import { Application } from './application';
 
 export const isNightly = app.name === 'fifo-nightly';
 
-app.allowRendererProcessReuse = true;
 app.name = isNightly ? 'Fifo Nightly' : 'Fifo';
 
 (process.env as any)['ELECTRON_DISABLE_SECURITY_WARNINGS'] = true;
@@ -32,11 +29,10 @@ if (process.env.NODE_ENV === 'development') {
 
 ipcMain.setMaxListeners(0);
 
-// app.setAsDefaultProtocolClient('http');
-// app.setAsDefaultProtocolClient('https');
-
 const application = Application.instance;
-application.start();
+(async () => {
+  await application.start();
+})()
 
 process.on('uncaughtException', (error) => {
   console.error(error);
@@ -71,7 +67,7 @@ ipcMain.handle(
         return result;
       }
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   },
 );

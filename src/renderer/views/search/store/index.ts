@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import * as React from 'react';
 
 import { ipcRenderer } from 'electron';
@@ -20,16 +18,12 @@ interface ISearchTab {
 export class Store extends DialogStore {
   public suggestions = new SuggestionsStore(this);
 
-  @observable
   public visitedItems: IVisitedItem[] = [];
 
-  @observable
   public tabs: ISearchTab[] = [];
 
-  @observable
   public inputText = '';
 
-  @computed
   public get searchedTabs(): ISuggestion[] {
     const lastItem = this.suggestions.list[this.suggestions.list.length - 1];
 
@@ -54,7 +48,6 @@ export class Store extends DialogStore {
       .slice(0, 3);
   }
 
-  @computed
   public get searchEngine() {
     return this.settings.searchEngines[this.settings.searchEngine];
   }
@@ -102,7 +95,9 @@ export class Store extends DialogStore {
       this.tabs = tabs;
     });
 
-    this.loadHistory();
+    (async () => {
+      await this.loadHistory();
+    })();
 
     ipcRenderer.send(`can-show-${this.id}`);
 
@@ -122,7 +117,7 @@ export class Store extends DialogStore {
   }
 
   public getCanSuggest(key: number) {
-    if (
+    return (
       key !== 8 && // backspace
       key !== 13 && // enter
       key !== 17 && // ctrl
@@ -131,12 +126,8 @@ export class Store extends DialogStore {
       key !== 9 && // tab
       key !== 20 && // capslock
       key !== 46 && // delete
-      key !== 32 // space
-    ) {
-      return true;
-    }
-
-    return false;
+      key !== 32
+    );
   }
 
   public async loadHistory() {

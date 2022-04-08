@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { extname } from 'path';
 import { dialog } from 'electron';
 import { Application } from '../application';
@@ -22,7 +20,7 @@ export const saveAs = async () => {
 
   const ext = extname(filePath);
 
-  webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
+  await webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
 };
 
 export const viewSource = async () => {

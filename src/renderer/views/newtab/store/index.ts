@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { observable, computed, makeObservable } from 'mobx';
 import { ISettings, ITheme, IVisitedItem } from '~/interfaces';
 import { getTheme } from '~/utils/themes';
@@ -10,24 +8,19 @@ import { NEWS_API_KEY } from '../../app/constants';
 
 type NewsBehavior = 'on-scroll' | 'always-visible' | 'hidden';
 export type Preset = 'focused' | 'inspirational' | 'informational' | 'custom';
+import { DEFAULT_SETTINGS } from '~/constants';
 
 export class Store {
-
-  @observable
   public settings: ISettings = { ...(window as any).settings };
 
-  @computed
   public get theme(): ITheme {
     return getTheme(this.settings.theme);
   }
 
-  @observable
   public news: INewsItem[] = [];
 
-  @observable
   private _newsBehavior: NewsBehavior = 'on-scroll';
 
-  @computed
   public get newsBehavior() {
     return this._newsBehavior;
   }
@@ -40,15 +33,12 @@ export class Store {
     }
   }
 
-  @computed
   public get fullSizeImage() {
     return this.newsBehavior === 'on-scroll' || this.newsBehavior === 'hidden';
   }
 
-  @observable
   public image = '';
 
-  @observable
   private _imageVisible = true;
 
   public set imageVisible(value: boolean) {
@@ -56,37 +46,28 @@ export class Store {
     if (value && this.image == '') this.loadImage();
   }
 
-  @computed
   public get imageVisible() {
     return this._imageVisible;
   }
 
-  @observable
   public changeImageDaily = true;
 
-  @observable
   public topSitesVisible = true;
 
-  @observable
   public quickMenuVisible = true;
 
-  @observable
   public overflowVisible = false;
 
-  @observable
   private _preferencesContent: 'main' | 'custom' = 'main';
 
   public set preferencesContent(value: 'main' | 'custom') {
     this._preferencesContent = value;
     this.overflowVisible = false;
   }
-
-  @computed
   public get preferencesContent() {
     return this._preferencesContent;
   }
 
-  @observable
   private _dashboardSettingsVisible = false;
 
   public set dashboardSettingsVisible(value: boolean) {
@@ -97,23 +78,18 @@ export class Store {
     }
   }
 
-  @computed
   public get dashboardSettingsVisible() {
     return this._dashboardSettingsVisible;
   }
 
-  @observable
   private _preset: Preset = 'inspirational';
 
-  @computed
   public get preset() {
     return this._preset;
   }
 
-  @observable
   public winId = ipcRenderer.sendSync('get-window-id');
 
-  @observable
   public isIncognito = ipcRenderer.sendSync(`is-incognito-${this.winId}`);
 
   // eslint-disable-next-line @typescript-eslint/adjacent-overload-signatures
@@ -139,18 +115,20 @@ export class Store {
     } else if (value === 'informational') {
       this.newsBehavior = 'always-visible';
     }
-
-    localStorage.setItem('preset', value);
   }
 
-  private page = 1;
-  private loaded = true;
-
-  @observable
   public topSites: IVisitedItem[] = [];
 
+  public updateSettings(newSettings: ISettings) {
+    this.settings = { ...this.settings, ...newSettings };
+  }
+
   public constructor() {
-    makeObservable(this);
+    makeObservable(this, {
+      settings: observable,
+      theme: computed,
+      topSites: observable,
+    });
 
     (window as any).updateSettings = (settings: ISettings) => {
       this.settings = { ...this.settings, ...settings };
@@ -190,8 +168,10 @@ export class Store {
     };
   }
 
-  public async loadImage(isNewUrl: any=false) {
-    let url = localStorage.getItem('imageURL');
+  
+  public async loadImage() {
+    let url = this.settings.tab.image;
+    let isNewUrl = false;
 
     if (this.changeImageDaily) {
       const dateString = localStorage.getItem('imageDate');
@@ -209,9 +189,9 @@ export class Store {
         }
       }
     }
-    
+
     if (!url || url == '') {
-      url = 'https://picsum.photos/1920/1080';
+      url = 'https://file.coffee/u/y970mT9Cg5NkPg.png';
       isNewUrl = true;
     }
 
@@ -231,23 +211,25 @@ export class Store {
       .catch((e) => console.error(e));
   }
 
+
   public async updateNews() {
     const scrollPos = window.scrollY;
     const scrollMax =
       document.body.scrollHeight - document.body.clientHeight - 768;
 
-    if (scrollPos >= scrollMax && this.loaded && this.page !== 10) {
-      this.page++;
-      this.loaded = false;
+    if (scrollPos >= scrollMax) {
       try {
         await this.loadNews();
       } catch (e) {
         console.error(e);
       }
-      this.loaded = true;
     }
   }
 
+  public async loadTopSites() {
+    this.topSites = await (window as any).getTopSites(8);
+  }
+  
   public async loadNews() {
     const randompage = Math.floor(Math.random() * 10) + 1;
     const { data } = await networkMainChannel.getInvoker().request(`
@@ -262,9 +244,6 @@ export class Store {
     }
 }
 
-public async loadTopSites() {
-  this.topSites = await (window as any).getTopSites(8);
-}
 }
 
 export default new Store();

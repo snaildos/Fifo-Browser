@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 export interface INewsItem {
   source: {
     id: string;
@@ -7,6 +5,7 @@ export interface INewsItem {
   };
   author: string;
   title: string;
+  color: string;
   description: string;
   url: string;
   urlToImage: string;

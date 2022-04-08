@@ -6,43 +6,6 @@ import { ERROR_PROTOCOL, WEBUI_BASE_URL } from '~/constants/files';
 import { injectChromeWebstoreInstallButton } from './chrome-webstore';
 import { contextBridge } from 'electron';
 const tabId = ipcRenderer.sendSync('get-webcontents-id');
-import { getWebUIURL } from '~/common/webui';
-
-(async function () {
-  const w = await webFrame.executeJavaScript('window');
-  const id = ipcRenderer.sendSync('get-window-id');
-
-  function getText(text: any) {
-    if (typeof text == 'string') return text;
-
-    return JSON.stringify(text)
-  }
-
-  w.oldAlert = w.alert;
-  w.alert = (msg: any) => {
-    return ipcRenderer.sendSync(`alert-${id}`, {
-      msg: getText(msg),
-      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host
-    })
-  };
-
-  w.oldConfirm = w.confirm;
-  w.confirm = (msg: string) => {
-    return ipcRenderer.sendSync(`confirm-${id}`, {
-      msg: getText(msg),
-      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host
-    })
-  };
-
-  w.oldPrompt = w.prompt;
-  w.prompt = (msg: string, value = "") => {
-    return ipcRenderer.sendSync(`prompt-${id}`, {
-      msg: getText(msg),
-      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host,
-      value: getText(value)
-    })
-  };
-})()
 
 export const windowId: number = ipcRenderer.sendSync('get-window-id');
 
@@ -205,7 +168,6 @@ if (
   })();
 }
 
-
 if (window.location.href.startsWith(WEBUI_BASE_URL)) {
   window.addEventListener('DOMContentLoaded', () => {
     if (hostname.startsWith('settings')) document.title = 'Settings';
@@ -213,9 +175,7 @@ if (window.location.href.startsWith(WEBUI_BASE_URL)) {
     else if (hostname.startsWith('bookmarks')) document.title = 'Bookmarks';
     else if (hostname.startsWith('extensions')) document.title = 'Extensions';
     else if (hostname.startsWith('welcome')) document.title = 'Welcome to Fifo!';
-    else if (hostname.startsWith('newtab')) {
-      document.title = 'New Tab';
-    }
+    else if (hostname.startsWith('newtab')) document.title = 'New Tab';
   });
 
   window.addEventListener('message', async ({ data }) => {

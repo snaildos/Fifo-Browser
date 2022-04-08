@@ -1,11 +1,9 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { ipcRenderer } from 'electron';
 import { hashCode } from '~/utils/string';
 
 export class IpcEvent {
-  private scope: string;
-  private name: string;
+  private readonly scope: string;
+  private readonly name: string;
   private callbacks: Function[] = [];
   private listener = false;
 
