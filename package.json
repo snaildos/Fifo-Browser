@@ -86,7 +86,7 @@
     "icojs": "0.16.1",
     "jszip": "3.7.1",
     "mobx": "6.3.3",
-    "mobx-react-lite": "3.2.1",
+    "mobx-react-lite": "3.4.0",
     "node-bookmarks-parser": "2.0.0",
     "node-fetch": "^2.6.1",
     "patch-package": "^6.4.7",
