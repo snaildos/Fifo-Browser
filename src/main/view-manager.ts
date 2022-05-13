@@ -1,7 +1,4 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { ipcMain } from 'electron';
-import { VIEW_Y_OFFSET } from '~/constants/design';
 import { View } from './view';
 import { AppWindow } from './windows';
 import { WEBUI_BASE_URL } from '~/constants/files';
@@ -30,28 +27,6 @@ export class ViewManager extends EventEmitter {
   public set fullscreen(val: boolean) {
     this._fullscreen = val;
     this.fixBounds();
-  }
-
-  public changeZoom(zoomDirection: 'in' | 'out', e?: any) {
-    const newZoomFactor =
-        this.selected.webContents.zoomFactor +
-        (zoomDirection === 'in'
-          ? ZOOM_FACTOR_INCREMENT
-          : -ZOOM_FACTOR_INCREMENT);
-
-      if (
-        newZoomFactor <= ZOOM_FACTOR_MAX &&
-        newZoomFactor >= ZOOM_FACTOR_MIN
-      ) {
-        this.selected.webContents.zoomFactor = newZoomFactor;
-        this.selected.emitEvent(
-          'zoom-updated',
-          this.selected.webContents.zoomFactor,
-        );
-      } else {
-        e?.preventDefault();
-      }
-      this.emitZoomUpdate();
   }
 
   public constructor(window: AppWindow, incognito: boolean) {
