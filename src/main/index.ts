@@ -77,6 +77,7 @@ ipcMain.handle(
 // We need to prevent extension background pages from being garbage collected.
 const backgroundPages: Electron.WebContents[] = [];
 
+
 app.on('web-contents-created', (e, webContents) => {
   if (webContents.getType() === 'backgroundPage')
     backgroundPages.push(webContents);
