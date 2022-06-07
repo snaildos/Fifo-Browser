@@ -13,6 +13,7 @@ export class WindowsService {
   public lastFocused: AppWindow;
 
   constructor(sessions: SessionsService) {
+
     if (process.env.ENABLE_EXTENSIONS) {
       sessions.chromeExtensions = new ElectronChromeExtensions({
         modulePath: `${app.getAppPath()}/node_modules/electron-chrome-extensions`,
@@ -21,9 +22,9 @@ export class WindowsService {
           const win =
             this.list.find((x) => x.win.id === details.windowId) ||
             this.lastFocused;
+            
 
           if (!win) throw new Error('Window not found');
-
           const view = win.viewManager.create(details, false, false);
           win.webContents.send(
             'create-tab',

@@ -1,37 +1,73 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
-import { app, ipcRenderer, webFrame } from 'electron';
+import { ipcRenderer, webFrame } from 'electron';
 
 import AutoComplete from './models/auto-complete';
 import { getTheme } from '~/utils/themes';
 import { ERROR_PROTOCOL, WEBUI_BASE_URL } from '~/constants/files';
 import { injectChromeWebstoreInstallButton } from './chrome-webstore';
-import { contextBridge } from 'electron';
-const tabId = ipcRenderer.sendSync('get-webcontents-id');
+import { getWebUIURL } from '~/common/webui';
 
+(async function () {
+  const w = await webFrame.executeJavaScript('window');
+  const id = ipcRenderer.sendSync('get-window-id');
+
+  function getText(text: any) {
+    if (typeof text == 'string') return text;
+
+    return JSON.stringify(text)
+  }
+
+  w.oldAlert = w.alert;
+  w.alert = (msg: any) => {
+    return ipcRenderer.sendSync(`alert-${id}`, {
+      msg: getText(msg),
+      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host
+    })
+  };
+
+  w.oldConfirm = w.confirm;
+  w.confirm = (msg: string) => {
+    return ipcRenderer.sendSync(`confirm-${id}`, {
+      msg: getText(msg),
+      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host
+    })
+  };
+
+  w.oldPrompt = w.prompt;
+  w.prompt = (msg: string, value = "") => {
+    return ipcRenderer.sendSync(`prompt-${id}`, {
+      msg: getText(msg),
+      url: w.frameElement ? "Una pagina insertada en esta" : w.location.host,
+      value: getText(value)
+    })
+  };
+})()
+
+const tabId = ipcRenderer.sendSync('get-webcontents-id');
 export const windowId: number = ipcRenderer.sendSync('get-window-id');
 
-const goBack = async () => {
-  await ipcRenderer.invoke(`web-contents-call`, {
+const goBack = () => {
+  ipcRenderer.invoke(`web-contents-call`, {
     webContentsId: tabId,
     method: 'goBack',
   });
 };
 
-const goForward = async () => {
-  await ipcRenderer.invoke(`web-contents-call`, {
+const goForward = () => {
+  ipcRenderer.invoke(`web-contents-call`, {
     webContentsId: tabId,
     method: 'goForward',
   });
 };
 
-window.addEventListener('mouseup', async (e) => {
+window.addEventListener('mouseup', (e) => {
   if (e.button === 3) {
     e.preventDefault();
-    await goBack();
+    goBack();
   } else if (e.button === 4) {
     e.preventDefault();
-    await goForward();
+    goForward();
   }
 });
 
@@ -74,13 +110,13 @@ document.addEventListener('wheel', (e) => {
   }
 });
 
-ipcRenderer.on('scroll-touch-end', async () => {
+ipcRenderer.on('scroll-touch-end', () => {
   if (
     horizontalMouseMove - beginningScrollRight > 150 &&
     Math.abs(horizontalMouseMove / verticalMouseMove) > 2.5
   ) {
     if (beginningScrollRight < 10) {
-      await goForward();
+      goForward();
     }
   }
 
@@ -89,17 +125,15 @@ ipcRenderer.on('scroll-touch-end', async () => {
     Math.abs(horizontalMouseMove / verticalMouseMove) > 2.5
   ) {
     if (beginningScrollLeft < 10) {
-      await goBack();
+      goBack();
     }
   }
 
   resetCounters();
 });
 
-if (process.env.ENABLE_AUTOFILL) {
-  window.addEventListener('load', AutoComplete.loadForms);
-  window.addEventListener('mousedown', AutoComplete.onWindowMouseDown);
-}
+window.addEventListener('load', AutoComplete.loadForms);
+window.addEventListener('mousedown', AutoComplete.onWindowMouseDown);
 
 const postMsg = (data: any, res: any) => {
   window.postMessage(
@@ -127,48 +161,45 @@ if (
   window.location.protocol === `${ERROR_PROTOCOL}:`
 ) {
   (async function () {
-    contextBridge.exposeInMainWorld('process', process);
-    contextBridge.exposeInMainWorld('settings', settings);
-    contextBridge.exposeInMainWorld('require', (id: string) => {
-      if (id === 'electron') {
-        return { ipcRenderer, app };
-      }
-      return undefined;
-    });
+
+    const w = await webFrame.executeJavaScript('window');
+
+
+    w.settings = settings;
+
     if (window.location.pathname.startsWith('//network-error')) {
-      contextBridge.exposeInMainWorld('theme', getTheme(settings.theme));
-      contextBridge.exposeInMainWorld(
-        'errorURL',
-        await ipcRenderer.invoke(`get-error-url-${tabId}`),
-      );
+      w.theme = getTheme(w.settings.theme);
+      w.errorURL = await ipcRenderer.invoke(`get-error-url-${tabId}`);
     } else if (hostname.startsWith('history')) {
-      contextBridge.exposeInMainWorld('getHistory', async () => {
+      w.getHistory = async () => {
         return await ipcRenderer.invoke(`history-get`);
-      });
-      contextBridge.exposeInMainWorld('removeHistory', (ids: string[]) => {
+      };
+      w.removeHistory = (ids: string[]) => {
         ipcRenderer.send(`history-remove`, ids);
-      });
+      };
     } else if (hostname.startsWith('newtab')) {
-      contextBridge.exposeInMainWorld('getTopSites', async (count: number) => {
+      w.getTopSites = async (count: number) => {
         return await ipcRenderer.invoke(`topsites-get`, count);
-      });
+      };
     }
   })();
 } else {
   (async function () {
-    if (settings.doNotTrack) {
-      await webFrame.executeJavaScript(
-        `window.navigator.doNotTrack = { value: 1 }`,
-      );
-    }
 
-    if (settings.globalPrivacyControl) {
-      await webFrame.executeJavaScript(
-        `window.navigator.globalPrivacyControl = true`,
-      );
+    if (settings.doNotTrack) {
+      await webFrame.executeJavaScript('window');
+      Object.defineProperty(window.navigator, 'doNotTrack', { value: 1 });
     }
   })();
 }
+
+(async function () {
+  if (settings.globalPrivacyControl) {
+    await webFrame.executeJavaScript(
+      `window.navigator.globalPrivacyControl = true`,
+    );
+  }
+})();
 
 if (window.location.href.startsWith(WEBUI_BASE_URL)) {
   window.addEventListener('DOMContentLoaded', () => {
@@ -177,7 +208,9 @@ if (window.location.href.startsWith(WEBUI_BASE_URL)) {
     else if (hostname.startsWith('bookmarks')) document.title = 'Bookmarks';
     else if (hostname.startsWith('extensions')) document.title = 'Extensions';
     else if (hostname.startsWith('welcome')) document.title = 'Welcome to Fifo!';
-    else if (hostname.startsWith('newtab')) document.title = 'New Tab';
+    else if (hostname.startsWith('newtab')) {
+      document.title = 'Fifo';
+    }
   });
 
   window.addEventListener('message', async ({ data }) => {
@@ -200,9 +233,10 @@ if (window.location.href.startsWith(WEBUI_BASE_URL)) {
   });
 
   ipcRenderer.on('update-settings', async (e, data) => {
-    await webFrame.executeJavaScript(
-      `window.updateSettings(${JSON.stringify(data)})`,
-    );
+    const w = await webFrame.executeJavaScript('window');
+    if (w.updateSettings) {
+      w.updateSettings(data);
+    }
   });
 
   ipcRenderer.on('credentials-insert', (e, data) => {

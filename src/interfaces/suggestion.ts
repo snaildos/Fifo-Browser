@@ -1,7 +1,6 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-
 export interface ISuggestion {
   primaryText?: string;
   secondaryText?: string;

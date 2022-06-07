@@ -3,7 +3,7 @@
 export const injectChromeWebstoreInstallButton = () => {
   const baseUrl =
     'https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&prodversion=%VERSION&x=id%3D%ID%26installsource%3Dondemand%26uc';
-  const ibText = 'Add to Fifo';
+  const ibText = 'Add to Fifo Browser';
   const ibTemplate =
     '<div role="button" class="dd-Va g-c-wb g-eg-ua-Uc-c-za g-c-Oc-td-jb-oa g-c" aria-label="' +
     ibText +
@@ -35,7 +35,7 @@ export const injectChromeWebstoreInstallButton = () => {
     });
   });
 
-  document.addEventListener('DOMNodeInserted', () => {
+  document.addEventListener('DOMNodeInserted', (event: any) => {
     setTimeout(() => {
       // eslint-disable-next-line @typescript-eslint/no-use-before-define
       Array.from(document.getElementsByClassName('a-na-d-K-ea')).forEach(

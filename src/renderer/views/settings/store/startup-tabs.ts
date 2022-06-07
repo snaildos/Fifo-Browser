@@ -10,12 +10,11 @@ export class StartupTabsStore {
 
   public isLoaded = false;
 
+  @observable
   public list: IStartupTab[] = [];
 
   constructor() {
-    makeObservable(this, {
-      list: observable,
-    });
+    makeObservable(this);
   }
 
   public async load() {

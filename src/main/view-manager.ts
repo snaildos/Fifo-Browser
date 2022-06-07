@@ -1,4 +1,7 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain } from 'electron';
+import { VIEW_Y_OFFSET } from '~/constants/design';
 import { View } from './view';
 import { AppWindow } from './windows';
 import { WEBUI_BASE_URL } from '~/constants/files';
@@ -18,7 +21,7 @@ export class ViewManager extends EventEmitter {
 
   public incognito: boolean;
 
-  private readonly window: AppWindow;
+  private window: AppWindow;
 
   public get fullscreen() {
     return this._fullscreen;
@@ -27,6 +30,28 @@ export class ViewManager extends EventEmitter {
   public set fullscreen(val: boolean) {
     this._fullscreen = val;
     this.fixBounds();
+  }
+
+  public changeZoom(zoomDirection: 'in' | 'out', e?: any) {
+    const newZoomFactor =
+        this.selected.webContents.zoomFactor +
+        (zoomDirection === 'in'
+          ? ZOOM_FACTOR_INCREMENT
+          : -ZOOM_FACTOR_INCREMENT);
+
+      if (
+        newZoomFactor <= ZOOM_FACTOR_MAX &&
+        newZoomFactor >= ZOOM_FACTOR_MIN
+      ) {
+        this.selected.webContents.zoomFactor = newZoomFactor;
+        this.selected.emitEvent(
+          'zoom-updated',
+          this.selected.webContents.zoomFactor,
+        );
+      } else {
+        e?.preventDefault();
+      }
+      this.emitZoomUpdate();
   }
 
   public constructor(window: AppWindow, incognito: boolean) {
@@ -44,14 +69,6 @@ export class ViewManager extends EventEmitter {
       return options.map((option: any) => {
         return this.create(option, false, false).id;
       });
-    });
-
-    ipcMain.on(`add-tab-${id}`, (e, details) => {
-      this.create(details);
-    });
-
-    ipcMain.on('create-tab-menu-extra', (e, details: any) => {
-      this.create(details);
     });
 
     ipcMain.on('save-as-menu-extra', async (e) => {
@@ -75,16 +92,33 @@ export class ViewManager extends EventEmitter {
       webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
     });
 
-    ipcMain.on('Print', () => {
-      this.selected.webContents.print();
+    ipcMain.on(`add-tab-${id}`, (e, details) => {
+      this.create(details);
     });
 
-    ipcMain.handle(
-      `view-select-${id}`,
-      async (e, id: number, focus: boolean) => {
-        await this.select(id, focus);
-      },
-    );
+    ipcMain.on('Print', (e, details) => {
+      this.views.get(this.selectedId).webContents.print();
+    });
+
+    ipcMain.on('create-tab-menu-extra', (e, details: any) => {
+      this.create(details);
+    });
+
+    ipcMain.on('Print', (e, details) => {
+      this.views.get(this.selectedId).webContents.print({printBackground: true});
+    });
+
+    ipcMain.handle(`view-select-${id}`, (e, id: number, focus: boolean) => {
+      if (process.env.ENABLE_EXTENSIONS) {
+        const view = this.views.get(id);
+        if (focus) {
+          Application.instance.sessions.chromeExtensions.selectTab(
+            view.webContents,
+          );
+        }
+      }
+      this.select(id, focus);
+    });
 
     ipcMain.on(`view-destroy-${id}`, (e, id: number) => {
       this.destroy(id);
@@ -105,7 +139,7 @@ export class ViewManager extends EventEmitter {
     });
 
     ipcMain.on('change-zoom', (e, zoomDirection) => {
-      const newZoomFactor =
+        const newZoomFactor =
         this.selected.webContents.zoomFactor +
         (zoomDirection === 'in'
           ? ZOOM_FACTOR_INCREMENT
@@ -126,7 +160,7 @@ export class ViewManager extends EventEmitter {
       this.emitZoomUpdate();
     });
 
-    ipcMain.on('reset-zoom', () => {
+    ipcMain.on('reset-zoom', (e) => {
       this.selected.webContents.zoomFactor = 1;
       this.selected.emitEvent(
         'zoom-updated',
@@ -165,10 +199,6 @@ export class ViewManager extends EventEmitter {
         webContents,
         this.window.win,
       );
-
-      if (details.active) {
-        Application.instance.sessions.chromeExtensions.selectTab(webContents);
-      }
     }
 
     webContents.once('destroyed', () => {
@@ -186,13 +216,14 @@ export class ViewManager extends EventEmitter {
     Object.values(this.views).forEach((x) => x.destroy());
   }
 
-  public async select(id: number, focus = true) {
-    console.trace();
+  public select(id: number, focus = true) {
     const { selected } = this;
     const view = this.views.get(id);
+
     if (!view) {
       return;
     }
+
     this.selectedId = id;
 
     if (selected) {
@@ -211,11 +242,10 @@ export class ViewManager extends EventEmitter {
     this.window.updateTitle();
     view.updateBookmark();
 
-    await this.fixBounds();
+    this.fixBounds();
 
     view.updateNavigationState();
 
-    Application.instance.sessions.chromeExtensions.selectTab(view.webContents);
     this.emit('activated', id);
 
     // TODO: this.emitZoomUpdate(false);
@@ -246,16 +276,15 @@ export class ViewManager extends EventEmitter {
     }
   }
 
-  private async setBoundsListener() {
+  private setBoundsListener() {
     // resize the BrowserView's height when the toolbar height changes
     // ex: when the bookmarks bar appears
-    await this.window.webContents.executeJavaScript(`
+    this.window.webContents.executeJavaScript(`
         const {ipcRenderer} = require('electron');
         const resizeObserver = new ResizeObserver(([{ contentRect }]) => {
           ipcRenderer.send('resize-height');
         });
         const app = document.getElementById('app');
-        resizeObserver.observe(app);
       `);
 
     this.window.webContents.on('ipc-message', (e, message) => {

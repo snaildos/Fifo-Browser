@@ -7,19 +7,18 @@ import {
   DIALOG_MARGIN,
   DIALOG_TOP,
 } from '~/constants/design';
-import { IDialog } from '~/main/services/dialogs-service';
 
-export const showDownloadsDialog = async (
+export const showDownloadsDialog = (
   browserWindow: BrowserWindow,
   x: number,
   y: number,
 ) => {
-  let height = 64 * 8;
+  let height = 0;
 
-  const dialog: IDialog = await Application.instance.dialogs.show({
+  const dialog = Application.instance.dialogs.show({
     name: 'downloads-dialog',
     browserWindow,
-    getBounds: (dialog) => {
+    getBounds: () => {
       const winBounds = browserWindow.getContentBounds();
       const maxHeight = winBounds.height - DIALOG_TOP - 16;
 

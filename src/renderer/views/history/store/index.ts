@@ -23,26 +23,33 @@ export type QuickRange =
 export class Store {
   public faviconsDb = new PreloadDatabase<IFavicon>('favicons');
 
-  // Observable
-
+  @observable
   public settings: ISettings = { ...(window as any).settings };
 
+  @observable
   public items: IHistoryItem[] = [];
 
+  @observable
   public itemsLoaded = this.getDefaultLoaded();
 
+  @observable
   public selectedRange: QuickRange = 'all';
 
+  @observable
   public searched = '';
 
+  @observable
   public selectedItems: string[] = [];
 
+  @observable
   public favicons: Map<string, string> = new Map();
 
+  @computed
   public get theme(): ITheme {
     return getTheme(this.settings.theme);
   }
 
+  @computed
   public get sections() {
     const list: IHistorySection[] = [];
     let section: IHistorySection;
@@ -84,6 +91,7 @@ export class Store {
     return list;
   }
 
+  @computed
   public get range() {
     const current = new Date();
     const day = current.getDate();
@@ -134,20 +142,7 @@ export class Store {
   }
 
   public constructor() {
-    makeObservable(this, {
-      settings: observable,
-      items: observable,
-      itemsLoaded: observable,
-      selectedRange: observable,
-      searched: observable,
-      selectedItems: observable,
-      favicons: observable,
-      theme: computed,
-      sections: computed,
-      range: computed,
-      search: action,
-      deleteSelected: action,
-    });
+    makeObservable(this);
 
     (window as any).updateSettings = (settings: ISettings) => {
       this.settings = { ...this.settings, ...settings };
@@ -188,8 +183,8 @@ export class Store {
   }
 
   public clear() {
-    (window as any).removeHistory(this.items.map((x) => x._id));
     this.items = [];
+    (window as any).removeHistory(this.items.map((x) => x._id));
   }
 
   public removeItems(id: string[]) {
@@ -197,6 +192,7 @@ export class Store {
     (window as any).removeHistory(id);
   }
 
+  @action
   public search(str: string) {
     this.searched = str.toLowerCase().toLowerCase();
     this.itemsLoaded = this.getDefaultLoaded();
@@ -206,8 +202,12 @@ export class Store {
     return Math.floor(window.innerHeight / 48);
   }
 
+  @action
   public deleteSelected() {
-    this.removeItems(this.selectedItems);
+    this.selectedItems.forEach(item => {
+      this.removeItems([item])
+    });
+    
     this.selectedItems = [];
   }
 }

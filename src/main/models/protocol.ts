@@ -2,6 +2,7 @@
 
 import { protocol } from 'electron';
 import { join } from 'path';
+import { parse } from 'url';
 import { ERROR_PROTOCOL, WEBUI_PROTOCOL } from '~/constants/files';
 import { URL } from 'url';
 
@@ -23,7 +24,7 @@ export const registerProtocol = (session: Electron.Session) => {
   session.protocol.registerFileProtocol(
     ERROR_PROTOCOL,
     (request, callback: any) => {
-      const parsed = new URL(request.url);
+      const parsed = parse(request.url);
 
       if (parsed.hostname === 'network-error') {
         return callback({
@@ -37,15 +38,15 @@ export const registerProtocol = (session: Electron.Session) => {
     session.protocol.registerFileProtocol(
       WEBUI_PROTOCOL,
       (request, callback: any) => {
-        const parsed = new URL(request.url);
+        const parsed = parse(request.url);
 
-        if (parsed.pathname === '/') {
+        if (parsed.path === '/') {
           return callback({
             path: join(__dirname, `${parsed.hostname}.html`),
           });
         }
 
-        callback({ path: join(__dirname, parsed.pathname) });
+        callback({ path: join(__dirname, parsed.path) });
       },
     );
   }

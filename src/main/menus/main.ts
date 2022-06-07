@@ -3,8 +3,10 @@
 import { Menu, webContents, app, BrowserWindow, MenuItem } from 'electron';
 import { defaultTabOptions } from '~/constants/tabs';
 import { viewSource, saveAs, printPage } from './common-actions';
+import { WEBUI_BASE_URL, WEBUI_URL_SUFFIX } from '~/constants/files';
 import { AppWindow } from '../windows';
 import { Application } from '../application';
+import { showMenuDialog } from '../dialogs/menu';
 import { getWebUIURL } from '~/common/webui';
 
 const isMac = process.platform === 'darwin';
@@ -108,8 +110,8 @@ export const getMainMenu = () => {
         },
         ...createMenuItem(
           ['CmdOrCtrl+S'],
-          async () => {
-            await saveAs();
+          () => {
+            saveAs();
           },
           'Save webpage as...',
         ),
@@ -124,19 +126,14 @@ export const getMainMenu = () => {
           'Print',
         ),
 
-        ...(!isMac ? [{ role: 'quit' }] : []),
-
         // Hidden items
 
         // Focus address bar
-        ...createMenuItem(
-          ['Ctrl+Space', 'CmdOrCtrl+L', 'Alt+D', 'F6'],
-          async () => {
-            await Application.instance.dialogs
-              .getPersistent('search')
-              .show(Application.instance.windows.current.win);
-          },
-        ),
+        ...createMenuItem(['Ctrl+Space', 'CmdOrCtrl+L', 'Alt+D', 'F6'], () => {
+          Application.instance.dialogs
+            .getPersistent('search')
+            .show(Application.instance.windows.current.win);
+        }),
 
         // Toggle menu
         ...createMenuItem(['Alt+F', 'Alt+E'], () => {
@@ -201,8 +198,9 @@ export const getMainMenu = () => {
         ...createMenuItem(
           isMac ? ['Cmd+[', 'Cmd+Left'] : ['Alt+Left'],
           () => {
-            const { selected } =
-              Application.instance.windows.current.viewManager;
+            const {
+              selected,
+            } = Application.instance.windows.current.viewManager;
             if (selected) {
               selected.webContents.goBack();
             }
@@ -212,8 +210,9 @@ export const getMainMenu = () => {
         ...createMenuItem(
           isMac ? ['Cmd+]', 'Cmd+Right'] : ['Alt+Right'],
           () => {
-            const { selected } =
-              Application.instance.windows.current.viewManager;
+            const {
+              selected,
+            } = Application.instance.windows.current.viewManager;
             if (selected) {
               selected.webContents.goForward();
             }
@@ -252,9 +251,9 @@ export const getMainMenu = () => {
         ),
         ...createMenuItem(
           ['CmdOrCtrl+Shift+B'],
-          async () => {
+          () => {
             const { bookmarksBar } = Application.instance.settings.object;
-            await Application.instance.settings.updateSettings({
+            Application.instance.settings.updateSettings({
               bookmarksBar: !bookmarksBar,
             });
           },
@@ -281,8 +280,8 @@ export const getMainMenu = () => {
           submenu: [
             ...createMenuItem(
               ['CmdOrCtrl+U'],
-              async () => {
-                await viewSource();
+              () => {
+                viewSource();
               },
               'View source',
             ),
@@ -371,6 +370,35 @@ export const getMainMenu = () => {
       },
     ),
   );
+
+  // Ctrl+9
+  template[0].submenu = template[0].submenu.concat(
+    createMenuItem(['CmdOrCtrl+9'], () => {
+      Application.instance.windows.current.webContents.send('select-last-tab');
+    }),
+  );
+
+  // Ctrl+numadd - Ctrl+=
+  template[0].submenu = template[0].submenu.concat(
+    createMenuItem(['CmdOrCtrl+numadd', 'CmdOrCtrl+='], () => {
+      Application.instance.windows.current.viewManager.changeZoom('in');
+    }),
+  );
+
+  // Ctrl+numsub - Ctrl+-
+  template[0].submenu = template[0].submenu.concat(
+    createMenuItem(['CmdOrCtrl+numsub', 'CmdOrCtrl+-'], () => {
+      Application.instance.windows.current.viewManager.changeZoom('out');
+    }),
+  );
+
+  // Ctrl+0
+  template[0].submenu = template[0].submenu.concat(
+    createMenuItem(['CmdOrCtrl+0', 'CmdOrCtrl+num0'], () => {
+      Application.instance.windows.current.viewManager.resetZoom();
+    }),
+  );
+
 
   return Menu.buildFromTemplate(template);
 };

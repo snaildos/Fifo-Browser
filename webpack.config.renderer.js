@@ -9,13 +9,13 @@ const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
+
 /* eslint-enable */
 
 const PORT = 4444;
 
 const appConfig = getConfig(getBaseConfig('app'), {
-  target: 'web',
+  target: 'electron-renderer',
 
   devServer: {
     static: {
@@ -30,12 +30,19 @@ const appConfig = getConfig(getBaseConfig('app'), {
     ? [
       new webpack.HotModuleReplacementPlugin(),
       new ReactRefreshWebpackPlugin(),
-      new NodePolyfillPlugin({ excludeAliases: ['process'] }),
       new webpack.DefinePlugin({
-        process: { env: {} }
-      })
+        'process.env': {
+          NODE_ENV: JSON.stringify('development')
+        }
+      }),
     ]
-    : [],
+    : [
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+    ],
 });
 
 const extPopupConfig = getConfig({

@@ -11,7 +11,7 @@ interface IAction<T> {
 }
 
 export class Database<T> {
-  private readonly scope: string;
+  private scope: string;
 
   public constructor(scope: string) {
     this.scope = scope;
@@ -21,10 +21,12 @@ export class Database<T> {
     operation: 'get' | 'get-one' | 'update' | 'insert' | 'remove',
     data: IAction<T>,
   ): Promise<any> {
-    return await ipcRenderer.invoke(`storage-${operation}`, {
+    const res = await ipcRenderer.invoke(`storage-${operation}`, {
       scope: this.scope,
       ...toJS(data),
     });
+
+    return res;
   }
 
   public async insert(item: T): Promise<T> {

@@ -1,6 +1,6 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
-import { ipcMain, nativeTheme, dialog, app } from 'electron';
+import { ipcMain, nativeTheme, dialog } from 'electron';
 
 import { DEFAULT_SETTINGS, DEFAULT_SEARCH_ENGINES } from '~/constants';
 
@@ -30,18 +30,6 @@ export class Settings extends EventEmitter {
       },
     );
 
-    ipcMain.handle('set-default-browser', async () => {
-      if (
-        !(
-          app.isDefaultProtocolClient('http') &&
-          app.isDefaultProtocolClient('https')
-        )
-      ) {
-        app.setAsDefaultProtocolClient('http');
-        app.setAsDefaultProtocolClient('https');
-      }
-    });
-
     ipcMain.on('get-settings-sync', async (e) => {
       await this.onLoad();
       this.update();
@@ -64,16 +52,14 @@ export class Settings extends EventEmitter {
 
       this.object.downloadsPath = filePaths[0];
 
-      await this.addToQueue();
+      this.addToQueue();
     });
 
     nativeTheme.on('updated', () => {
       this.update();
     });
 
-    (async () => {
-      await this.load();
-    })()
+    this.load();
   }
 
   private onLoad = async (): Promise<void> => {
@@ -120,31 +106,13 @@ export class Settings extends EventEmitter {
       Application.instance.sessions.viewIncognito,
     ];
 
-    contexts.forEach(async (e) => {
+    contexts.forEach((e) => {
       if (this.object.shield) {
-        await runAdblockService(e);
+        runAdblockService(e);
       } else {
         stopAdblockService(e);
       }
     });
-
-    // if (
-    //   this.object.defaultBrowser &&
-    //   !(
-    //     app.isDefaultProtocolClient('http') &&
-    //     app.isDefaultProtocolClient('https')
-    //   )
-    // ) {
-    //   app.setAsDefaultProtocolClient('http');
-    //   app.setAsDefaultProtocolClient('https');
-    // } else if (
-    //   !this.object.defaultBrowser &&
-    //   (app.isDefaultProtocolClient('http') ||
-    //     app.isDefaultProtocolClient('https'))
-    // ) {
-    //   app.removeAsDefaultProtocolClient('http');
-    //   app.removeAsDefaultProtocolClient('https');
-    // }
   };
 
   private async load() {
@@ -154,7 +122,7 @@ export class Settings extends EventEmitter {
 
       if (typeof json.version === 'string') {
         // Migrate from 3.1.0
-        await Application.instance.storage.remove({
+        Application.instance.storage.remove({
           scope: 'startupTabs',
           query: {},
           multi: true,
@@ -185,7 +153,7 @@ export class Settings extends EventEmitter {
 
       this.loaded = true;
 
-      await this.addToQueue();
+      this.addToQueue();
       this.emit('load');
     } catch (e) {
       this.loaded = true;
@@ -227,7 +195,7 @@ export class Settings extends EventEmitter {
     this.update();
 
     if (this.queue.length === 1) {
-      await this.save();
+      this.save();
     } else {
       this.once(id, () => {
         this.save();
@@ -235,9 +203,9 @@ export class Settings extends EventEmitter {
     }
   }
 
-  public async updateSettings(settings: Partial<ISettings>) {
+  public updateSettings(settings: Partial<ISettings>) {
     this.object = { ...this.object, ...settings };
 
-    await this.addToQueue();
+    this.addToQueue();
   }
 }

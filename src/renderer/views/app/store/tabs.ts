@@ -4,8 +4,8 @@ import {
   observable,
   action,
   computed,
-  makeAutoObservable,
   makeObservable,
+  makeAutoObservable,
 } from 'mobx';
 import * as React from 'react';
 
@@ -62,23 +62,6 @@ export class TabsStore {
 
   public constructor() {
     makeObservable(this, {
-      onResize: action,
-      createTab: action,
-      createTabs: action,
-      addTab: action,
-      addTabs: action,
-      pinTab: action,
-      unpinTab: action,
-      muteTab: action,
-      unmuteTab: action,
-      updateTabsBounds: action,
-      calculateTabMargins: action,
-      setTabGroupsLefts: action,
-      setTabsWidths: action,
-      setTabsLefts: action,
-      replaceTab: action,
-      onMouseUp: action,
-      onMouseMove: action,
       list: observable,
       isDragging: observable,
       hoveredTabId: observable,
@@ -107,53 +90,47 @@ export class TabsStore {
           const index = this.list.indexOf(this.selectedTab) + 1;
           options.index = index;
         }
+
         this.createTab(options, id);
-        e.sender.send('create-tab-reply-' + id);
       },
     );
 
-    ipcRenderer.on('select-next-tab', async () => {
+    ipcRenderer.on('select-next-tab', () => {
       const i = this.list.indexOf(this.selectedTab);
       const nextTab = this.list[i + 1];
 
       if (!nextTab) {
         if (this.list[0]) {
-          await this.list[0].select();
+          this.list[0].select();
         }
       } else {
-        await nextTab.select();
+        nextTab.select();
       }
     });
 
-    ipcRenderer.on('select-tab-index', async (e, i) => {
-      await this.list[i]?.select();
+    ipcRenderer.on('select-tab-index', (e, i) => {
+      this.list[i]?.select();
     });
 
-    ipcRenderer.on('select-tab-id', async (e, id: number) => {
-      const tab = this.getTabById(id);
-
-      await tab?.select();
+    ipcRenderer.on('select-last-tab', () => {
+      this.list[this.list.length - 1]?.select();
     });
 
-    ipcRenderer.on('select-last-tab', async () => {
-      await this.list[this.list.length - 1]?.select();
-    });
-
-    ipcRenderer.on('select-previous-tab', async () => {
+    ipcRenderer.on('select-previous-tab', () => {
       const i = this.list.indexOf(this.selectedTab);
       const prevTab = this.list[i - 1];
 
       if (!prevTab) {
         if (this.list[this.list.length - 1]) {
-          await this.list[this.list.length - 1].select();
+          this.list[this.list.length - 1].select();
         }
       } else {
-        await prevTab.select();
+        prevTab.select();
       }
     });
 
-    ipcRenderer.on('remove-tab', async (e, id: number) => {
-      await this.getTabById(id)?.close();
+    ipcRenderer.on('remove-tab', (e, id: number) => {
+      this.getTabById(id)?.close();
     });
 
     ipcRenderer.on('tab-event', (e, event: TabEvent, tabId, args) => {
@@ -162,7 +139,6 @@ export class TabsStore {
       if (tab) {
         if (event === 'blocked-ad') tab.blockedAds++;
         if (event === 'title-updated') tab.title = args[0];
-        if (event === 'color-updated') tab.color = args[0];
         if (event === 'favicon-updated') tab.favicon = args[0];
         if (event === 'did-navigate') tab.favicon = '';
         if (event === 'media-playing') tab.isPlaying = true;
@@ -189,8 +165,8 @@ export class TabsStore {
       }
     });
 
-    ipcRenderer.on('revert-closed-tab', async () => {
-      await this.revertClosed();
+    ipcRenderer.on('revert-closed-tab', () => {
+      this.revertClosed();
     });
 
     ipcRenderer.on('get-search-tabs', () => {
@@ -198,7 +174,6 @@ export class TabsStore {
         'get-search-tabs',
         this.list.map((tab) => ({
           favicon: tab.favicon,
-          color: tab.color,
           url: tab.url,
           title: tab.title,
           id: tab.id,
@@ -207,6 +182,7 @@ export class TabsStore {
     });
   }
 
+  @action
   public onResize = (e: Event) => {
     if (e.isTrusted) {
       this.removedTabs = 0;
@@ -225,7 +201,7 @@ export class TabsStore {
     return this.list.find((x) => x.id === id);
   }
 
-  public createTab(
+  @action public createTab(
     options: chrome.tabs.CreateProperties,
     id: number,
     tabGroupId = -1,
@@ -233,6 +209,7 @@ export class TabsStore {
     this.removedTabs = 0;
 
     const tab = new ITab(options, id);
+
     tab.tabGroupId = tabGroupId;
 
     if (options.index !== undefined) {
@@ -249,7 +226,10 @@ export class TabsStore {
     return tab;
   }
 
-  public createTabs(options: chrome.tabs.CreateProperties[], ids: number[]) {
+  @action public createTabs(
+    options: chrome.tabs.CreateProperties[],
+    ids: number[],
+  ) {
     this.removedTabs = 0;
 
     const tabs = options.map((option, i) => {
@@ -260,9 +240,8 @@ export class TabsStore {
 
     requestAnimationFrame(() => {
       this.updateTabsBounds(false);
-      if (this.scrollable && this.containerRef.current) {
-        this.containerRef.current.scrollLeft =
-          this?.containerRef?.current?.scrollWidth ?? 0;
+      if (this.scrollable) {
+        this.containerRef.current.scrollLeft = this.containerRef.current.scrollWidth;
       }
     });
 
@@ -274,9 +253,7 @@ export class TabsStore {
 
     const frame = () => {
       if (!this.scrollingToEnd) return;
-      if (!this.containerRef?.current?.scrollWidth) return;
-      this.containerRef.current.scrollLeft =
-        this.containerRef.current?.scrollWidth || 0;
+      this.containerRef.current.scrollLeft = this.containerRef.current.scrollWidth;
       requestAnimationFrame(frame);
     };
 
@@ -292,6 +269,7 @@ export class TabsStore {
     }, milliseconds);
   };
 
+  @action
   public async addTab(
     options = defaultTabOptions,
     tabGroupId: number = undefined,
@@ -307,6 +285,7 @@ export class TabsStore {
     return this.createTab(opts, id, tabGroupId);
   }
 
+  @action
   public async addTabs(options: chrome.tabs.CreateProperties[]) {
     ipcRenderer.send(`hide-window-${store.windowId}`);
 
@@ -329,6 +308,7 @@ export class TabsStore {
     (this.list as any).remove(this.getTabById(id));
   }
 
+  @action
   public pinTab(tab: ITab) {
     tab.isPinned = true;
     store.startupTabs.updateStartupTabItem(tab);
@@ -339,6 +319,7 @@ export class TabsStore {
     });
   }
 
+  @action
   public unpinTab(tab: ITab) {
     tab.isPinned = false;
     store.startupTabs.updateStartupTabItem(tab);
@@ -356,16 +337,19 @@ export class TabsStore {
     });
   }
 
+  @action
   public muteTab(tab: ITab) {
     ipcRenderer.send(`mute-view-${store.windowId}`, tab.id);
     tab.isMuted = true;
   }
 
+  @action
   public unmuteTab(tab: ITab) {
     ipcRenderer.send(`unmute-view-${store.windowId}`, tab.id);
     tab.isMuted = false;
   }
 
+  @action
   public updateTabsBounds(animation: boolean) {
     this.calculateTabMargins();
     this.setTabsWidths(animation);
@@ -373,6 +357,7 @@ export class TabsStore {
     this.setTabsLefts(animation);
   }
 
+  @action
   public calculateTabMargins() {
     const tabs = this.list.filter((x) => !x.isClosing);
 
@@ -397,6 +382,7 @@ export class TabsStore {
     }
   }
 
+  @action
   public setTabGroupsLefts(animation: boolean) {
     const tabs = this.list.filter((x) => !x.isClosing);
 
@@ -420,6 +406,7 @@ export class TabsStore {
     }
   }
 
+  @action
   public setTabsWidths(animation: boolean) {
     const tabs = this.list.filter((x) => !x.isClosing);
 
@@ -450,6 +437,7 @@ export class TabsStore {
     }
   }
 
+  @action
   public setTabsLefts(animation: boolean) {
     const tabs = this.list.filter((x) => !x.isClosing);
 
@@ -473,6 +461,7 @@ export class TabsStore {
     );
   }
 
+  @action
   public replaceTab(firstTab: ITab, secondTab: ITab) {
     const index = this.list.indexOf(secondTab);
 
@@ -562,6 +551,7 @@ export class TabsStore {
     }
   }
 
+  @action
   public onMouseUp = () => {
     const selectedTab = this.selectedTab;
 
@@ -574,6 +564,7 @@ export class TabsStore {
     this.updateTabsBounds(true);
   };
 
+  @action
   public onMouseMove = (e: any) => {
     const { selectedTab } = this;
 
@@ -634,7 +625,7 @@ export class TabsStore {
     }
   };
 
-  public async revertClosed() {
-    await this.addTab({ active: true, url: this.closedUrl });
+  public revertClosed() {
+    this.addTab({ active: true, url: this.closedUrl });
   }
 }

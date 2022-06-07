@@ -55,6 +55,8 @@
     </div>
 
     <script>
+      document.body.style.backgroundColor =
+        window.theme['pages.backgroundColor'];
 
       const url = window.errorURL;
 
@@ -64,6 +66,11 @@
       const titleEl = document.getElementById('main-title');
       const descriptionEl = document.getElementById('main-description');
       const iconEl = document.getElementById('main-icon');
+
+      if (window.theme['pages.lightForeground']) {
+        document.body.style.color = 'rgba(255, 255, 255, 0.54)';
+        iconEl.style.filter = 'invert(1)';
+      }
 
       if (window.location.href.split('/').length === 4) {
         errorCode = window.location.href.split('/')[3];

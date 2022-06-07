@@ -31,14 +31,13 @@ export class View {
   public isNewTab = false;
   public homeUrl: string;
   public favicon = '';
-  public color = '';
   public incognito = false;
 
   public errorURL = '';
 
   private hasError = false;
 
-  private readonly window: AppWindow;
+  private window: AppWindow;
 
   public bounds: any;
 
@@ -52,15 +51,7 @@ export class View {
   };
 
   public requestedAuth: IAuthInfo;
-  public requestedPermission: {
-    name: string;
-    url: string;
-    details: {
-      isMainFrame: boolean;
-      requestingUrl: string;
-      [key: string]: any;
-    };
-  };
+  public requestedPermission: any;
 
   private historyQueue = new Queue();
 
@@ -70,18 +61,16 @@ export class View {
     this.browserView = new BrowserView({
       webPreferences: {
         preload: `${app.getAppPath()}/build/view-preload.bundle.js`,
-        nodeIntegration: false,
-        contextIsolation: true,
-        sandbox: true,
+        nodeIntegration: true,
+        contextIsolation: false,
         partition: incognito ? 'view_incognito' : 'persist:view',
         plugins: true,
         nativeWindowOpen: true,
         webSecurity: true,
-        javascript: true,
+        javascript: true
       },
     });
-
-    this.browserView.setBackgroundColor('#FFFFFFFF');
+    require('@electron/remote/main').enable(this.browserView.webContents);
 
     this.incognito = incognito;
 
@@ -105,7 +94,7 @@ export class View {
       },
     );
 
-    ipcMain.handle(`get-error-url-${this.id}`, async () => {
+    ipcMain.handle(`get-error-url-${this.id}`, async (e) => {
       return this.errorURL;
     });
 
@@ -120,69 +109,60 @@ export class View {
         .browserView.webContents.send('found-in-page', result);
     });
 
-    this.webContents.addListener('page-title-updated', async (e, title) => {
+    this.webContents.addListener('page-title-updated', (e, title) => {
       this.window.updateTitle();
-      await this.updateData();
+      this.updateData();
 
       this.emitEvent('title-updated', title);
-      await this.updateURL(this.webContents.getURL());
+      this.updateURL(this.webContents.getURL());
     });
 
     this.webContents.addListener('did-navigate', async (e, url) => {
-      this.browserView.setBackgroundColor('#FFFFFFFF');
+      console.log(url);
       this.emitEvent('did-navigate', url);
       await this.addHistoryItem(url);
-      await this.updateURL(url);
+      this.updateURL(url);
     });
 
     this.webContents.addListener(
       'did-navigate-in-page',
       async (e, url, isMainFrame) => {
+        console.log('2', url);
         if (isMainFrame) {
-          this.browserView.setBackgroundColor('#FFFFFFFF');
-          this.window.updateTitle();
-          await this.updateData();
-
-          this.emitEvent(
-            'title-updated',
-            this.browserView.webContents.getTitle(),
-          );
           this.emitEvent('did-navigate', url);
 
           await this.addHistoryItem(url, true);
-          await this.updateURL(url);
+          this.updateURL(url);
         }
       },
     );
 
-    this.webContents.addListener('did-stop-loading', async () => {
-      this.browserView.setBackgroundColor('#FFFFFFFF');
+    this.webContents.addListener('did-stop-loading', () => {
       this.updateNavigationState();
       this.emitEvent('loading', false);
-      await this.updateURL(this.webContents.getURL());
+      this.updateURL(this.webContents.getURL());
     });
 
-    this.webContents.addListener('did-start-loading', async () => {
-      this.browserView.setBackgroundColor('#FFFFFFFF');
+    this.webContents.addListener('did-start-loading', () => {
       this.hasError = false;
       this.updateNavigationState();
       this.emitEvent('loading', true);
-      await this.updateURL(this.webContents.getURL());
+      this.updateURL(this.webContents.getURL());
     });
 
     this.webContents.addListener('did-start-navigation', async (e, ...args) => {
-      this.browserView.setBackgroundColor('#FFFFFFFF');
       this.updateNavigationState();
 
       this.favicon = '';
 
       this.emitEvent('load-commit', ...args);
-      await this.updateURL(this.webContents.getURL());
+      this.updateURL(this.webContents.getURL());
     });
 
     this.webContents.on(
       'did-start-navigation',
       (e, url, isInPlace, isMainFrame) => {
+        console.log('3', url);
         if (!isMainFrame) return;
         const newUA = getUserAgentForURL(this.webContents.userAgent, url);
         if (this.webContents.userAgent !== newUA) {
@@ -193,11 +173,11 @@ export class View {
 
     this.webContents.addListener(
       'new-window',
-      async (e, url, frameName, disposition) => {
+      (e, url, frameName, disposition) => {
         if (disposition === 'new-window') {
           if (frameName === '_self') {
             e.preventDefault();
-            await this.window.viewManager.selected.webContents.loadURL(url);
+            this.window.viewManager.selected.webContents.loadURL(url);
           } else if (frameName === '_blank') {
             e.preventDefault();
             this.window.viewManager.create(
@@ -213,14 +193,14 @@ export class View {
           this.window.viewManager.create({ url, active: true }, true);
         } else if (disposition === 'background-tab') {
           e.preventDefault();
-          this.window.viewManager.create({ url, active: true }, true);
+          this.window.viewManager.create({ url, active: false }, true);
         }
       },
     );
 
     this.webContents.addListener(
       'did-fail-load',
-      async (e, errorCode, errorDescription, validatedURL, isMainFrame) => {
+      (e, errorCode, errorDescription, validatedURL, isMainFrame) => {
         console.error(errorCode, errorDescription, validatedURL, isMainFrame);
         // ignore -3 (ABORTED) - An operation was aborted (due to user action).
         if (isMainFrame && errorCode !== -3) {
@@ -228,7 +208,7 @@ export class View {
 
           this.hasError = true;
 
-          await this.webContents.loadURL(
+          this.webContents.loadURL(
             `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${errorCode}`,
           );
         }
@@ -240,7 +220,7 @@ export class View {
       async (e, favicons) => {
         this.favicon = favicons[0];
 
-        await this.updateData();
+        this.updateData();
 
         try {
           let fav = this.favicon;
@@ -252,7 +232,7 @@ export class View {
           this.emitEvent('favicon-updated', fav);
         } catch (e) {
           this.favicon = '';
-          console.error(e);
+          // console.error(e);
         }
       },
     );
@@ -285,9 +265,10 @@ export class View {
         certificate: Electron.Certificate,
         callback: Function,
       ) => {
+        // TODO: properly handle insecure websites.
         event.preventDefault();
         this.errorURL = url;
-        await this.webContents.loadURL(
+        this.webContents.loadURL(
           `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${error}`,
         );
         callback(false);
@@ -304,9 +285,7 @@ export class View {
 
     if (url.startsWith(NEWTAB_URL)) this.isNewTab = true;
 
-    (async () => {
-      await this.webContents.loadURL(url);
-    })();
+    this.webContents.loadURL(url);
 
     this.browserView.setAutoResize({
       width: true,
@@ -402,7 +381,8 @@ export class View {
     }
   }
 
-  public updateURL = async (url: string) => {
+  public updateURL = (url: string) => {
+    console.log(this.lastUrl, url);
     if (this.lastUrl === url) return;
 
     this.emitEvent('url-updated', this.hasError ? this.errorURL : url);
@@ -411,9 +391,9 @@ export class View {
 
     this.isNewTab = url.startsWith(NEWTAB_URL);
 
-    await this.updateData();
+    this.updateData();
 
-    if (process.env.ENABLE_AUTOFILL) await this.updateCredentials();
+    if (process.env.ENABLE_AUTOFILL) this.updateCredentials();
 
     this.updateBookmark();
   };
@@ -432,9 +412,9 @@ export class View {
     if (!this.incognito) {
       const id = this.lastHistoryId;
       if (id) {
-        const { title, color, url, favicon } = this;
+        const { title, url, favicon } = this;
 
-        await this.historyQueue.enqueue(async () => {
+        this.historyQueue.enqueue(async () => {
           await Application.instance.storage.update({
             scope: 'history',
             query: {
@@ -442,7 +422,6 @@ export class View {
             },
             value: {
               title,
-              color,
               url,
               favicon,
             },

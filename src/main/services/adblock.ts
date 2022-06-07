@@ -32,6 +32,7 @@ let adblockRunning = false;
 let adblockInitialized = false;
 
 export const runAdblockService = async (ses: Electron.Session) => {
+  console.log();
   if (!adblockInitialized) {
     adblockInitialized = true;
     await loadFilters();

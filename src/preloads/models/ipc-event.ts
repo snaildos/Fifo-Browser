@@ -4,8 +4,8 @@ import { ipcRenderer } from 'electron';
 import { hashCode } from '~/utils/string';
 
 export class IpcEvent {
-  private readonly scope: string;
-  private readonly name: string;
+  private scope: string;
+  private name: string;
   private callbacks: Function[] = [];
   private listener = false;
 

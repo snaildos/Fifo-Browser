@@ -44,9 +44,7 @@ export class ITab {
 
   public isPlaying = false;
 
-  public title = 'New Tab';
-
-  public color = '';
+  public title = 'New tab';
 
   public loading = true;
 
@@ -84,11 +82,6 @@ export class ITab {
     id: number,
   ) {
     makeObservable(this, {
-      updateData: action,
-      select: action,
-      setLeft: action,
-      setWidth: action,
-      close: action,
       addressbarValue: observable,
       url: observable,
       favicon: observable,
@@ -99,7 +92,6 @@ export class ITab {
       isMuted: observable,
       isPlaying: observable,
       title: observable,
-      color: observable,
       blockedAds: observable,
       hasCredentials: observable,
       isSelected: computed,
@@ -117,8 +109,8 @@ export class ITab {
     }
 
     if (active) {
-      requestAnimationFrame(async () => {
-        await this.select();
+      requestAnimationFrame(() => {
+        this.select();
       });
     }
 
@@ -131,6 +123,7 @@ export class ITab {
     }
   }
 
+  @action
   public async updateData() {
     if (!store.isIncognito) {
       await store.startupTabs.addStartupTabItem({
@@ -140,7 +133,6 @@ export class ITab {
         favicon: this.favicon,
         pinned: !!this.isPinned,
         title: this.title,
-        color: this.color,
         isUserDefined: false,
         order: store.tabs.list.indexOf(this),
       });
@@ -151,6 +143,7 @@ export class ITab {
     return store.tabGroups.getGroupById(this.tabGroupId);
   }
 
+  @action
   public async select() {
     if (!this.isClosing) {
       store.tabs.selectedTabId = this.id;
@@ -166,7 +159,6 @@ export class ITab {
       );
 
       if (focused) {
-        if (!store.inputRef) return;
         store.inputRef.focus();
         store.inputRef.setSelectionRange(
           this.addressbarSelectionRange[0],
@@ -239,17 +231,20 @@ export class ITab {
     store.tabs.updateTabsBounds(true);
   }
 
+  @action
   public setLeft(left: number, animation: boolean) {
     animateTab('translateX', left, this.ref.current, animation);
     this.left = left;
   }
 
+  @action
   public setWidth(width: number, animation: boolean) {
     animateTab('width', width, this.ref.current, animation);
     this.width = width;
   }
 
-  public async close() {
+  @action
+  public close() {
     store.tabs.closedUrl = this.url;
     store.tabs.canShowPreview = false;
     ipcRenderer.send(`hide-tab-preview-${store.windowId}`);
@@ -293,10 +288,10 @@ export class ITab {
         !store.tabs.scrollable
       ) {
         const nextTab = store.tabs.list[index + 1];
-        await nextTab.select();
+        nextTab.select();
       } else if (index - 1 >= 0 && !store.tabs.list[index - 1].isClosing) {
         const prevTab = store.tabs.list[index - 1];
-        await prevTab.select();
+        prevTab.select();
       }
     }
 

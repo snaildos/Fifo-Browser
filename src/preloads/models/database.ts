@@ -10,7 +10,7 @@ interface IAction<T> {
 }
 
 export class PreloadDatabase<T> {
-  private readonly scope: string;
+  private scope: string;
 
   public constructor(scope: string) {
     this.scope = scope;

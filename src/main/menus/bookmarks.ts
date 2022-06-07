@@ -5,14 +5,33 @@ import {
   nativeImage,
   NativeImage,
   MenuItemConstructorOptions,
+  app,
 } from 'electron';
+import { join } from 'path';
 import { IBookmark } from '~/interfaces';
 import { Application } from '../application';
 import { AppWindow } from '../windows/app';
 import { showAddBookmarkDialog } from '../dialogs/add-bookmark';
 
+function getPath(file: string) {
+  if (process.env.NODE_ENV === 'development') {
+    return join(
+      app.getAppPath(),
+      'src',
+      'renderer',
+      'resources',
+      'icons',
+      `${file}.png`,
+    );
+  } else {
+    const path = require(`~/renderer/resources/icons/${file}.png`);
+    return join(app.getAppPath(), `build`, path);
+  }
+}
+
 function getIcon(
-  favicon: string | undefined
+  favicon: string | undefined,
+  isFolder: boolean,
 ): NativeImage | string {
   if (favicon) {
     let dataURL = Application.instance.storage.favicons.get(favicon);
@@ -25,12 +44,26 @@ function getIcon(
         dataURL = split.join(':image/');
       }
 
-      return nativeImage
+      const image = nativeImage
         .createFromDataURL(dataURL)
         .resize({ width: 16, height: 16 });
+      return image;
     }
   }
-  return undefined
+
+  if (Application.instance.settings.object.theme === 'fifo-dark') {
+    if (isFolder) {
+      return getPath('folder_light');
+    } else {
+      return getPath('page_light');
+    }
+  } else {
+    if (isFolder) {
+      return getPath('folder_dark');
+    } else {
+      return getPath('page_dark');
+    }
+  }
 }
 
 export function createDropdown(
@@ -49,7 +82,7 @@ export function createDropdown(
           }
         : undefined,
       label: title,
-      icon: getIcon(favicon),
+      icon: getIcon(favicon, isFolder),
       submenu: isFolder ? createDropdown(appWindow, _id, bookmarks) : undefined,
       id: _id,
     }),
@@ -83,7 +116,6 @@ export function createMenu(appWindow: AppWindow, item: IBookmark) {
         showAddBookmarkDialog(appWindow.win, windowBounds.width - 20, 72, {
           url: item.url,
           title: item.title,
-          color: item.color,
           bookmark: item,
           favicon: item.favicon,
         });
@@ -91,8 +123,8 @@ export function createMenu(appWindow: AppWindow, item: IBookmark) {
     },
     {
       label: 'Delete',
-      click: async () => {
-        await Application.instance.storage.removeBookmark(item._id);
+      click: () => {
+        Application.instance.storage.removeBookmark(item._id);
       },
     },
   ];

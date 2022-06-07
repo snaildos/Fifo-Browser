@@ -12,7 +12,6 @@ import { StyledAddressBar, InputContainer, Input, Text } from './style';
 import { ICON_SEARCH } from '~/renderer/constants';
 import { SiteButtons } from '../SiteButtons';
 import { DEFAULT_TITLEBAR_HEIGHT } from '~/constants/design';
-import { NEWTAB_URL } from '~/constants/tabs';
 
 let mouseUpped = false;
 
@@ -78,15 +77,14 @@ const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget;
     let url = value;
     if (value.trim() === '') {
-      callViewMethod(store.tabs.selectedTabId, 'loadURL', NEWTAB_URL);
+      callViewMethod(
+        store.tabs.selectedTabId,
+        'loadURL',
+        'https://tab.innatical.com',
+      );
       return;
     } else if (isURL(value)) {
-      url =
-        value.indexOf('://') === -1
-          ? value.startsWith('localhost')
-            ? `http://${value}`
-            : `https://${value}`
-          : value;
+      url = value.indexOf('://') === -1 ? `http://${value}` : value;
     } else {
       url = store.settings.searchEngine.url.replace('%s', value);
     }
@@ -133,50 +131,16 @@ const onBlur = (e: React.FocusEvent<HTMLInputElement>) => {
 };
 
 export const AddressBar = observer(() => {
-  const searchEngine = React.useMemo(() => {
-    try {
-      const url = new URL(store.addressbarValue);
-      const searchParams = new URLSearchParams(url.search);
-      switch (url.hostname.replace('www.', '')) {
-        case 'duckduckgo.com':
-          return searchParams.get('q');
-        case 'google.com':
-          return searchParams.get('q');
-        case 'bing.com':
-          return searchParams.get('q');
-        case 'yahoo.com':
-          return searchParams.get('p');
-        case 'ecosia.org':
-          return searchParams.get('q');
-        case 'startpage.com':
-          return searchParams.get('q');
-        case 'qwant.com':
-          return searchParams.get('q');
-        case 'swisscows.com':
-          return searchParams.get('q');
-        case 'ekoru.org':
-          return searchParams.get('q');
-      }
-    } catch {
-      return undefined;
-    }
-    return undefined;
-  }, [store.addressbarValue]);
-  const searchValue = React.useMemo(() => {
-    return searchEngine ?? store.addressbarValue;
-  }, [store.addressbarValue]);
   return (
     <StyledAddressBar
       ref={(r) => (addressbarRef = r)}
       focus={store.addressbarFocused}
-      color={store.tabs.selectedTab?.color}
     >
       <ToolbarButton
         toggled={false}
         icon={ICON_SEARCH}
         size={16}
         dense
-        inhertTextColor
         iconStyle={{ transform: 'scale(-1,1)' }}
       />
       <InputContainer>
@@ -191,24 +155,22 @@ export const AddressBar = observer(() => {
           onMouseUp={onMouseUp}
           onChange={onChange}
           placeholder="Search or type in a URL"
-          visible={!store.addressbarTextVisible || searchValue === ''}
-          value={searchValue}
+          visible={!store.addressbarTextVisible || store.addressbarValue === ''}
+          value={store.addressbarValue}
         ></Input>
-        <Text visible={store.addressbarTextVisible && searchValue !== ''}>
-          {searchEngine ? (
-            <div>{searchValue}</div>
-          ) : (
-            store.addressbarUrlSegments.map((item, key) => (
-              <div
-                key={key}
-                style={{
-                  opacity: item.grayOut ? 0.54 : 1,
-                }}
-              >
-                {item.value}
-              </div>
-            ))
-          )}
+        <Text
+          visible={store.addressbarTextVisible && store.addressbarValue !== ''}
+        >
+          {store.addressbarUrlSegments.map((item, key) => (
+            <div
+              key={key}
+              style={{
+                opacity: item.grayOut ? 0.54 : 1,
+              }}
+            >
+              {item.value}
+            </div>
+          ))}
         </Text>
       </InputContainer>
       {!store.isCompact && <SiteButtons />}

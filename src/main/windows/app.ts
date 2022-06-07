@@ -30,6 +30,7 @@ export class AppWindow {
         plugins: true,
         // TODO: enable sandbox, contextIsolation and disable nodeIntegration to improve security
         nodeIntegration: true,
+        sandbox: false,
         contextIsolation: false,
         javascript: true,
       },
@@ -95,11 +96,11 @@ export class AppWindow {
     });
 
     const resize = () => {
-      setTimeout(async () => {
+      setTimeout(() => {
         if (process.platform === 'linux') {
-          await this.viewManager.select(this.viewManager.selectedId, false);
+          this.viewManager.select(this.viewManager.selectedId, false);
         } else {
-          await this.viewManager.fixBounds();
+          this.viewManager.fixBounds();
         }
       });
 
@@ -114,7 +115,7 @@ export class AppWindow {
     this.win.on('restore', resize);
     this.win.on('unmaximize', resize);
 
-    this.win.on('close', async (event: Electron.Event) => {
+    this.win.on('close', (event: Electron.Event) => {
       const { object: settings } = Application.instance.settings;
 
       if (settings.warnOnQuit && this.viewManager.views.size > 1) {
@@ -148,7 +149,7 @@ export class AppWindow {
       if (
         incognito &&
         Application.instance.windows.list.filter((x) => x.incognito).length ===
-          1
+        1
       ) {
         Application.instance.sessions.clearCache('incognito');
         Application.instance.sessions.unloadIncognitoExtensions();
@@ -157,29 +158,25 @@ export class AppWindow {
       Application.instance.windows.list = Application.instance.windows.list.filter(
         (x) => x.win.id !== this.win.id,
       );
-
-      Application.instance.windows.current = undefined;
     });
 
     // this.webContents.openDevTools({ mode: 'detach' });
 
-    (async () => {
-      if (process.env.NODE_ENV === 'development') {
-        this.webContents.openDevTools({ mode: 'detach' });
-        await this.win.loadURL('http://localhost:4444/app.html');
-      } else {
-        await this.win.loadURL(join('file://', app.getAppPath(), 'build/app.html'));
-      }
-    })()
+    if (process.env.NODE_ENV === 'development') {
+      this.webContents.openDevTools({ mode: 'detach' });
+      this.win.loadURL('http://localhost:4444/app.html');
+    } else {
+      this.win.loadURL(join('file://', app.getAppPath(), 'build/app.html'));
+    }
 
-    this.win.on('enter-full-screen', async() => {
+    this.win.on('enter-full-screen', () => {
       this.send('fullscreen', true);
-      await this.viewManager.fixBounds();
+      this.viewManager.fixBounds();
     });
 
-    this.win.on('leave-full-screen', async () => {
+    this.win.on('leave-full-screen', () => {
       this.send('fullscreen', false);
-      await this.viewManager.fixBounds();
+      this.viewManager.fixBounds();
     });
 
     this.win.on('enter-html-full-screen', () => {
