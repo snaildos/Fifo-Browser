@@ -29,13 +29,21 @@ const appConfig = getConfig(getBaseConfig('app'), {
   plugins: dev
     ? [
       new webpack.HotModuleReplacementPlugin(),
+      new NodePolyfillPlugin({excludeAliases: ['process']}),
       new ReactRefreshWebpackPlugin(),
       new NodePolyfillPlugin({ excludeAliases: ['process'] }),
       new webpack.DefinePlugin({
         process: { env: {} }
       })
     ]
-    : [],
+    : [
+      new NodePolyfillPlugin({excludeAliases: ['process']}),
+      new webpack.DefinePlugin({
+        'process.env': {
+          NODE_ENV: JSON.stringify('production')
+        }
+      }),
+    ],
 });
 
 const extPopupConfig = getConfig({
