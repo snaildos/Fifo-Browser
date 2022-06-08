@@ -52,12 +52,13 @@ export const DEFAULT_SETTINGS: ISettings = {
   warnOnQuit: false,
   version: 2,
   downloadsDialog: false,
-  downloadsPath:
-    process.type !== 'browser'
-      ? require('@electron/remote').app.getPath('downloads')
-      : app
-      ? app.getPath('downloads')
-      : '',
+  downloadsPath: app
+    ? app.getPath('downloads')
+    : process.type !== 'browser' && process.type !== 'renderer'
+    ? require('@electron/remote').app.getPath('downloads')
+    : app
+    ? app.getPath('downloads')
+    : '',
   doNotTrack: true,
   globalPrivacyControl: true,
   topBarVariant: 'default',
