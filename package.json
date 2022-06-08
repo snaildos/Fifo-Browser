@@ -35,6 +35,7 @@
     "compile-windows": "npm run build && electron-builder -w",
     "compile-darwin": "npm run build && electron-builder -m",
     "compile-linux": "npm run build && electron-builder -l",
+    "compile-pacman": "npm run build && electron-builder -l",
     "deploy": "npm run build && electron-builder build --win --linux appimage snap --publish never",
     "lint": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\"",
     "lint-fix": "eslint \"src/**/*.ts*\" \"src/**/*.tsx*\" --fix",

@@ -13,7 +13,7 @@
   "files": ["build/**/*", "package.json", "static/**/*"],
   "publish": "github",
   "linux": {
-    "category": "Network",
+    "category": "Browser",
     "target": [
       {
         "target": "AppImage",
@@ -21,6 +21,10 @@
       },
       {
         "target": "deb",
+        "arch": ["x64"]
+      }
+      {
+        "target": "pacman",
         "arch": ["x64"]
       }
     ]
