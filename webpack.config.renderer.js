@@ -31,7 +31,6 @@ const appConfig = getConfig(getBaseConfig('app'), {
       new webpack.HotModuleReplacementPlugin(),
       new NodePolyfillPlugin({excludeAliases: ['process']}),
       new ReactRefreshWebpackPlugin(),
-      new NodePolyfillPlugin({ excludeAliases: ['process'] }),
       new webpack.DefinePlugin({
         process: { env: {} }
       })
