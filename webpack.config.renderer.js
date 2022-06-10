@@ -16,7 +16,6 @@ const PORT = 4444;
 
 const appConfig = getConfig(getBaseConfig('app'), {
   target: 'web',
-
   devServer: {
     static: {
       directory: join(__dirname, 'build'),
@@ -27,22 +26,12 @@ const appConfig = getConfig(getBaseConfig('app'), {
   },
 
   plugins: dev
-    ? [
+  ? [
+      new NodePolyfillPlugin({excludeAliases: ['process']}),
       new webpack.HotModuleReplacementPlugin(),
-      new NodePolyfillPlugin({excludeAliases: ['process']}),
       new ReactRefreshWebpackPlugin(),
-      new webpack.DefinePlugin({
-        process: { env: {} }
-      })
     ]
-    : [
-      new NodePolyfillPlugin({excludeAliases: ['process']}),
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: JSON.stringify('production')
-        }
-      }),
-    ],
+  : [],
 });
 
 const extPopupConfig = getConfig({

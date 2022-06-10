@@ -68,7 +68,7 @@
     "babel-loader": "^8.2.2",
     "concurrently": "^6.0.2",
     "copy-to-clipboard": "3.3.1",
-    "copy-webpack-plugin": "10.2.1",
+    "copy-webpack-plugin": "10.2.4",
     "copyright-header": "^0.4.6",
     "cross-env": "7.0.3",
     "electron": "^17.0.0",
