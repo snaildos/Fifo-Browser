@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 import store from '../../store';
 import { ThemeProvider } from 'styled-components';
-import { Wrapper, Content, IconItem, Menu, Image, RightBar } from './style';
+import { Wrapper, Content, IconItem, Menu, Image, RightBar, StyledForecast } from './style';
 import { TopSites } from '../TopSites';
 import { News } from '../News';
 import { Preferences } from '../Preferences';
@@ -18,7 +18,11 @@ import {
   ICON_EXTENSIONS,
 } from '~/renderer/constants/icons';
 import { WebUIStyle } from '~/renderer/mixins/default-styles';
+import { useQuery } from 'react-query';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import { getWebUIURL } from '~/common/webui';
+
+const queryClient = new QueryClient();
 
 window.addEventListener('mousedown', () => {
   store.dashboardSettingsVisible = false;
@@ -40,13 +44,36 @@ const onRefreshClick = () => {
   }, 50);
 };
 
+const Forecast = () => {
+  const { data: forecast } = useQuery(['weather'], async () => {
+    try {
+      const res = await (await fetch(`https://wttr.in/?format=%c%20%C`)).text();
+      return res;
+    } catch {
+      return 'Failed to load weather';
+    }
+  });
+  
+  return (
+    <StyledForecast>
+      {new Date().toLocaleDateString([], {
+        month: 'long',
+        day: '2-digit',
+      })}
+      {' - '}
+      {forecast}
+    </StyledForecast>
+  );
+};
+
 export default observer(() => {
   if (store.settings.notnew != "false") {
     window.location.replace(getWebUIURL("welcome"))
-
   }
 
+
   return (
+    <QueryClientProvider client={queryClient}>
     <ThemeProvider theme={{ ...store.theme }}>
       <div>
         <WebUIStyle />
@@ -56,7 +83,10 @@ export default observer(() => {
         <Wrapper fullSize={store.fullSizeImage}>
 
           <Image src={store.imageVisible ? store.image : ''}></Image>
-          <Content>{store.topSitesVisible && <TopSites></TopSites>}</Content>
+          <Content>
+          <Forecast />
+          {store.topSitesVisible && <TopSites></TopSites>}
+          </Content>
 
           <RightBar>
             <IconItem
@@ -109,5 +139,6 @@ export default observer(() => {
         )}
       </div>
     </ThemeProvider>
+    </QueryClientProvider>
   );
 });
