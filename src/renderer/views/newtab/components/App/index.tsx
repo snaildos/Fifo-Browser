@@ -33,7 +33,8 @@ const onIconClick = (name: string) => () => {
 };
 
 const onExtension = () => {
-  window.location.href = 'https://chrome.google.com/webstore/category/extensions';
+  console.log('todo')
+  // window.location.href = 'https://chrome.google.com/webstore/category/extensions';
 };
 
 const onTuneClick = () => {
@@ -130,9 +131,9 @@ export default observer(() => {
                 icon={ICON_BOOKMARKS}
                 onClick={onIconClick('bookmarks')}
               ></IconItem>
-<IconItem
+              <IconItem
                 imageSet={store.imageVisible}
-                title="Extensiones"
+                title="Extensions"
                 icon={ICON_EXTENSIONS}
                 onClick={onExtension()}
               ></IconItem>
