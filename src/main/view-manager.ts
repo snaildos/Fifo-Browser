@@ -221,6 +221,28 @@ export class ViewManager extends EventEmitter {
     // TODO: this.emitZoomUpdate(false);
   }
 
+  public changeZoom(zoomDirection: 'in' | 'out', e?: any) {
+    const newZoomFactor =
+        this.selected.webContents.zoomFactor +
+        (zoomDirection === 'in'
+          ? ZOOM_FACTOR_INCREMENT
+          : -ZOOM_FACTOR_INCREMENT);
+
+      if (
+        newZoomFactor <= ZOOM_FACTOR_MAX &&
+        newZoomFactor >= ZOOM_FACTOR_MIN
+      ) {
+        this.selected.webContents.zoomFactor = newZoomFactor;
+        this.selected.emitEvent(
+          'zoom-updated',
+          this.selected.webContents.zoomFactor,
+        );
+      } else {
+        e?.preventDefault();
+      }
+      this.emitZoomUpdate();
+  } 
+
   public async fixBounds() {
     const view = this.selected;
 

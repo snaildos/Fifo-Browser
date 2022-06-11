@@ -9,7 +9,6 @@ import { getTheme } from '~/utils/themes';
 import { Textfield } from '~/renderer/components/Textfield';
 
 export type SettingsSection =
-  | 'general'
   | 'appearance'
   | 'autofill'
   | 'address-bar'
@@ -62,7 +61,8 @@ export class Store {
     | 'edit-password'
     | 'privacy' = null;
 
-  public selectedSection: SettingsSection = 'general';
+  
+  public selectedSection: SettingsSection = 'appearance';
 
   public settings: ISettings = { ...(window as any).settings };
 

@@ -13,7 +13,6 @@ export const showAddBookmarkDialog = async (
   data?: {
     url: string;
     title: string;
-    color: string;
     bookmark?: IBookmark;
     favicon?: string;
   },
@@ -22,13 +21,11 @@ export const showAddBookmarkDialog = async (
     const {
       url,
       title,
-      color,
       bookmark,
       favicon,
     } = Application.instance.windows.current.viewManager.selected;
     data = {
       url,
-      color,
       title,
       bookmark,
       favicon,
