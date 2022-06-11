@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 
 import store from '../../store';
 import { ThemeProvider } from 'styled-components';
-import { Wrapper, Content, IconItem, Menu, Image, RightBar, StyledForecast } from './style';
+import { Wrapper, Content, IconItem, Menu, Image, RightBar, StyledForecast, StyledTime } from './style';
 import { TopSites } from '../TopSites';
 import { News } from '../News';
 import { Preferences } from '../Preferences';
@@ -32,6 +32,10 @@ const onIconClick = (name: string) => () => {
   window.location.href = getWebUIURL(name);
 };
 
+const onExtension = () => {
+  window.location.href = 'https://chrome.google.com/webstore/category/extensions';
+};
+
 const onTuneClick = () => {
   store.dashboardSettingsVisible = !store.dashboardSettingsVisible;
 };
@@ -42,6 +46,14 @@ const onRefreshClick = () => {
     localStorage.setItem('imageDate', '');
     store.loadImage();
   }, 50);
+};
+
+const Time = () => {
+  return (
+    <StyledTime>
+      <h1>{new Date().toLocaleTimeString([], { timeStyle: 'short' })}</h1>
+    </StyledTime>
+  );
 };
 
 const Forecast = () => {
@@ -84,6 +96,7 @@ export default observer(() => {
 
           <Image src={store.imageVisible ? store.image : ''}></Image>
           <Content>
+          <Time />
           <Forecast />
           {store.topSitesVisible && <TopSites></TopSites>}
           </Content>
@@ -91,7 +104,7 @@ export default observer(() => {
           <RightBar>
             <IconItem
               imageSet={store.imageVisible}
-              title="Configuracion de el dashboard"
+              title="Configure landing page"
               icon={ICON_TUNE}
               onMouseDown={(e) => e.stopPropagation()}
               onClick={onTuneClick}
@@ -101,7 +114,7 @@ export default observer(() => {
             <Menu>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Configuracion"
+                title="Configuration"
                 icon={ICON_SETTINGS}
                 onClick={onIconClick('settings')}
               ></IconItem>
@@ -113,21 +126,22 @@ export default observer(() => {
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Marcadores"
+                title="Bookmark"
                 icon={ICON_BOOKMARKS}
                 onClick={onIconClick('bookmarks')}
               ></IconItem>
-              {/* <IconItem
+<IconItem
+                imageSet={store.imageVisible}
+                title="Extensiones"
+                icon={ICON_EXTENSIONS}
+                onClick={onExtension()}
+              ></IconItem>
+              {/*
+              <IconItem
                 imageSet={store.imageVisible}
                 title="Descargas"
                 icon={ICON_DOWNLOAD}
                 onClick={onIconClick('downloads')}
-              ></IconItem>
-              <IconItem
-                imageSet={store.imageVisible}
-                title="Extensiones"
-                icon={ICON_EXTENSIONS}
-                onClick={onIconClick('extensions')}
               ></IconItem> */}
             </Menu>
           )}
