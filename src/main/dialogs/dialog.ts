@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { BrowserView, app, ipcMain, BrowserWindow } from 'electron';
 import { join } from 'path';
 import { roundifyRectangle } from '../services/dialogs-service';
@@ -36,7 +34,7 @@ export class PersistentDialog {
   public name: string;
 
   private timeout: any;
-  private hideTimeout: number;
+  private readonly hideTimeout: number;
 
   private loaded = false;
   private showCallback: any = null;
@@ -44,7 +42,6 @@ export class PersistentDialog {
   public constructor({
     bounds,
     name,
-    devtools,
     hideTimeout,
     webPreferences,
   }: IOptions) {
@@ -78,13 +75,15 @@ export class PersistentDialog {
       }
     });
 
-    if (process.env.NODE_ENV === 'development') {
-      this.webContents.loadURL(`http://localhost:4444/${this.name}.html`);
-    } else {
-      this.webContents.loadURL(
-        join('file://', app.getAppPath(), `build/${this.name}.html`),
-      );
-    }
+    (async () => {
+      if (process.env.NODE_ENV === 'development') {
+        await this.webContents.loadURL(`http://localhost:4444/${this.name}.html`);
+      } else {
+        await this.webContents.loadURL(
+          join('file://', app.getAppPath(), `build/${this.name}.html`),
+        );
+      }
+    })()
   }
 
   public get webContents() {

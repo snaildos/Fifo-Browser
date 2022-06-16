@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { ipcRenderer } from 'electron';
 import { makeObservable, observable } from 'mobx';
 import { IDownloadItem } from '~/interfaces';
@@ -40,7 +38,7 @@ export class Store extends DialogStore {
     ipcRenderer.on('max-height', (e, height) => {
       this.maxHeight = height;
     });
-  }
+}
 
   public async init() {
     this.downloads = await ipcRenderer.invoke('get-downloads');

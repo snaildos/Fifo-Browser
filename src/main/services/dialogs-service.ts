@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { BrowserView, app, ipcMain } from 'electron';
 import { join } from 'path';
 import { SearchDialog } from '../dialogs/search';
