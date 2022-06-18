@@ -50,7 +50,7 @@ export const DEFAULT_SETTINGS: ISettings = {
     type: 'empty',
   },
   warnOnQuit: false,
-  version: 2,
+  version: 3,
   downloadsDialog: false,
   downloadsPath: app
     ? app.getPath('downloads')

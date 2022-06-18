@@ -82,6 +82,10 @@ const Forecast = () => {
 export default observer(() => {
   if (store.settings.notnew != "false") {
     window.location.replace(getWebUIURL("welcome"))
+  } else {
+    if (store.settings.changelog != "1.2.0") {
+      window.location.replace(getWebUIURL("changelog"))
+  }
   }
 
 
