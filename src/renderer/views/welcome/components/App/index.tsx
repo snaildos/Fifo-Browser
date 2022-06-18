@@ -31,7 +31,6 @@ const alreadyMaded = () => {
   nextPage()
 }
 
-
 const nextPage = () => {
   const _page = JSON.stringify(page)
   document.getElementsByClassName("banner"+_page)[0].classList.remove("active")
@@ -81,6 +80,7 @@ const themeset = (mode: string) => {
 
 const commit = () => {
   store.settings.notnew = "false"
+  store.settings.changelog = "1.2.0"
   store.save()
   window.location.replace(getWebUIURL('newtab'))
 }

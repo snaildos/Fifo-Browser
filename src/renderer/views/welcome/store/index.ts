@@ -28,6 +28,9 @@ export class Store {
   public menuLeft = 0;
 
   @observable
+  public changelog = '';
+  
+  @observable
   public menuTop = 0;
 
   @observable
