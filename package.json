@@ -33,7 +33,7 @@
     "postinstall": "patch-package",
     "watch": "concurrently \"npm run dev-renderer\" \"npm run dev-webpack\"",
     "compile-windows": "npm run build && electron-builder -w",
-    "compile-darwin": "npm run build && electron-builder -m",
+    "compile-darwin": "npm run build && electron-builder -m --universal",
     "compile-linux": "npm run build && electron-builder -l",
     "compile-pacman": "npm run build && electron-builder --linux pacman",
     "deploy": "npm run build && electron-builder build --win --linux appimage snap --publish never",
