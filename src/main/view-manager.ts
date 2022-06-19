@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcMain } from 'electron';
 import { View } from './view';
 import { AppWindow } from './windows';

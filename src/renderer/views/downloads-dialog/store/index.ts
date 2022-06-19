@@ -1,3 +1,5 @@
+/* Copyright (c) 2021-2022 SnailDOS */
+
 import { ipcRenderer } from 'electron';
 import { makeObservable, observable } from 'mobx';
 import { IDownloadItem } from '~/interfaces';
