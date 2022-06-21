@@ -9,7 +9,7 @@
   
 [![Downloads](https://img.shields.io/github/downloads/snaildos/Fifo-Browser/total.svg?style=flat-square)](https://fifo.snaildos.com)
 
-Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React` that is mean't to be secure. It's a more, optimized, more updated fork of Wexond. This browser is meant for office work, gaming, research and is a secure private browser. Fifo aims to be compatible with windows and linux. 
+Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React` that is mean't to be secure. It's a more, optimized, more updated fork of Wexond. This browser is meant for office work, gaming, research and is a secure private browser. Fifo aims to be compatible with windows and linux (MacOS manual build is unsupported but works). 
 FIFO (Fly In Fly Out for your data.)
 
 
