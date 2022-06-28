@@ -1,8 +1,7 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { VIEW_Y_OFFSET } from '~/constants/design';
 import { BrowserWindow } from 'electron';
 import { Application } from '../application';
+import { IDialog } from '~/main/services/dialogs-service';
 
 export const requestPermission = (
   browserWindow: BrowserWindow,
@@ -11,7 +10,7 @@ export const requestPermission = (
   details: any,
   tabId: number,
 ): Promise<boolean> => {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     if (
       name === 'unknown' ||
       (name === 'media' && details.mediaTypes.length === 0) ||
@@ -26,7 +25,7 @@ export const requestPermission = (
 
     appWindow.viewManager.selected.requestedPermission = { name, url, details };
 
-    const dialog = Application.instance.dialogs.show({
+    const dialog: IDialog = await Application.instance.dialogs.show({
       name: 'permissions',
       browserWindow,
       getBounds: () => ({
@@ -40,6 +39,10 @@ export const requestPermission = (
         getTabInfo: (tabId) => {
           const tab = appWindow.viewManager.views.get(tabId);
           return tab.requestedPermission;
+        },
+        setTabInfo: (tabId, info) => {
+          const tab = appWindow.viewManager.views.get(tabId);
+          tab.requestedPermission = info;
         },
       },
       onWindowBoundsUpdate: (disposition) => {
