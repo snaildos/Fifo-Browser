@@ -33,8 +33,7 @@ const onIconClick = (name: string) => () => {
 };
 
 const onExtension = () => {
-  console.log('todo')
-  // window.location.href = 'https://chrome.google.com/webstore/category/extensions';
+  window.location.href = 'https://chrome.google.com/webstore/category/extensions';
 };
 
 const onTuneClick = () => {
