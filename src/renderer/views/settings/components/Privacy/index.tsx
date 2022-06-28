@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { Header, Row, Title, Control } from '../App/style';
 import { Button } from '~/renderer/components/Button';
-import store, { QuickRange } from '../../store';
+import store from '../../store';
 import { BLUE_500 } from '~/renderer/constants';
 import { observer } from 'mobx-react-lite';
 import { onSwitchChange } from '../../utils';

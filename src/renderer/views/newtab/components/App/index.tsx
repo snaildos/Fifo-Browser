@@ -32,12 +32,12 @@ const onIconClick = (name: string) => () => {
   window.location.href = getWebUIURL(name);
 };
 
-const onExtension = () => {
-  window.location.href = 'https://chrome.google.com/webstore/category/extensions';
-};
-
 const onTuneClick = () => {
   store.dashboardSettingsVisible = !store.dashboardSettingsVisible;
+};
+
+const onExtensionClick = () => {
+  window.location.href = 'https://chrome.google.com/webstore/category/extensions';
 };
 
 const onRefreshClick = () => {
@@ -138,7 +138,7 @@ export default observer(() => {
                 imageSet={store.imageVisible}
                 title="Extensions"
                 icon={ICON_EXTENSIONS}
-                onClick={onExtension()}
+                onClick={onExtensionClick}
               ></IconItem>
               {/*
               <IconItem

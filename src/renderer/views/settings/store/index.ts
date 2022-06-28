@@ -39,6 +39,7 @@ export class Store {
   };
 
   private _menuVisible = false;
+  sections: any;
 
   public get menuVisible() {
     return this._menuVisible;
