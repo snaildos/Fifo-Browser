@@ -25,7 +25,11 @@
 
 ### Miscellaneous
 
+-  Update package.json [[abcea4a](https://github.com/snaildos/Fifo-Browser/commit/abcea4a201c6baa07af4e7128044205ef5849f67)]
+-  Merge pull request [#94](https://github.com/snaildos/Fifo-Browser/issues/94) from snaildos/renovate/electron-builder-22.x [[2cd973e](https://github.com/snaildos/Fifo-Browser/commit/2cd973e318217001e145ef9950c16d01f6784adf)]
+- 📖 Update changelog [[ae3337c](https://github.com/snaildos/Fifo-Browser/commit/ae3337c0c21f38765886019e74f3f1887617544c)]
 - ©️ Add copyright headers [[4c5b10a](https://github.com/snaildos/Fifo-Browser/commit/4c5b10a1459ac6f992864dee31ca55b15ac7f978)]
+-  Update dependency electron-builder to v22.14.13 [[3b1e4e3](https://github.com/snaildos/Fifo-Browser/commit/3b1e4e3799e25bfae0017e319e08506e975d8677)]
 -  Upload file that I missed when uploading [[9e4089e](https://github.com/snaildos/Fifo-Browser/commit/9e4089ee3a86c4697a90c71b6e06146e5d183534)]
 -  Minor Browser Dialog optimizations [[ac96709](https://github.com/snaildos/Fifo-Browser/commit/ac96709f7420db45640b5a09c7fc8d546aaac73e)]
 -  Deprecate extension button for the moment [[1b8ff39](https://github.com/snaildos/Fifo-Browser/commit/1b8ff3992a4b24c8acac8629e8e78752506e9076)]
