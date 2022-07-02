@@ -49,7 +49,7 @@
 
   <body>
     <div class="main">
-      <div id="main-icon"></div>
+      <div id="main-icon"><img id="icon" alt="Page Unresolved" /></div>
       <div id="main-title"></div>
       <div id="main-description"></div>
       <div id="main-error-code"></div>
@@ -64,7 +64,7 @@
       const errorCodeEl = document.getElementById('main-error-code');
       const titleEl = document.getElementById('main-title');
       const descriptionEl = document.getElementById('main-description');
-      const iconEl = document.getElementById('main-icon');
+      const iconEl = document.getElementById('icon');
 
       if (window.location.href.split('/').length === 4) {
         errorCode = window.location.href.split('/')[3];
@@ -72,6 +72,8 @@
 
       const pageUnresolvedIcon =
         'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEgAAABIAQMAAABvIyEEAAAABlBMVEUAAABTU1OoaSf/AAAAAXRSTlMAQObYZgAAAENJREFUeF7tzbEJACEQRNGBLeAasBCza2lLEGx0CxFGG9hBMDDxRy/72O9FMnIFapGylsu1fgoBdkXfUHLrQgdfrlJN1BdYBjQQm3UAAAAASUVORK5CYII=';
+
+      iconEl.src = pageUnresolvedIcon;
 
       const info = {
         '-6': {
@@ -123,7 +125,7 @@
 
       const certificateError = {
         title: 'Your connection is not private',
-        description: `This website may be trying to steal information from <b>${url}</b>`,
+        description: `This website may be trying to steal information from <b>${url}</b>, The website certificate has exired, so we blocked connection with to the site.`,
         code: errorCode,
       };
 
@@ -133,7 +135,7 @@ const { title, description, code, icon } = isNetworkError
   ? certificateError
   : info?.[errorCode] ?? {
       title: 'Unknown error',
-      description: 'Something weird happened',
+      description: 'Something weird happened...',
       code: 'ERR_UNKNOWN',
     };
 
