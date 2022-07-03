@@ -1,6 +1,6 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
-import { ipcMain } from 'electron';
+import { dialog, ipcMain } from 'electron';
 import { View } from './view';
 import { AppWindow } from './windows';
 import { WEBUI_BASE_URL } from '~/constants/files';
@@ -74,7 +74,7 @@ export class ViewManager extends EventEmitter {
     
       const ext = extname(filePath);
     
-      webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
+      await webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
     });
 
     ipcMain.on('Print', () => {

@@ -29,7 +29,7 @@ export class Store extends DialogStore {
   }
 
   public async capturePage() {
-    return await remote.getCurrentWindow().capturePage().then(img => {
+    return await remote.getCurrentWindow().capturePage().then((img: { toDataURL: () => any; }) => {
       return img.toDataURL()
     })
   }
