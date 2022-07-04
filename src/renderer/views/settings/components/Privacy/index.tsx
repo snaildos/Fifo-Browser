@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Header, Row, Title, Control } from '../App/style';
 import { Button } from '~/renderer/components/Button';
 import store from '../../store';
-import { BLUE_500 } from '~/renderer/constants';
+import { BLUE_500, RED_500 } from '~/renderer/constants';
 import { observer } from 'mobx-react-lite';
 import { onSwitchChange } from '../../utils';
 import { Switch } from '~/renderer/components/Switch';
@@ -16,9 +16,8 @@ const onClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
   store.sections.map((data) =>
     data.items.map((item) => store.removeItems([item._id])),
   );
-
+  ipcRenderer.send('clear-browsing-data');
   // store.clear();
-  // TODO: ipcRenderer.send('clear-browsing-data');
 };
 
 const DoNotTrackToggle = observer(() => {
@@ -74,13 +73,39 @@ export const Privacy = () => {
   return (
     <>
       <Header>Privacy</Header>
+      <Row>
       <Button
         type="outlined"
         foreground={BLUE_500}
         onClick={onClearClick}
       >
-        Clear browsing data
+        Clear search history
       </Button>
+      <p>⠀</p>
+      <Button
+        type="outlined"
+        foreground={RED_500}
+        onClick={}
+      >
+        Clear favicon (WIP)
+      </Button>
+      <p>⠀</p>
+      <Button
+        type="outlined"
+        foreground={RED_500}
+        onClick={}
+      >
+        Clear suggestions (WIP)
+      </Button>
+      <p>⠀</p>
+      <Button
+        type="outlined"
+        foreground={RED_500}
+        onClick={}
+      >
+        Clear permissions (WIP)
+      </Button>
+      </Row>
       <GlobalPrivacyControlToggle />
       <DoNotTrackToggle />
     </>

@@ -116,8 +116,9 @@ export default observer(() => {
           </RangeItem>
           <div style={{ flex: 1 }} />
           <NavigationDrawer.Item icon={ICON_TRASH} onClick={onClearClick}>
-           Clear all history!
+           Clear search history
           </NavigationDrawer.Item>
+          <p>Keep in mind, This button only clears search history, not favicons nor suggestions. Please go to settings for advance clear features.</p>
         </NavigationDrawer>
         <Content onScroll={onScroll}>
           <HistorySections />

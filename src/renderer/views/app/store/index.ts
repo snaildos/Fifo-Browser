@@ -18,6 +18,7 @@ import { IBrowserAction } from '../models';
 import { NEWTAB_URL } from '~/constants/tabs';
 import { IURLSegment } from '~/interfaces/urls';
 import { BookmarkBarStore } from './bookmark-bar';
+import { NETWORK_ERROR_HOST, WEBUI_BASE_URL } from '~/constants/files';
 
 export class Store {
   public settings = new SettingsStore(this);
@@ -217,6 +218,10 @@ export class Store {
       this.navigationState = data;
     });
 
+    ipcRenderer.on('is-ui-page', (e, data) => {
+      this.isUIpage = data
+    })
+
     ipcRenderer.on("update-navigation-state-ui", (e, url) => {
       var url = url.url
       this.isUIpage = url.startsWith(WEBUI_BASE_URL) || url.startsWith(NETWORK_ERROR_HOST);
@@ -233,10 +238,6 @@ export class Store {
     ipcRenderer.on('update-available', () => {
       this.updateAvailable = true;
     });
-
-    ipcRenderer.on('is-ui-page', (e, data) => {
-      this.isUIpage = data
-    })
 
     ipcRenderer.on('download-started', (e, item) => {
       this.downloads.push(item);

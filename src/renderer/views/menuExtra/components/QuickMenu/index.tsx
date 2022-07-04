@@ -44,11 +44,6 @@ const onFindInPageClick = () => {
   store.hide();
 };
 
-const onAlwaysClick = () => {
-  store.alwaysOnTop = !store.alwaysOnTop;
-  remote.getCurrentWindow().setAlwaysOnTop(store.alwaysOnTop);
-};
-
 const addNewTab = (url: string) => {
   ipcRenderer.send(`add-tab-${store.windowId}`, {
     url,
@@ -66,7 +61,7 @@ const goToURL = (url: string) => () => {
 };
 
 const onDuplicateTab = () => {
-  ipcRenderer.send('create-tab-menu-extra', {
+  ipcRenderer.send(`add-tab-${store.windowId}`, {
     url: store.data.url,
     active: true,
   });
@@ -77,14 +72,14 @@ const guardarComo = () => {
   ipcRenderer.send('save-as-menu-extra');
 };
 
-const copiarUrl = () => {
-  copy(store.data.url);
-  store.hide()
+const copiarUrl = async () => {
+  await copy(store.data.url);
+store.hide()
 }
 
 const shareUrl = () => {
   
-  shell.openExternal('mailto:?subject=compartir con mauSearch&body='+store.data.url)
+  shell.openExternal('mailto:?subject=Shared From Fifo Browser&body='+store.data.url)
 }
 
 const capture = async () => {
