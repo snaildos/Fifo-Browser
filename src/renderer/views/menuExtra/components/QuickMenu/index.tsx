@@ -74,7 +74,7 @@ const guardarComo = () => {
 
 const copiarUrl = async () => {
   await copy(store.data.url);
-store.hide()
+  store.hide()
 }
 
 const shareUrl = () => {
