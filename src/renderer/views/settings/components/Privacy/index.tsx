@@ -5,19 +5,22 @@ import * as React from 'react';
 import { Header, Row, Title, Control } from '../App/style';
 import { Button } from '~/renderer/components/Button';
 import store from '../../store';
+import hisstore from '../../../history/store';
 import { BLUE_500, RED_500 } from '~/renderer/constants';
 import { observer } from 'mobx-react-lite';
 import { onSwitchChange } from '../../utils';
 import { Switch } from '~/renderer/components/Switch';
 
-const onClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
+const historyClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  // 
+};
+
+const faviconClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
 
   store.sections.map((data) =>
     data.items.map((item) => store.removeItems([item._id])),
   );
-  ipcRenderer.send('clear-browsing-data');
-  // store.clear();
 };
 
 const DoNotTrackToggle = observer(() => {
@@ -77,7 +80,7 @@ export const Privacy = () => {
       <Button
         type="outlined"
         foreground={BLUE_500}
-        onClick={onClearClick}
+        onClick={historyClearClick}
       >
         Clear search history
       </Button>
@@ -100,14 +103,15 @@ export const Privacy = () => {
       <p>⠀</p>
       <Button
         type="outlined"
-        foreground={RED_500}
-        onClick={}
+        foreground={BLUE_500}
+        onClick={faviconClearClick}
       >
-        Clear permissions (WIP)
+        Clear website permissions
       </Button>
       </Row>
       <GlobalPrivacyControlToggle />
       <DoNotTrackToggle />
+      <BrowsingDialog />
     </>
   );
 };
