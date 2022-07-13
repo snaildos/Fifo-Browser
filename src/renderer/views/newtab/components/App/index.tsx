@@ -62,7 +62,7 @@ const Forecast = () => {
       const res = await (await fetch(`https://wttr.in/?format=%c%20%C`)).text();
       return res;
     } catch {
-      return 'Failed to load weather';
+      return 'Failed to load weather :(';
     }
   });
   
@@ -118,19 +118,19 @@ export default observer(() => {
             <Menu>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Configuration"
+                title="Settings"
                 icon={ICON_SETTINGS}
                 onClick={onIconClick('settings')}
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Historial"
+                title="History"
                 icon={ICON_HISTORY}
                 onClick={onIconClick('history')}
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Bookmark"
+                title="Bookmarks"
                 icon={ICON_BOOKMARKS}
                 onClick={onIconClick('bookmarks')}
               ></IconItem>
