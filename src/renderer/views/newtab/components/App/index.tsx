@@ -14,7 +14,6 @@ import {
   ICON_SETTINGS,
   ICON_HISTORY,
   ICON_BOOKMARKS,
-  ICON_DOWNLOAD,
   ICON_EXTENSIONS,
 } from '~/renderer/constants/icons';
 import { WebUIStyle } from '~/renderer/mixins/default-styles';

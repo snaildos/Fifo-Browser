@@ -1,10 +1,8 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { BrowserWindow } from 'electron';
 import { Application } from '../application';
 import { DIALOG_MARGIN_TOP, DIALOG_MARGIN } from '~/constants/design';
 
-export const showZoomDialog = (
+export const showZoomDialog = async (
   browserWindow: BrowserWindow,
   x: number,
   y: number,
@@ -21,10 +19,10 @@ export const showZoomDialog = (
       x: x - 280 + DIALOG_MARGIN,
       y: y - DIALOG_MARGIN_TOP,
     }),
-    onWindowBoundsUpdate: () => dialog.hide(),
+    onWindowBoundsUpdate: async () => (await dialog).hide(),
   });
 
   if (!dialog) return;
 
-  dialog.handle('tab-id', () => tabId);
+  (await (dialog)).handle('tab-id', () => tabId);
 };

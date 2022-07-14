@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
 import { ThemeProvider } from 'styled-components';
@@ -74,7 +72,7 @@ export const App = observer(() => {
               store.theme['dialog.lightForeground'] ? 'white' : 'black'
             }
           >
-            Resetear
+            Reset
           </Button>
         </Buttons>
       </StyledApp>

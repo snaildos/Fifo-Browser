@@ -25,7 +25,6 @@ import fetch from 'node-fetch';
 import { Settings } from '../models/settings';
 
 interface Databases {
-  // TODO: ts moment
   // @ts-ignore
   [key: string]: Datastore;
 }

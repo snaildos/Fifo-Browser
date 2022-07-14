@@ -88,6 +88,12 @@ export class ViewManager extends EventEmitter {
       },
     );
 
+    ipcMain.handle('get-tab-zoom', (e: any, tabId: number) => {
+      // const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId)
+      //  .webContents.zoomFactor;
+      return this.selected.webContents.zoomFactor;
+    });
+
     ipcMain.on(`view-destroy-${id}`, (e, id: number) => {
       this.destroy(id);
     });
@@ -128,7 +134,29 @@ export class ViewManager extends EventEmitter {
       this.emitZoomUpdate();
     });
 
-    ipcMain.on('reset-zoom', () => {
+    ipcMain.on('change-zoom-menu', (e, zoomDirection) => {
+      const newZoomFactor =
+        this.selected.webContents.zoomFactor +
+        (zoomDirection === 'in'
+          ? ZOOM_FACTOR_INCREMENT
+          : -ZOOM_FACTOR_INCREMENT);
+
+      if (
+        newZoomFactor <= ZOOM_FACTOR_MAX &&
+        newZoomFactor >= ZOOM_FACTOR_MIN
+      ) {
+        this.selected.webContents.zoomFactor = newZoomFactor;
+        this.selected.emitEvent(
+          'zoom-updated',
+          this.selected.webContents.zoomFactor,
+        );
+      } else {
+        e.preventDefault();
+      }
+      this.emitZoomUpdate(false);
+    });
+
+    ipcMain.on('reset-zoom', (e) => {
       this.selected.webContents.zoomFactor = 1;
       this.selected.emitEvent(
         'zoom-updated',
