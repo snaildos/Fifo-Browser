@@ -88,6 +88,7 @@ export class ViewManager extends EventEmitter {
       },
     );
 
+    ipcMain.removeHandler('get-tab-zoom')
     ipcMain.handle('get-tab-zoom', (e: any, tabId: number) => {
       // const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId)
       //  .webContents.zoomFactor;
