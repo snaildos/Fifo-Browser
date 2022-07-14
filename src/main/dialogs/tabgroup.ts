@@ -11,8 +11,7 @@ export const showTabGroupDialog = async (
     browserWindow,
     getBounds: () => ({
       width: 266,
-      height: 500,
-      // height: 180,
+      height: 180,
       x: tabGroup.x - DIALOG_MARGIN,
       y: tabGroup.y - DIALOG_MARGIN_TOP,
     }),
