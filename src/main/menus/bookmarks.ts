@@ -1,5 +1,3 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import {
   Menu,
   nativeImage,
@@ -83,9 +81,9 @@ export function createMenu(appWindow: AppWindow, item: IBookmark) {
         showAddBookmarkDialog(appWindow.win, windowBounds.width - 20, 72, {
           url: item.url,
           title: item.title,
-          color: item.color,
           bookmark: item,
           favicon: item.favicon,
+          color: ''
         });
       },
     },

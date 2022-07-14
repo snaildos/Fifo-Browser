@@ -1,8 +1,7 @@
-/* Copyright (c) 2021-2022 SnailDOS */
-
 import { BrowserView, app, ipcMain } from 'electron';
 import { join } from 'path';
 import { SearchDialog } from '../dialogs/search';
+import { PreviewDialog } from '../dialogs/preview';
 import { PersistentDialog } from '../dialogs/dialog';
 import { Application } from '../application';
 import { IRectangle } from '~/interfaces';
@@ -23,10 +22,10 @@ interface IDialogShowOptions {
   tabAssociation?: IDialogTabAssociation;
   onWindowBoundsUpdate?: (disposition: BoundsDisposition) => void;
   onHide?: (dialog: IDialog) => void;
-  getBounds: (dialog: IDialog) => IRectangle;
+  getBounds: () => IRectangle;
 }
 
-export interface IDialog {
+interface IDialog {
   name: string;
   browserView: BrowserView;
   id: number;
@@ -53,25 +52,25 @@ export class DialogsService {
 
   public persistentDialogs: PersistentDialog[] = [];
 
-  public async run() {
-    await this.createBrowserView();
+  public run() {
+    this.createBrowserView();
 
     this.persistentDialogs.push(new SearchDialog());
+    this.persistentDialogs.push(new PreviewDialog());
   }
 
-  private async createBrowserView() {
+  private createBrowserView() {
     const view = new BrowserView({
       webPreferences: {
         nodeIntegration: true,
         contextIsolation: false,
-        // @ts-ignore
-        transparent: true,
         webviewTag: true,
       },
     });
     require('@electron/remote/main').enable(view.webContents);
 
-    await view.webContents.loadURL(`about:blank`);
+
+    view.webContents.loadURL(`about:blank`);
 
     this.browserViews.push(view);
 
@@ -80,13 +79,14 @@ export class DialogsService {
     return view;
   }
 
-  public async show(options: IDialogShowOptions): Promise<IDialog> {
+  public show(options: IDialogShowOptions): IDialog {
     const {
       name,
       browserWindow,
       getBounds,
       devtools,
       onHide,
+      hideTimeout,
       onWindowBoundsUpdate,
       tabAssociation,
     } = options;
@@ -100,11 +100,12 @@ export class DialogsService {
         );
 
     if (!browserView) {
-      browserView = await this.createBrowserView();
+      browserView = this.createBrowserView();
     }
 
-    const appWindow =
-      Application.instance.windows.fromBrowserWindow(browserWindow);
+    const appWindow = Application.instance.windows.fromBrowserWindow(
+      browserWindow,
+    );
 
     if (foundDialog && tabAssociation) {
       foundDialog.tabIds.push(tabAssociation.tabId);
@@ -112,7 +113,6 @@ export class DialogsService {
     }
 
     browserWindow.webContents.send('dialog-visibility-change', name, true);
-    appWindow.fixDragging();
 
     this.browserViewDetails.set(browserView.webContents.id, true);
 
@@ -162,7 +162,6 @@ export class DialogsService {
         if (tabId && tabId !== selectedId) return;
 
         browserWindow.webContents.send('dialog-visibility-change', name, false);
-        appWindow.fixDragging();
 
         browserWindow.removeBrowserView(browserView);
 
@@ -179,7 +178,6 @@ export class DialogsService {
         this.browserViewDetails.set(browserView.webContents.id, false);
 
         if (this.browserViews.length > 1) {
-          // TODO: garbage collect unused BrowserViews?
           // this.browserViewDetails.delete(browserView.id);
           // browserView.destroy();
           // this.browserViews.splice(1, 1);
@@ -214,7 +212,7 @@ export class DialogsService {
           y: 0,
           width: 0,
           height: 0,
-          ...roundifyRectangle(getBounds(dialog)),
+          ...roundifyRectangle(getBounds()),
           ...roundifyRectangle(rect),
         });
       },
@@ -223,7 +221,6 @@ export class DialogsService {
     tabsEvents.activate = (id) => {
       const visible = dialog.tabIds.includes(id);
       browserWindow.webContents.send('dialog-visibility-change', name, visible);
-      appWindow.fixDragging();
 
       if (visible) {
         dialog._sendTabInfo(id);
@@ -271,12 +268,10 @@ export class DialogsService {
     });
 
     if (process.env.NODE_ENV === 'development') {
-      await browserView.webContents.loadURL(
-        `http://localhost:4444/${name}.html`,
-      );
+      browserView.webContents.loadURL(`http://localhost:4444/${name}.html`);
     } else {
-      await browserView.webContents.loadURL(
-        join('file://', app.getAppPath(), `build/${name}.html`),
+      browserView.webContents.loadURL(
+        join('file:///', app.getAppPath(), `build/${name}.html`),
       );
     }
 
@@ -285,7 +280,10 @@ export class DialogsService {
     });
 
     if (tabAssociation) {
-      dialog._sendTabInfo(tabAssociation.tabId);
+      dialog.on('loaded', () => {
+        dialog._sendTabInfo(tabAssociation.tabId);
+      });
+
       if (tabAssociation.setTabInfo) {
         dialog.on('update-tab-info', (e, tabId, ...args) => {
           tabAssociation.setTabInfo(tabId, ...args);
@@ -305,8 +303,7 @@ export class DialogsService {
   };
 
   public destroy = () => {
-    // TODO: For some reason reactivation of the app breaks when this is called, it seems like the issue is with our extensions engine
-    // this.getBrowserViews().forEach((x) => (x.webContents as any).destroy());
+    this.getBrowserViews().forEach((x) => (x.webContents as any).destroy());
   };
 
   public sendToAll = (channel: string, ...args: any[]) => {
