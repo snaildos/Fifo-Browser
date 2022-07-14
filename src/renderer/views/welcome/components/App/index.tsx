@@ -175,7 +175,7 @@ export default observer(() => {
           style={{ marginLeft: 8 }}
           onClick={alreadyMaded}
           >
-            Already set!
+            Skip!
           </ExtraStyledButton>
           <ExtraStyledButton
           background="rgb(138, 180, 248)"
