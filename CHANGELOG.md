@@ -1,5 +1,38 @@
 # Changelog
 
+<a name="1.2.1"></a>
+## 1.2.1 (2022-07-14)
+
+### Added
+
+- 🎉 Update Fifo Updater for support of v1.2.1 [[273dc39](https://github.com/snaildos/Fifo-Browser/commit/273dc390919c24310916e88d41763f423e40b7b5)]
+- 🎉 Users can now delete favicons, history and website permissions! [[66eef39](https://github.com/snaildos/Fifo-Browser/commit/66eef395b0e89923aeaeb5bcf5ef38ddc042e916)]
+- 🎉 Rewrite dialogue function and bookmarks! [[8541f64](https://github.com/snaildos/Fifo-Browser/commit/8541f6416d3ddab22f516b21395fdfe4001b2035)]
+- 🎉 Rewrite Zoom &amp; Add Zoom Into Browser [[5a78654](https://github.com/snaildos/Fifo-Browser/commit/5a7865498956989c58807eea8c196ebfac7825fe)]
+- 🎉 Update minor visual elements [[a985a7c](https://github.com/snaildos/Fifo-Browser/commit/a985a7c0618c268080ec40d9a6571a6478631960)]
+- 🎉 Update colours, add new news and update viewer theme. [[76a306d](https://github.com/snaildos/Fifo-Browser/commit/76a306d9a0d133cde9cb2df8b4b94717ac3a0fdc)]
+- 🎉 Add icon to Network Error [[cab2339](https://github.com/snaildos/Fifo-Browser/commit/cab2339276783d6c0a5ba548c2829f5abc082995)]
+- ✨ Extension button now works [[ec15423](https://github.com/snaildos/Fifo-Browser/commit/ec154236086856115205704fb0c8d01362756a5d)]
+
+### Fixed
+
+- 🐛 Favicon remove filename patch [[bea361f](https://github.com/snaildos/Fifo-Browser/commit/bea361f330e3b552a6cda5e7d6282fb2f1407c3f)]
+- 🐛 Rewrite download dialogue [[89f769a](https://github.com/snaildos/Fifo-Browser/commit/89f769a1fabbdddc7a85c3ba165e75cbb19baa4b)]
+- 🐛 Patch clear browsing data [[4e46593](https://github.com/snaildos/Fifo-Browser/commit/4e46593db9f6f8ffb35a557b4325cec95b48deb7)]
+- 🐛 🎉 Update network error, add new clear buttons, fix quickmenu, rewrite isuipage and more. [[04db15a](https://github.com/snaildos/Fifo-Browser/commit/04db15a88fabf7800dd93eed21b1757493c7354c)]
+- 🐛 Fix extension page that keeps opening on newtab [[6a58a15](https://github.com/snaildos/Fifo-Browser/commit/6a58a15e9c439a6c6acccdee30f7a651013e4092)]
+
+### Miscellaneous
+
+- 🔨 Rewrite News [[db45c70](https://github.com/snaildos/Fifo-Browser/commit/db45c701f070fafd073aa7bf1708e6bb31d3c233)]
+- ‼️ Patch for Incognito mode [[3654363](https://github.com/snaildos/Fifo-Browser/commit/3654363c00e83648571748b83b368437bc3a4e40)]
+- ©️ Ensure Copyright notice is up to date [[279644a](https://github.com/snaildos/Fifo-Browser/commit/279644a77d79303590fa128d7fe8232204c574fe)]
+- 😄 Add a kind option to skip adding the default browser! [[9d58f4a](https://github.com/snaildos/Fifo-Browser/commit/9d58f4a6efa1a3016ceddfb376ff67cc7224110a)]
+-  Merge branch &#x27;1.2.1&#x27; of https://github.com/snaildos/Fifo-Browser into 1.2.1 [[243ec26](https://github.com/snaildos/Fifo-Browser/commit/243ec2643c1f319e8e44374f91f213a9c40bd69c)]
+- 🚀 Rewrite permission system to be way more secure and working now. [[a05fe67](https://github.com/snaildos/Fifo-Browser/commit/a05fe677c952d30b973164b4889a1d0f0d741025)]
+- 🚀 Bump package.json [[1086b43](https://github.com/snaildos/Fifo-Browser/commit/1086b43a7d883f14215a2732d00cb4039b0cb9bd)]
+
+
 <a name="1.2.0"></a>
 ## 1.2.0 (2022-06-19)
 
