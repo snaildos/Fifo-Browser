@@ -171,7 +171,7 @@ export class StorageService {
 
     ipcMain.handle('favicon-unlink', () => {
       const apppath = app.getPath('userData')
-      fs.unlinkSync(apppath + "\\storage\\favicon.db");
+      fs.unlinkSync(apppath + "\\storage\\favicons.db");
       dialog.showMessageBoxSync(null, {
         type: 'info',
         title: `Clear Favicon`,
