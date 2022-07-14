@@ -5,23 +5,24 @@ import * as React from 'react';
 import { Header, Row, Title, Control } from '../App/style';
 import { Button } from '~/renderer/components/Button';
 import store from '../../store';
-import hisstore from '../../../history/store';
 import { BLUE_500, RED_500 } from '~/renderer/constants';
 import { observer } from 'mobx-react-lite';
 import { onSwitchChange } from '../../utils';
 import { Switch } from '~/renderer/components/Switch';
+import { ipcRenderer } from 'electron';
 
 const historyClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
-  // 
+  ipcRenderer.invoke('history-unlink');
 };
 
 const faviconClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
-  e.stopPropagation();
-
-  store.sections.map((data) =>
-    data.items.map((item) => store.removeItems([item._id])),
-  );
+  ipcRenderer.invoke('favicon-unlink');
 };
+
+const permissionClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  ipcRenderer.invoke('permission-unlink');
+};
+
 
 const DoNotTrackToggle = observer(() => {
   const { doNotTrack } = store.settings;
@@ -87,31 +88,22 @@ export const Privacy = () => {
       <p>⠀</p>
       <Button
         type="outlined"
-        foreground={RED_500}
-        onClick={}
+        foreground={BLUE_500}
+        onClick={faviconClearClick}
       >
-        Clear favicon (WIP)
-      </Button>
-      <p>⠀</p>
-      <Button
-        type="outlined"
-        foreground={RED_500}
-        onClick={}
-      >
-        Clear suggestions (WIP)
+        Clear favicon database
       </Button>
       <p>⠀</p>
       <Button
         type="outlined"
         foreground={BLUE_500}
-        onClick={faviconClearClick}
+        onClick={permissionClearClick}
       >
         Clear website permissions
       </Button>
       </Row>
       <GlobalPrivacyControlToggle />
       <DoNotTrackToggle />
-      <BrowsingDialog />
     </>
   );
 };
