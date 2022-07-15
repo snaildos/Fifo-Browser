@@ -14,7 +14,6 @@ import {
   ICON_SETTINGS,
   ICON_HISTORY,
   ICON_BOOKMARKS,
-  ICON_DOWNLOAD,
   ICON_EXTENSIONS,
 } from '~/renderer/constants/icons';
 import { WebUIStyle } from '~/renderer/mixins/default-styles';
@@ -32,13 +31,12 @@ const onIconClick = (name: string) => () => {
   window.location.href = getWebUIURL(name);
 };
 
-const onExtension = () => {
-  console.log('todo')
-  // window.location.href = 'https://chrome.google.com/webstore/category/extensions';
-};
-
 const onTuneClick = () => {
   store.dashboardSettingsVisible = !store.dashboardSettingsVisible;
+};
+
+const onExtensionClick = () => {
+  window.location.href = 'https://chrome.google.com/webstore/category/extensions';
 };
 
 const onRefreshClick = () => {
@@ -63,7 +61,7 @@ const Forecast = () => {
       const res = await (await fetch(`https://wttr.in/?format=%c%20%C`)).text();
       return res;
     } catch {
-      return 'Failed to load weather';
+      return 'Failed to load weather :(';
     }
   });
   
@@ -83,7 +81,7 @@ export default observer(() => {
   if (store.settings.notnew != "false") {
     window.location.replace(getWebUIURL("welcome"))
   } else {
-    if (store.settings.changelog != "1.2.0") {
+    if (store.settings.changelog != "1.2.1") {
       window.location.replace(getWebUIURL("changelog"))
   }
   }
@@ -119,19 +117,19 @@ export default observer(() => {
             <Menu>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Configuration"
+                title="Settings"
                 icon={ICON_SETTINGS}
                 onClick={onIconClick('settings')}
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Historial"
+                title="History"
                 icon={ICON_HISTORY}
                 onClick={onIconClick('history')}
               ></IconItem>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Bookmark"
+                title="Bookmarks"
                 icon={ICON_BOOKMARKS}
                 onClick={onIconClick('bookmarks')}
               ></IconItem>
@@ -139,7 +137,7 @@ export default observer(() => {
                 imageSet={store.imageVisible}
                 title="Extensions"
                 icon={ICON_EXTENSIONS}
-                onClick={onExtension()}
+                onClick={onExtensionClick}
               ></IconItem>
               {/*
               <IconItem
@@ -152,9 +150,7 @@ export default observer(() => {
           )}
         </Wrapper>
         {store.newsBehavior !== 'hidden' && (
-          <Content>
             <News></News>
-          </Content>
         )}
       </div>
     </ThemeProvider>

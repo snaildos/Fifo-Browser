@@ -7,7 +7,7 @@ import { BLUE_300 } from '~/renderer/constants';
 export const StyledAddressBar = styled.div`
   height: 30px;
   flex: 1;
-  border-radius: 4px;
+  border-radius: 10px;
   margin: 0 7px;
   display: flex;
   align-items: center;

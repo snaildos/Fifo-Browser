@@ -4,9 +4,8 @@ import { BrowserWindow } from 'electron';
 import { Application } from '../application';
 import { DIALOG_MARGIN_TOP, DIALOG_MARGIN } from '~/constants/design';
 import { IBookmark } from '~/interfaces';
-import { IDialog } from '~/main/services/dialogs-service';
 
-export const showAddBookmarkDialog = async (
+export const showAddBookmarkDialog = (
   browserWindow: BrowserWindow,
   x: number,
   y: number,
@@ -32,17 +31,21 @@ export const showAddBookmarkDialog = async (
     };
   }
 
-  const dialog: IDialog = await Application.instance.dialogs.show({
+  const dialog = Application.instance.dialogs.show({
     name: 'add-bookmark',
     browserWindow,
     getBounds: () => ({
       width: 366,
-      height: 300,
+      height: 240,
       x: x - 366 + DIALOG_MARGIN,
       y: y - DIALOG_MARGIN_TOP,
     }),
     onWindowBoundsUpdate: () => dialog.hide(),
   });
+
   if (!dialog) return;
-  dialog.browserView.webContents.send('data', data);
+
+  dialog.on('loaded', (e) => {
+    e.reply('data', data);
+  });
 };

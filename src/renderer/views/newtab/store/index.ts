@@ -249,9 +249,9 @@ export class Store {
   }
 
   public async loadNews() {
-    const randompage = Math.floor(Math.random() * 10) + 1;
+    // const randompage = Math.floor(Math.random() * 10) + 1;
     const { data } = await networkMainChannel.getInvoker().request(`
-      https://newsapi.org/v2/top-headlines?country=us&page=1&apiKey=${NEWS_API_KEY}
+      https://github.win11react.com/NewsAPI/data.json
     `); // ?lang=
     const json = JSON.parse(data);
 

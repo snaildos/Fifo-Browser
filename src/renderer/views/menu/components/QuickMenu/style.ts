@@ -57,6 +57,45 @@ export const MenuItem = styled.div`
   }
 `;
 
+export const Label = styled.div`
+  font-size: 16px;
+  min-width: 45px;
+  text-align: center;
+`;
+
+export const MenuItemZoom = styled.div`
+  height: 36px;
+  align-items: center;
+  display: flex;
+  position: relative;
+  padding: 0 12px;
+  font-size: 12px;
+
+  ${({ arrow }: { arrow?: boolean; disabled?: boolean }) =>
+    arrow &&
+    css`
+      &:after {
+        content: '';
+        position: absolute;
+        right: 4px;
+        width: 24px;
+        height: 100%;
+        opacity: 0.54;
+        ${centerIcon(20)};
+        background-image: url(${ICON_ARROW_RIGHT});
+        ${({ theme }: { theme?: ITheme }) => css`
+          filter: ${theme['dialog.lightForeground'] ? 'invert(100%)' : 'none'};
+        `};
+      }
+    `};
+
+  ${({ disabled }: { arrow?: boolean; disabled?: boolean }) =>
+    css`
+      pointer-events: ${disabled ? 'none' : 'inherit'};
+      opacity: ${disabled ? 0.54 : 1};
+    `};
+`;
+
 export const MenuItemTitle = styled.div`
   flex: 1;
 `;

@@ -10,12 +10,16 @@ export class Store extends DialogStore {
 
   public updateAvailable = false;
 
+  @observable
+  public zoomFactor = 1;
+
   public constructor() {
     super();
 
     makeObservable(this, {
       alwaysOnTop: observable,
       updateAvailable: observable,
+      zoomFactor: observable,
     });
 
     this.init();
@@ -31,6 +35,9 @@ export class Store extends DialogStore {
     }
 
     this.updateAvailable = await ipcRenderer.invoke('is-update-available');
+
+    const tabId = await ipcRenderer.sendSync('get-webcontents-id');
+    this.zoomFactor = await ipcRenderer.invoke('get-tab-zoom', tabId);
   }
 
   public async save() {

@@ -74,7 +74,7 @@ export const App = observer(() => {
               store.theme['dialog.lightForeground'] ? 'white' : 'black'
             }
           >
-            Resetear
+            Reset
           </Button>
         </Buttons>
       </StyledApp>

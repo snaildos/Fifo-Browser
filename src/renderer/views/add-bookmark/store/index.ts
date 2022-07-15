@@ -37,7 +37,7 @@ export class Store extends DialogStore {
       const { bookmark, title, url, favicon } = data;
 
       if (!bookmark) {
-        this.dialogTitle = !bookmark ? 'Bookmark added' : 'Edit bookmark';
+        this.dialogTitle = !bookmark ? 'Bookmark Added' : 'Edit Bookmark';
       }
 
       this.bookmark = bookmark;
@@ -57,7 +57,7 @@ export class Store extends DialogStore {
       );
 
       if (this.titleRef.current) {
-        this.titleRef.current.value = title;
+        this.titleRef.current.value = this.bookmark.title ?? title;
         this.titleRef.current.focus();
         this.titleRef.current.select();
       }

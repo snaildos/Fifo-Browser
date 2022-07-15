@@ -344,6 +344,9 @@ export class View {
         canGoBack: this.webContents.canGoBack(),
         canGoForward: this.webContents.canGoForward(),
       });
+      this.window.send('update-navigation-state-ui', {
+        url: this.webContents.getURL()
+      });
     }
   }
 
@@ -416,7 +419,14 @@ export class View {
     if (process.env.ENABLE_AUTOFILL) await this.updateCredentials();
 
     this.updateBookmark();
+
+    this.updateUIpage(url);
+
   };
+
+  public updateUIpage(url: string) {
+    this.window.send('is-ui-page', url.startsWith(WEBUI_BASE_URL) || url.startsWith(NETWORK_ERROR_HOST));
+  }
 
   public updateBookmark() {
     this.bookmark = Application.instance.storage.bookmarks.find(

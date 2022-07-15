@@ -1,10 +1,10 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
-import { ipcMain, dialog } from 'electron';
+import { ipcMain, dialog, app } from 'electron';
 import * as Datastore from '@seald-io/nedb';
 import { fileTypeFromBuffer } from 'file-type';
 import * as icojs from 'icojs';
-
+const fs = require('fs')
 import { getPath } from '~/utils';
 import {
   IFindOperation,
@@ -21,11 +21,9 @@ import { promises } from 'fs';
 import { Application } from '../application';
 import { requestURL } from '../network/request';
 import * as parse from 'node-bookmarks-parser';
-import fetch from 'node-fetch';
 import { Settings } from '../models/settings';
 
 interface Databases {
-  // TODO: ts moment
   // @ts-ignore
   [key: string]: Datastore;
 }
@@ -156,6 +154,43 @@ export class StorageService {
       return this.historyVisited
         .filter((x) => x.title && x.title !== '')
         .slice(0, count);
+    });
+
+    ipcMain.handle('history-unlink', () => {
+      const apppath = app.getPath('userData')
+      fs.unlinkSync(apppath + "\\storage\\history.db");
+      fs.unlinkSync(apppath + "\\storage\\startuptabs.db");
+      dialog.showMessageBoxSync(null, {
+        type: 'warning',
+        title: `Clear History`,
+        message: `Succesfully erased History`,
+        detail: `Typically to regenerate newtab entries, you should restart the browser, however it is optional.`,
+        buttons: ['Ok'],
+      });
+    });
+
+    ipcMain.handle('favicon-unlink', () => {
+      const apppath = app.getPath('userData')
+      fs.unlinkSync(apppath + "\\storage\\favicons.db");
+      dialog.showMessageBoxSync(null, {
+        type: 'info',
+        title: `Clear Favicon`,
+        message: `Succesfully erased Favicon Database`,
+        detail: `The Favicon database for all websites have been cleared. This database will regenerate upon first website loads.`,
+        buttons: ['Ok'],
+      });
+    });
+
+    ipcMain.handle('permission-unlink', () => {
+      const apppath = app.getPath('userData')
+      fs.unlinkSync(apppath + "\\storage\\permissions.db");
+      dialog.showMessageBoxSync(null, {
+        type: 'warning',
+        title: `Clear Permissions`,
+        message: `Succesfully erased Permission Database`,
+        detail: `The Permision database for all websites have been cleared. Fifo needs to be restarted to accept or deny permission requests.`,
+        buttons: ['Ok'],
+      });
     });
   }
 

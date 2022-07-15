@@ -10,6 +10,7 @@ export const StyledAddressBarContainer = styled.div`
   right: 0;
   bottom: 0;
   top: 0;
+  border-radius: 10px;
   will-change: transform, opacity;
   z-index: 999;
   align-items: center;

@@ -16,18 +16,20 @@ import {
   Description,
   StyledLink,
   Favicon,
-  Option,
   Icon,
 } from './style';
 import { getWebUIURL } from '~/common/webui';
 import { StyledButton } from '~/renderer/components/Button/styles';
+import { ipcRenderer } from 'electron';
 
 let page = 1
 
 store.settings.theme = "wexond-dark";
 
 const alreadyMaded = () => {
-  store.settings.changelog = "1.2.0"
+  store.settings.changelog = "1.2.1"
+  ipcRenderer.invoke('permission-unlink');
+  ipcRenderer.invoke('favicon-unlink');
   store.save()
   nextPage()
 }
@@ -50,7 +52,7 @@ export default observer(() => {
 
   window.onload = function() {
     var oldver = store.settings.changelog;
-    var newver = "1.2.0";
+    var newver = "1.2.1";
     if (newver >= oldver) {
       console.log("Update is required.")
       // Nothing yet since we dont need to upgrade anything
@@ -73,23 +75,28 @@ export default observer(() => {
 
       <StyledSection className="banner1">
         <Description>Fifo has been updated!</Description>
-        <Title>Let's go!</Title>
+        <Title>Press Start to continue!</Title>
         <Button theme={store.theme} onClick={nextPage}>Start!</Button>
       </StyledSection>
 
       <StyledSection className="banner2">
         <Favicon></Favicon>
         <Description style={{fontSize: "1.5rem", fontWeight: 500, margin: 0, marginBottom: "48px", opacity: '1' }}>What has been changed?</Description>
-        <Description>- Extension support has been broadend.</Description>
-        <Description>- Chrome 100.</Description>
-        <Description>- Weather and Time have been added.</Description>
-        <Description>- Many bugfixes</Description>
-        <Description>- Rewrite entire backend</Description>
-        <div style={{ width: '500px', display: 'flex', justifyContent: 'space-between', marginTop: '3rem' }}>
+        <Description>Introducing Fifo Bug Fix Update (v1.2.1)</Description>
+        <Description>- Bug fixing the extension button.</Description>
+        <Description>- Introducing our new permission system.</Description>
+        <Description>- Minor Visual Changes</Description>
+        <Description>- Rewriting Our Zoom System</Description>
+        <Description>- Patching Tab Grouping and Bookmarks</Description>
+        <Description>- Rewriting Our Download System</Description>
+        <Description>- Options to clear certain Fifo databases</Description>
+        <Description>Much much more!</Description>
+        <a href="https://github.com/snaildos/Fifo-Browser/blob/main/CHANGELOG.md" target="_blank"><StyledLink>View our full changelog for this release and our past releases!</StyledLink></a>
+        <div style={{ width: '500px', display: 'flex', justifyContent: 'flex-end', marginTop: '3rem' }}>
           <ExtraStyledButton
           background="rgb(138, 180, 248)"
           foreground={store.theme['pages.textColor'] == "#fff" ? "black" : "white"}
-          style={{ marginRight: 8, position: 'relative' }}
+          style={{ position: 'relative' }}
           onClick={nextPage}
           >
             <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: "center" }}>
@@ -119,7 +126,9 @@ export default observer(() => {
       <StyledSection className="banner4">
         <Description>Fifo is the new privacy orientated browser!</Description>
         <Title>Inbuilt adblocker and more, lets start.</Title>
-        <Button theme={store.theme} onClick={commit}>Lets get started!</Button>
+        <p></p>
+        <Description>Please ignore the dialogs that popup upon updating. Pressing "Start Browsing" will erase your favicon and permission database to support our latest versions.</Description>
+        <Button theme={store.theme} onClick={commit}>Start Browsing</Button>
       </StyledSection>
     </ThemeProvider>
   );

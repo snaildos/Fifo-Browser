@@ -239,6 +239,20 @@ export const getViewMenu = (
         },
       },
       {
+        label: 'Zoom',
+        submenu: [
+          { role: 'resetZoom', label: 'Reset' },
+          {
+            label: 'Zoom In',
+            role: 'zoomIn'
+          },
+          {
+            label: 'Zoom Out',
+            role: 'zoomOut'
+          },
+        ]
+      },
+      {
         type: 'separator',
       },
       {

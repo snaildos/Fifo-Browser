@@ -133,6 +133,7 @@ export const SiteButtons = observer(() => {
         dense={dense}
         onMouseDown={onStarClick}
       />
+    {!store.isUIpage && (
       <ToolbarButton
         id="more"
         toggled={store.dialogsVisibility['menuExtra']}
@@ -142,6 +143,7 @@ export const SiteButtons = observer(() => {
         onMouseDown={onMenuClick}
         style={{ cursor: 'pointer' }}
       />
+    )}
       <ToolbarButton
         size={16}
         badge={store.settings.object.shield && blockedAds > 0}
