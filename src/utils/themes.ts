@@ -7,5 +7,5 @@ export const getTheme = (name: string) => {
   else if (name === 'wexond-dark') return darkTheme;
   else if (name === 'fifo-blue') return blueTheme;
   else if (name === 'fifo-lavender') return lavTheme;
-  return lightTheme;
+  return darkTheme;
 };
