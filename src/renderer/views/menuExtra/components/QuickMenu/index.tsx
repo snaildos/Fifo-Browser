@@ -22,9 +22,7 @@ import {
   ICON_TOPMOST,
   ICON_TAB,
   ICON_WINDOW,
-  ICON_CAPTURE,
-  ICON_SHARE,
-  ICON_LINK,
+  ICON_STAR,
   ICON_SETTINGS,
   ICON_VOLUME_HIGH,
   ICON_DOWNLOAD,
@@ -102,11 +100,11 @@ export const QuickMenu = observer(() => {
           </MenuItem>
           <Line />
           <MenuItem style={{ cursor: 'pointer' }} onClick={copiarUrl}>
-            <Icon icon={ICON_LINK} />
+            <Icon icon={ICON_TOPMOST} />
             <MenuItemTitle>Copy link</MenuItemTitle>
           </MenuItem>
           <MenuItem style={{ cursor: 'pointer' }} onClick={shareUrl}>
-            <Icon icon={ICON_SHARE} />
+            <Icon icon={ICON_STAR} />
             <MenuItemTitle>Share</MenuItemTitle>
           </MenuItem>
           <Line />

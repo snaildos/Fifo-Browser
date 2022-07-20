@@ -34,14 +34,14 @@ import {
   ICON_PRINT,
   ICON_DOWN,
   ICON_UP,
-  ICON_REFRESH
+  ICON_REFRESH,
+  ICON_CLOSE
 } from '~/renderer/constants/icons';
 import { getWebUIURL } from '~/common/webui';
 import { ToolbarButton } from '../../../app/components/ToolbarButton';
 import {
   ZOOM_FACTOR_MIN,
-  ZOOM_FACTOR_MAX,
-  ZOOM_FACTOR_INCREMENT,
+  ZOOM_FACTOR_MAX
 } from '~/constants/web-contents';
 
 const onFindClick = () => {
@@ -63,6 +63,10 @@ const onPrintClick = () => {
   ipcRenderer.send('Print', null);
   store.hide();
 };
+
+const onCloseClick = () => {
+  ipcRenderer.send(`window-close-${store.windowId}`);
+}
 
 const onFindInPageClick = () => {
   ipcRenderer.send(`find-in-page-${store.windowId}`);
@@ -252,6 +256,12 @@ export const QuickMenu = observer(() => {
             <Icon icon={ICON_PRINT} />
             <MenuItemTitle>Print</MenuItemTitle>
             <Shortcut>Ctrl+P</Shortcut>
+          </MenuItem>
+          <Line />
+          <MenuItem onClick={onCloseClick}>
+            <Icon icon={ICON_CLOSE} />
+            <MenuItemTitle>Close</MenuItemTitle>
+            <Shortcut>Ctrl+W</Shortcut>
           </MenuItem>
         </MenuItems>
       </Content>

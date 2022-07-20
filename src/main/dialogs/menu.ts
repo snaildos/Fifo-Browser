@@ -18,7 +18,7 @@ export const showMenuDialog = async (
     browserWindow,
     getBounds: () => ({
       width: menuWidth,
-      height: 510,
+      height: 560,
       x: x - menuWidth + DIALOG_MARGIN,
       y: y - DIALOG_MARGIN_TOP,
     }),
