@@ -95,6 +95,7 @@ export default observer(() => {
   window.onload = function() {
     page = 1
     document.getElementsByClassName("Dark")[0].classList.add("active")
+    store.settings.theme = "wexond-dark";
     document.getElementsByClassName("banner1")[0].classList.add("active")
     // console.log(await defaultBrowser());
 
