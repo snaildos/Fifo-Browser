@@ -58,7 +58,7 @@ const Time = () => {
 
 const Forecast = () => {
   const { data: forecast } = useQuery(['weather'], async () => {
-    if (store.isweather == true) {
+    if (store.isweather != true) {
     try {
       const res = await (await fetch(`https://wttr.in/?format=%c%20%C`)).text();
       return res;

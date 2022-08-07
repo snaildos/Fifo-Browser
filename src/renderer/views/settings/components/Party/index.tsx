@@ -16,7 +16,7 @@ const WeatherToggle = observer(() => {
   return (
     <Row onClick={newTabSwitchChange('weather')}>
       <Title>
-        Allow the weather network request on the newtab screen (wttr.in)
+        Disable the weather network request on the newtab screen (wttr.in)
       </Title>
       <Control>
         <Switch value={weather} />
@@ -31,7 +31,7 @@ const NewsToggle = observer(() => {
   return (
     <Row onClick={newTabSwitchChange('news')}>
       <Title>
-        Allow the news network request on the newtab screen
+        Disable the news network request on the newtab screen
       </Title>
       <Control>
         <Switch value={news} />
