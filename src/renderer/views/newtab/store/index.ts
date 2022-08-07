@@ -6,7 +6,6 @@ import { getTheme } from '~/utils/themes';
 import { INewsItem } from '~/interfaces/news-item';
 import { networkMainChannel } from '~/common/rpc/network';
 import { ipcRenderer } from 'electron';
-import { NEWS_API_KEY } from '../../app/constants';
 
 type NewsBehavior = 'on-scroll' | 'always-visible' | 'hidden';
 export type Preset = 'focused' | 'inspirational' | 'informational' | 'custom';
@@ -263,7 +262,7 @@ export class Store {
     // const randompage = Math.floor(Math.random() * 10) + 1;
     if (this.isnews) {
     const { data } = await networkMainChannel.getInvoker().request(`
-      https://github.win11react.com/NewsAPI/data.json
+      https://snaildos.github.io/SnailNews/data.json
     `); // ?lang=
     const json = JSON.parse(data);
 
