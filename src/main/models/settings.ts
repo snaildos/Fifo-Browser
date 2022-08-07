@@ -93,8 +93,8 @@ export class Settings extends EventEmitter {
 
     if (this.object.themeAuto) {
       this.object.theme = nativeTheme.shouldUseDarkColors
-        ? 'fifo-dark'
-        : 'fifo-light';
+        ? 'wexond-dark'
+        : 'wexond-light';
     } else {
       themeSource = this.object.theme === 'fifo-dark' ? 'dark' : 'light';
     }
