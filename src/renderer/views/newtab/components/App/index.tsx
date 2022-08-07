@@ -48,21 +48,26 @@ const onRefreshClick = () => {
 };
 
 const Time = () => {
+  // const getDate = () => { setInterval(() => { return new Date().toLocaleTimeString([], { timeStyle: 'long' }) }, 100); }
   return (
     <StyledTime>
-      <h1>{new Date().toLocaleTimeString([], { timeStyle: 'short' })}</h1>
+      <h1>{ new Date().toLocaleTimeString([], { timeStyle: 'short' }) }</h1>
     </StyledTime>
   );
 };
 
 const Forecast = () => {
   const { data: forecast } = useQuery(['weather'], async () => {
+    if (store.isweather == true) {
     try {
       const res = await (await fetch(`https://wttr.in/?format=%c%20%C`)).text();
       return res;
     } catch {
       return 'Failed to load weather :(';
     }
+  } else {
+      return 'Weather disabled';
+  }
   });
   
   return (
@@ -100,14 +105,14 @@ export default observer(() => {
           <Image src={store.imageVisible ? store.image : ''}></Image>
           <Content>
           <Time />
-          <Forecast />
+          {store.isweather && <Forecast />}
           {store.topSitesVisible && <TopSites></TopSites>}
           </Content>
 
           <RightBar>
             <IconItem
               imageSet={store.imageVisible}
-              title="Configure landing page"
+              title="Configure newtab page"
               icon={ICON_TUNE}
               onMouseDown={(e) => e.stopPropagation()}
               onClick={onTuneClick}

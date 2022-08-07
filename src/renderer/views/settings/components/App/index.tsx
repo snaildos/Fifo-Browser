@@ -8,6 +8,7 @@ import { Appearance } from '../Appearance';
 import { AddressBar, ManageSearchEngines } from '../AddressBar';
 import { Privacy } from '../Privacy';
 import { About } from '../About';
+import { Party } from '../Party';
 import { Other } from '../Other';
 import store from '../../store';
 import { NavigationDrawer } from '~/renderer/components/NavigationDrawer';
@@ -29,6 +30,7 @@ import {
   ICON_TRASH,
   ICON_EDIT,
   ICON_ADD,
+  ICON_DASHBOARD
 } from '~/renderer/constants';
 import {
   ContextMenuItem,
@@ -262,6 +264,9 @@ export default observer(() => {
           <MenuItem icon={ICON_SHIELD} section="privacy">
             Privacy
           </MenuItem>
+          <MenuItem icon={ICON_DASHBOARD} section="party">
+            Third Party
+          </MenuItem>
           <MenuItem icon={ICON_FIRE} section="about">
             About
           </MenuItem>
@@ -287,6 +292,7 @@ export default observer(() => {
             {selectedSection === 'about' && <About />}
             {selectedSection === 'other' && <Other />}
             {selectedSection === 'downloads' && <Downloads />}
+            {selectedSection === 'party' && <Party />}
           </LeftContent>
         </Content>
       </Container>

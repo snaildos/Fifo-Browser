@@ -21,6 +21,17 @@ export class Store {
     return getTheme(this.settings.theme);
   }
 
+  @computed
+  public get isnews() {
+    return this.settings.newtab.news;
+  }
+
+  @computed
+  public get isweather() {
+    return this.settings.newtab.weather;
+  }
+
+
   @observable
   public news: INewsItem[] = [];
 
@@ -250,6 +261,7 @@ export class Store {
 
   public async loadNews() {
     // const randompage = Math.floor(Math.random() * 10) + 1;
+    if (this.isnews) {
     const { data } = await networkMainChannel.getInvoker().request(`
       https://github.win11react.com/NewsAPI/data.json
     `); // ?lang=
@@ -260,6 +272,8 @@ export class Store {
     } else {
       throw new Error('Error fetching news');
     }
+  }
+  throw new Error('News is disabled in settings.');
 }
 
 public async loadTopSites() {

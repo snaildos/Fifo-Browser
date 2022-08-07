@@ -32,6 +32,10 @@ export interface ISettings {
     topSites: boolean;
     pinned: boolean;
   };
+  newtab: {
+    news: boolean;
+    weather: boolean
+  };
   searchEngines: ISearchEngine[];
   startupBehavior: IStartupBehavior;
   warnOnQuit: boolean;

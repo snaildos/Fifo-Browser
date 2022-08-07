@@ -260,7 +260,7 @@ export const QuickMenu = observer(() => {
           <Line />
           <MenuItem onClick={onCloseClick}>
             <Icon icon={ICON_CLOSE} />
-            <MenuItemTitle>Close</MenuItemTitle>
+            <MenuItemTitle>Quit</MenuItemTitle>
             <Shortcut>Ctrl+W</Shortcut>
           </MenuItem>
         </MenuItems>
