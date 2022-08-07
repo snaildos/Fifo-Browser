@@ -26,6 +26,8 @@ import settingstore from '../../../settings/store/index';
 let page = 1
 let theme = "Light"
 let engine = "duckduckgo"
+settingstore.settings.newtab.weather = "false"
+settingstore.settings.newtab.news = "false"
 
 store.settings.theme = "wexond-dark";
 

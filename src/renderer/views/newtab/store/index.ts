@@ -261,7 +261,7 @@ export class Store {
   public async loadNews() {
     // const randompage = Math.floor(Math.random() * 10) + 1;
     var news = this.isnews 
-    if (news != true) {
+    if (news == false) {
     const { data } = await networkMainChannel.getInvoker().request(`
       https://snaildos.github.io/SnailNews/data.json
     `); // ?lang=
@@ -272,8 +272,9 @@ export class Store {
     } else {
       throw new Error('Error fetching news');
     }
-  }
+  } else {
   throw new Error('News is disabled in settings.');
+  }
 }
 
 public async loadTopSites() {

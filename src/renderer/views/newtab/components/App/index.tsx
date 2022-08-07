@@ -58,7 +58,7 @@ const Time = () => {
 
 const Forecast = () => {
   const { data: forecast } = useQuery(['weather'], async () => {
-    if (store.isweather != true) {
+    if (store.isweather == false) {
     try {
       const res = await (await fetch(`https://wttr.in/?format=%c%20%C`)).text();
       return res;
@@ -105,7 +105,7 @@ export default observer(() => {
           <Image src={store.imageVisible ? store.image : ''}></Image>
           <Content>
           <Time />
-          {store.isweather && <Forecast />}
+          {store.isweather == false && <Forecast />}
           {store.topSitesVisible && <TopSites></TopSites>}
           </Content>
 
