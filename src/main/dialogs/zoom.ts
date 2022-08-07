@@ -9,8 +9,9 @@ export const showZoomDialog = async (
   x: number,
   y: number,
 ) => {
-  const tabId = Application.instance.windows.fromBrowserWindow(browserWindow)
-    .viewManager.selectedId;
+  const tabId =
+    Application.instance.windows.fromBrowserWindow(browserWindow).viewManager
+      .selectedId;
 
   const dialog = Application.instance.dialogs.show({
     name: 'zoom',
@@ -26,5 +27,5 @@ export const showZoomDialog = async (
 
   if (!dialog) return;
 
-  (await (dialog)).handle('tab-id', () => tabId);
+  (await dialog).handle('tab-id', () => tabId);
 };

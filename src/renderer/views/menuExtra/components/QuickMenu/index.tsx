@@ -72,17 +72,18 @@ const guardarComo = () => {
 
 const copiarUrl = async () => {
   await copy(store.data.url);
-  store.hide()
-}
+  store.hide();
+};
 
 const shareUrl = () => {
-  
-  shell.openExternal('mailto:?subject=Shared From Fifo Browser&body='+store.data.url)
-}
+  shell.openExternal(
+    'mailto:?subject=Shared From Fifo Browser&body=' + store.data.url,
+  );
+};
 
 const capture = async () => {
-  copy(await store.capturePage())
-}
+  copy(await store.capturePage());
+};
 
 export const QuickMenu = observer(() => {
   return (

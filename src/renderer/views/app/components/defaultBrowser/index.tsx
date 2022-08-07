@@ -18,8 +18,9 @@ import store from '../../store';
 function getOS() {
   if (window.navigator.appVersion.indexOf('Win') !== -1) {
     return true;
+  } else if (window.navigator.appVersion.indexOf('Linux') !== -1) {
+    return true;
   }
-  else if (window.navigator.appVersion.indexOf('Linux') !== -1) { return true }
 
   return false;
 }
@@ -56,7 +57,7 @@ export const DefaultBrowser = observer(() => {
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'space-between',
-              overflow: "hidden",
+              overflow: 'hidden',
             }}
           >
             <div
@@ -66,10 +67,13 @@ export const DefaultBrowser = observer(() => {
                 height: '21px',
                 backgroundSize: 'cover',
                 margin: '0 20px 0 15px',
-                minWidth: "21px"
+                minWidth: '21px',
               }}
             ></div>
-            <HiddenDiv>Fifo is not your default browser, for maximum security and privacy, we recommend you to use Fifo!</HiddenDiv>
+            <HiddenDiv>
+              Fifo is not your default browser, for maximum security and
+              privacy, we recommend you to use Fifo!
+            </HiddenDiv>
             <ButtonPredeterminado onClick={onButtonClick}>
               Set as default!
             </ButtonPredeterminado>

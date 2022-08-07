@@ -23,23 +23,22 @@ const onClick = (item: IDownloadItem) => () => {
   }
 };
 
-const onMoreClick = (item: IDownloadItem) => (
-  e: React.MouseEvent<HTMLDivElement>,
-) => {
-  e.stopPropagation();
+const onMoreClick =
+  (item: IDownloadItem) => (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
 
-  // const { top, left, x, y } = e.currentTarget.getBoundingClientRect();
-  // const menu = remote.Menu.buildFromTemplate([
-  //   {
-  //     label: "Abrir",
-  //     click: () => {
-  //       onClick(item)
-  //     }
-  //   }
-  // ]);
+    // const { top, left, x, y } = e.currentTarget.getBoundingClientRect();
+    // const menu = remote.Menu.buildFromTemplate([
+    //   {
+    //     label: "Abrir",
+    //     click: () => {
+    //       onClick(item)
+    //     }
+    //   }
+    // ]);
 
-  // menu.popup({});
-};
+    // menu.popup({});
+  };
 
 export const DownloadItem = observer(({ item }: { item: IDownloadItem }) => {
   let received = prettyBytes(item.receivedBytes);
@@ -53,7 +52,13 @@ export const DownloadItem = observer(({ item }: { item: IDownloadItem }) => {
 
   return (
     <StyledDownloadItem style={{ cursor: 'pointer' }} onClick={onClick(item)}>
-      <Icon ext={item.fileName.indexOf('.') > -1 ? item.fileName.split(".")[item.fileName.split(".").length - 1] : "none"}></Icon>
+      <Icon
+        ext={
+          item.fileName.indexOf('.') > -1
+            ? item.fileName.split('.')[item.fileName.split('.').length - 1]
+            : 'none'
+        }
+      ></Icon>
       <Info>
         <Title>{item.fileName}</Title>
         {!item.completed && (

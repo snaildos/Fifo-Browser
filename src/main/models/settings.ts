@@ -73,7 +73,7 @@ export class Settings extends EventEmitter {
 
     (async () => {
       await this.load();
-    })()
+    })();
   }
 
   private onLoad = async (): Promise<void> => {

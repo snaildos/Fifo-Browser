@@ -4,7 +4,7 @@ import { ipcMain, dialog, app } from 'electron';
 import * as Datastore from '@seald-io/nedb';
 import { fileTypeFromBuffer } from 'file-type';
 import * as icojs from 'icojs';
-const fs = require('fs')
+const fs = require('fs');
 import { getPath } from '~/utils';
 import {
   IFindOperation,
@@ -157,9 +157,9 @@ export class StorageService {
     });
 
     ipcMain.handle('history-unlink', () => {
-      const apppath = app.getPath('userData')
-      fs.unlinkSync(apppath + "\\storage\\history.db");
-      fs.unlinkSync(apppath + "\\storage\\startuptabs.db");
+      const apppath = app.getPath('userData');
+      fs.unlinkSync(apppath + '\\storage\\history.db');
+      fs.unlinkSync(apppath + '\\storage\\startuptabs.db');
       dialog.showMessageBoxSync(null, {
         type: 'warning',
         title: `Clear History`,
@@ -170,8 +170,8 @@ export class StorageService {
     });
 
     ipcMain.handle('favicon-unlink', () => {
-      const apppath = app.getPath('userData')
-      fs.unlinkSync(apppath + "\\storage\\favicons.db");
+      const apppath = app.getPath('userData');
+      fs.unlinkSync(apppath + '\\storage\\favicons.db');
       dialog.showMessageBoxSync(null, {
         type: 'info',
         title: `Clear Favicon`,
@@ -182,8 +182,8 @@ export class StorageService {
     });
 
     ipcMain.handle('permission-unlink', () => {
-      const apppath = app.getPath('userData')
-      fs.unlinkSync(apppath + "\\storage\\permissions.db");
+      const apppath = app.getPath('userData');
+      fs.unlinkSync(apppath + '\\storage\\permissions.db');
       dialog.showMessageBoxSync(null, {
         type: 'warning',
         title: `Clear Permissions`,
@@ -308,13 +308,13 @@ export class StorageService {
   }
 
   private async loadBookmarks() {
-    let items = await this.find<IBookmark>({ scope: 'bookmarks', query: {} });
+    const items = await this.find<IBookmark>({ scope: 'bookmarks', query: {} });
 
     items.sort((a, b) => a.order - b.order);
 
     let barFolder = items.find((x) => x.static === 'main');
-    let otherFolder = items.find((x) => x.static === 'other');
-    let mobileFolder = items.find((x) => x.static === 'mobile');
+    const otherFolder = items.find((x) => x.static === 'other');
+    const mobileFolder = items.find((x) => x.static === 'mobile');
 
     this.bookmarks = items;
 

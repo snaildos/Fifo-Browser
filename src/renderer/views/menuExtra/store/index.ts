@@ -5,15 +5,12 @@ import { makeObservable, observable } from 'mobx';
 import { DialogStore } from '~/models/dialog-store';
 
 export class Store extends DialogStore {
-
   public data = {};
 
   public constructor() {
     super();
 
-    makeObservable(this, {
-      
-    });
+    makeObservable(this, {});
 
     // this.init();
 
@@ -29,9 +26,12 @@ export class Store extends DialogStore {
   }
 
   public async capturePage() {
-    return await remote.getCurrentWindow().capturePage().then((img: { toDataURL: () => any; }) => {
-      return img.toDataURL()
-    })
+    return await remote
+      .getCurrentWindow()
+      .capturePage()
+      .then((img: { toDataURL: () => any }) => {
+        return img.toDataURL();
+      });
   }
 
   // public async init() {  }

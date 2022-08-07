@@ -30,7 +30,7 @@ import {
   ICON_TRASH,
   ICON_EDIT,
   ICON_ADD,
-  ICON_DASHBOARD
+  ICON_DASHBOARD,
 } from '~/renderer/constants';
 import {
   ContextMenuItem,

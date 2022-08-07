@@ -34,7 +34,7 @@ export interface ISettings {
   };
   newtab: {
     news: boolean;
-    weather: boolean
+    weather: boolean;
   };
   searchEngines: ISearchEngine[];
   startupBehavior: IStartupBehavior;

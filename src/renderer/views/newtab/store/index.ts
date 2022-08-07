@@ -11,7 +11,6 @@ type NewsBehavior = 'on-scroll' | 'always-visible' | 'hidden';
 export type Preset = 'focused' | 'inspirational' | 'informational' | 'custom';
 
 export class Store {
-
   @observable
   public settings: ISettings = { ...(window as any).settings };
 
@@ -29,7 +28,6 @@ export class Store {
   public get isweather() {
     return this.settings.newtab.weather;
   }
-
 
   @observable
   public news: INewsItem[] = [];
@@ -200,7 +198,7 @@ export class Store {
     };
   }
 
-  public async loadImage(isNewUrl: any=false) {
+  public async loadImage(isNewUrl: any = false) {
     let url = localStorage.getItem('imageURL');
 
     if (this.changeImageDaily) {
@@ -219,7 +217,7 @@ export class Store {
         }
       }
     }
-    
+
     if (!url || url == '') {
       url = 'https://picsum.photos/1920/1080';
       isNewUrl = true;
@@ -260,26 +258,26 @@ export class Store {
 
   public async loadNews() {
     // const randompage = Math.floor(Math.random() * 10) + 1;
-    var news = this.isnews 
+    const news = this.isnews;
     if (news == false) {
-    const { data } = await networkMainChannel.getInvoker().request(`
+      const { data } = await networkMainChannel.getInvoker().request(`
       https://snaildos.github.io/SnailNews/data.json
     `); // ?lang=
-    const json = JSON.parse(data);
+      const json = JSON.parse(data);
 
-    if (json.articles) {
-      this.news = this.news.concat(json.articles);
+      if (json.articles) {
+        this.news = this.news.concat(json.articles);
+      } else {
+        throw new Error('Error fetching news');
+      }
     } else {
-      throw new Error('Error fetching news');
+      throw new Error('News is disabled in settings.');
     }
-  } else {
-  throw new Error('News is disabled in settings.');
   }
-}
 
-public async loadTopSites() {
-  this.topSites = await (window as any).getTopSites(8);
-}
+  public async loadTopSites() {
+    this.topSites = await (window as any).getTopSites(8);
+  }
 }
 
 export default new Store();

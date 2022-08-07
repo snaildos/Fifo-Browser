@@ -43,7 +43,7 @@ const Menu = observer(() => {
       {item && item.type === 'address' && (
         <ContextMenuItem onClick={onEditClick}>Edit</ContextMenuItem>
       )}
-    <ContextMenuItem onClick={onRemoveClick}>Remove</ContextMenuItem>
+      <ContextMenuItem onClick={onRemoveClick}>Remove</ContextMenuItem>
     </ContextMenu>
   );
 });

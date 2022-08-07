@@ -23,14 +23,13 @@ const permissionClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
   ipcRenderer.invoke('permission-unlink');
 };
 
-
 const DoNotTrackToggle = observer(() => {
   const { doNotTrack } = store.settings;
 
   return (
     <Row onClick={onSwitchChange('doNotTrack')}>
       <Title>
-      Send a &quot;Do Not Track&quot; request with your browsing traffic. Not
+        Send a &quot;Do Not Track&quot; request with your browsing traffic. Not
         recommended,{' '}
         <a
           href="https://spreadprivacy.com/do-not-track"
@@ -72,35 +71,34 @@ const GlobalPrivacyControlToggle = observer(() => {
   );
 });
 
-
 export const Privacy = () => {
   return (
     <>
       <Header>Privacy</Header>
       <Row>
-      <Button
-        type="outlined"
-        foreground={BLUE_500}
-        onClick={historyClearClick}
-      >
-        Clear search history
-      </Button>
-      <p>⠀</p>
-      <Button
-        type="outlined"
-        foreground={BLUE_500}
-        onClick={faviconClearClick}
-      >
-        Clear favicon database
-      </Button>
-      <p>⠀</p>
-      <Button
-        type="outlined"
-        foreground={BLUE_500}
-        onClick={permissionClearClick}
-      >
-        Clear website permissions
-      </Button>
+        <Button
+          type="outlined"
+          foreground={BLUE_500}
+          onClick={historyClearClick}
+        >
+          Clear search history
+        </Button>
+        <p>⠀</p>
+        <Button
+          type="outlined"
+          foreground={BLUE_500}
+          onClick={faviconClearClick}
+        >
+          Clear favicon database
+        </Button>
+        <p>⠀</p>
+        <Button
+          type="outlined"
+          foreground={BLUE_500}
+          onClick={permissionClearClick}
+        >
+          Clear website permissions
+        </Button>
       </Row>
       <GlobalPrivacyControlToggle />
       <DoNotTrackToggle />

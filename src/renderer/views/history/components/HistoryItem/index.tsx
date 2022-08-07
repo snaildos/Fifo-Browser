@@ -20,12 +20,11 @@ const onClick = (item: IHistoryItem) => () => {
   }
 };
 
-const onRemoveClick = (item: IHistoryItem) => (
-  e: React.MouseEvent<HTMLDivElement>,
-) => {
-  e.stopPropagation();
-  store.removeItems([item._id]);
-};
+const onRemoveClick =
+  (item: IHistoryItem) => (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    store.removeItems([item._id]);
+  };
 
 const onTitleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
   e.stopPropagation();

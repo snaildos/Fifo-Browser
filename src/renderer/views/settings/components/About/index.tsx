@@ -10,7 +10,6 @@ import { ipcRenderer } from 'electron';
 import { observer } from 'mobx-react-lite';
 import { NormalButton } from '../App';
 
-
 const Location = observer(() => {
   return (
     <Row>
@@ -30,7 +29,7 @@ const Location = observer(() => {
         <Title> Mauro Baladés - Contributer</Title>
         <p></p>
         <Title>HzzaAwesome - Graphic Designer</Title>
-        </Title>
+      </Title>
     </Row>
   );
 });

@@ -345,7 +345,7 @@ export class View {
         canGoForward: this.webContents.canGoForward(),
       });
       this.window.send('update-navigation-state-ui', {
-        url: this.webContents.getURL()
+        url: this.webContents.getURL(),
       });
     }
   }
@@ -421,11 +421,13 @@ export class View {
     this.updateBookmark();
 
     this.updateUIpage(url);
-
   };
 
   public updateUIpage(url: string) {
-    this.window.send('is-ui-page', url.startsWith(WEBUI_BASE_URL) || url.startsWith(NETWORK_ERROR_HOST));
+    this.window.send(
+      'is-ui-page',
+      url.startsWith(WEBUI_BASE_URL) || url.startsWith(NETWORK_ERROR_HOST),
+    );
   }
 
   public updateBookmark() {

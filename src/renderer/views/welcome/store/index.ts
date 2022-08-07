@@ -29,7 +29,7 @@ export class Store {
 
   @observable
   public changelog = '';
-  
+
   @observable
   public menuTop = 0;
 

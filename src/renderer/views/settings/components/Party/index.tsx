@@ -9,7 +9,6 @@ import { observer } from 'mobx-react-lite';
 import { newTabSwitchChange } from '../../utils';
 import { Switch } from '~/renderer/components/Switch';
 
-
 const WeatherToggle = observer(() => {
   const { weather } = store.settings.newtab;
 
@@ -30,9 +29,7 @@ const NewsToggle = observer(() => {
 
   return (
     <Row onClick={newTabSwitchChange('news')}>
-      <Title>
-        Disable the news network request on the newtab screen
-      </Title>
+      <Title>Disable the news network request on the newtab screen</Title>
       <Control>
         <Switch value={news} />
       </Control>
@@ -40,14 +37,16 @@ const NewsToggle = observer(() => {
   );
 });
 
-
 export const Party = () => {
   return (
     <>
       <Header>Third Party Services</Header>
-      <span>Fifo offers an easy way to block and allow third party services that are optional to the user that may use their private infomation for unique features.</span>
-      <Row>
-      </Row>
+      <span>
+        Fifo offers an easy way to block and allow third party services that are
+        optional to the user that may use their private infomation for unique
+        features.
+      </span>
+      <Row></Row>
       <NewsToggle />
       <WeatherToggle />
     </>

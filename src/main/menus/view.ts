@@ -244,13 +244,13 @@ export const getViewMenu = (
           { role: 'resetZoom', label: 'Reset' },
           {
             label: 'Zoom In',
-            role: 'zoomIn'
+            role: 'zoomIn',
           },
           {
             label: 'Zoom Out',
-            role: 'zoomOut'
+            role: 'zoomOut',
           },
-        ]
+        ],
       },
       {
         type: 'separator',

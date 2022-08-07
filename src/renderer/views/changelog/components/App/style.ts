@@ -5,9 +5,7 @@ import { shadows } from '~/renderer/mixins';
 import { ITheme } from '~/interfaces';
 import { DIALOG_BORDER_RADIUS } from '~/renderer/mixins/dialogs';
 import { centerIcon } from '~/renderer/mixins';
-import {
-  FAVICON as favicon,
-} from '~/renderer/constants/icons';
+import { FAVICON as favicon } from '~/renderer/constants/icons';
 
 export const StyledSection = styled.div`
   width: 100%;
@@ -24,7 +22,6 @@ export const StyledSection = styled.div`
     animation: slide-in 1.5s forwards;
   }
 
-
   &.disabled {
     display: flex;
     position: absolute;
@@ -34,7 +31,8 @@ export const StyledSection = styled.div`
   @keyframes slide-in {
     0% {
       transform: translateX(-1000px);
-    } 100% {
+    }
+    100% {
       transform: translateX(0);
     }
   }
@@ -42,7 +40,8 @@ export const StyledSection = styled.div`
   @keyframes slide-out {
     0% {
       transform: translateX(0);
-    } 100% {
+    }
+    100% {
       transform: translateX(100000px);
     }
   }
@@ -75,13 +74,13 @@ export const Button = styled.div`
   width: 256px;
 
   ${({ theme }: { theme?: ITheme }) => css`
-    color: ${theme['pages.textColor'] == "#fff" ? "black" : "white"}};
+    color: ${theme['pages.textColor'] == '#fff' ? 'black' : 'white'}};
   `};
 
   &:hover {
-    background: rgba(138, 180, 248, .8);
+    background: rgba(138, 180, 248, 0.8);
   }
-`
+`;
 
 export const Icon = styled.div`
   /* margin-right: 12px; */
@@ -91,12 +90,11 @@ export const Icon = styled.div`
   margin: 0;
   ${centerIcon()};
 
-  ${({ icon, theme }: { icon?: string, theme?: ITheme }) => css`
-    background-image: url("${icon}");
-    filter: ${theme['pages.textColor'] == "#fff" ? 'none' : 'invert(100%)'};
+  ${({ icon, theme }: { icon?: string; theme?: ITheme }) => css`
+    background-image: url('${icon}');
+    filter: ${theme['pages.textColor'] == '#fff' ? 'none' : 'invert(100%)'};
   `};
 `;
-
 
 export const Title = styled.div`
   font-size: 4rem;
@@ -104,7 +102,7 @@ export const Title = styled.div`
   margin-top: 16px;
   text-align: center;
   font-weight: bold;
-`
+`;
 
 export const Description = styled.div`
   font-size: 1.5rem;
@@ -113,7 +111,7 @@ export const Description = styled.div`
   margin: 0;
   opacity: 0.4;
   text-align: center;
-`
+`;
 
 export const StyledLink = styled.div`
   font-size: 1rem;
@@ -127,7 +125,7 @@ export const StyledLink = styled.div`
   display: inline-block;
   font-family: inherit;
   text-decoration: none;
-`
+`;
 
 export const Favicon = styled.div`
   background: url('${favicon}');
@@ -136,7 +134,7 @@ export const Favicon = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   margin-bottom: 16px;
-` 
+`;
 
 export const Option = styled.div`
   -webkit-appearance: none;
@@ -164,4 +162,4 @@ export const Option = styled.div`
     border: 1px solid rgb(138, 180, 248);
     color: rgb(138, 180, 248);
   }
-`
+`;

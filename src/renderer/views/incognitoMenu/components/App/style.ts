@@ -107,12 +107,12 @@ export const Content = styled.div`
 
 export const Text = styled.div`
   text-align: center;
-`
+`;
 
 export const Close = styled.div`
   margin-top: 20px;
   background: #fff;
-`
+`;
 
 export const Icon = styled.div`
   margin-right: 12px;
@@ -121,7 +121,6 @@ export const Icon = styled.div`
   ${centerIcon()};
   opacity: 0.8;
   margin: 0 auto;
-
 
   ${({ icon, theme }: { icon?: string; theme?: ITheme }) => css`
     background-image: url(${icon});
@@ -136,7 +135,6 @@ export const MenuItemIcon = styled.div`
   ${centerIcon()};
   opacity: 0.8;
   margin: 0 10px 0 0;
-
 
   ${({ icon, theme }: { icon?: string; theme?: ITheme }) => css`
     background-image: url(${icon});

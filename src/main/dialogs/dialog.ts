@@ -41,12 +41,7 @@ export class PersistentDialog {
   private loaded = false;
   private showCallback: any = null;
 
-  public constructor({
-    bounds,
-    name,
-    hideTimeout,
-    webPreferences,
-  }: IOptions) {
+  public constructor({ bounds, name, hideTimeout, webPreferences }: IOptions) {
     this.browserView = new BrowserView({
       webPreferences: {
         nodeIntegration: true,
@@ -79,13 +74,15 @@ export class PersistentDialog {
 
     (async () => {
       if (process.env.NODE_ENV === 'development') {
-        await this.webContents.loadURL(`http://localhost:4444/${this.name}.html`);
+        await this.webContents.loadURL(
+          `http://localhost:4444/${this.name}.html`,
+        );
       } else {
         await this.webContents.loadURL(
           join('file://', app.getAppPath(), `build/${this.name}.html`),
         );
       }
-    })()
+    })();
   }
 
   public get webContents() {

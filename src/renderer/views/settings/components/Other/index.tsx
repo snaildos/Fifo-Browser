@@ -12,15 +12,14 @@ import { NormalButton } from '../App';
 
 const TogglehttpsEnforce = observer(() => {
   const { httpsEnforce } = store.settings;
-  
+
   return (
-<Row onClick={onSwitchChange('httpsEnforce')}>
+    <Row onClick={onSwitchChange('httpsEnforce')}>
       <Title>Show search and site suggestions</Title>
       <Control>
         <Switch value={httpsEnforce} />
       </Control>
     </Row>
-   
   );
 });
 
@@ -28,7 +27,10 @@ export const Other = () => {
   return (
     <>
       <Header>Other Settings</Header>
-      <Title>Here, you can view all other settings that are not sorted into categories.</Title>
+      <Title>
+        Here, you can view all other settings that are not sorted into
+        categories.
+      </Title>
       <TogglehttpsEnforce />
       <httpsEnforce />
     </>

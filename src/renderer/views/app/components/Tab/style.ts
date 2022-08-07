@@ -23,11 +23,11 @@ export const StyledClose = styled.div`
   z-index: 10;
   ${centerIcon(16)};
 
-    ${({ visible, theme }: CloseProps) => css`
-      opacity: ${visible ? transparency.icons.inactive : 0};
-      display: ${visible ? 'block' : 'none'};
-      filter: ${theme['toolbar.lightForeground'] ? 'invert(100%)' : 'none'};
-    `}
+  ${({ visible, theme }: CloseProps) => css`
+    opacity: ${visible ? transparency.icons.inactive : 0};
+    display: ${visible ? 'block' : 'none'};
+    filter: ${theme['toolbar.lightForeground'] ? 'invert(100%)' : 'none'};
+  `}
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
@@ -50,11 +50,11 @@ export const StyledAction = styled.div`
   ${centerIcon(16)};
 
   ${({ visible, theme, icon }: ActionProps) => css`
-      opacity: ${visible ? transparency.icons.inactive : 0};
-      display: ${visible ? 'block' : 'none'};
-      filter: ${theme['toolbar.lightForeground'] ? 'invert(100%)' : 'none'};
-      background-image: url('${icon}');
-    `}
+    opacity: ${visible ? transparency.icons.inactive : 0};
+    display: ${visible ? 'block' : 'none'};
+    filter: ${theme['toolbar.lightForeground'] ? 'invert(100%)' : 'none'};
+    background-image: url('${icon}');
+  `}
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
@@ -79,12 +79,12 @@ export const StyledPinAction = styled.div`
   ${centerIcon(10)};
 
   ${({ visible, theme, icon }: PinActionProps) => css`
-      display: ${visible ? 'block' : 'none'};
-      background-color: ${
-        theme['toolbar.lightForeground'] ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)'
-      };
-      background-image: url('${icon}');
-    `}
+    display: ${visible ? 'block' : 'none'};
+    background-color: ${theme['toolbar.lightForeground']
+      ? 'rgb(255, 255, 255)'
+      : 'rgb(0, 0, 0)'};
+    background-image: url('${icon}');
+  `}
 
   &:hover {
     filter: invert(100%);
@@ -171,7 +171,7 @@ export const TabContainer = styled.div`
   transition: 0.1s background-color;
   border-bottom: transparent !important;
   border: 2px solid;
-  transition: background-color 1.0s, color 1.0s;
+  transition: background-color 1s, color 1s;
   transition-timing-function: ease-out;
 
   ${({ pinned, theme, hasTabGroup, selected }: TabContainerProps) => css`
