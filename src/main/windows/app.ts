@@ -31,7 +31,7 @@ export class AppWindow {
         // TODO: enable sandbox, contextIsolation and disable nodeIntegration to improve security
         nodeIntegration: true,
         contextIsolation: false,
-        javascript: true,
+        javascript: true
       },
       trafficLightPosition: {
         x: 18,
