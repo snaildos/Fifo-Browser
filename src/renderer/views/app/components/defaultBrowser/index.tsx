@@ -10,7 +10,6 @@ import {
   Close,
   HiddenDiv,
 } from './style';
-import { FAVICON as favicon } from '~/renderer/constants/icons';
 import * as os from 'os';
 import { ipcRenderer } from 'electron';
 import { ICON_CLOSE } from '~/renderer/constants/icons';
@@ -62,7 +61,7 @@ export const DefaultBrowser = observer(() => {
           >
             <div
               style={{
-                background: `url(https://snaildos.com/SnailDOS.jpg)`,
+                background: `url(https://cdn.snaildos.com/logo/Fifo.png)`,
                 width: '21px',
                 height: '21px',
                 backgroundSize: 'cover',
@@ -70,7 +69,7 @@ export const DefaultBrowser = observer(() => {
                 minWidth: "21px"
               }}
             ></div>
-            <HiddenDiv>Fifo is not your default browser, for maximum security and privacy, we recommend you to use Fifo</HiddenDiv>
+            <HiddenDiv>Fifo is not your default browser, for maximum security and privacy, we recommend you to use Fifo!</HiddenDiv>
             <ButtonPredeterminado onClick={onButtonClick}>
               Set as default!
             </ButtonPredeterminado>
