@@ -17,12 +17,8 @@ export const showAddBookmarkDialog = (
   },
 ) => {
   if (!data) {
-    const {
-      url,
-      title,
-      bookmark,
-      favicon,
-    } = Application.instance.windows.current.viewManager.selected;
+    const { url, title, bookmark, favicon } =
+      Application.instance.windows.current.viewManager.selected;
     data = {
       url,
       title,

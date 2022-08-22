@@ -44,11 +44,7 @@ export const Icon = styled.div<IconProps>`
   ${centerIcon()};
   position: relative;
 
-  ${({
-    add,
-    icon,
-    custom
-  }) => css`
+  ${({ add, icon, custom }) => css`
     height: ${add ? 32 : 24}px;
     width: ${add ? 32 : 24}px;
     background-image: url(${icon});

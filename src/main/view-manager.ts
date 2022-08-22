@@ -57,11 +57,9 @@ export class ViewManager extends EventEmitter {
     });
 
     ipcMain.on('save-as-menu-extra', async (e) => {
-      const {
-        title,
-        webContents,
-      } = Application.instance.windows.current.viewManager.selected;
-    
+      const { title, webContents } =
+        Application.instance.windows.current.viewManager.selected;
+
       const { canceled, filePath } = await dialog.showSaveDialog({
         defaultPath: title,
         filters: [
@@ -69,12 +67,15 @@ export class ViewManager extends EventEmitter {
           { name: 'Webpage, HTML Only', extensions: ['htm', 'html'] },
         ],
       });
-    
+
       if (canceled) return;
-    
+
       const ext = extname(filePath);
-    
-      await webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
+
+      await webContents.savePage(
+        filePath,
+        ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete',
+      );
     });
 
     ipcMain.on('Print', () => {
@@ -88,7 +89,7 @@ export class ViewManager extends EventEmitter {
       },
     );
 
-    ipcMain.removeHandler('get-tab-zoom')
+    ipcMain.removeHandler('get-tab-zoom');
     ipcMain.handle('get-tab-zoom', (e: any, tabId: number) => {
       // const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId)
       //  .webContents.zoomFactor;
@@ -254,25 +255,20 @@ export class ViewManager extends EventEmitter {
 
   public changeZoom(zoomDirection: 'in' | 'out', e?: any) {
     const newZoomFactor =
-        this.selected.webContents.zoomFactor +
-        (zoomDirection === 'in'
-          ? ZOOM_FACTOR_INCREMENT
-          : -ZOOM_FACTOR_INCREMENT);
+      this.selected.webContents.zoomFactor +
+      (zoomDirection === 'in' ? ZOOM_FACTOR_INCREMENT : -ZOOM_FACTOR_INCREMENT);
 
-      if (
-        newZoomFactor <= ZOOM_FACTOR_MAX &&
-        newZoomFactor >= ZOOM_FACTOR_MIN
-      ) {
-        this.selected.webContents.zoomFactor = newZoomFactor;
-        this.selected.emitEvent(
-          'zoom-updated',
-          this.selected.webContents.zoomFactor,
-        );
-      } else {
-        e?.preventDefault();
-      }
-      this.emitZoomUpdate();
-  } 
+    if (newZoomFactor <= ZOOM_FACTOR_MAX && newZoomFactor >= ZOOM_FACTOR_MIN) {
+      this.selected.webContents.zoomFactor = newZoomFactor;
+      this.selected.emitEvent(
+        'zoom-updated',
+        this.selected.webContents.zoomFactor,
+      );
+    } else {
+      e?.preventDefault();
+    }
+    this.emitZoomUpdate();
+  }
 
   public async fixBounds() {
     const view = this.selected;

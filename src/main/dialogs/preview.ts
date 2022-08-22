@@ -30,12 +30,7 @@ export class PreviewDialog extends PersistentDialog {
   public async show(browserWindow: BrowserWindow) {
     super.show(browserWindow, false);
 
-    const {
-      id,
-      url,
-      title,
-      errorURL,
-    } = Application.instance.windows
+    const { id, url, title, errorURL } = Application.instance.windows
       .fromBrowserWindow(browserWindow)
       .viewManager.views.get(this.tab.id);
 

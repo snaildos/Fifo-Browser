@@ -9,14 +9,11 @@ export const showMenuExtraDialog = async (
   x: number,
   y: number,
 ) => {
-  const tabId = await Application.instance.windows.fromBrowserWindow(browserWindow)
-    .viewManager.selectedId;
-  const {
-    url,
-    title,
-    bookmark,
-    favicon
-  } = await Application.instance.windows.current.viewManager.selected;
+  const tabId = await Application.instance.windows.fromBrowserWindow(
+    browserWindow,
+  ).viewManager.selectedId;
+  const { url, title, bookmark, favicon } = await Application.instance.windows
+    .current.viewManager.selected;
 
   const menuWidth = 330;
   const dialog = await Application.instance.dialogs.show({

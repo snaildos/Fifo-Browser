@@ -9,16 +9,17 @@ export const showMenuDialog = async (
   x: number,
   y: number,
 ) => {
-  const tabId = Application.instance.windows.fromBrowserWindow(browserWindow)
-  .viewManager.selectedId;
-  
+  const tabId =
+    Application.instance.windows.fromBrowserWindow(browserWindow).viewManager
+      .selectedId;
+
   const menuWidth = 330;
   const dialog = Application.instance.dialogs.show({
     name: 'menu',
     browserWindow,
     getBounds: () => ({
       width: menuWidth,
-      height: 510,
+      height: 560,
       x: x - menuWidth + DIALOG_MARGIN,
       y: y - DIALOG_MARGIN_TOP,
     }),

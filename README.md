@@ -9,7 +9,7 @@
   
 [![Downloads](https://img.shields.io/github/downloads/snaildos/Fifo-Browser/total.svg?style=flat-square)](https://fifo.snaildos.com)
 
-Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React` that is mean't to be secure. It's a more, optimized, more updated fork of Wexond. This browser is meant for office work, gaming, research and is a secure private browser. Fifo aims to be cross platform. 
+Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React` that is mean't to be secure. This browser is meant for office work, gaming, research and is a secure private browser. Fifo aims to be cross platform. 
 FIFO (Fly In Fly Out for your data.)
 
 
@@ -88,7 +88,7 @@ By opening a pull request, you agree to the conditions of the [Contributor Licen
 
 # Development
 
-## Running
+## Running (Development)
 
 Before running Fifo, please ensure you have **latest** [`Node.js`](https://nodejs.org/en/) and [`YARN`] installed on your machine. You can use NPM but it IS NOT recommended.
 
@@ -102,7 +102,7 @@ $ npm i -g windows-build-tools
 
 Yarn:
 ```bash
-$ yarn install --save --legacy-peer-deps # Install needed depedencies.
+$ yarn install # Install node modules
 $ yarn build # Compile Fifo code and rebuild modules.
 $ yarn dev # Run Fifo in development mode
 ```
@@ -126,6 +126,32 @@ $ yarn copyright # Generates auto headers for copyright.
 ```
 
 More commands can be found in [`package.json`](package.json).
+
+## Running (Without Development Mode (Stable))
+
+Before running Fifo, please ensure you have **latest** [`Node.js`](https://nodejs.org/en/) and [`YARN`] installed on your machine. You can use NPM but it IS NOT recommended.
+
+### Windows
+
+Make sure you have build tools installed. You can install them by running this command as **administrator**:
+
+```bash
+$ npm i -g windows-build-tools
+```
+
+Yarn:
+```bash
+$ yarn install # Install node modules
+$ yarn build # Compile Fifo code and rebuild modules.
+$ yarn start # Run Fifo in development mode
+```
+
+NPM: Not recommended
+```bash
+$ npm install --save --legacy-peer-deps # Install needed depedencies. If you can, please, use yarn install.
+$ npm run build # Compile Fifo code and rebuild modules.
+$ npm run start # Run Fifo in development mode
+```
 
 # Documentation
 

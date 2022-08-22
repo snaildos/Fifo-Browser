@@ -12,7 +12,8 @@ import {
 } from '~/renderer/components/ContextMenu';
 import { Switch } from '~/renderer/components/Switch';
 import { Dropdown } from '~/renderer/components/Dropdown';
-
+import { newTabSwitchChange } from '../../../settings/utils/settings';
+import settingstore from '../../../settings/store/index';
 import store, { Preset } from '../../store';
 import { ICON_WINDOW, ICON_BACK, ICON_REFRESH } from '~/renderer/constants';
 
@@ -39,9 +40,6 @@ const onPresetClick = (name: Preset) => () => {
   store.preset = name;
 };
 
-const getWebUIURL = (hostname: string) =>
-  `${WEBUI_BASE_URL}${hostname}${WEBUI_URL_SUFFIX}`;
-
 const onRefreshImageClick = () => {
   store.image = '';
   setTimeout(() => {
@@ -50,6 +48,17 @@ const onRefreshImageClick = () => {
     store.loadImage(true);
   }, 50);
 };
+
+const NewsToggle = observer(() => {
+  const { news } = settingstore.settings.newtab;
+
+  return (
+    <ContextMenuItem bigger onClick={newTabSwitchChange('news')}>
+      <div style={{ flex: 1 }}>Disable News</div>
+      <Switch value={news}></Switch>
+    </ContextMenuItem>
+  );
+});
 
 export const SwitchItem = observer(
   ({
@@ -124,7 +133,7 @@ export const Preferences = observer(() => {
           >
             Inspirational
           </ContextMenuItem>
-           <ContextMenuItem
+          <ContextMenuItem
             bigger
             onClick={onPresetClick('informational')}
             selected={store.preset === 'informational'}
@@ -161,7 +170,7 @@ export const Preferences = observer(() => {
             pointerEvents:
               store.preferencesContent === 'custom' ? 'inherit' : 'none',
             transition: '0.3s max-height, 0.3s transform, 0.3s opacity',
-             maxHeight: store.preferencesContent === 'custom' ? 390 : 200,
+            maxHeight: store.preferencesContent === 'custom' ? 420 : 200,
             transform:
               store.preferencesContent === 'custom'
                 ? 'translateX(-100%)'
@@ -197,9 +206,11 @@ export const Preferences = observer(() => {
             <Dropdown.Item value="always-visible">Always visible</Dropdown.Item>
             <Dropdown.Item value="hidden">Hidden</Dropdown.Item>
             <Dropdown.Item value="on-scroll">Visible on scroll</Dropdown.Item>
-          </Dropdown> 
+          </Dropdown>
+          <ContextMenuSeparator bigger></ContextMenuSeparator>
+          <NewsToggle />
         </div>
-        </div>
+      </div>
     </ContextMenu>
   );
 });

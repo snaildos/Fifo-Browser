@@ -62,16 +62,15 @@ const onBackClick = () => {
   store.selectedSection = 'address-bar';
 };
 
-const onMoreClick = (data: ISearchEngine) => (
-  e: React.MouseEvent<HTMLDivElement>,
-) => {
-  const { top, left } = e.currentTarget.getBoundingClientRect();
-  store.menuInfo.left = left - store.menuRef.current.offsetWidth;
-  store.menuInfo.top = top;
+const onMoreClick =
+  (data: ISearchEngine) => (e: React.MouseEvent<HTMLDivElement>) => {
+    const { top, left } = e.currentTarget.getBoundingClientRect();
+    store.menuInfo.left = left - store.menuRef.current.offsetWidth;
+    store.menuInfo.top = top;
 
-  store.editedSearchEngine = data;
-  store.menuVisible = true;
-};
+    store.editedSearchEngine = data;
+    store.menuVisible = true;
+  };
 
 export const SearchEngine = observer(({ data }: { data: ISearchEngine }) => {
   const isDefault = store.searchEngine.keyword === data.keyword;
@@ -101,7 +100,8 @@ const onAddClick = () => {
   store.searchEngineUrlInputRef.current.value = '';
 };
 
-{/*
+{
+  /*
 export const ManageSearchEngines = observer(() => {
   return (
     <>
@@ -130,7 +130,8 @@ export const ManageSearchEngines = observer(() => {
   );
 });
 
-*/}
+*/
+}
 
 const onManageSearchEngines = () => {
   store.selectedSection = 'search-engines';
@@ -142,7 +143,7 @@ export const AddressBar = observer(() => {
       <Header>Address bar</Header>
       <SuggestionsToggle />
       <SearchEngineRow />
-    {/*  <Row onClick={onManageSearchEngines}>
+      {/*  <Row onClick={onManageSearchEngines}>
          <Title>Manage search engines</Title>
          <Control></Control>
          </Row> */}

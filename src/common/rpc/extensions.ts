@@ -7,6 +7,5 @@ export interface ExtensionMainService {
   inspectBackgroundPage(id: string): void;
 }
 
-export const extensionMainChannel = new RendererToMainChannel<ExtensionMainService>(
-  'ExtensionMainService',
-);
+export const extensionMainChannel =
+  new RendererToMainChannel<ExtensionMainService>('ExtensionMainService');

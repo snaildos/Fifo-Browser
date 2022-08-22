@@ -33,8 +33,8 @@ export const getSectionLabel = (date: Date) => {
 };
 
 export const formatTime = (date: Date) => {
-  return `${date
-    .getHours()
+  return `${date.getHours().toString().padStart(2, '0')}:${date
+    .getMinutes()
     .toString()
-    .padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    .padStart(2, '0')}`;
 };

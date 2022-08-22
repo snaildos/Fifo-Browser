@@ -2,9 +2,9 @@
 
 export const transparency = {
   text: {
-    high: 0.90,
+    high: 0.9,
     medium: 0.8,
-    disabled: 0.40,
+    disabled: 0.4,
   },
   icons: {
     active: 0.87,

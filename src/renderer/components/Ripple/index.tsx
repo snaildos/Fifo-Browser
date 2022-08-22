@@ -90,12 +90,8 @@ export default class Ripple extends React.Component<IProps, IState> {
 
   public makeRipple(mouseX: number, mouseY: number) {
     const { opacity } = this.props;
-    const {
-      left,
-      top,
-      width,
-      height,
-    } = this.root.current.getBoundingClientRect();
+    const { left, top, width, height } =
+      this.root.current.getBoundingClientRect();
 
     window.addEventListener('mouseup', this.onMouseUp);
 

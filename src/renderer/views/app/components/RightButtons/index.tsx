@@ -40,8 +40,12 @@ const onMenuClick = async () => {
 const onIncognitoClick = () => {
   // incognitoMenu
   const { right, bottom } = menuRef.getBoundingClientRect();
-  ipcRenderer.send(`show-incognitoMenu-dialog-${store.windowId}`, right, bottom);
-}
+  ipcRenderer.send(
+    `show-incognitoMenu-dialog-${store.windowId}`,
+    right,
+    bottom,
+  );
+};
 
 const BrowserActions = observer(() => {
   const { selectedTabId } = store.tabs;

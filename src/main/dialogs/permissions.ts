@@ -21,9 +21,8 @@ export const requestPermission = (
       return reject('Unknown permission');
     }
 
-    const appWindow = Application.instance.windows.fromBrowserWindow(
-      browserWindow,
-    );
+    const appWindow =
+      Application.instance.windows.fromBrowserWindow(browserWindow);
 
     appWindow.viewManager.selected.requestedPermission = { name, url, details };
 

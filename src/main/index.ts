@@ -34,7 +34,7 @@ ipcMain.setMaxListeners(0);
 const application = Application.instance;
 (async () => {
   await application.start();
-})()
+})();
 
 process.on('uncaughtException', (error) => {
   console.error(error);
@@ -76,7 +76,6 @@ ipcMain.handle(
 
 // We need to prevent extension background pages from being garbage collected.
 const backgroundPages: Electron.WebContents[] = [];
-
 
 app.on('web-contents-created', (e, webContents) => {
   if (webContents.getType() === 'backgroundPage')
