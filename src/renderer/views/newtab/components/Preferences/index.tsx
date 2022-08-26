@@ -60,6 +60,17 @@ const NewsToggle = observer(() => {
   );
 });
 
+const WeatherToggle = observer(() => {
+  const { weather } = settingstore.settings.newtab;
+
+  return (
+    <ContextMenuItem bigger onClick={newTabSwitchChange('weather')}>
+      <div style={{ flex: 1 }}>Disable Weather</div>
+      <Switch value={weather}></Switch>
+    </ContextMenuItem>
+  );
+});
+
 export const SwitchItem = observer(
   ({
     children,
@@ -170,7 +181,7 @@ export const Preferences = observer(() => {
             pointerEvents:
               store.preferencesContent === 'custom' ? 'inherit' : 'none',
             transition: '0.3s max-height, 0.3s transform, 0.3s opacity',
-            maxHeight: store.preferencesContent === 'custom' ? 420 : 200,
+            maxHeight: store.preferencesContent === 'custom' ? 470: 200,
             transform:
               store.preferencesContent === 'custom'
                 ? 'translateX(-100%)'
@@ -209,6 +220,7 @@ export const Preferences = observer(() => {
           </Dropdown>
           <ContextMenuSeparator bigger></ContextMenuSeparator>
           <NewsToggle />
+          <WeatherToggle />
         </div>
       </div>
     </ContextMenu>

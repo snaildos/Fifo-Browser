@@ -116,7 +116,9 @@ export default observer(() => {
             <Content>
               <Time />
               {store.isweather == false && <Forecast />}
-              {store.topSitesVisible && <TopSites></TopSites>}
+              {store.topSitesVisible && (
+                <TopSites backgroundColor={''}></TopSites>
+              )}
             </Content>
 
             <RightBar>
