@@ -49,14 +49,6 @@ const onExtensionClick = () => {
     'https://chrome.google.com/webstore/category/extensions';
 };
 
-const onRefreshClick = () => {
-  store.image = '';
-  setTimeout(() => {
-    localStorage.setItem('imageDate', '');
-    store.loadImage();
-  }, 50);
-};
-
 const Time = () => {
   // const getDate = () => { setInterval(() => { return new Date().toLocaleTimeString([], { timeStyle: 'long' }) }, 100); }
   return (
