@@ -43,6 +43,7 @@ export interface ISettings {
   darkContents: boolean;
   downloadsDialog: boolean;
   downloadsPath: string;
+  ignoreCertificate: boolean;
   doNotTrack: boolean;
   topBarVariant: TopBarVariant;
   token: string | null;

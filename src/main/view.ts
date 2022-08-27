@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* Copyright (c) 2021-2022 SnailDOS */
 
 import { BrowserView, app, ipcMain } from 'electron';
@@ -276,6 +277,9 @@ export class View {
       }
     });
 
+    const { object: settings } = Application.instance.settings;
+    if (settings.ignoreCertificate == false) {
+    app.commandLine.appendSwitch('ignore-certificate-errors');
     this.webContents.addListener(
       'certificate-error',
       async (
@@ -287,12 +291,13 @@ export class View {
       ) => {
         event.preventDefault();
         this.errorURL = url;
-        await this.webContents.loadURL(
+          await this.webContents.loadURL(
           `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${error}`,
         );
         callback(false);
       },
     );
+    };
 
     this.webContents.addListener('media-started-playing', () => {
       this.emitEvent('media-playing', true);

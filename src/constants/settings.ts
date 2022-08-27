@@ -50,7 +50,7 @@ export const DEFAULT_SETTINGS: ISettings = {
     type: 'empty',
   },
   warnOnQuit: false,
-  version: 4,
+  version: 5,
   downloadsDialog: false,
   downloadsPath: app
     ? app.getPath('downloads')
@@ -64,6 +64,7 @@ export const DEFAULT_SETTINGS: ISettings = {
     weather: false,
   },
   doNotTrack: true,
+  ignoreCertificate: false,
   globalPrivacyControl: true,
   topBarVariant: 'default',
 };

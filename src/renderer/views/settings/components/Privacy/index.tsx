@@ -7,7 +7,7 @@ import { Button } from '~/renderer/components/Button';
 import store from '../../store';
 import { BLUE_500, RED_500 } from '~/renderer/constants';
 import { observer } from 'mobx-react-lite';
-import { onSwitchChange } from '../../utils';
+import { onSwitchChange, alertSwitchChange } from '../../utils';
 import { Switch } from '~/renderer/components/Switch';
 import { ipcRenderer } from 'electron';
 
@@ -71,6 +71,27 @@ const GlobalPrivacyControlToggle = observer(() => {
   );
 });
 
+const CertificateToggle = observer(() => {
+  const { ignoreCertificate } = store.settings;
+
+  return (
+    <Row onClick={alertSwitchChange('ignoreCertificate')}>
+      <Title>
+        Ignore &quot;HTTPS Certificates&quot; and if they are expired.
+        <br></br>
+        <b>
+          WARNING. If you do toggle this on, please toggle it back on. This
+          protects you against phising, hijacked websites and network
+          interceptions. Turning this on should only be LAST RESORT.
+        </b>
+      </Title>
+      <Control>
+        <Switch value={ignoreCertificate} />
+      </Control>
+    </Row>
+  );
+});
+
 export const Privacy = () => {
   return (
     <>
@@ -102,6 +123,7 @@ export const Privacy = () => {
       </Row>
       <GlobalPrivacyControlToggle />
       <DoNotTrackToggle />
+      <CertificateToggle />
     </>
   );
 };
