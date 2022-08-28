@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Header, Row, Title, Control } from '../App/style';
 import { Button } from '~/renderer/components/Button';
 import store from '../../store';
-import { BLUE_500, RED_500 } from '~/renderer/constants';
+import { BLUE_500 } from '~/renderer/constants';
 import { observer } from 'mobx-react-lite';
 import { onSwitchChange, alertSwitchChange } from '../../utils';
 import { Switch } from '~/renderer/components/Switch';
@@ -80,13 +80,33 @@ const CertificateToggle = observer(() => {
         Ignore &quot;HTTPS Certificates&quot; and if they are expired.
         <br></br>
         <b>
-          WARNING. If you do toggle this on, please toggle it back on. This
-          protects you against phising, hijacked websites and network
-          interceptions. Turning this on should only be LAST RESORT.
+          WARNING. If you do toggle this on, please toggle it back on.
+          <br></br>
+          This protects you against phising, hijacked websites and network
+          interceptions.
+          <br></br>
+          Turning this on should only be LAST RESORT.
         </b>
       </Title>
       <Control>
         <Switch value={ignoreCertificate} />
+      </Control>
+    </Row>
+  );
+});
+
+const AutoplayToggle = observer(() => {
+  const { autoplay } = store.settings;
+
+  return (
+    <Row onClick={alertSwitchChange('autoplay')}>
+      <Title>
+        Allow &quot;website content (videos, audio, animated images)&quot; to
+        autoplay upon page load.
+        <br></br>
+      </Title>
+      <Control>
+        <Switch value={autoplay} />
       </Control>
     </Row>
   );
@@ -124,6 +144,7 @@ export const Privacy = () => {
       <GlobalPrivacyControlToggle />
       <DoNotTrackToggle />
       <CertificateToggle />
+      <AutoplayToggle />
     </>
   );
 };

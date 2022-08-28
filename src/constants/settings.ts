@@ -65,6 +65,7 @@ export const DEFAULT_SETTINGS: ISettings = {
   },
   doNotTrack: true,
   ignoreCertificate: false,
+  autoplay: true,
   globalPrivacyControl: true,
   topBarVariant: 'default',
 };

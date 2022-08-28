@@ -44,6 +44,7 @@ export interface ISettings {
   downloadsDialog: boolean;
   downloadsPath: string;
   ignoreCertificate: boolean;
+  autoplay: boolean;
   doNotTrack: boolean;
   topBarVariant: TopBarVariant;
   token: string | null;

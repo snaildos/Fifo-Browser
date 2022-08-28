@@ -68,6 +68,8 @@ export class View {
   private lastUrl = '';
 
   public constructor(window: AppWindow, url: string, incognito: boolean) {
+    // TODO twmr morning :3
+    const { object: webset } = Application.instance.settings;
     this.browserView = new BrowserView({
       webPreferences: {
         preload: `${app.getAppPath()}/build/view-preload.bundle.js`,
@@ -76,9 +78,11 @@ export class View {
         sandbox: true,
         partition: incognito ? 'view_incognito' : 'persist:view',
         plugins: true,
-        nativeWindowOpen: true,
         webSecurity: true,
         javascript: true,
+        ...(!webset.autoplay ? {
+          autoplayPolicy: 'user-gesture-required',
+        } : undefined),
       },
     });
 
