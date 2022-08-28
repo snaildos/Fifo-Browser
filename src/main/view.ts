@@ -79,9 +79,11 @@ export class View {
         plugins: true,
         webSecurity: true,
         javascript: true,
-        ...(!webset.autoplay ? {
-          autoplayPolicy: 'user-gesture-required',
-        } : undefined),
+        ...(!webset.autoplay
+          ? {
+              autoplayPolicy: 'user-gesture-required',
+            }
+          : undefined),
       },
     });
 
@@ -282,25 +284,25 @@ export class View {
 
     const { object: settings } = Application.instance.settings;
     if (settings.ignoreCertificate == false) {
-    app.commandLine.appendSwitch('ignore-certificate-errors');
-    this.webContents.addListener(
-      'certificate-error',
-      async (
-        event: Electron.Event,
-        url: string,
-        error: string,
-        certificate: Electron.Certificate,
-        callback: Function,
-      ) => {
-        event.preventDefault();
-        this.errorURL = url;
+      app.commandLine.appendSwitch('ignore-certificate-errors');
+      this.webContents.addListener(
+        'certificate-error',
+        async (
+          event: Electron.Event,
+          url: string,
+          error: string,
+          certificate: Electron.Certificate,
+          callback: Function,
+        ) => {
+          event.preventDefault();
+          this.errorURL = url;
           await this.webContents.loadURL(
-          `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${error}`,
-        );
-        callback(false);
-      },
-    );
-    };
+            `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${error}`,
+          );
+          callback(false);
+        },
+      );
+    }
 
     this.webContents.addListener('media-started-playing', () => {
       this.emitEvent('media-playing', true);
