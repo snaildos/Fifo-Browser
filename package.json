@@ -87,7 +87,7 @@
     "mobx": "6.3.3",
     "mobx-react-lite": "3.4.0",
     "node-bookmarks-parser": "2.0.0",
-    "node-fetch": "^3.2.10",
+    "node-fetch": "3.2.10",
     "patch-package": "6.4.7",
     "prettier": "2.5.1",
     "pretty-bytes": "5.6.0",
