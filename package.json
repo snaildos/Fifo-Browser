@@ -72,7 +72,7 @@
     "cross-env": "7.0.3",
     "electron": "20.0.0",
     "electron-builder": "22.14.13",
-    "electron-updater": "4.6.5",
+    "electron-updater": "5.2.1",
     "eslint": "8.22.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
