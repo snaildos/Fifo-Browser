@@ -19,7 +19,6 @@ import {
   Icon,
 } from './style';
 import { getWebUIURL } from '~/common/webui';
-import { StyledButton } from '~/renderer/components/Button/styles';
 import { ipcRenderer } from 'electron';
 
 let page = 1;
@@ -27,9 +26,11 @@ let page = 1;
 store.settings.theme = 'wexond-dark';
 
 const alreadyMaded = () => {
-  store.settings.changelog = '1.2.1';
-  ipcRenderer.invoke('permission-unlink');
-  ipcRenderer.invoke('favicon-unlink');
+  if (store.settings.changelog === '1.2.0') {
+    ipcRenderer.invoke('permission-unlink');
+    ipcRenderer.invoke('favicon-unlink');
+  }
+  store.settings.changelog = '1.2.2';
   store.save();
   nextPage();
 };
@@ -56,7 +57,7 @@ const commit = () => {
 export default observer(() => {
   window.onload = function () {
     const oldver = store.settings.changelog;
-    const newver = '1.2.1';
+    const newver = '1.2.2';
     if (newver >= oldver) {
       console.log('Update is required.');
       // Nothing yet since we dont need to upgrade anything
@@ -78,7 +79,7 @@ export default observer(() => {
       <WebUIStyle />
 
       <StyledSection className="banner1">
-        <Description>Fifo has been updated!</Description>
+        <Description>🎉 Fifo has been updated! 🎉</Description>
         <Title>Press Start to continue!</Title>
         <Button theme={store.theme} onClick={nextPage}>
           Start!
@@ -98,14 +99,18 @@ export default observer(() => {
         >
           What has been changed?
         </Description>
-        <Description>Introducing Fifo Bug Fix Update (v1.2.1)</Description>
-        <Description>- Bug fixing the extension button.</Description>
-        <Description>- Introducing our new permission system.</Description>
+        <Description>
+          Introducing Fifo Bug Fix and Dependency Update (v1.2.2)
+        </Description>
+        <Description>- Add Dark Mode</Description>
+        <Description>- Mild Bug Fixes</Description>
         <Description>- Minor Visual Changes</Description>
-        <Description>- Rewriting Our Zoom System</Description>
-        <Description>- Patching Tab Grouping and Bookmarks</Description>
-        <Description>- Rewriting Our Download System</Description>
-        <Description>- Options to clear certain Fifo databases</Description>
+        <Description>- Option To Disable Third Party</Description>
+        <Description>
+          - OOBE Rewrite (Change Browser, Dark Mode Patch)
+        </Description>
+        <Description>- Ignore HTTPs certificate checks</Description>
+        <Description>- Disable AutoPlay privacy option</Description>
         <Description>Much much more!</Description>
         <a
           href="https://github.com/snaildos/Fifo-Browser/blob/main/CHANGELOG.md"
