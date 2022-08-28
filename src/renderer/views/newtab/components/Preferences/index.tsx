@@ -181,7 +181,7 @@ export const Preferences = observer(() => {
             pointerEvents:
               store.preferencesContent === 'custom' ? 'inherit' : 'none',
             transition: '0.3s max-height, 0.3s transform, 0.3s opacity',
-            maxHeight: store.preferencesContent === 'custom' ? 470: 200,
+            maxHeight: store.preferencesContent === 'custom' ? 470 : 200,
             transform:
               store.preferencesContent === 'custom'
                 ? 'translateX(-100%)'
