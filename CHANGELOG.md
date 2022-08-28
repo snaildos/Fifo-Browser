@@ -1,5 +1,95 @@
 # Changelog
 
+<a name="1.2.2"></a>
+## 1.2.2 (2022-08-28)
+
+### Added
+
+- 🎉 Dependency Update [[a94df9c](https://github.com/snaildos/Fifo-Browser/commit/a94df9c234eb516e49eeb4ffb306e2970ab90f66)]
+- 🎉 Changelog v1.2.2 [[c69b78a](https://github.com/snaildos/Fifo-Browser/commit/c69b78a6f5ae4936b0ba5815c20876c08319f7b0)]
+- 🎉 Dependency Update [[4f7eb78](https://github.com/snaildos/Fifo-Browser/commit/4f7eb78da3022e998710dc0ee522f862afa5da49)]
+- 🎉 Disable AutoPlay option [[d6426af](https://github.com/snaildos/Fifo-Browser/commit/d6426af84ae6d4b278ea7b51c99a3356e106988c)]
+- 🎉 Add support to ignore invalid HTTPs certificates [[a54ae3d](https://github.com/snaildos/Fifo-Browser/commit/a54ae3dfddfb2b81b57b03e0481fafccf5693135)]
+- 🎉 Add Weather Disable [[2bad96e](https://github.com/snaildos/Fifo-Browser/commit/2bad96e6c0f53656af7701c207d2b3b421425888)]
+- ✨ Lint &amp;&amp; Copyright [[2440d12](https://github.com/snaildos/Fifo-Browser/commit/2440d12abec7fc82c19f59a947bbb0f368bc7f35)]
+- 🎉 Complete third party options [[7d31209](https://github.com/snaildos/Fifo-Browser/commit/7d3120943dbcf48f3ab0c82c184782898501c651)]
+- 🎉 Integrate search engine &amp; third party into setup! [[db381ca](https://github.com/snaildos/Fifo-Browser/commit/db381cab8514471b3670af602a64eb620acf72ab)]
+- 🎉 Redo &quot;Default Browser&quot; banner! [[07afa3b](https://github.com/snaildos/Fifo-Browser/commit/07afa3bfbe915799243b3dc24709aecaec1dc33d)]
+- ✨ Option To Disable 3rd Party [[5511639](https://github.com/snaildos/Fifo-Browser/commit/55116396f96d001f40762cb1cfdf1a0930fc8aeb)]
+- 🎉 Add close button [[0d66ae2](https://github.com/snaildos/Fifo-Browser/commit/0d66ae275fdcfca49e30d9771c30e9d7f4c43e3b)]
+- 🎉 Version Bump [[94b79b1](https://github.com/snaildos/Fifo-Browser/commit/94b79b17c31bb3a3ce944e2ccf51e5fc2fbe1af6)]
+
+### Changed
+
+- 🔧 Rewrite Dark Checks [[e551f8f](https://github.com/snaildos/Fifo-Browser/commit/e551f8fd916c87523ea0b5ac821e460d18c9d4c8)]
+
+### Fixed
+
+- 🐛 Remove and Upload functions [[50db119](https://github.com/snaildos/Fifo-Browser/commit/50db119d79fc7a9234ab733635566a0754b75a0c)]
+- 🐛 Fix some user clarification on third party [[1ea8276](https://github.com/snaildos/Fifo-Browser/commit/1ea8276d82103d030c6be63c3f2963e9a8f69ecc)]
+- 🐛 Pass dark mode through websites [[fbe356d](https://github.com/snaildos/Fifo-Browser/commit/fbe356df71dc4d371e88a66d4b4bc68bab4a2781)]
+
+### Miscellaneous
+
+-  Merge pull request [#144](https://github.com/snaildos/Fifo-Browser/issues/144) from snaildos/renovate/actions-checkout-3.x [[c58cdf2](https://github.com/snaildos/Fifo-Browser/commit/c58cdf23d66eec8a670ee1ec234e8fa0c7ed6408)]
+-  Merge pull request [#146](https://github.com/snaildos/Fifo-Browser/issues/146) from snaildos/renovate/github-codeql-action-2.x [[06c11e6](https://github.com/snaildos/Fifo-Browser/commit/06c11e6d1b880a9aa0c83c9eb4b0fdd7e8ddb525)]
+-  Merge pull request [#145](https://github.com/snaildos/Fifo-Browser/issues/145) from snaildos/renovate/actions-setup-node-3.x [[53b72ad](https://github.com/snaildos/Fifo-Browser/commit/53b72ad2a2716d6cbe0d6c07fb48a0df248a13e5)]
+-  Merge pull request [#143](https://github.com/snaildos/Fifo-Browser/issues/143) from snaildos/renovate/font-awesome [[2190158](https://github.com/snaildos/Fifo-Browser/commit/21901581ae4c5ac38092fe882123759f636753f1)]
+-  Minor Package Changes [[657a63e](https://github.com/snaildos/Fifo-Browser/commit/657a63edc7086695b2cec4bbce031c3afa4ad9bb)]
+- 👀 Update To Chrome v104 [[4a55e09](https://github.com/snaildos/Fifo-Browser/commit/4a55e095211acbc8893412ff23855b0da77f1a9a)]
+-  Merge pull request [#142](https://github.com/snaildos/Fifo-Browser/issues/142) from snaildos/renovate/electron-20.x [[56f9ba3](https://github.com/snaildos/Fifo-Browser/commit/56f9ba35223471b002648fc1f9c4621d020f3744)]
+-  Merge pull request [#137](https://github.com/snaildos/Fifo-Browser/issues/137) from snaildos/renovate/concurrently-7.x [[b7a717a](https://github.com/snaildos/Fifo-Browser/commit/b7a717af925705a1277b858c28047efdeebfa2e5)]
+-  Merge pull request [#136](https://github.com/snaildos/Fifo-Browser/issues/136) from snaildos/renovate/typescript-eslint-monorepo [[de39d97](https://github.com/snaildos/Fifo-Browser/commit/de39d97e620988ab121b273236b2d316a1124625)]
+-  Merge pull request [#134](https://github.com/snaildos/Fifo-Browser/issues/134) from snaildos/renovate/file-type-17.x [[7030c3c](https://github.com/snaildos/Fifo-Browser/commit/7030c3c8b7f59e19fdc3f3896bab03252c02de09)]
+-  Merge pull request [#139](https://github.com/snaildos/Fifo-Browser/issues/139) from snaildos/renovate/electron-builder-23.x [[8b00f92](https://github.com/snaildos/Fifo-Browser/commit/8b00f9262e2a76a104d95136b5f47fe5c2f1cc38)]
+-  Merge pull request [#135](https://github.com/snaildos/Fifo-Browser/issues/135) from snaildos/renovate/styled-components-5.x [[27f8bbc](https://github.com/snaildos/Fifo-Browser/commit/27f8bbc3a873fcc4d3ef99bbae3abd09cfcb63a1)]
+-  Merge branch &#x27;renovate/styled-components-5.x&#x27; of https://github.com/snaildos/Fifo-Browser into renovate/styled-components-5.x [[2ffc8dc](https://github.com/snaildos/Fifo-Browser/commit/2ffc8dce0daf7c7e40484fc4d760e7e6ee08dd82)]
+-  Merge pull request [#141](https://github.com/snaildos/Fifo-Browser/issues/141) from snaildos/renovate/pin-dependencies [[68e89db](https://github.com/snaildos/Fifo-Browser/commit/68e89db12417533e381108ec43c0bb6cb16d94f4)]
+-  Merge pull request [#59](https://github.com/snaildos/Fifo-Browser/issues/59) from snaildos/renovate/mobx-react-lite-3.x [[76655df](https://github.com/snaildos/Fifo-Browser/commit/76655df29ce7beebe7062fe485445893a40c65f7)]
+-  Merge branch &#x27;renovate/mobx-react-lite-3.x&#x27; of https://github.com/snaildos/Fifo-Browser into renovate/mobx-react-lite-3.x [[f336893](https://github.com/snaildos/Fifo-Browser/commit/f336893264d5bfc11b8a97c6ca761bd723bd2658)]
+-  Merge pull request [#138](https://github.com/snaildos/Fifo-Browser/issues/138) from snaildos/renovate/copy-webpack-plugin-11.x [[7d71d93](https://github.com/snaildos/Fifo-Browser/commit/7d71d93ce99203a9967ed93a4cfe2630ee66b680)]
+-  Merge pull request [#140](https://github.com/snaildos/Fifo-Browser/issues/140) from snaildos/renovate/electron-updater-5.x [[ac838de](https://github.com/snaildos/Fifo-Browser/commit/ac838de6afff38b500684a8b5a8b8d706bfa2a5e)]
+-  Merge pull request [#133](https://github.com/snaildos/Fifo-Browser/issues/133) from snaildos/v1.2.2 [[e27ff7c](https://github.com/snaildos/Fifo-Browser/commit/e27ff7cd7f5dc5a1f1cfc50af163ef3e9dcf7775)]
+- ©️ Copyright Header Update [[a55be72](https://github.com/snaildos/Fifo-Browser/commit/a55be72460d81452e04ed0ff27c8f2e2b10fd694)]
+- 🔗 Prettier [[f5a00e3](https://github.com/snaildos/Fifo-Browser/commit/f5a00e33e99ea5cc14c7dc93ba673404432325fb)]
+-  Update github/codeql-action action to v2 [[0cb9be6](https://github.com/snaildos/Fifo-Browser/commit/0cb9be6699610565e4d814eb4807b5c97d876174)]
+-  Update actions/setup-node action to v3 [[255cc10](https://github.com/snaildos/Fifo-Browser/commit/255cc10f7e8387a106c8e7d30d08174aeff2a980)]
+-  Update actions/checkout action to v3 [[49f9627](https://github.com/snaildos/Fifo-Browser/commit/49f9627c97534b92d8a0492455f973382dc47de2)]
+-  Update Font Awesome [[9b65f7d](https://github.com/snaildos/Fifo-Browser/commit/9b65f7d05860fd7d3c36b2d2945a331b6d0dd462)]
+-  Update dependency electron to v20.1.0 [[be05d8e](https://github.com/snaildos/Fifo-Browser/commit/be05d8e63ce6b750ca0d105ba74478c0454e4726)]
+-  Update typescript-eslint monorepo to v5.35.1 [[4e4f236](https://github.com/snaildos/Fifo-Browser/commit/4e4f236737c1bf48e1faf29ac6a59f56254db516)]
+-  Update dependency styled-components to v5.3.5 [[2bc60cf](https://github.com/snaildos/Fifo-Browser/commit/2bc60cfcfdd8f957eed0d0724abe5ed6857f540c)]
+-  Pin dependency node-fetch to 3.2.10 [[44bf0d2](https://github.com/snaildos/Fifo-Browser/commit/44bf0d2ac1714418f2c63e87a2e3a1c614242235)]
+-  Update dependency electron-builder to v23 [[0042996](https://github.com/snaildos/Fifo-Browser/commit/004299670ffcedd4811c9915cbf2bcaca296b3a1)]
+-  Update dependency mobx-react-lite to v3.4.0 [[d56ac66](https://github.com/snaildos/Fifo-Browser/commit/d56ac66e3b448601bf8f73f784025069d19be8d8)]
+-  Update dependency electron-updater to v5 [[70607da](https://github.com/snaildos/Fifo-Browser/commit/70607da90a4b2a1f8e2cbc5299ebfa0f2869b03e)]
+-  Update dependency copy-webpack-plugin to v11 [[86db3f6](https://github.com/snaildos/Fifo-Browser/commit/86db3f6609cc24aeef50eb950be512f62c43e147)]
+-  Update dependency concurrently to v7 [[5a097f4](https://github.com/snaildos/Fifo-Browser/commit/5a097f4c6ccd6be04125590c95a9054da0c4c32f)]
+-  Update dependency styled-components to v5.3.5 [[6630fc9](https://github.com/snaildos/Fifo-Browser/commit/6630fc9110c605e4796eb212ab769f9a8cfb5a75)]
+-  Update dependency file-type to v17.1.6 [[fdcdd9c](https://github.com/snaildos/Fifo-Browser/commit/fdcdd9cd1a534903dbe6f572dfd858afdce5d80d)]
+- 🔍 Remove uncalled imports [[6e1f5f6](https://github.com/snaildos/Fifo-Browser/commit/6e1f5f6efc022978a36136c356ddcb22234edd13)]
+- 🏬 Update Deps [[1698982](https://github.com/snaildos/Fifo-Browser/commit/169898267ecdcedff8a1fd5350877c2d791a2d5f)]
+-  Merge pull request [#96](https://github.com/snaildos/Fifo-Browser/issues/96) from snaildos/renovate/pin-dependencies [[fd8db7e](https://github.com/snaildos/Fifo-Browser/commit/fd8db7e9976cccdb47c1e3c32d060158ac4a495c)]
+-  Merge branch &#x27;v1.2.2&#x27; into renovate/pin-dependencies [[e36a262](https://github.com/snaildos/Fifo-Browser/commit/e36a262d729e4ee92111251d1f506bfdb4e2330a)]
+- 😢 Spelling Mistake [[64d9f08](https://github.com/snaildos/Fifo-Browser/commit/64d9f087cd13c96dde5e3e7fc6d7d231237fa87a)]
+-  Pin dependencies [[2b916f6](https://github.com/snaildos/Fifo-Browser/commit/2b916f67b552e7ad07b1abe85f563e7a5fde663f)]
+-  Update .eslintrc.js [[115984e](https://github.com/snaildos/Fifo-Browser/commit/115984e09b0d73dfd9d6932a8246d85899e83a4a)]
+-  Update README.md [[a783a14](https://github.com/snaildos/Fifo-Browser/commit/a783a149931100e281cb0a2c6c9bc3496ac12e94)]
+-  Update README.md [[bad9ce1](https://github.com/snaildos/Fifo-Browser/commit/bad9ce1a9463211371531c0c2b88291fd815f1a6)]
+- 👀 Remove NewsAPI key and replace with our news endpoint [[b92a252](https://github.com/snaildos/Fifo-Browser/commit/b92a252b7590a281cf9b284d2788aaab2e7ca08a)]
+-  Merge pull request [#127](https://github.com/snaildos/Fifo-Browser/issues/127) from mauro-balades/patch-1 [[78036a5](https://github.com/snaildos/Fifo-Browser/commit/78036a5a2df84e3b19398dad3159579576ede006)]
+- 👀 Remove a symbol that is annoying me [[1a734c2](https://github.com/snaildos/Fifo-Browser/commit/1a734c2ada94aab7c030e0a3b9dc3b56ed3e92b9)]
+-  Update index.tsx [[8c2f126](https://github.com/snaildos/Fifo-Browser/commit/8c2f126a896ebe224ffbc1f118aa063533946046)]
+-  Merge pull request [#126](https://github.com/snaildos/Fifo-Browser/issues/126) from skybird23333/main [[2b4a26c](https://github.com/snaildos/Fifo-Browser/commit/2b4a26cdbb3c0f9a4728765af9439c937b5b1ed3)]
+-  Fix: Duplicate key in tsconfig.json [[52bd7a9](https://github.com/snaildos/Fifo-Browser/commit/52bd7a9c669dac64b237fc22c585d61346f20c0a)]
+-  Merge pull request [#125](https://github.com/snaildos/Fifo-Browser/issues/125) from snaildos/main [[b81da39](https://github.com/snaildos/Fifo-Browser/commit/b81da39e564349708ca9ff64ae1216e8cbbfdc66)]
+- 🔨 Remove double JSON [[0fd962e](https://github.com/snaildos/Fifo-Browser/commit/0fd962e83ac451cda4af990b6cc19d2a049d22bd)]
+- 🔨 Dependency Update [[3143b59](https://github.com/snaildos/Fifo-Browser/commit/3143b59ea0b35686a861fa2d6ffba1710ee50c6c)]
+-  Patch Welcome colour selector [[bb4d60a](https://github.com/snaildos/Fifo-Browser/commit/bb4d60ae13289f8d5f9328db63124847d48e3664)]
+-  Start work on v1.2.2 [[59fff8b](https://github.com/snaildos/Fifo-Browser/commit/59fff8b504781f3df0735c8924043333cbfb82cb)]
+-  Update dependency mobx-react-lite to v3.4.0 [[09c2dfb](https://github.com/snaildos/Fifo-Browser/commit/09c2dfb6016e0a085a8a7509bfb158ed353e9079)]
+
+
 <a name="1.2.1"></a>
 ## 1.2.1 (2022-07-14)
 
