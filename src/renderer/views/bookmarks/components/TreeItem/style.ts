@@ -14,7 +14,7 @@ export const StyledTreeItem = styled.div`
   margin-top: 4px;
   align-items: center;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
 
   ${({ theme, selected }: { theme?: ITheme; selected: boolean }) => css`
     &:hover {

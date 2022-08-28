@@ -9,13 +9,13 @@ const { join } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const webpack = require('webpack');
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 /* eslint-enable */
 
 const PORT = 4444;
 
 const appConfig = getConfig(getBaseConfig('app'), {
   target: 'web',
-
   devServer: {
     static: {
       directory: join(__dirname, 'build'),
@@ -26,11 +26,12 @@ const appConfig = getConfig(getBaseConfig('app'), {
   },
 
   plugins: dev
-    ? [
-        new webpack.HotModuleReplacementPlugin(),
-        new ReactRefreshWebpackPlugin(),
-      ]
-    : [],
+  ? [
+      new NodePolyfillPlugin({excludeAliases: ['process']}),
+      new webpack.HotModuleReplacementPlugin(),
+      new ReactRefreshWebpackPlugin(),
+    ]
+  : [],
 });
 
 const extPopupConfig = getConfig({
@@ -51,6 +52,7 @@ applyEntries(appConfig, [
   'menuExtra',
   'incognitoMenu',
   'welcome',
+  'changelog',
   'preview',
   'tabgroup',
   'downloads-dialog',

@@ -12,15 +12,14 @@ const onClick = (item: IBookmark) => () => {
   store.currentFolder = item._id;
 };
 
-const onDropClick = (item: IBookmark) => (
-  e: React.MouseEvent<HTMLDivElement>,
-) => {
-  e.stopPropagation();
+const onDropClick =
+  (item: IBookmark) => (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
 
-  if (item.children.length > 0) {
-    item.expanded = !item.expanded;
-  }
-};
+    if (item.children.length > 0) {
+      item.expanded = !item.expanded;
+    }
+  };
 
 const TreeItem = observer(
   ({ depth, data }: { depth: number; data: IBookmark }) => {

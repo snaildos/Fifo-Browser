@@ -1,7 +1,6 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
 import styled, { css } from 'styled-components';
-import { platform } from 'os';
 
 import { ToolbarButton } from '../ToolbarButton';
 import {

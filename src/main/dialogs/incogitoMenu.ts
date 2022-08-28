@@ -9,7 +9,6 @@ export const showIncognitoDialog = (
   x: number,
   y: number,
 ) => {
-
   const menuWidth = 350;
   const dialog = Application.instance.dialogs.show({
     name: 'incognitoMenu',

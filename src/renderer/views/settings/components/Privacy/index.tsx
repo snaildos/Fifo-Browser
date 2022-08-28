@@ -4,21 +4,23 @@ import * as React from 'react';
 
 import { Header, Row, Title, Control } from '../App/style';
 import { Button } from '~/renderer/components/Button';
-import store, { QuickRange } from '../../store';
+import store from '../../store';
 import { BLUE_500 } from '~/renderer/constants';
 import { observer } from 'mobx-react-lite';
-import { onSwitchChange } from '../../utils';
+import { onSwitchChange, alertSwitchChange } from '../../utils';
 import { Switch } from '~/renderer/components/Switch';
+import { ipcRenderer } from 'electron';
 
-const onClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
-  e.stopPropagation();
+const historyClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  ipcRenderer.invoke('history-unlink');
+};
 
-  store.sections.map((data) =>
-    data.items.map((item) => store.removeItems([item._id])),
-  );
+const faviconClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  ipcRenderer.invoke('favicon-unlink');
+};
 
-  // store.clear();
-  // TODO: ipcRenderer.send('clear-browsing-data');
+const permissionClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  ipcRenderer.invoke('permission-unlink');
 };
 
 const DoNotTrackToggle = observer(() => {
@@ -27,7 +29,7 @@ const DoNotTrackToggle = observer(() => {
   return (
     <Row onClick={onSwitchChange('doNotTrack')}>
       <Title>
-      Send a &quot;Do Not Track&quot; request with your browsing traffic. Not
+        Send a &quot;Do Not Track&quot; request with your browsing traffic. Not
         recommended,{' '}
         <a
           href="https://spreadprivacy.com/do-not-track"
@@ -69,20 +71,80 @@ const GlobalPrivacyControlToggle = observer(() => {
   );
 });
 
+const CertificateToggle = observer(() => {
+  const { ignoreCertificate } = store.settings;
+
+  return (
+    <Row onClick={alertSwitchChange('ignoreCertificate')}>
+      <Title>
+        Ignore &quot;HTTPS Certificates&quot; and if they are expired.
+        <br></br>
+        <b>
+          WARNING. If you do toggle this on, please toggle it back on.
+          <br></br>
+          This protects you against phising, hijacked websites and network
+          interceptions.
+          <br></br>
+          Turning this on should only be LAST RESORT.
+        </b>
+      </Title>
+      <Control>
+        <Switch value={ignoreCertificate} />
+      </Control>
+    </Row>
+  );
+});
+
+const AutoplayToggle = observer(() => {
+  const { autoplay } = store.settings;
+
+  return (
+    <Row onClick={alertSwitchChange('autoplay')}>
+      <Title>
+        Allow &quot;website content (videos, audio, animated images)&quot; to
+        autoplay upon page load.
+        <br></br>
+      </Title>
+      <Control>
+        <Switch value={autoplay} />
+      </Control>
+    </Row>
+  );
+});
 
 export const Privacy = () => {
   return (
     <>
       <Header>Privacy</Header>
-      <Button
-        type="outlined"
-        foreground={BLUE_500}
-        onClick={onClearClick}
-      >
-        Clear browsing data
-      </Button>
+      <Row>
+        <Button
+          type="outlined"
+          foreground={BLUE_500}
+          onClick={historyClearClick}
+        >
+          Clear search history
+        </Button>
+        <p>⠀</p>
+        <Button
+          type="outlined"
+          foreground={BLUE_500}
+          onClick={faviconClearClick}
+        >
+          Clear favicon database
+        </Button>
+        <p>⠀</p>
+        <Button
+          type="outlined"
+          foreground={BLUE_500}
+          onClick={permissionClearClick}
+        >
+          Clear website permissions
+        </Button>
+      </Row>
       <GlobalPrivacyControlToggle />
       <DoNotTrackToggle />
+      <CertificateToggle />
+      <AutoplayToggle />
     </>
   );
 };

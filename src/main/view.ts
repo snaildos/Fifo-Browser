@@ -67,6 +67,8 @@ export class View {
   private lastUrl = '';
 
   public constructor(window: AppWindow, url: string, incognito: boolean) {
+    // TODO twmr morning :3
+    const { object: webset } = Application.instance.settings;
     this.browserView = new BrowserView({
       webPreferences: {
         preload: `${app.getAppPath()}/build/view-preload.bundle.js`,
@@ -75,9 +77,11 @@ export class View {
         sandbox: true,
         partition: incognito ? 'view_incognito' : 'persist:view',
         plugins: true,
-        nativeWindowOpen: true,
         webSecurity: true,
         javascript: true,
+        ...(!webset.autoplay ? {
+          autoplayPolicy: 'user-gesture-required',
+        } : undefined),
       },
     });
 
@@ -276,6 +280,9 @@ export class View {
       }
     });
 
+    const { object: settings } = Application.instance.settings;
+    if (settings.ignoreCertificate == false) {
+    app.commandLine.appendSwitch('ignore-certificate-errors');
     this.webContents.addListener(
       'certificate-error',
       async (
@@ -287,12 +294,13 @@ export class View {
       ) => {
         event.preventDefault();
         this.errorURL = url;
-        await this.webContents.loadURL(
+          await this.webContents.loadURL(
           `${ERROR_PROTOCOL}://${NETWORK_ERROR_HOST}/${error}`,
         );
         callback(false);
       },
     );
+    };
 
     this.webContents.addListener('media-started-playing', () => {
       this.emitEvent('media-playing', true);
@@ -343,6 +351,9 @@ export class View {
       this.window.send('update-navigation-state', {
         canGoBack: this.webContents.canGoBack(),
         canGoForward: this.webContents.canGoForward(),
+      });
+      this.window.send('update-navigation-state-ui', {
+        url: this.webContents.getURL(),
       });
     }
   }
@@ -416,7 +427,16 @@ export class View {
     if (process.env.ENABLE_AUTOFILL) await this.updateCredentials();
 
     this.updateBookmark();
+
+    this.updateUIpage(url);
   };
+
+  public updateUIpage(url: string) {
+    this.window.send(
+      'is-ui-page',
+      url.startsWith(WEBUI_BASE_URL) || url.startsWith(NETWORK_ERROR_HOST),
+    );
+  }
 
   public updateBookmark() {
     this.bookmark = Application.instance.storage.bookmarks.find(

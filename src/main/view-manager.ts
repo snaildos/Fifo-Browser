@@ -1,7 +1,6 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
-import { ipcMain } from 'electron';
-import { VIEW_Y_OFFSET } from '~/constants/design';
+import { dialog, ipcMain } from 'electron';
 import { View } from './view';
 import { AppWindow } from './windows';
 import { WEBUI_BASE_URL } from '~/constants/files';
@@ -32,28 +31,6 @@ export class ViewManager extends EventEmitter {
     this.fixBounds();
   }
 
-  public changeZoom(zoomDirection: 'in' | 'out', e?: any) {
-    const newZoomFactor =
-        this.selected.webContents.zoomFactor +
-        (zoomDirection === 'in'
-          ? ZOOM_FACTOR_INCREMENT
-          : -ZOOM_FACTOR_INCREMENT);
-
-      if (
-        newZoomFactor <= ZOOM_FACTOR_MAX &&
-        newZoomFactor >= ZOOM_FACTOR_MIN
-      ) {
-        this.selected.webContents.zoomFactor = newZoomFactor;
-        this.selected.emitEvent(
-          'zoom-updated',
-          this.selected.webContents.zoomFactor,
-        );
-      } else {
-        e?.preventDefault();
-      }
-      this.emitZoomUpdate();
-  }
-
   public constructor(window: AppWindow, incognito: boolean) {
     super();
 
@@ -80,11 +57,9 @@ export class ViewManager extends EventEmitter {
     });
 
     ipcMain.on('save-as-menu-extra', async (e) => {
-      const {
-        title,
-        webContents,
-      } = Application.instance.windows.current.viewManager.selected;
-    
+      const { title, webContents } =
+        Application.instance.windows.current.viewManager.selected;
+
       const { canceled, filePath } = await dialog.showSaveDialog({
         defaultPath: title,
         filters: [
@@ -92,12 +67,15 @@ export class ViewManager extends EventEmitter {
           { name: 'Webpage, HTML Only', extensions: ['htm', 'html'] },
         ],
       });
-    
+
       if (canceled) return;
-    
+
       const ext = extname(filePath);
-    
-      webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
+
+      await webContents.savePage(
+        filePath,
+        ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete',
+      );
     });
 
     ipcMain.on('Print', () => {
@@ -110,6 +88,13 @@ export class ViewManager extends EventEmitter {
         await this.select(id, focus);
       },
     );
+
+    ipcMain.removeHandler('get-tab-zoom');
+    ipcMain.handle('get-tab-zoom', (e: any, tabId: number) => {
+      // const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId)
+      //  .webContents.zoomFactor;
+      return this.selected.webContents.zoomFactor;
+    });
 
     ipcMain.on(`view-destroy-${id}`, (e, id: number) => {
       this.destroy(id);
@@ -151,7 +136,29 @@ export class ViewManager extends EventEmitter {
       this.emitZoomUpdate();
     });
 
-    ipcMain.on('reset-zoom', () => {
+    ipcMain.on('change-zoom-menu', (e, zoomDirection) => {
+      const newZoomFactor =
+        this.selected.webContents.zoomFactor +
+        (zoomDirection === 'in'
+          ? ZOOM_FACTOR_INCREMENT
+          : -ZOOM_FACTOR_INCREMENT);
+
+      if (
+        newZoomFactor <= ZOOM_FACTOR_MAX &&
+        newZoomFactor >= ZOOM_FACTOR_MIN
+      ) {
+        this.selected.webContents.zoomFactor = newZoomFactor;
+        this.selected.emitEvent(
+          'zoom-updated',
+          this.selected.webContents.zoomFactor,
+        );
+      } else {
+        e.preventDefault();
+      }
+      this.emitZoomUpdate(false);
+    });
+
+    ipcMain.on('reset-zoom', (e) => {
       this.selected.webContents.zoomFactor = 1;
       this.selected.emitEvent(
         'zoom-updated',
@@ -244,6 +251,23 @@ export class ViewManager extends EventEmitter {
     this.emit('activated', id);
 
     // TODO: this.emitZoomUpdate(false);
+  }
+
+  public changeZoom(zoomDirection: 'in' | 'out', e?: any) {
+    const newZoomFactor =
+      this.selected.webContents.zoomFactor +
+      (zoomDirection === 'in' ? ZOOM_FACTOR_INCREMENT : -ZOOM_FACTOR_INCREMENT);
+
+    if (newZoomFactor <= ZOOM_FACTOR_MAX && newZoomFactor >= ZOOM_FACTOR_MIN) {
+      this.selected.webContents.zoomFactor = newZoomFactor;
+      this.selected.emitEvent(
+        'zoom-updated',
+        this.selected.webContents.zoomFactor,
+      );
+    } else {
+      e?.preventDefault();
+    }
+    this.emitZoomUpdate();
   }
 
   public async fixBounds() {

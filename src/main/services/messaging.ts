@@ -15,6 +15,8 @@ import { showAddBookmarkDialog } from '../dialogs/add-bookmark';
 import { showExtensionDialog } from '../dialogs/extension-popup';
 import { showDownloadsDialog } from '../dialogs/downloads';
 import { showZoomDialog } from '../dialogs/zoom';
+import { showIncognitoDialog } from '../dialogs/incogitoMenu';
+import { showMenuExtraDialog } from '../dialogs/menuExtra';
 import { showTabGroupDialog } from '../dialogs/tabgroup';
 
 export const runMessagingService = (appWindow: AppWindow) => {

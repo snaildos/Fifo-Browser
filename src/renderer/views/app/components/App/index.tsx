@@ -21,7 +21,7 @@ import {
 import { DefaultBrowser } from '../defaultBrowser';
 
 const onAppLeave = () => {
-  store.barHideTimer = setTimeout(function () {
+  setTimeout(function () {
     if (
       Object.keys(store.dialogsVisibility).some(
         (k) => store.dialogsVisibility[k],

@@ -5,10 +5,8 @@ import { dialog } from 'electron';
 import { Application } from '../application';
 
 export const saveAs = async () => {
-  const {
-    title,
-    webContents,
-  } = Application.instance.windows.current.viewManager.selected;
+  const { title, webContents } =
+    Application.instance.windows.current.viewManager.selected;
 
   const { canceled, filePath } = await dialog.showSaveDialog({
     defaultPath: title,
@@ -22,7 +20,10 @@ export const saveAs = async () => {
 
   const ext = extname(filePath);
 
-  await webContents.savePage(filePath, ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete');
+  await webContents.savePage(
+    filePath,
+    ext === '.htm' ? 'HTMLOnly' : 'HTMLComplete',
+  );
 };
 
 export const viewSource = async () => {
@@ -38,8 +39,7 @@ export const viewSource = async () => {
 };
 
 export const printPage = () => {
-  const {
-    webContents,
-  } = Application.instance.windows.current.viewManager.selected;
+  const { webContents } =
+    Application.instance.windows.current.viewManager.selected;
   webContents.print();
 };

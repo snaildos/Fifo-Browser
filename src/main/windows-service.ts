@@ -23,7 +23,6 @@ export class WindowsService {
             this.lastFocused;
 
           if (!win) throw new Error('Window not found');
-
           const view = win.viewManager.create(details, false, false);
           win.webContents.send(
             'create-tab',
@@ -60,9 +59,15 @@ export class WindowsService {
       });
     }
 
-    ipcMain.handle('get-tab-zoom', (e, tabId) => {
-      return this.findByBrowserView(tabId).viewManager.views.get(tabId)
-        .webContents.zoomFactor;
+    ipcMain.handle('get-tab-zoom-deprecated', (e: any, tabId: number) => {
+      // const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId)
+      //  .webContents.zoomFactor;
+
+      const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId);
+      view.webContents.zoomFactor;
+
+      alert(zoom);
+      // return "-10.0";
     });
   }
 

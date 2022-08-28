@@ -13,7 +13,7 @@
   "files": ["build/**/*", "package.json", "static/**/*"],
   "publish": "github",
   "linux": {
-    "category": "Network",
+    "category": "Browser",
     "target": [
       {
         "target": "AppImage",

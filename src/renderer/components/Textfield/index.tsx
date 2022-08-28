@@ -125,16 +125,8 @@ export class Textfield extends React.PureComponent<TextFieldProps, State> {
   }
 
   public render() {
-    const {
-      color,
-      label,
-      placeholder,
-      icon,
-      inputType,
-      style,
-      width,
-      dark,
-    } = this.props;
+    const { color, label, placeholder, icon, inputType, style, width, dark } =
+      this.props;
     const { activated, focused, error, value } = this.state;
 
     const hasLabel = label != null && label !== '';

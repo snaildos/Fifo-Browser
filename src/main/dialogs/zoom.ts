@@ -3,17 +3,17 @@
 import { BrowserWindow } from 'electron';
 import { Application } from '../application';
 import { DIALOG_MARGIN_TOP, DIALOG_MARGIN } from '~/constants/design';
-import {IDialog} from "~/main/services/dialogs-service";
 
 export const showZoomDialog = async (
   browserWindow: BrowserWindow,
   x: number,
   y: number,
 ) => {
-  const tabId = Application.instance.windows.fromBrowserWindow(browserWindow)
-    .viewManager.selectedId;
+  const tabId =
+    Application.instance.windows.fromBrowserWindow(browserWindow).viewManager
+      .selectedId;
 
-  const dialog: IDialog = await Application.instance.dialogs.show({
+  const dialog = Application.instance.dialogs.show({
     name: 'zoom',
     browserWindow,
     getBounds: () => ({
@@ -22,10 +22,10 @@ export const showZoomDialog = async (
       x: x - 280 + DIALOG_MARGIN,
       y: y - DIALOG_MARGIN_TOP,
     }),
-    onWindowBoundsUpdate: () => dialog.hide(),
+    onWindowBoundsUpdate: async () => (await dialog).hide(),
   });
 
   if (!dialog) return;
 
-  dialog.handle('tab-id', () => tabId);
+  (await dialog).handle('tab-id', () => tabId);
 };

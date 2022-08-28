@@ -11,9 +11,7 @@ import { Application } from '../application';
 import { AppWindow } from '../windows/app';
 import { showAddBookmarkDialog } from '../dialogs/add-bookmark';
 
-function getIcon(
-  favicon: string | undefined
-): NativeImage | string {
+function getIcon(favicon: string | undefined): NativeImage | string {
   if (favicon) {
     let dataURL = Application.instance.storage.favicons.get(favicon);
     if (dataURL) {
@@ -30,7 +28,7 @@ function getIcon(
         .resize({ width: 16, height: 16 });
     }
   }
-  return undefined
+  return undefined;
 }
 
 export function createDropdown(
@@ -83,9 +81,9 @@ export function createMenu(appWindow: AppWindow, item: IBookmark) {
         showAddBookmarkDialog(appWindow.win, windowBounds.width - 20, 72, {
           url: item.url,
           title: item.title,
-          color: item.color,
           bookmark: item,
           favicon: item.favicon,
+          color: '',
         });
       },
     },

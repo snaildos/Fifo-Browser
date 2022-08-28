@@ -4,7 +4,7 @@ import { BrowserWindow } from 'electron';
 import { Application } from '../application';
 import { DIALOG_MARGIN_TOP, DIALOG_MARGIN } from '~/constants/design';
 
-export const showTabGroupDialog = (
+export const showTabGroupDialog = async (
   browserWindow: BrowserWindow,
   tabGroup: any,
 ) => {
@@ -17,10 +17,10 @@ export const showTabGroupDialog = (
       x: tabGroup.x - DIALOG_MARGIN,
       y: tabGroup.y - DIALOG_MARGIN_TOP,
     }),
-    onWindowBoundsUpdate: () => dialog.hide(),
+    onWindowBoundsUpdate: async () => (await dialog).hide(),
   });
 
   if (!dialog) return;
 
-  dialog.handle('tabgroup', () => tabGroup);
+  (await dialog).handle('tabgroup', () => tabGroup);
 };

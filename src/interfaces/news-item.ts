@@ -7,7 +7,6 @@ export interface INewsItem {
   };
   author: string;
   title: string;
-  color: string;
   description: string;
   url: string;
   urlToImage: string;

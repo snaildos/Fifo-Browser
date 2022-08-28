@@ -29,83 +29,71 @@ const showPopup = (
   );
 };
 
+const onClick =
+  (data: IBrowserAction) => (e: React.MouseEvent<HTMLDivElement>) => {
+    if (data.tabId) {
+      // TODO:
+      //extensionsRenderer.browserAction.onClicked(data.extensionId, data.tabId);
+      const { left, top, width, height } =
+        e.currentTarget.getBoundingClientRect();
 
-const onClick = (data: IBrowserAction) => (
-  e: React.MouseEvent<HTMLDivElement>,
-) => {
-  if (data.tabId) {
-    // TODO:
-    //extensionsRenderer.browserAction.onClicked(data.extensionId, data.tabId);
-    const {
-      left,
-      top,
-      width,
-      height,
-    } = e.currentTarget.getBoundingClientRect();
+      ipcRenderer.invoke(
+        'crx-msg-remote',
+        'persist:view',
+        'browserAction.activate',
+        {
+          eventType: 'click',
+          extensionId: data.extensionId,
+          tabId: data.tabId,
+          anchorRect: {
+            x: left,
+            y: top,
+            width: width,
+            height: height,
+          },
+        },
+      );
+    }
+  };
 
-    ipcRenderer.invoke(
-      'crx-msg-remote',
-      'persist:view',
-      'browserAction.activate',
+const onContextMenu =
+  (data: IBrowserAction) => (e: React.MouseEvent<HTMLDivElement>) => {
+    const { target } = e;
+    const menu = remote.Menu.buildFromTemplate([
       {
-        eventType: 'click',
-        extensionId: data.extensionId,
-        tabId: data.tabId,
-        anchorRect: {
-          x: left,
-          y: top,
-          width: width,
-          height: height,
+        label: 'Uninstall',
+        click: () => {
+          store.extensions.uninstallExtension(data.extensionId);
         },
       },
-    );
-  }
-};
+      {
+        label: 'Inspect popup',
+        click: () => {
+          const { right, bottom } = (target as any).getBoundingClientRect();
+          showPopup(data, right, bottom, true);
+        },
+      },
+      {
+        label: 'Inspect background page',
+        click: () => {
+          extensionMainChannel
+            .getInvoker()
+            .inspectBackgroundPage(data.extensionId);
+        },
+      },
+    ]);
 
-const onContextMenu = (data: IBrowserAction) => (
-  e: React.MouseEvent<HTMLDivElement>,
-) => {
-  const { target } = e;
-  const menu = remote.Menu.buildFromTemplate([
-    {
-      label: 'Uninstall',
-      click: () => {
-        store.extensions.uninstallExtension(data.extensionId);
-      },
-    },
-    {
-      label: 'Inspect popup',
-      click: () => {
-        const { right, bottom } = (target as any).getBoundingClientRect();
-        showPopup(data, right, bottom, true);
-      },
-    },
-    {
-      label: 'Inspect background page',
-      click: () => {
-        extensionMainChannel
-          .getInvoker()
-          .inspectBackgroundPage(data.extensionId);
-      },
-    },
-  ]);
-
-  menu.popup();
-};
+    menu.popup();
+  };
 
 const onMouseDown = (data: IBrowserAction) => async (e: any) => {
-    data.extensionId !== store.extensions.currentlyToggledPopup;
+  data.extensionId !== store.extensions.currentlyToggledPopup;
   // ipcRenderer.send(`hide-extension-popup-${store.windowId}`);
 };
 
 export const BrowserAction = observer(({ data }: Props) => {
-  const {
-    icon,
-    badgeText,
-    badgeBackgroundColor,
-    badgeTextColor,
-    extensionId,
-  } = data;
+  const { icon, badgeText, badgeBackgroundColor, badgeTextColor, extensionId } =
+    data;
 
   return (
     <ToolbarButton

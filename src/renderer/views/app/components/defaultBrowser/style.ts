@@ -10,7 +10,12 @@ import {
   centerIcon,
   coloredCursor,
 } from '~/renderer/mixins';
-import { transparency, EASING_FUNCTION, BLUE_500, LIGHT_BLUE_500 } from '~/renderer/constants';
+import {
+  transparency,
+  EASING_FUNCTION,
+  BLUE_500,
+  LIGHT_BLUE_500,
+} from '~/renderer/constants';
 
 export const StyledDefaultBrowser = styled.div`
   position: relative;
@@ -65,7 +70,7 @@ export const HiddenDiv = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   background: transparent;
-`
+`;
 
 export const ButtonPredeterminado = styled.div`
   display: flex;
@@ -74,20 +79,24 @@ export const ButtonPredeterminado = styled.div`
   padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
   /* margin: 2.5px 0 0 0; */
   margin-left: 25px;
   font-size: 12px;
   font-weight: 500;
   width: auto;
   min-width: 200px;
-  
+
   ${({ theme }: { theme?: ITheme }) => css`
-    background: ${theme['addressbar.textColor'] == "#fff" ? "#8ab4f8" : "#267ae9"};
-    color: ${theme['addressbar.textColor'] == "#fff" ? "black" : "white"};
+    background: ${theme['addressbar.textColor'] == '#fff'
+      ? '#8ab4f8'
+      : '#267ae9'};
+    color: ${theme['addressbar.textColor'] == '#fff' ? 'black' : 'white'};
 
     &:hover {
-      background: ${theme['addressbar.textColor'] == "#fff" ? "#8fb7f8" : "#267adf"};
+      background: ${theme['addressbar.textColor'] == '#fff'
+        ? '#8fb7f8'
+        : '#267adf'};
     }
   `};
 `;

@@ -37,7 +37,7 @@ export class Store extends DialogStore {
     if (parsed.protocol === 'http:') {
       return 'Unsecure Website';
     }
-    
+
     return parsed.hostname;
   }
 

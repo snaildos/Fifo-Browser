@@ -9,7 +9,6 @@ import { getTheme } from '~/utils/themes';
 import { Textfield } from '~/renderer/components/Textfield';
 
 export type SettingsSection =
-  | 'general'
   | 'appearance'
   | 'autofill'
   | 'address-bar'
@@ -20,7 +19,7 @@ export type SettingsSection =
   | 'shortcuts'
   | 'downloads'
   | 'system'
-  | 'search-engines'
+  | 'search-engines';
 
 export class Store {
   public autoFill = new AutoFillStore();
@@ -40,6 +39,7 @@ export class Store {
   };
 
   private _menuVisible = false;
+  sections: any;
 
   public get menuVisible() {
     return this._menuVisible;
@@ -62,7 +62,7 @@ export class Store {
     | 'edit-password'
     | 'privacy' = null;
 
-  public selectedSection: SettingsSection = 'general';
+  public selectedSection: SettingsSection = 'appearance';
 
   public settings: ISettings = { ...(window as any).settings };
 

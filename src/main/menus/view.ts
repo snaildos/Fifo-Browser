@@ -27,7 +27,7 @@ export const getViewMenu = (
         },
       },
       {
-        label: 'Open link in background tab',
+        label: 'Open link in new tab',
         click: () => {
           appWindow.viewManager.create(
             {
@@ -46,6 +46,26 @@ export const getViewMenu = (
         click: () => {
           clipboard.clear();
           clipboard.writeText(params.linkURL);
+        },
+      },
+      {
+        type: 'separator',
+      },
+    ]);
+  }
+
+  if (params.mediaFlags.canShowPictureInPicture) {
+    menuItems = menuItems.concat([
+      {
+        type: 'checkbox',
+        label: 'Picture in Picture',
+        checked: params.mediaFlags.isShowingPictureInPicture,
+        click: () => {
+          webContents.executeJavaScript(
+            params.mediaFlags.isShowingPictureInPicture
+              ? `document.exitPictureInPicture()`
+              : `document.elementFromPoint(${params.x}, ${params.y}).requestPictureInPicture()`,
+          );
         },
       },
       {
@@ -219,6 +239,20 @@ export const getViewMenu = (
         },
       },
       {
+        label: 'Zoom',
+        submenu: [
+          { role: 'resetZoom', label: 'Reset' },
+          {
+            label: 'Zoom In',
+            role: 'zoomIn',
+          },
+          {
+            label: 'Zoom Out',
+            role: 'zoomOut',
+          },
+        ],
+      },
+      {
         type: 'separator',
       },
       {
@@ -249,7 +283,7 @@ export const getViewMenu = (
   }
 
   menuItems.push({
-    label: 'Inspect',
+    label: 'Inspect Element',
     accelerator: 'CmdOrCtrl+Shift+I',
     click: () => {
       webContents.inspectElement(params.x, params.y);

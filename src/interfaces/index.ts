@@ -7,7 +7,6 @@ export * from './history-item';
 export * from './history-section';
 export * from './settings';
 export * from './suggestion';
-export * from './welcome';
 export * from './theme';
 export * from './weather';
 export * from './form-fill';

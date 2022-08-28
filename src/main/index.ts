@@ -34,7 +34,7 @@ ipcMain.setMaxListeners(0);
 const application = Application.instance;
 (async () => {
   await application.start();
-})()
+})();
 
 process.on('uncaughtException', (error) => {
   console.error(error);

@@ -9,9 +9,11 @@ import {
   ICON_MAGNIFY_PLUS,
   ICON_MAGNIFY_MINUS,
   ICON_SHIELD,
+  ICON_DOWN,
 } from '~/renderer/constants/icons';
 import { ipcRenderer } from 'electron';
 import store from '../../store';
+import { parse } from 'url';
 import { ToolbarButton } from '../ToolbarButton';
 import * as remote from '@electron/remote';
 
@@ -19,6 +21,12 @@ const showAddBookmarkDialog = async () => {
   const star = document.getElementById('star');
   const { right, bottom } = star.getBoundingClientRect();
   ipcRenderer.send(`show-add-bookmark-dialog-${store.windowId}`, right, bottom);
+};
+
+const showMenuDialog = async () => {
+  const menu = document.getElementById('more');
+  const { right, bottom } = menu.getBoundingClientRect();
+  ipcRenderer.send(`show-menu_extra-dialog-${store.windowId}`, right, bottom);
 };
 
 const showZoomDialog = async () => {
@@ -35,6 +43,10 @@ const onStarClick = (e: React.MouseEvent<HTMLDivElement>) => {
 
 const onZoomClick = (e: React.MouseEvent<HTMLDivElement>) => {
   showZoomDialog();
+};
+
+const onMenuClick = (e: React.MouseEvent<HTMLDivElement>) => {
+  showMenuDialog();
 };
 
 const onKeyClick = () => {
@@ -121,6 +133,17 @@ export const SiteButtons = observer(() => {
         dense={dense}
         onMouseDown={onStarClick}
       />
+      {!store.isUIpage && (
+        <ToolbarButton
+          id="more"
+          toggled={store.dialogsVisibility['menuExtra']}
+          icon={ICON_DOWN}
+          size={18}
+          dense={dense}
+          onMouseDown={onMenuClick}
+          style={{ cursor: 'pointer' }}
+        />
+      )}
       <ToolbarButton
         size={16}
         badge={store.settings.object.shield && blockedAds > 0}

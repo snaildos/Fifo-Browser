@@ -36,18 +36,12 @@ export class PersistentDialog {
   public name: string;
 
   private timeout: any;
-  private hideTimeout: number;
+  private readonly hideTimeout: number;
 
   private loaded = false;
   private showCallback: any = null;
 
-  public constructor({
-    bounds,
-    name,
-    devtools,
-    hideTimeout,
-    webPreferences,
-  }: IOptions) {
+  public constructor({ bounds, name, hideTimeout, webPreferences }: IOptions) {
     this.browserView = new BrowserView({
       webPreferences: {
         nodeIntegration: true,
@@ -78,13 +72,17 @@ export class PersistentDialog {
       }
     });
 
-    if (process.env.NODE_ENV === 'development') {
-      this.webContents.loadURL(`http://localhost:4444/${this.name}.html`);
-    } else {
-      this.webContents.loadURL(
-        join('file://', app.getAppPath(), `build/${this.name}.html`),
-      );
-    }
+    (async () => {
+      if (process.env.NODE_ENV === 'development') {
+        await this.webContents.loadURL(
+          `http://localhost:4444/${this.name}.html`,
+        );
+      } else {
+        await this.webContents.loadURL(
+          join('file://', app.getAppPath(), `build/${this.name}.html`),
+        );
+      }
+    })();
   }
 
   public get webContents() {

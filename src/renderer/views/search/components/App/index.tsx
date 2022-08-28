@@ -84,7 +84,7 @@ const onInput = (e: any) => {
     selectionStart: store.inputRef.current.selectionStart,
     selectionEnd: store.inputRef.current.selectionEnd,
   });
-  
+
   if (e.currentTarget.value.trim() === '') {
     store.hide({ focus: true });
   }

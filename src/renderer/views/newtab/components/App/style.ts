@@ -56,11 +56,27 @@ export const Content = styled.div`
   display: flex;
   flex-flow: column;
   width: calc(100% - 64px);
+  align-items: center;
+  justify-content: center;
   margin: 0 auto;
   max-width: 1366px;
   position: relative;
   min-height: 97px;
   z-index: 3;
+`;
+
+export const StyledForecast = styled.h2`
+  font-weight: 500;
+  font-size: 1rem;
+  margin: 0;
+`;
+
+export const StyledTime = styled.div`
+  h1 {
+    font-size: 2.5rem;
+    margin: 0;
+    font-weight: 900;
+  }
 `;
 
 export const RightBar = styled.div`

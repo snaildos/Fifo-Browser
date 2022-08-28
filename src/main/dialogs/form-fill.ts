@@ -2,7 +2,7 @@
 
 import { VIEW_Y_OFFSET, DIALOG_MARGIN_TOP } from '~/constants/design';
 import { AppWindow } from '../windows';
-import {PersistentDialog} from "~/main/dialogs/dialog";
+import { PersistentDialog } from '~/main/dialogs/dialog';
 
 const WIDTH = 208;
 const HEIGHT = 128;

@@ -21,6 +21,7 @@ export interface ISettings {
   shield: boolean;
   multrin: boolean;
   notnew: boolean;
+  changelog: string;
   httpsEnforce: boolean;
   animations: boolean;
   bookmarksBar: boolean;
@@ -31,6 +32,10 @@ export interface ISettings {
     topSites: boolean;
     pinned: boolean;
   };
+  newtab: {
+    news: boolean;
+    weather: boolean;
+  };
   searchEngines: ISearchEngine[];
   startupBehavior: IStartupBehavior;
   warnOnQuit: boolean;
@@ -38,6 +43,8 @@ export interface ISettings {
   darkContents: boolean;
   downloadsDialog: boolean;
   downloadsPath: string;
+  ignoreCertificate: boolean;
+  autoplay: boolean;
   doNotTrack: boolean;
   topBarVariant: TopBarVariant;
   token: string | null;

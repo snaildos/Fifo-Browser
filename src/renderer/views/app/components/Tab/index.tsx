@@ -190,7 +190,6 @@ const onContextMenu = (tab: ITab) => () => {
   menu.popup();
 };
 
-
 const Content = observer(({ tab }: { tab: ITab }) => {
   const favicon = React.useMemo(() => {
     if (!tab.favicon) return undefined;
@@ -201,8 +200,8 @@ const Content = observer(({ tab }: { tab: ITab }) => {
     <StyledContent title={store.settings.object.invisibleTabs ? tab.url : null}>
       {!tab.loading && tab.favicon && (
         <StyledIcon
-        isIconSet={favicon !== ''}
-        style={{ backgroundImage: favicon ? `url(${favicon})` : '' }}
+          isIconSet={favicon !== ''}
+          style={{ backgroundImage: favicon ? `url(${favicon})` : '' }}
         >
           <PinnedVolume tab={tab} />
         </StyledIcon>
@@ -221,13 +220,12 @@ const Content = observer(({ tab }: { tab: ITab }) => {
         </StyledTitle>
       )}
       <ExpandedVolume tab={tab} />
-      {!(store.settings.object.showTabOnClose && store.tabs.list.length == 1) && (
-        <Close tab={tab} />
-      )}
+      {!(
+        store.settings.object.showTabOnClose && store.tabs.list.length == 1
+      ) && <Close tab={tab} />}
     </StyledContent>
   );
 });
-
 
 const ExpandedVolume = observer(({ tab }: { tab: ITab }) => {
   return (
@@ -307,8 +305,9 @@ export default observer(({ tab }: { tab: ITab }) => {
             ? store.isCompact && tab.isHovered
               ? defaultSelectedHoverColor
               : store.theme['toolbar.backgroundColor']
-            : invisibleTabs ? "transparent" :
-            tab.isHovered
+            : invisibleTabs
+            ? 'transparent'
+            : tab.isHovered
             ? defaultHoverColor
             : defaultColor,
           borderColor:

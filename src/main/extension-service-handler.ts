@@ -10,7 +10,8 @@ import { Application } from './application';
 import { URL } from 'url';
 
 export class ExtensionServiceHandler
-  implements RpcMainHandler<ExtensionMainService> {
+  implements RpcMainHandler<ExtensionMainService>
+{
   constructor() {
     extensionMainChannel.getReceiver().handler = this;
   }

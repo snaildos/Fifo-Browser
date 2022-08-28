@@ -17,13 +17,14 @@ export const StyledNavigationDrawerItem = styled.div`
   transition: 0.2s background-color;
 
   ${({ theme, selected }: { theme?: ITheme; selected?: boolean }) => css`
-    background-color: ${(selected ? 'rgba(0, 0, 0, 0.084)' : 'auto')};
-  
+    background-color: ${selected ? 'rgba(0, 0, 0, 0.084)' : 'auto'};
+
     &:hover {
-      background-color: ${!selected ? (theme['pages.lightForeground']
-        ? 'rgba(255, 255, 255, 0.06)'
-        : 'rgba(0, 0, 0, 0.04)') : 'auto'
-      };
+      background-color: ${!selected
+        ? theme['pages.lightForeground']
+          ? 'rgba(255, 255, 255, 0.06)'
+          : 'rgba(0, 0, 0, 0.04)'
+        : 'auto'};
     }
 
     &:before {

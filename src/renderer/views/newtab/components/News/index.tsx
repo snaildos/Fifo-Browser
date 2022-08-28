@@ -15,7 +15,7 @@ export const News = observer(() => {
 
   return (
     <StyledNews>
-      {store.news.map(item => {
+      {store.news.map((item) => {
         if (!item.urlToImage) return;
 
         const column = nextColumn;

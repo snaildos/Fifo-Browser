@@ -55,7 +55,7 @@ const onDeleteClick = () => {
 };
 
 const onRemoveClick = (item: IBookmark) => () => {
-  if(window.confirm(`Are you sure you want to delete "${item.title}"?`)) {
+  if (window.confirm(`Are you sure you want to delete "${item.title}"?`)) {
     store.removeItems([item._id]);
     store.menuVisible = false;
   }
@@ -200,12 +200,20 @@ export default observer(() => {
           visible={store.menuVisible}
         >
           {store.currentBookmark && !store.currentBookmark.isFolder && (
-            <ContextMenuItem style={{ cursor: 'pointer' }} onClick={onEditClick} icon={ICON_EDIT}>
+            <ContextMenuItem
+              style={{ cursor: 'pointer' }}
+              onClick={onEditClick}
+              icon={ICON_EDIT}
+            >
               Edit
             </ContextMenuItem>
           )}
           {store.currentBookmark && store.currentBookmark.isFolder && (
-            <ContextMenuItem style={{ cursor: 'pointer' }} onClick={onRenameClick} icon={ICON_EDIT}>
+            <ContextMenuItem
+              style={{ cursor: 'pointer' }}
+              onClick={onRenameClick}
+              icon={ICON_EDIT}
+            >
               Rename
             </ContextMenuItem>
           )}
