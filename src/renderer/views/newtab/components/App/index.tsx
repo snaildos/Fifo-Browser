@@ -5,7 +5,16 @@ import { observer } from 'mobx-react-lite';
 
 import store from '../../store';
 import { ThemeProvider } from 'styled-components';
-import { Wrapper, Content, IconItem, Menu, Image, RightBar, StyledForecast, StyledTime } from './style';
+import {
+  Wrapper,
+  Content,
+  IconItem,
+  Menu,
+  Image,
+  RightBar,
+  StyledForecast,
+  StyledTime,
+} from './style';
 import { TopSites } from '../TopSites';
 import { News } from '../News';
 import { Preferences } from '../Preferences';
@@ -36,18 +45,12 @@ const onTuneClick = () => {
 };
 
 const onExtensionClick = () => {
-  window.location.href = 'https://chrome.google.com/webstore/category/extensions';
-};
-
-const onRefreshClick = () => {
-  store.image = '';
-  setTimeout(() => {
-    localStorage.setItem('imageDate', '');
-    store.loadImage();
-  }, 50);
+  window.location.href =
+    'https://chrome.google.com/webstore/category/extensions';
 };
 
 const Time = () => {
+  // const getDate = () => { setInterval(() => { return new Date().toLocaleTimeString([], { timeStyle: 'long' }) }, 100); }
   return (
     <StyledTime>
       <h1>{new Date().toLocaleTimeString([], { timeStyle: 'short' })}</h1>
@@ -57,14 +60,20 @@ const Time = () => {
 
 const Forecast = () => {
   const { data: forecast } = useQuery(['weather'], async () => {
-    try {
-      const res = await (await fetch(`https://wttr.in/?format=%c%20%C`)).text();
-      return res;
-    } catch {
-      return 'Failed to load weather :(';
+    if (store.isweather == false) {
+      try {
+        const res = await (
+          await fetch(`https://wttr.in/?format=%c%20%C`)
+        ).text();
+        return res;
+      } catch {
+        return 'Failed to load weather :(';
+      }
+    } else {
+      return 'Weather disabled';
     }
   });
-  
+
   return (
     <StyledForecast>
       {new Date().toLocaleDateString([], {
@@ -78,82 +87,80 @@ const Forecast = () => {
 };
 
 export default observer(() => {
-  if (store.settings.notnew != "false") {
-    window.location.replace(getWebUIURL("welcome"))
+  if (store.settings.notnew != 'false') {
+    window.location.replace(getWebUIURL('welcome'));
   } else {
-    if (store.settings.changelog != "1.2.1") {
-      window.location.replace(getWebUIURL("changelog"))
+    if (store.settings.changelog != '1.2.2') {
+      window.location.replace(getWebUIURL('changelog'));
+    }
   }
-  }
-
 
   return (
     <QueryClientProvider client={queryClient}>
-    <ThemeProvider theme={{ ...store.theme }}>
-      <div>
-        <WebUIStyle />
+      <ThemeProvider theme={{ ...store.theme }}>
+        <div>
+          <WebUIStyle />
 
-        <Preferences />
+          <Preferences />
 
-        <Wrapper fullSize={store.fullSizeImage}>
+          <Wrapper fullSize={store.fullSizeImage}>
+            <Image src={store.imageVisible ? store.image : ''}></Image>
+            <Content>
+              <Time />
+              {store.isweather == false && <Forecast />}
+              {store.topSitesVisible && (
+                <TopSites backgroundColor={''}></TopSites>
+              )}
+            </Content>
 
-          <Image src={store.imageVisible ? store.image : ''}></Image>
-          <Content>
-          <Time />
-          <Forecast />
-          {store.topSitesVisible && <TopSites></TopSites>}
-          </Content>
-
-          <RightBar>
-            <IconItem
-              imageSet={store.imageVisible}
-              title="Configure landing page"
-              icon={ICON_TUNE}
-              onMouseDown={(e) => e.stopPropagation()}
-              onClick={onTuneClick}
-            ></IconItem>
-          </RightBar>
-          {store.quickMenuVisible && (
-            <Menu>
+            <RightBar>
               <IconItem
                 imageSet={store.imageVisible}
-                title="Settings"
-                icon={ICON_SETTINGS}
-                onClick={onIconClick('settings')}
+                title="Configure newtab page"
+                icon={ICON_TUNE}
+                onMouseDown={(e) => e.stopPropagation()}
+                onClick={onTuneClick}
               ></IconItem>
-              <IconItem
-                imageSet={store.imageVisible}
-                title="History"
-                icon={ICON_HISTORY}
-                onClick={onIconClick('history')}
-              ></IconItem>
-              <IconItem
-                imageSet={store.imageVisible}
-                title="Bookmarks"
-                icon={ICON_BOOKMARKS}
-                onClick={onIconClick('bookmarks')}
-              ></IconItem>
-              <IconItem
-                imageSet={store.imageVisible}
-                title="Extensions"
-                icon={ICON_EXTENSIONS}
-                onClick={onExtensionClick}
-              ></IconItem>
-              {/*
+            </RightBar>
+            {store.quickMenuVisible && (
+              <Menu>
+                <IconItem
+                  imageSet={store.imageVisible}
+                  title="Settings"
+                  icon={ICON_SETTINGS}
+                  onClick={onIconClick('settings')}
+                ></IconItem>
+                <IconItem
+                  imageSet={store.imageVisible}
+                  title="History"
+                  icon={ICON_HISTORY}
+                  onClick={onIconClick('history')}
+                ></IconItem>
+                <IconItem
+                  imageSet={store.imageVisible}
+                  title="Bookmarks"
+                  icon={ICON_BOOKMARKS}
+                  onClick={onIconClick('bookmarks')}
+                ></IconItem>
+                <IconItem
+                  imageSet={store.imageVisible}
+                  title="Extensions"
+                  icon={ICON_EXTENSIONS}
+                  onClick={onExtensionClick}
+                ></IconItem>
+                {/*
               <IconItem
                 imageSet={store.imageVisible}
                 title="Descargas"
                 icon={ICON_DOWNLOAD}
                 onClick={onIconClick('downloads')}
               ></IconItem> */}
-            </Menu>
-          )}
-        </Wrapper>
-        {store.newsBehavior !== 'hidden' && (
-            <News></News>
-        )}
-      </div>
-    </ThemeProvider>
+              </Menu>
+            )}
+          </Wrapper>
+          {store.newsBehavior !== 'hidden' && <News></News>}
+        </div>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 });

@@ -63,10 +63,10 @@ export class WindowsService {
       // const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId)
       //  .webContents.zoomFactor;
 
-       const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId);
-        view.webContents.zoomFactor
+      const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId);
+      view.webContents.zoomFactor;
 
-      alert(zoom)
+      alert(zoom);
       // return "-10.0";
     });
   }
@@ -85,7 +85,7 @@ export class WindowsService {
   public findByBrowserView(webContentsId: number) {
     return this.list.find((x) => !!x.viewManager.views.get(webContentsId));
   }
-  
+
   public fromBrowserWindow(browserWindow: BrowserWindow) {
     return this.list.find((x) => x.id === browserWindow.id);
   }

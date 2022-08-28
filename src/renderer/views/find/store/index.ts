@@ -58,7 +58,9 @@ export class Store extends DialogStore {
     ipcRenderer.on(
       'found-in-page',
       (e, { activeMatchOrdinal, matches }: Electron.FoundInPageResult) => {
-        if (`${matches}` == '0') { shell.beep() }
+        if (`${matches}` == '0') {
+          shell.beep();
+        }
         this.findInfo.occurrences = `${activeMatchOrdinal}/${matches}`;
         this.sendInfo();
       },

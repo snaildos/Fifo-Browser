@@ -13,7 +13,7 @@ import {
   Shortcut,
   RightControl,
   MenuItemZoom,
-  Label
+  Label,
 } from './style';
 import store from '../../store';
 import { ipcRenderer } from 'electron';
@@ -34,15 +34,12 @@ import {
   ICON_PRINT,
   ICON_DOWN,
   ICON_UP,
-  ICON_REFRESH
+  ICON_REFRESH,
+  ICON_CLOSE,
 } from '~/renderer/constants/icons';
 import { getWebUIURL } from '~/common/webui';
 import { ToolbarButton } from '../../../app/components/ToolbarButton';
-import {
-  ZOOM_FACTOR_MIN,
-  ZOOM_FACTOR_MAX,
-  ZOOM_FACTOR_INCREMENT,
-} from '~/constants/web-contents';
+import { ZOOM_FACTOR_MIN, ZOOM_FACTOR_MAX } from '~/constants/web-contents';
 
 const onFindClick = () => {
   /*
@@ -62,6 +59,10 @@ const onDarkClick = () => {
 const onPrintClick = () => {
   ipcRenderer.send('Print', null);
   store.hide();
+};
+
+const onCloseClick = () => {
+  ipcRenderer.send(`window-close-${store.windowId}`);
 };
 
 const onFindInPageClick = () => {
@@ -110,21 +111,21 @@ const onPlus = () => {
   ipcRenderer.send('change-zoom-menu', 'in');
 
   if (store.zoomFactor <= ZOOM_FACTOR_MAX - 0.1) {
-    store.zoomFactor = store.zoomFactor + 0.1
+    store.zoomFactor = store.zoomFactor + 0.1;
   }
 };
 
 const onMinus = () => {
   ipcRenderer.send('change-zoom-menu', 'out');
-  
+
   if (store.zoomFactor >= ZOOM_FACTOR_MIN + 0.1) {
-    store.zoomFactor = store.zoomFactor - 0.1
+    store.zoomFactor = store.zoomFactor - 0.1;
   }
 };
 
 const onReset = () => {
   ipcRenderer.send('reset-zoom');
-  store.zoomFactor = 1
+  store.zoomFactor = 1;
 };
 
 export const QuickMenu = observer(() => {
@@ -171,19 +172,35 @@ export const QuickMenu = observer(() => {
           </MenuItem>
           <Line />
           <MenuItemZoom>
-            <span style={{ width: "45%", paddingRight: '12px', display: 'flex', justifyContent: 'center' }}>Zoom</span> <div style={{height: '100%', width: '1px', background: `${store.theme['dialog.separator.color']}` }}></div>
+            <span
+              style={{
+                width: '45%',
+                paddingRight: '12px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              Zoom
+            </span>{' '}
+            <div
+              style={{
+                height: '100%',
+                width: '1px',
+                background: `${store.theme['dialog.separator.color']}`,
+              }}
+            ></div>
             <ToolbarButton
-            toggled={false}
-            icon={ICON_DOWN}
-            size={18}
-            dense
-            iconStyle={{ transform: 'scale(-1,1)' }}
-            onClick={onMinus}
-            style={{
-              cursor: 'pointer',
-              marginLeft: '10px',
-              marginRight: '10px',
-            }}
+              toggled={false}
+              icon={ICON_DOWN}
+              size={18}
+              dense
+              iconStyle={{ transform: 'scale(-1,1)' }}
+              onClick={onMinus}
+              style={{
+                cursor: 'pointer',
+                marginLeft: '10px',
+                marginRight: '10px',
+              }}
             />
             <Label>{(store.zoomFactor * 100).toFixed(0) + '%'}</Label>
             <ToolbarButton
@@ -199,7 +216,13 @@ export const QuickMenu = observer(() => {
                 marginRight: '8px',
               }}
             />
-            <div style={{height: '100%', width: '1px', background: `${store.theme['dialog.separator.color']}` }}></div>
+            <div
+              style={{
+                height: '100%',
+                width: '1px',
+                background: `${store.theme['dialog.separator.color']}`,
+              }}
+            ></div>
             <ToolbarButton
               toggled={false}
               icon={ICON_REFRESH}
@@ -252,6 +275,12 @@ export const QuickMenu = observer(() => {
             <Icon icon={ICON_PRINT} />
             <MenuItemTitle>Print</MenuItemTitle>
             <Shortcut>Ctrl+P</Shortcut>
+          </MenuItem>
+          <Line />
+          <MenuItem onClick={onCloseClick}>
+            <Icon icon={ICON_CLOSE} />
+            <MenuItemTitle>Quit</MenuItemTitle>
+            <Shortcut>Ctrl+W</Shortcut>
           </MenuItem>
         </MenuItems>
       </Content>

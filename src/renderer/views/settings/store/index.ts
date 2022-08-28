@@ -19,7 +19,7 @@ export type SettingsSection =
   | 'shortcuts'
   | 'downloads'
   | 'system'
-  | 'search-engines'
+  | 'search-engines';
 
 export class Store {
   public autoFill = new AutoFillStore();
@@ -62,7 +62,6 @@ export class Store {
     | 'edit-password'
     | 'privacy' = null;
 
-  
   public selectedSection: SettingsSection = 'appearance';
 
   public settings: ISettings = { ...(window as any).settings };

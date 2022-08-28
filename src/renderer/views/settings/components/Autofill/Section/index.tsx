@@ -20,18 +20,17 @@ interface Props {
   style?: any;
 }
 
-export const onMoreClick = (data: IFormFillData) => (
-  e: React.MouseEvent<HTMLDivElement>,
-) => {
-  e.stopPropagation();
+export const onMoreClick =
+  (data: IFormFillData) => (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
 
-  const { left, top } = e.currentTarget.getBoundingClientRect();
+    const { left, top } = e.currentTarget.getBoundingClientRect();
 
-  store.autoFill.selectedItem = data;
-  store.autoFill.menuTop = top;
-  store.autoFill.menuLeft = left;
-  store.autoFill.menuVisible = true;
-};
+    store.autoFill.selectedItem = data;
+    store.autoFill.menuTop = top;
+    store.autoFill.menuLeft = left;
+    store.autoFill.menuVisible = true;
+  };
 
 export const Section = (props: Props) => {
   const { label, icon, children, style } = props;

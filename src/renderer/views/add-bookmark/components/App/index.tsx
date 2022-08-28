@@ -66,7 +66,7 @@ export const App = observer(() => {
               .filter((folder) => folder.isFolder)
               .map((folder) => (
                 <option value={folder._id}>{getBookmarkTitle(folder)}</option>
-              ))} 
+              ))}
           </Select>
         </Col>
         <Buttons>

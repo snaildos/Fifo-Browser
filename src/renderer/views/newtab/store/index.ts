@@ -6,19 +6,27 @@ import { getTheme } from '~/utils/themes';
 import { INewsItem } from '~/interfaces/news-item';
 import { networkMainChannel } from '~/common/rpc/network';
 import { ipcRenderer } from 'electron';
-import { NEWS_API_KEY } from '../../app/constants';
 
 type NewsBehavior = 'on-scroll' | 'always-visible' | 'hidden';
 export type Preset = 'focused' | 'inspirational' | 'informational' | 'custom';
 
 export class Store {
-
   @observable
   public settings: ISettings = { ...(window as any).settings };
 
   @computed
   public get theme(): ITheme {
     return getTheme(this.settings.theme);
+  }
+
+  @computed
+  public get isnews() {
+    return this.settings.newtab.news;
+  }
+
+  @computed
+  public get isweather() {
+    return this.settings.newtab.weather;
   }
 
   @observable
@@ -190,7 +198,7 @@ export class Store {
     };
   }
 
-  public async loadImage(isNewUrl: any=false) {
+  public async loadImage(isNewUrl: any = false) {
     let url = localStorage.getItem('imageURL');
 
     if (this.changeImageDaily) {
@@ -209,7 +217,7 @@ export class Store {
         }
       }
     }
-    
+
     if (!url || url == '') {
       url = 'https://picsum.photos/1920/1080';
       isNewUrl = true;
@@ -250,21 +258,26 @@ export class Store {
 
   public async loadNews() {
     // const randompage = Math.floor(Math.random() * 10) + 1;
-    const { data } = await networkMainChannel.getInvoker().request(`
-      https://github.win11react.com/NewsAPI/data.json
+    const news = this.isnews;
+    if (news == false) {
+      const { data } = await networkMainChannel.getInvoker().request(`
+      https://snaildos.github.io/SnailNews/data.json
     `); // ?lang=
-    const json = JSON.parse(data);
+      const json = JSON.parse(data);
 
-    if (json.articles) {
-      this.news = this.news.concat(json.articles);
+      if (json.articles) {
+        this.news = this.news.concat(json.articles);
+      } else {
+        throw new Error('Error fetching news');
+      }
     } else {
-      throw new Error('Error fetching news');
+      throw new Error('News is disabled in settings.');
     }
-}
+  }
 
-public async loadTopSites() {
-  this.topSites = await (window as any).getTopSites(8);
-}
+  public async loadTopSites() {
+    this.topSites = await (window as any).getTopSites(8);
+  }
 }
 
 export default new Store();

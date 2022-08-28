@@ -73,7 +73,7 @@ export class Settings extends EventEmitter {
 
     (async () => {
       await this.load();
-    })()
+    })();
   }
 
   private onLoad = async (): Promise<void> => {
@@ -93,10 +93,10 @@ export class Settings extends EventEmitter {
 
     if (this.object.themeAuto) {
       this.object.theme = nativeTheme.shouldUseDarkColors
-        ? 'fifo-dark'
-        : 'fifo-light';
+        ? 'wexond-dark'
+        : 'wexond-light';
     } else {
-      themeSource = this.object.theme === 'fifo-dark' ? 'dark' : 'light';
+      themeSource = this.object.theme === 'wexond-dark' ? 'dark' : 'light';
     }
 
     if (themeSource !== nativeTheme.themeSource) {

@@ -154,9 +154,10 @@ export class AppWindow {
         Application.instance.sessions.unloadIncognitoExtensions();
       }
 
-      Application.instance.windows.list = Application.instance.windows.list.filter(
-        (x) => x.win.id !== this.win.id,
-      );
+      Application.instance.windows.list =
+        Application.instance.windows.list.filter(
+          (x) => x.win.id !== this.win.id,
+        );
 
       Application.instance.windows.current = undefined;
     });
@@ -168,11 +169,13 @@ export class AppWindow {
         this.webContents.openDevTools({ mode: 'detach' });
         await this.win.loadURL('http://localhost:4444/app.html');
       } else {
-        await this.win.loadURL(join('file://', app.getAppPath(), 'build/app.html'));
+        await this.win.loadURL(
+          join('file://', app.getAppPath(), 'build/app.html'),
+        );
       }
-    })()
+    })();
 
-    this.win.on('enter-full-screen', async() => {
+    this.win.on('enter-full-screen', async () => {
       this.send('fullscreen', true);
       await this.viewManager.fixBounds();
     });

@@ -40,7 +40,7 @@ export class Store extends DialogStore {
     ipcRenderer.on('max-height', (e, height) => {
       this.maxHeight = height;
     });
-}
+  }
 
   public async init() {
     this.downloads = await ipcRenderer.invoke('get-downloads');

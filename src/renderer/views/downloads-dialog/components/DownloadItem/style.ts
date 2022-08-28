@@ -76,7 +76,6 @@ export const Info = styled.div`
   white-space: nowrap;
 `;
 
-
 export const Icon = styled.div`
   width: 24px;
   height: 24px;
@@ -86,7 +85,7 @@ export const Icon = styled.div`
   margin-left: 16px;
 
   ${({ ext }: { ext?: string }) => css`
-    background: url(${getIconByExtension(ext.toLowerCase())})
+    background: url(${getIconByExtension(ext.toLowerCase())});
   `}
 `;
 

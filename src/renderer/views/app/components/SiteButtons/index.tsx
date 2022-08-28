@@ -9,7 +9,7 @@ import {
   ICON_MAGNIFY_PLUS,
   ICON_MAGNIFY_MINUS,
   ICON_SHIELD,
-  ICON_DOWN
+  ICON_DOWN,
 } from '~/renderer/constants/icons';
 import { ipcRenderer } from 'electron';
 import store from '../../store';
@@ -133,17 +133,17 @@ export const SiteButtons = observer(() => {
         dense={dense}
         onMouseDown={onStarClick}
       />
-    {!store.isUIpage && (
-      <ToolbarButton
-        id="more"
-        toggled={store.dialogsVisibility['menuExtra']}
-        icon={ICON_DOWN}
-        size={18}
-        dense={dense}
-        onMouseDown={onMenuClick}
-        style={{ cursor: 'pointer' }}
-      />
-    )}
+      {!store.isUIpage && (
+        <ToolbarButton
+          id="more"
+          toggled={store.dialogsVisibility['menuExtra']}
+          icon={ICON_DOWN}
+          size={18}
+          dense={dense}
+          onMouseDown={onMenuClick}
+          style={{ cursor: 'pointer' }}
+        />
+      )}
       <ToolbarButton
         size={16}
         badge={store.settings.object.shield && blockedAds > 0}

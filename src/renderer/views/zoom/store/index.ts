@@ -21,7 +21,7 @@ export class Store extends DialogStore {
     //   () => this.zoomFactor,
     //   () => this.resetHideTimer(),
     // );
-    
+
     this.zoomFactor = await ipcRenderer.invoke('get-tab-zoom');
 
     this.resetHideTimer();

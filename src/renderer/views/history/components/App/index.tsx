@@ -83,7 +83,7 @@ const onInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
 const onClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
-  store.clear()
+  store.clear();
 
   // store.clear();
   // TODO: ipcRenderer.send('clear-browsing-data');
@@ -113,9 +113,12 @@ export default observer(() => {
           </RangeItem>
           <div style={{ flex: 1 }} />
           <NavigationDrawer.Item icon={ICON_TRASH} onClick={onClearClick}>
-           Clear search history
+            Clear search history
           </NavigationDrawer.Item>
-          <p>Keep in mind, This button only clears search history, not favicons nor suggestions. Please go to settings for advance clear features.</p>
+          <p>
+            Keep in mind, This button only clears search history, not favicons
+            nor suggestions. Please go to settings for advance clear features.
+          </p>
         </NavigationDrawer>
         <Content onScroll={onScroll}>
           <HistorySections />

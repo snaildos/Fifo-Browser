@@ -10,9 +10,8 @@ export const requestAuth = (
   tabId: number,
 ): Promise<{ username: string; password: string }> => {
   return new Promise((resolve, reject) => {
-    const appWindow = Application.instance.windows.fromBrowserWindow(
-      browserWindow,
-    );
+    const appWindow =
+      Application.instance.windows.fromBrowserWindow(browserWindow);
 
     const tab = appWindow.viewManager.views.get(tabId);
     tab.requestedAuth = { url };

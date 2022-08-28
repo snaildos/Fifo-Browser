@@ -72,7 +72,7 @@ export const Suggestion = observer(({ suggestion }: Props) => {
       onMouseEnter={onMouseEnter(suggestion)}
       onMouseLeave={onMouseLeave(suggestion)}
     >
-{typeof favicon === 'string' ? (
+      {typeof favicon === 'string' ? (
         <Icon
           style={{
             backgroundImage: `url(${favicon})`,

@@ -33,13 +33,8 @@ export const TopSite = observer(
     }
 
     return (
-      <Item
-        onClick={onClick(url)}
-        backgroundColor={backgroundColor}
-      >
-        <Icon
-          icon={typeof fav === 'string' ? fav : ''}
-        >
+      <Item onClick={onClick(url)} backgroundColor={backgroundColor}>
+        <Icon icon={typeof fav === 'string' ? fav : ''}>
           {typeof fav !== 'string' && <FontAwesomeIcon icon={fav} />}
         </Icon>
         {title && <Title>{title}</Title>}
