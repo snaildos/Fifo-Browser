@@ -82,7 +82,7 @@ export default observer(() => {
         <Description>🎉 Fifo has been updated! 🎉</Description>
         <Title>Press Start to continue!</Title>
         <Button theme={store.theme} onClick={nextPage}>
-          Start!
+          Start
         </Button>
       </StyledSection>
 
@@ -145,7 +145,7 @@ export default observer(() => {
                 alignItems: 'center',
               }}
             >
-              Cool! <Icon theme={store.theme} icon={ICON_ARROW_RIGHT} />
+              Cool <Icon theme={store.theme} icon={ICON_ARROW_RIGHT} />
             </div>
           </ExtraStyledButton>
         </div>
@@ -188,19 +188,17 @@ export default observer(() => {
               alignItems: 'center',
             }}
           >
-            Start using Fifo!
+            Start Using Fifo
           </div>
         </ExtraStyledButton>
       </StyledSection>
 
       <StyledSection className="banner4">
         <Description>Fifo is the new privacy orientated browser!</Description>
-        <Title>Inbuilt adblocker and more, lets start.</Title>
+        <Title>Inbuilt adblocker and more, what are you waiting for?</Title>
         <p></p>
         <Description>
-          Please ignore the dialogs that popup upon updating. Pressing "Start
-          Browsing" will erase your favicon and permission database to support
-          our latest versions.
+          Depending on the version you are updating from, data may be modified to support later versions.
         </Description>
         <Button theme={store.theme} onClick={commit}>
           Start Browsing
