@@ -77,54 +77,54 @@
 
       const info = {
         '-6': {
-          title: 'Your file was not found',
+          title: 'Your File Was Not Found',
           description: `It may have been moved or deleted. Can't find it at the URL you specified.`,
           code: 'ERR_FILE_NOT_FOUND',
         },
         '-10': {
-          title: 'This site can’t be reached',
+          title: 'This Site Can’t Be Reached',
           description: `The webpage at <b>${url}</b> might be temporarily down or it may have moved permanently to a new web address. The site rejected our request, this means that you may not have the appropriate permissions to view the site.`,
           code: 'ERR_ACCESS_DENIED',
         },
         '-105': {
-          title: 'This site can’t be reached',
+          title: 'This Site Can’t Be Reached',
           description: `<b>${url}</b>’s server IP address could not be found. Please ensure the name is valid.`,
           code: 'ERR_NAME_NOT_RESOLVED',
         },
         '-106': {
-          title: 'No internet',
+          title: 'No Internet',
           description: `Try: <ul><li>Checking the network cables, modem, and router</li><li>Reconnecting to Wi-Fi</li><li>Ensure your Ethernet cable is plugged in.</li></ul>`,
           code: 'ERR_INTERNET_DISCONNECTED',
         },
         '-108': {
-          title: 'This site can’t be reached',
+          title: 'This Site Can’t Be Reached',
           description: `The webpage at <b>${url}</b> might be temporarily down or it may have moved permanently to a new web address.`,
           code: 'ERR_ADDRESS_INVALID',
         },
         '-109': {
-          title: 'This site can’t be reached',
+          title: 'This Site Can’t Be Reached',
           description: `<b>${url}</b> is unreachable.`,
           code: 'ERR_ADDRESS_UNREACHABLE',
         },
         '-300': {
-          title: 'This site can’t be reached',
+          title: 'This Site Can’t Be Reached',
           description: `The webpage at <b>${url}</b> might be temporarily down or it may have moved permanently to a new web address. The URL seems to be invalid. Check again?`,
           code: 'ERR_INVALID_URL',
         },
         '-379': {
-          title: 'This site can’t be reached',
+          title: 'This Site Can’t Be Reached',
           description: `The webpage at <b>${url}</b> might be temporarily down or it may have moved permanently to a new web address.`,
           code: 'ERR_HTTP_RESPONSE_CODE_FAILURE',
         },
         '-875': {
-          title: 'This site is unsecure',
+          title: 'This Site Is Unsecure',
           description: `The webpage at <b>${url}</b> is blocked from loading because https enforce is enabled. You are trying to acess a unsecure server, either disable the setting on Settings->Privacy->Http enforce-->Disable or try adding https:// instead of http://.`,
           code: 'ERR_HTTP_UNSECURE',
         },
       };
 
       const certificateError = {
-        title: 'Your connection is not private',
+        title: 'Your Connection Is Not Private',
         description: `This website may be trying to steal information from <b>${url}</b>, The website certificate has expired, so we blocked connection with to the site. <br> Fifo will not allow you to connect to this site. Please open Settings --> Privacy --> Ignore Invalid Certificates.`,
         code: errorCode,
       };
@@ -134,7 +134,7 @@
 const { title, description, code, icon } = isNetworkError
   ? certificateError
   : info?.[errorCode] ?? {
-      title: 'Unknown error',
+      title: 'Unknown Error',
       description: 'Something weird happened...',
       code: 'ERR_UNKNOWN',
     };
