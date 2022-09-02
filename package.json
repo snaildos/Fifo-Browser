@@ -70,7 +70,7 @@
     "copy-webpack-plugin": "11.0.0",
     "copyright-header": "0.4.6",
     "cross-env": "7.0.3",
-    "electron": "20.1.0",
+    "electron": "20.1.1",
     "electron-builder": "23.3.3",
     "electron-updater": "5.2.1",
     "eslint": "8.23.0",
