@@ -303,7 +303,7 @@ export default observer(() => {
             opacity: '1',
           }}
         >
-          Let's get your search engine setup...
+          Let us get your search engine setup...
         </Description>
         <div
           style={{
@@ -417,7 +417,7 @@ export default observer(() => {
             opacity: '1',
           }}
         >
-          Let's check out some Third Party features...
+          Do you want these features to be disabled for privacy?
         </Description>
         <div
           style={{
