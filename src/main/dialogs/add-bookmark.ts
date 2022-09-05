@@ -32,7 +32,7 @@ export const showAddBookmarkDialog = (
     browserWindow,
     getBounds: () => ({
       width: 366,
-      height: 240,
+      height: 260,
       x: x - 366 + DIALOG_MARGIN,
       y: y - DIALOG_MARGIN_TOP,
     }),

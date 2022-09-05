@@ -83,7 +83,6 @@ export function createMenu(appWindow: AppWindow, item: IBookmark) {
           title: item.title,
           bookmark: item,
           favicon: item.favicon,
-          color: '',
         });
       },
     },
