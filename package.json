@@ -106,7 +106,7 @@
     "typescript-plugin-styled-components": "2.0.0",
     "webpack": "5.68.0",
     "webpack-bundle-analyzer": "4.6.1",
-    "webpack-cli": "4.9.2",
+    "webpack-cli": "4.10.0",
     "webpack-dev-server": "4.10.0",
     "webpack-merge": "5.8.0",
     "x-default-browser": "0.4.0"
