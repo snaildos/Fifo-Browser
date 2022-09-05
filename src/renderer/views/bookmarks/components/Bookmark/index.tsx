@@ -13,7 +13,7 @@ import { ICON_PAGE, ICON_FOLDER } from '~/renderer/constants/icons';
 const onClick = (item: IBookmark) => (e: React.MouseEvent<HTMLDivElement>) => {
   const index = store.selectedItems.indexOf(item._id);
 
-  if (e.ctrlKey) {
+  if (e) {
     if (index === -1) {
       store.selectedItems.push(item._id);
     } else {
