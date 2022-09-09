@@ -198,7 +198,8 @@ export default observer(() => {
         <Title>Inbuilt adblocker and more, what are you waiting for?</Title>
         <p></p>
         <Description>
-          Depending on the version you are updating from, data may be modified to support later versions.
+          Depending on the version you are updating from, data may be modified
+          to support later versions.
         </Description>
         <Button theme={store.theme} onClick={commit}>
           Start Browsing

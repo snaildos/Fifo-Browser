@@ -1,8 +1,8 @@
 /* Copyright (c) 2021-2022 SnailDOS */
 
+import { useState, useEffect } from 'react';
 import * as React from 'react';
 import { observer } from 'mobx-react-lite';
-
 import store from '../../store';
 import { ThemeProvider } from 'styled-components';
 import {
@@ -50,10 +50,18 @@ const onExtensionClick = () => {
 };
 
 const Time = () => {
-  // const getDate = () => { setInterval(() => { return new Date().toLocaleTimeString([], { timeStyle: 'long' }) }, 100); }
+  const [dateState, setDateState] = useState(new Date());
+  useEffect(() => {
+    setInterval(() => setDateState(new Date()), 100);
+  }, []);
+  // const getDate = () => { setInterval(() => { return new Date().toLocaleTimeString([], { timeStyle: 'short' }) }, 100); }
   return (
     <StyledTime>
-      <h1>{new Date().toLocaleTimeString([], { timeStyle: 'short' })}</h1>
+      <h1>
+        {dateState.toLocaleTimeString([], {
+          timeStyle: 'short',
+        })}
+      </h1>
     </StyledTime>
   );
 };
@@ -151,7 +159,7 @@ export default observer(() => {
                 {/*
               <IconItem
                 imageSet={store.imageVisible}
-                title="Descargas"
+                title="Downloads"
                 icon={ICON_DOWNLOAD}
                 onClick={onIconClick('downloads')}
               ></IconItem> */}
