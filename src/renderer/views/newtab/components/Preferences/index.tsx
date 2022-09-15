@@ -197,12 +197,12 @@ export const Preferences = observer(() => {
           <SwitchItem disabled={!store.imageVisible} name="changeImageDaily">
             Change the image daily
           </SwitchItem>
-          <ContextMenuItem
+          {/*<ContextMenuItem
             bigger
             disabled={!store.imageVisible || store.changeImageDaily}
           >
             Choose image...
-          </ContextMenuItem>
+          </ContextMenuItem>*/}
           <ContextMenuSeparator bigger></ContextMenuSeparator>
           <SwitchItem name="topSitesVisible">Show top sites</SwitchItem>
           <SwitchItem name="quickMenuVisible">Show quick menu</SwitchItem>
