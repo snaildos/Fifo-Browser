@@ -58,17 +58,6 @@ export class WindowsService {
         },
       });
     }
-
-    ipcMain.handle('get-tab-zoom-deprecated', (e: any, tabId: number) => {
-      // const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId)
-      //  .webContents.zoomFactor;
-
-      const zoom = this.findByBrowserView(tabId).viewManager.views.get(tabId);
-      view.webContents.zoomFactor;
-
-      alert(zoom);
-      // return "-10.0";
-    });
   }
 
   public open(incognito = false) {
