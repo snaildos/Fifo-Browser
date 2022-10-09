@@ -67,7 +67,6 @@ export class View {
   private lastUrl = '';
 
   public constructor(window: AppWindow, url: string, incognito: boolean) {
-    // TODO twmr morning :3
     const { object: webset } = Application.instance.settings;
     this.browserView = new BrowserView({
       webPreferences: {
