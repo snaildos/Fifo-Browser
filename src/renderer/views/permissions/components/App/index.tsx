@@ -22,6 +22,10 @@ const getText = (permission: string) => {
     return 'Access your microphone';
   }
 
+  if (permission === 'fileSystem') {
+    return 'Access your files';
+  }
+
   if (permission === 'camera') {
     return 'Access your camera';
   }
