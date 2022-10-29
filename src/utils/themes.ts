@@ -5,6 +5,7 @@ import {
   darkTheme,
   blueTheme,
   lavTheme,
+  amoledTheme,
 } from '~/renderer/constants/themes';
 
 export const getTheme = (name: string) => {
@@ -12,5 +13,6 @@ export const getTheme = (name: string) => {
   else if (name === 'wexond-dark') return darkTheme;
   else if (name === 'fifo-blue') return blueTheme;
   else if (name === 'fifo-lavender') return lavTheme;
+  else if (name === 'fifo-amoled') return amoledTheme;
   return darkTheme;
 };
