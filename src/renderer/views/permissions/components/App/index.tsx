@@ -22,8 +22,8 @@ const getText = (permission: string) => {
     return 'Access your microphone';
   }
 
-  if (permission === 'fileSystem') {
-    return 'Access your files';
+  if (permission === null) {
+    return 'Perform an undocumented task. Please only press allow if you trust this page.';
   }
 
   if (permission === 'camera') {

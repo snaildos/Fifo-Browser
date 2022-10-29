@@ -58,7 +58,6 @@ export class WindowsService {
         },
       });
     }
-
   }
 
   public open(incognito = false) {
