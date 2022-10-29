@@ -163,6 +163,8 @@ export default observer(() => {
     store.settings.theme = 'wexond-dark';
     document.getElementsByClassName('banner1')[0].classList.add('active');
     // console.log(await defaultBrowser());
+    document.getElementsByClassName('duckduckgo')[0].classList.add('active');
+    engineset('duckduckgo');
   };
 
   return (
