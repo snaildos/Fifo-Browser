@@ -35,7 +35,7 @@ export const DEFAULT_SEARCH_ENGINES = [
 ];
 
 export const DEFAULT_SETTINGS: ISettings = {
-  theme: 'fifo-light',
+  theme: 'wexond-dark',
   darkContents: false,
   shield: true,
   multrin: true,
@@ -50,7 +50,7 @@ export const DEFAULT_SETTINGS: ISettings = {
     type: 'empty',
   },
   warnOnQuit: false,
-  version: 5,
+  version: 6,
   downloadsDialog: false,
   downloadsPath: app
     ? app.getPath('downloads')
@@ -68,4 +68,6 @@ export const DEFAULT_SETTINGS: ISettings = {
   autoplay: true,
   globalPrivacyControl: true,
   topBarVariant: 'default',
+  invisibleTabs: undefined,
+  changelog: undefined,
 };

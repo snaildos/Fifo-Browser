@@ -96,7 +96,7 @@ export class Settings extends EventEmitter {
         ? 'wexond-dark'
         : 'wexond-light';
     } else {
-      themeSource = this.object.theme === 'wexond-dark' ? 'dark' : 'light';
+      themeSource = this.object.theme === 'wexond-light' ? 'light' : 'dark';
     }
 
     if (themeSource !== nativeTheme.themeSource) {

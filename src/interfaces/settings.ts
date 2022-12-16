@@ -27,11 +27,6 @@ export interface ISettings {
   bookmarksBar: boolean;
   suggestions: boolean;
   searchEngine: number;
-  tab: {
-    image: string;
-    topSites: boolean;
-    pinned: boolean;
-  };
   newtab: {
     news: boolean;
     weather: boolean;
@@ -47,6 +42,5 @@ export interface ISettings {
   autoplay: boolean;
   doNotTrack: boolean;
   topBarVariant: TopBarVariant;
-  token: string | null;
   globalPrivacyControl: boolean;
 }

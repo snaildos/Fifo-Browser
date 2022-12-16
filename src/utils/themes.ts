@@ -3,9 +3,9 @@
 import {
   lightTheme,
   darkTheme,
+  amoledTheme,
   blueTheme,
   lavTheme,
-  amoledTheme,
 } from '~/renderer/constants/themes';
 
 export const getTheme = (name: string) => {
