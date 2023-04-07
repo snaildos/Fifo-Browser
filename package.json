@@ -76,7 +76,7 @@
     "eslint": "8.37.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.10",
+    "eslint-plugin-react": "7.32.2",
     "file-loader": "6.2.0",
     "file-type": "18.2.1",
     "fork-ts-checker-webpack-plugin": "7.2.13",
