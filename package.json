@@ -82,7 +82,7 @@
     "fork-ts-checker-webpack-plugin": "8.0.0",
     "gitmoji-changelog": "2.3.0",
     "html-webpack-plugin": "5.5.0",
-    "icojs": "0.17.0",
+    "icojs": "0.17.1",
     "jszip": "3.10.1",
     "mobx": "6.3.3",
     "mobx-react-lite": "3.4.0",
