@@ -64,7 +64,7 @@
     "@wexond/rpc-electron": "1.0.3",
     "animejs": "3.2.1",
     "awesome-node-loader": "1.1.1",
-    "babel-loader": "8.2.5",
+    "babel-loader": "9.0.0",
     "concurrently": "8.0.1",
     "copy-to-clipboard": "3.3.3",
     "copy-webpack-plugin": "11.0.0",
