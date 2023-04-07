@@ -46,7 +46,7 @@
     "@babel/core": "7.19.6",
     "@cliqz/adblocker-electron": "1.23.4",
     "@electron/remote": "2.0.8",
-    "@pmmmwh/react-refresh-webpack-plugin": "0.5.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
     "@seald-io/nedb": "3.1.0",
     "@types/animejs": "3.1.6",
     "@types/chrome": "0.0.206",
