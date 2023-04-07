@@ -25,8 +25,7 @@ const mainConfig = getConfig({
     new CopyPlugin({
       patterns: [
         {
-          from:
-            'node_modules/@cliqz/adblocker-electron-preload/dist/preload.cjs.js',
+          from: 'node_modules/@cliqz/adblocker-electron-preload/dist/preload.cjs.js',
           to: 'preload.js',
           transform: async (fileContent, path) => {
             return (
