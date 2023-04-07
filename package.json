@@ -78,7 +78,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "eslint-plugin-react": "7.31.10",
     "file-loader": "6.2.0",
-    "file-type": "18.0.0",
+    "file-type": "18.2.1",
     "fork-ts-checker-webpack-plugin": "7.2.13",
     "gitmoji-changelog": "2.3.0",
     "html-webpack-plugin": "5.5.0",
