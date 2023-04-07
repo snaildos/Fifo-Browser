@@ -120,7 +120,7 @@
     "electron-chrome-extensions": "3.9.0",
     "node-polyfill-webpack-plugin": "1.1.4",
     "postinstall-postinstall": "2.1.0",
-    "react-query": "3.34.13",
+    "@tanstack/react-query": "4.0.5",
     "react-use": "17.3.2"
   }
 }
