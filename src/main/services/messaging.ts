@@ -15,6 +15,7 @@ import { showAddBookmarkDialog } from '../dialogs/add-bookmark';
 import { showExtensionDialog } from '../dialogs/extension-popup';
 import { showDownloadsDialog } from '../dialogs/downloads';
 import { showZoomDialog } from '../dialogs/zoom';
+import { PreviewDialog } from '../dialogs/preview';
 import { showIncognitoDialog } from '../dialogs/incogitoMenu';
 import { showMenuExtraDialog } from '../dialogs/menuExtra';
 import { showTabGroupDialog } from '../dialogs/tabgroup';
@@ -61,6 +62,21 @@ export const runMessagingService = (appWindow: AppWindow) => {
 
   ipcMain.handle(`is-dialog-visible-${id}`, (e, dialog) => {
     return Application.instance.dialogs.isVisible(dialog);
+  });
+
+  ipcMain.on(`show-tab-preview-${id}`, (e, tab) => {
+    const dialog = Application.instance.dialogs.getPersistent(
+      'preview',
+    ) as PreviewDialog;
+    dialog.tab = tab;
+    dialog.show(appWindow.win);
+  });
+
+  ipcMain.on(`hide-tab-preview-${id}`, (e, tab) => {
+    const dialog = Application.instance.dialogs.getPersistent(
+      'preview',
+    ) as PreviewDialog;
+    dialog.hide();
   });
 
   ipcMain.on(`find-show-${id}`, () => {

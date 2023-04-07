@@ -18,7 +18,7 @@ import { ICON_VOLUME_HIGH, ICON_VOLUME_OFF } from '~/renderer/constants';
 import { ITab } from '../../models';
 import store from '../../store';
 import * as remote from '@electron/remote';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { ipcRenderer } from 'electron';
 
 const removeTab = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
@@ -59,6 +59,7 @@ const onMouseDown = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
 
     store.tabs.lastScrollLeft = store.tabs.containerRef.current.scrollLeft;
   }
+  ipcRenderer.send(`hide-tab-preview-${store.windowId}`);
 };
 
 const onClick = (tab: ITab) => (e: React.MouseEvent<HTMLDivElement>) => {
