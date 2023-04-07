@@ -79,7 +79,7 @@
     "eslint-plugin-react": "7.32.2",
     "file-loader": "6.2.0",
     "file-type": "18.2.1",
-    "fork-ts-checker-webpack-plugin": "7.2.13",
+    "fork-ts-checker-webpack-plugin": "7.3.0",
     "gitmoji-changelog": "2.3.0",
     "html-webpack-plugin": "5.5.0",
     "icojs": "0.17.0",
