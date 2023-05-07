@@ -9,6 +9,8 @@
   
 [![Downloads](https://img.shields.io/github/downloads/snaildos/Fifo-Browser/total.svg?style=flat-square)](https://fifo.snaildos.com)
 
+[Join Our Discord](https://dsc.gg/snaildos)
+
 Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React` that is mean't to be secure. This browser is meant for office work, gaming, research and is a secure private browser. Fifo aims to be cross platform. 
 FIFO (Fly In Fly Out for your data.)
 
