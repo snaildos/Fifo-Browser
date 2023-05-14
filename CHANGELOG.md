@@ -1,5 +1,18 @@
 # Changelog
 
+<a name="1.3.1"></a>
+## 1.3.1 (2023-05-14)
+
+### Fixed
+
+- 🐛 Downgrade polyfill due to some issues [[bc4b018](https://github.com/snaildos/Fifo-Browser/commit/bc4b018b384ca7abb23d56960a2e33d24a5a7d8e)]
+
+### Miscellaneous
+
+-  Fifo v3.0.1 done [[d85e15a](https://github.com/snaildos/Fifo-Browser/commit/d85e15adef3a9e84f27f16394f658555193f26d4)]
+- 👀 Attempt to fix linux issues [[06d2da1](https://github.com/snaildos/Fifo-Browser/commit/06d2da1190e84ba4ac3922c8eeec6b06881024a1)]
+
+
 <a name="1.3.0"></a>
 ## 1.3.0 (2023-05-14)
 
