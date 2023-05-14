@@ -6,7 +6,6 @@ import { observer } from 'mobx-react-lite';
 import store from '../../store';
 import { ThemeProvider } from 'styled-components';
 import { WebUIStyle } from '~/renderer/mixins/default-styles';
-import { EASING_FUNCTION, BLUE_500 } from '~/renderer/constants';
 import { ICON_ARROW_RIGHT } from '~/renderer/constants/icons';
 import { Button as ExtraStyledButton } from '~/renderer/components/Button';
 import {
@@ -30,7 +29,7 @@ const alreadyMaded = () => {
     ipcRenderer.invoke('permission-unlink');
     ipcRenderer.invoke('favicon-unlink');
   }
-  store.settings.changelog = '1.2.2';
+  store.settings.changelog = '1.3.0';
   store.save();
   nextPage();
 };
@@ -57,7 +56,7 @@ const commit = () => {
 export default observer(() => {
   window.onload = function () {
     const oldver = store.settings.changelog;
-    const newver = '1.2.2';
+    const newver = '1.3.0';
     if (newver >= oldver) {
       console.log('Update is required.');
       // Nothing yet since we dont need to upgrade anything
@@ -100,17 +99,14 @@ export default observer(() => {
           What has been changed?
         </Description>
         <Description>
-          Introducing Fifo Bug Fix and Dependency Update (v1.2.2)
+          Introducing Fifo Final 2022 Update (v1.3.0)
         </Description>
-        <Description>- Add Dark Mode</Description>
-        <Description>- Mild Bug Fixes</Description>
-        <Description>- Minor Visual Changes</Description>
-        <Description>- Option To Disable Third Party</Description>
-        <Description>
-          - OOBE Rewrite (Change Browser, Dark Mode Patch)
-        </Description>
-        <Description>- Ignore HTTPs certificate checks</Description>
-        <Description>- Disable AutoPlay privacy option</Description>
+        <Description>- Add AMOLED Mode</Description>
+        <Description>- Rewrite Setup System</Description>
+        <Description>- Fixed issues with dark mode not being applied</Description>
+        <Description>- Fixed time not being update on newtab</Description>
+        <Description>- Update over 400 dependencies</Description>
+        <Description>- Security architecture upgrade</Description>
         <Description>Much much more!</Description>
         <a
           href="https://github.com/snaildos/Fifo-Browser/blob/main/CHANGELOG.md"
@@ -164,7 +160,7 @@ export default observer(() => {
           }}
         >
           For maximum privacy, set Fifo as your default browser! Press the Start
-          button to upgrade Fifo's database and start browsing!
+          button to upgrade the Fifo database and start browsing!
         </Description>
         <div
           style={{

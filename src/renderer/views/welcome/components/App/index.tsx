@@ -124,7 +124,7 @@ const engineset = (mode: string) => {
 
 const commit = () => {
   store.settings.notnew = 'false';
-  store.settings.changelog = '1.2.2';
+  store.settings.changelog = '1.3.0';
   store.save();
   window.location.replace(getWebUIURL('newtab'));
 };
