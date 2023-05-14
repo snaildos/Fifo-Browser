@@ -16,4 +16,10 @@ module.exports = {
     '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
+  "prettier/prettier": [
+    "error",
+    {
+      "endOfLine": "auto"
+    },
+  ],
 };
