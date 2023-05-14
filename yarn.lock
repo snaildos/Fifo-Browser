@@ -4478,11 +4478,11 @@ __metadata:
   linkType: hard
 
 "dns-packet@npm:^5.2.2":
-  version: 5.3.1
-  resolution: "dns-packet@npm:5.3.1"
+  version: 5.6.0
+  resolution: "dns-packet@npm:5.6.0"
   dependencies:
     "@leichtgewicht/ip-codec": ^2.0.1
-  checksum: 196ff74a0669126cf5fc901a5849b72f625bd7a4cb163b3f4d41fbe19ed0b017cf7674daef5b0acbd448c094fcd795e501d7066f301be428e4acecfcf3c5f336
+  checksum: 1b643814e5947a87620f8a906287079347492282964ce1c236d52c414e3e3941126b96581376b180ba6e66899e70b86b587bc1aa23e3acd9957765be952d83fc
   languageName: node
   linkType: hard
 
@@ -12729,11 +12729,11 @@ __metadata:
 
 "typescript@patch:typescript@5.0.3#~builtin<compat/typescript>":
   version: 5.0.3
-  resolution: "typescript@patch:typescript@npm%3A5.0.3#~builtin<compat/typescript>::version=5.0.3&hash=b5f058"
+  resolution: "typescript@patch:typescript@npm%3A5.0.3#~builtin<compat/typescript>::version=5.0.3&hash=85af82"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: f341676d09552abce8c2e86a9980bccef3d4c0a5e89fb2b8a2649fbbce8141c742cc44765649aafd92f8fe5da61ae36ca236879d959a64ed9844af9e994dbe3b
+  checksum: 5580367025ff7ee1f2a61e5affdbddccfe6e893bc662aa33fefdbf12de7e493173fa7d47475e9e15121828691004c4ed13bcd115e57866baed97b54c60954e1c
   languageName: node
   linkType: hard
 
