@@ -16,13 +16,21 @@ FIFO (Fly In Fly Out for your data.)
 
 
 # Table of Contents:
+- [Table of Contents:](#table-of-contents)
 - [Motivation](#motivation)
 - [Features](#features)
+  - [Other basic features](#other-basic-features)
+  - [What can I expect to see in future updates?](#what-can-i-expect-to-see-in-future-updates)
 - [Screenshots](#screenshots)
+  - [These images are from =\>0.1.0 and are outdated.](#these-images-are-from-010-and-are-outdated)
 - [Downloads](#downloads)
 - [Contributing](#contributing)
 - [Development](#development)
-  - [Running](#running)
+  - [Running (Development)](#running-development)
+    - [Windows](#windows)
+    - [More commands](#more-commands)
+  - [Running (Without Development Mode (Stable))](#running-without-development-mode-stable)
+    - [Windows](#windows-1)
 - [Documentation](#documentation)
 - [License](#license)
 
@@ -103,6 +111,7 @@ $ npm i -g windows-build-tools
 ```
 
 Yarn:
+You need to ensure you have the latest version of YARN. (Yarn Berry)
 ```bash
 $ yarn install # Install node modules
 $ yarn build # Compile Fifo code and rebuild modules.
