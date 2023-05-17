@@ -30,7 +30,6 @@
     "build": "rimraf build && concurrently \"npm run build-renderer\" \"webpack\"",
     "ci-build": "node scripts/ci-build.js",
     "start": "electron .",
-    "postinstall": "patch-package",
     "watch": "concurrently \"npm run dev-renderer\" \"npm run dev-webpack\"",
     "compile-windows": "npm run build && electron-builder -w",
     "compile-darwin": "npm run build && electron-builder -m --universal",
@@ -44,7 +43,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.21.4",
-    "@cliqz/adblocker-electron": "1.23.4",
+    "@cliqz/adblocker-electron": "1.26.5",
     "@electron/remote": "2.0.8",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
     "@seald-io/nedb": "4.0.1",
@@ -88,7 +87,6 @@
     "mobx-react-lite": "3.4.0",
     "node-bookmarks-parser": "2.0.0",
     "node-fetch": "3.2.10",
-    "patch-package": "6.5.1",
     "prettier": "2.8.7",
     "pretty-bytes": "6.1.0",
     "react": "17.0.2",
@@ -119,8 +117,11 @@
     "@fortawesome/react-fontawesome": "0.2.0",
     "electron-chrome-extensions": "3.9.0",
     "node-polyfill-webpack-plugin": "1.1.4",
-    "postinstall-postinstall": "2.1.0",
     "react-query": "3.34.13",
     "react-use": "17.3.2"
+  },
+  "resolutions": {
+    "@cliqz/adblocker-electron@1.26.5": "patch:@cliqz/adblocker-electron@npm%3A1.26.5#./.yarn/patches/@cliqz-adblocker-electron-npm-1.26.5-b9b901f2d7.patch",
+    "electron-chrome-extensions@3.9.0": "patch:electron-chrome-extensions@npm%3A3.9.0#./.yarn/patches/electron-chrome-extensions-npm-3.9.0-9935188886.patch"
   }
 }

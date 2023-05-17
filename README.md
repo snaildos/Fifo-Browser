@@ -100,7 +100,8 @@ By opening a pull request, you agree to the conditions of the [Contributor Licen
 
 ## Running (Development)
 
-Before running Fifo, please ensure you have **latest** [`Node.js`](https://nodejs.org/en/) and [`YARN`] installed on your machine. You can use NPM but it IS NOT recommended.
+Before running Fifo, please ensure you have **latest** [`Node.js`](https://nodejs.org/en/) and [`YARN`] installed on your machine. 
+NPM is not **not** supported with the Fifo Project. You **need** to use the latest v2/v3 release of Yarn.
 
 ### Windows
 
@@ -118,12 +119,7 @@ $ yarn build # Compile Fifo code and rebuild modules.
 $ yarn dev # Run Fifo in development mode
 ```
 
-NPM: Not recommended
-```bash
-$ npm install --save --legacy-peer-deps # Install needed depedencies. If you can, please, use yarn install.
-$ npm run build # Compile Fifo code and rebuild modules.
-$ npm run dev # Run Fifo in development mode
-```
+NPM: No longer supported
 
 ### More commands
 

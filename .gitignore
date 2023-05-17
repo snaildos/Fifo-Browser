@@ -12,4 +12,5 @@ temp-package.json
 chunks-entries-map.json
 .idea
 .vscode
-.yarn
+.yarn/cache
+yarn.lock
