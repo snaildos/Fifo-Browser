@@ -44,9 +44,9 @@
   "devDependencies": {
     "@babel/core": "7.21.4",
     "@cliqz/adblocker-electron": "1.26.5",
-    "@electron/remote": "2.0.8",
+    "@electron/remote": "2.0.9",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
-    "@seald-io/nedb": "4.0.1",
+    "@seald-io/nedb": "4.0.2",
     "@types/animejs": "3.1.7",
     "@types/chrome": "0.0.228",
     "@types/crypto-js": "4.1.1",

@@ -14,3 +14,4 @@ chunks-entries-map.json
 .vscode
 .yarn/cache
 yarn.lock
+.yarn/install-state.gz
