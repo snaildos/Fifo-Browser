@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Fifo Browser
+MimeType=application/fifo;
+Icon=/usr/share/pixmaps/fifo.png
+Comment=Open Source elegant browser powered by the SnailDOS team delivering expectational software quality with privacy at key.
+Exec=/opt/fifo/fifo.AppImage
+Categories=WebBrowser;
