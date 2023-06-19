@@ -1,15 +1,15 @@
-<p align="center">
-  <a href="https://fifo.snaildos.com"><img src="https://github.com/snaildos/Fifo-Browser/blob/main/static/icons/icon.png" width="256"></a>
-</p>
-
 <div align="center">
+  <a href="https://fifo.snaildos.com"><img src="https://github.com/snaildos/Fifo-Browser/blob/main/static/icons/icon.png" width="256"></a>  
+</div>
+<div align="center">  
   <h1>Fifo Browser</h1>
-  
-[![Build CI](https://github.com/snaildos/Fifo-Browser/actions/workflows/build.yml/badge.svg)](https://github.com/snaildos/Fifo-Browser/actions/workflows/build.yml)
+
+  [![Build CI](https://github.com/snaildos/Fifo-Browser/actions/workflows/build.yml/badge.svg)](https://github.com/snaildos/Fifo-Browser/actions/workflows/build.yml) 
   
 [![Downloads](https://img.shields.io/github/downloads/snaildos/Fifo-Browser/total.svg?style=flat-square)](https://fifo.snaildos.com)
+![AUR version](https://img.shields.io/aur/version/fifo-bin)
+![Discord](https://img.shields.io/discord/522708457963388948)
 
-[Join Our Discord](https://dsc.gg/snaildos)
 
 Fifo is a modern web browser, built on top of modern web technologies such as `Electron` and `React` that is mean't to be secure. This browser is meant for office work, gaming, research and is a secure private browser. Fifo aims to be cross platform. 
 FIFO (Fly In Fly Out for your data.)
@@ -89,6 +89,8 @@ UI compact variant:
 
 # Downloads
 - [Stable Versions](https://github.com/snaildos/Fifo-Browser/releases)
+- [Snapcraft](https://snapcraft.io/fifo)
+- [AUR](https://aur.archlinux.org/packages/fifo-bin)
 
 # Contributing
 
