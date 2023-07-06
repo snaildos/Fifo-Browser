@@ -1,7 +1,7 @@
 # Changelog
 
 <a name="1.3.1"></a>
-## 1.3.1 (2023-05-14)
+## 1.3.1 (2023-06-19)
 
 ### Fixed
 
@@ -9,6 +9,15 @@
 
 ### Miscellaneous
 
+-  FEAT: Prettier README [[4fa70a1](https://github.com/snaildos/Fifo-Browser/commit/4fa70a16edd209fd9da0c2382de32f0a22c3ae22)]
+-  FIX: Electron [[c7852af](https://github.com/snaildos/Fifo-Browser/commit/c7852af55122e8e7f4d36d1448f4daf50e141807)]
+-  DOWNGRADE: Electron [[15d9443](https://github.com/snaildos/Fifo-Browser/commit/15d9443502a582c00472bf93cef05df030343757)]
+-  Upload .desktop [[1055413](https://github.com/snaildos/Fifo-Browser/commit/10554135eace4590c1b921426694c01852ce424e)]
+-  FEAT: Update some dependencies [[3d512f3](https://github.com/snaildos/Fifo-Browser/commit/3d512f3d01cad16a43007026da7d0a417852fc57)]
+-  FIX: Adblocker + NPM support dropped [[8077531](https://github.com/snaildos/Fifo-Browser/commit/80775319d019b8f203e59f77270baaa6966048bf)]
+-  Delete yarn.lock [[c9e966b](https://github.com/snaildos/Fifo-Browser/commit/c9e966b6b999564dcd4704f7867557b4c7da8d13)]
+-  FIX: CI [[2fedf13](https://github.com/snaildos/Fifo-Browser/commit/2fedf13fce62c5d2be850cd1c784b12e17884ec9)]
+-  Changelog [[61c595f](https://github.com/snaildos/Fifo-Browser/commit/61c595f89e8d579a6c59326d60a36553d1bfc9f0)]
 -  Fifo v3.0.1 done [[d85e15a](https://github.com/snaildos/Fifo-Browser/commit/d85e15adef3a9e84f27f16394f658555193f26d4)]
 - 👀 Attempt to fix linux issues [[06d2da1](https://github.com/snaildos/Fifo-Browser/commit/06d2da1190e84ba4ac3922c8eeec6b06881024a1)]
 
