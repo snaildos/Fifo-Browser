@@ -15,7 +15,7 @@ const COMPONENTS_TO_REMOVE = [
 
 // TODO(sentialx): script to update stable Chrome version?
 const COMPONENTS_TO_REPLACE: [string | RegExp, string][] = [
-  [CHROME_COMPONENT_PATTERN, ' Chrome/112.0.5615.49'],
+  [CHROME_COMPONENT_PATTERN, ' Chrome/104.0.5112.124'],
 ];
 
 const urlMatchesPatterns = (url: string, patterns: RegExp[]) =>
