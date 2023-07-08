@@ -42,7 +42,7 @@
     "copyright": "copyright-header --templateId minimal --forceModificationYear 2022 --fix --copyrightHolder SnailDOS --include src"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.18.13",
     "@cliqz/adblocker-electron": "1.26.5",
     "@electron/remote": "2.0.9",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
@@ -63,7 +63,7 @@
     "@wexond/rpc-electron": "1.0.3",
     "animejs": "3.2.1",
     "awesome-node-loader": "1.1.1",
-    "babel-loader": "9.0.0",
+    "babel-loader": "8.2.5",
     "concurrently": "8.0.1",
     "copy-to-clipboard": "3.3.3",
     "copy-webpack-plugin": "11.0.0",
