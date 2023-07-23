@@ -28,6 +28,7 @@
     "dev": "cross-env START=1 npm run watch",
     "changelog": "gitmoji-changelog",
     "build": "rimraf build && concurrently \"npm run build-renderer\" \"webpack\"",
+    "nuke": "rimraf node_modules",
     "ci-build": "node scripts/ci-build.js",
     "start": "electron .",
     "watch": "concurrently \"npm run dev-renderer\" \"npm run dev-webpack\"",
@@ -123,5 +124,6 @@
   "resolutions": {
     "@cliqz/adblocker-electron@1.26.5": "patch:@cliqz/adblocker-electron@npm%3A1.26.5#./.yarn/patches/@cliqz-adblocker-electron-npm-1.26.5-b9b901f2d7.patch",
     "electron-chrome-extensions@3.9.0": "patch:electron-chrome-extensions@npm%3A3.9.0#./.yarn/patches/electron-chrome-extensions-npm-3.9.0-9935188886.patch"
-  }
+  },
+  "packageManager": "yarn@3.6.1"
 }
