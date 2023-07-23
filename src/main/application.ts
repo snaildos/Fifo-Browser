@@ -32,15 +32,11 @@ export class Application {
 
   public async start() {
     const gotTheLock = app.requestSingleInstanceLock();
-    // const { object: webset } = Application.instance.settings;
 
     if (!gotTheLock) {
       app.quit();
       return;
     } else {
-    //  if (!webset.hardwareacceleration) {
-    //    app.disableHardwareAcceleration();
-    //  }
       app.on('open-url', async (_, url) => {
         if (!this.windows.current) {
           this.windows.current = this.windows.open();
@@ -160,5 +156,10 @@ export class Application {
         this.windows.open();
       }
     });
+
+    const { object: webset } = Application.instance.settings;
+    if (!webset.hardwareacceleration) {
+      app.disableHardwareAcceleration();
+    }
   }
 }
