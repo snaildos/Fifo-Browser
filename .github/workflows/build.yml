@@ -1,4 +1,4 @@
-name: Test
+name: Test Compilation
 
 on: [push, pull_request]
 
@@ -17,14 +17,29 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 16
 
       # - name: Install required build toolchain
       # if: matrix.os == 'ubuntu-latest'
       # run: sudo apt-get install gcc-multilib g++-multilib
 
+      - name: Enable Corepack
+        run: corepack enable
+        env:
+          ADBLOCK: true
+
+      - name: Install Yarn Berry
+        run: corepack prepare yarn@stable --activate
+        env:
+          ADBLOCK: true
+
+      - name: Set Yarn version
+        run: yarn set version stable
+        env:
+          ADBLOCK: true
+
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --mode update-lockfile
         env:
           ADBLOCK: true
 
@@ -34,6 +49,5 @@ jobs:
       - name: Does building work?
         run: yarn run build
 
-
       - name: Done
-        run: echo Done.
+        run: echo Done
