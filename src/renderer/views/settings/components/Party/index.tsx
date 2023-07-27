@@ -46,7 +46,7 @@ export const Party = () => {
         optional to the user that may use their private infomation for unique
         features.
       </span>
-      <Row></Row>
+      <br></br>
       <NewsToggle />
       <WeatherToggle />
     </>

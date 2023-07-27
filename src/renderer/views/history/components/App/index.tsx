@@ -83,7 +83,7 @@ const onInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
 
 const onClearClick = (e: React.MouseEvent<HTMLDivElement>) => {
   e.stopPropagation();
-  store.clear();
+  (window as any).store.clear();
 
   // store.clear();
   // TODO: ipcRenderer.send('clear-browsing-data');
