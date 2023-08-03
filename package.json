@@ -65,7 +65,7 @@
     "animejs": "3.2.1",
     "awesome-node-loader": "1.1.1",
     "babel-loader": "8.2.5",
-    "concurrently": "8.0.1",
+    "concurrently": "8.2.0",
     "copy-to-clipboard": "3.3.3",
     "copy-webpack-plugin": "11.0.0",
     "copyright-header": "0.4.6",
