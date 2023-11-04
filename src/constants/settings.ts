@@ -50,15 +50,15 @@ export const DEFAULT_SETTINGS: ISettings = {
     type: 'empty',
   },
   warnOnQuit: false,
-  version: 6,
+  version: 7,
   downloadsDialog: false,
   downloadsPath: app
     ? app.getPath('downloads')
     : process.type !== 'browser' && process.type !== 'renderer'
-    ? require('@electron/remote').app.getPath('downloads')
-    : app
-    ? app.getPath('downloads')
-    : '',
+      ? require('@electron/remote').app.getPath('downloads')
+      : app
+        ? app.getPath('downloads')
+        : '',
   newtab: {
     news: false,
     weather: false,
@@ -66,6 +66,7 @@ export const DEFAULT_SETTINGS: ISettings = {
   doNotTrack: true,
   ignoreCertificate: false,
   autoplay: true,
+  hardwareacceleration: true,
   globalPrivacyControl: true,
   topBarVariant: 'default',
   invisibleTabs: undefined,

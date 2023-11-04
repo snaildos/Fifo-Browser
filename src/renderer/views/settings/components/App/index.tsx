@@ -9,6 +9,7 @@ import { AddressBar, ManageSearchEngines } from '../AddressBar';
 import { Privacy } from '../Privacy';
 import { About } from '../About';
 import { Party } from '../Party';
+import { Performance } from '../Performance';
 import { Other } from '../Other';
 import store from '../../store';
 import { NavigationDrawer } from '~/renderer/components/NavigationDrawer';
@@ -31,6 +32,7 @@ import {
   ICON_EDIT,
   ICON_ADD,
   ICON_DASHBOARD,
+  ICON_TUNE,
 } from '~/renderer/constants';
 import {
   ContextMenuItem,
@@ -261,6 +263,9 @@ export default observer(() => {
           <MenuItem icon={ICON_DOWNLOAD} section="downloads">
             Downloads
           </MenuItem>
+          <MenuItem icon={ICON_TUNE} section="performance">
+            Performance
+          </MenuItem>
           <MenuItem icon={ICON_SHIELD} section="privacy">
             Privacy
           </MenuItem>
@@ -286,13 +291,14 @@ export default observer(() => {
               <Autofill />
             )}
             {selectedSection === 'address-bar' && <AddressBar />}
-            {selectedSection === 'search-engines' && <ManageSearchEngines />}
             {selectedSection === 'startup' && <OnStartup />}
+            {selectedSection === 'search-engines' && <ManageSearchEngines />}
+            {selectedSection === 'downloads' && <Downloads />}
+            {selectedSection === 'performance' && <Performance />}
             {selectedSection === 'privacy' && <Privacy />}
+            {selectedSection === 'party' && <Party />}
             {selectedSection === 'about' && <About />}
             {selectedSection === 'other' && <Other />}
-            {selectedSection === 'downloads' && <Downloads />}
-            {selectedSection === 'party' && <Party />}
           </LeftContent>
         </Content>
       </Container>

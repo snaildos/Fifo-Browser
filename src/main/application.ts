@@ -156,5 +156,10 @@ export class Application {
         this.windows.open();
       }
     });
+
+    const { object: webset } = Application.instance.settings;
+    if (!webset.hardwareacceleration) {
+      app.disableHardwareAcceleration();
+    }
   }
 }
