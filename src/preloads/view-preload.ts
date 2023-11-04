@@ -200,11 +200,12 @@ if (window.location.href.startsWith(WEBUI_BASE_URL)) {
     }
   });
 
-  ipcRenderer.on('update-settings', async (e, data) => {
-    await webFrame.executeJavaScript(
-      `window.updateSettings(${JSON.stringify(data)})`,
-    );
-  });
+  // Unused as of v1.3.3
+  // ipcRenderer.on('update-settings', async (e, data) => {
+  //   await webFrame.executeJavaScript(
+  //     `window.updateSettings(${JSON.stringify(data)})`,
+  //   );
+  // });
 
   ipcRenderer.on('credentials-insert', (e, data) => {
     window.postMessage(

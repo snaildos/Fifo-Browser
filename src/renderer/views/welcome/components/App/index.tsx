@@ -96,35 +96,35 @@ const engineset = (mode: string) => {
     document.getElementsByClassName('bing')[0].classList.remove('active');
     document.getElementsByClassName('ecosia')[0].classList.remove('active');
     document.getElementsByClassName('duckduckgo')[0].classList.add('active');
-    store.settings.searchEngine = '0';
+    store.settings.searchEngine = 0;
     store.save();
   } else if (engine == 'google') {
     document.getElementsByClassName('duckduckgo')[0].classList.remove('active');
     document.getElementsByClassName('bing')[0].classList.remove('active');
     document.getElementsByClassName('ecosia')[0].classList.remove('active');
     document.getElementsByClassName('google')[0].classList.add('active');
-    store.settings.searchEngine = '1';
+    store.settings.searchEngine = 1;
     store.save();
   } else if (engine == 'bing') {
     document.getElementsByClassName('duckduckgo')[0].classList.remove('active');
     document.getElementsByClassName('google')[0].classList.remove('active');
     document.getElementsByClassName('ecosia')[0].classList.remove('active');
     document.getElementsByClassName('bing')[0].classList.add('active');
-    store.settings.searchEngine = '2';
+    store.settings.searchEngine = 2;
     store.save();
   } else if (engine == 'ecosia') {
     document.getElementsByClassName('duckduckgo')[0].classList.remove('active');
     document.getElementsByClassName('google')[0].classList.remove('active');
     document.getElementsByClassName('bing')[0].classList.remove('active');
     document.getElementsByClassName('ecosia')[0].classList.add('active');
-    store.settings.searchEngine = '3';
+    store.settings.searchEngine = 3;
     store.save();
   }
 };
 
 const commit = () => {
-  store.settings.notnew = 'false';
-  store.settings.changelog = '1.3.1';
+  store.settings.notnew = false;
+  store.settings.changelog = '1.3.3';
   store.save();
   window.location.replace(getWebUIURL('newtab'));
 };

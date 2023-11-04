@@ -29,7 +29,7 @@ const alreadyMaded = () => {
     ipcRenderer.invoke('permission-unlink');
     ipcRenderer.invoke('favicon-unlink');
   }
-  store.settings.changelog = '1.3.1';
+  store.settings.changelog = '1.3.3';
   store.save();
   nextPage();
 };
@@ -56,7 +56,7 @@ const commit = () => {
 export default observer(() => {
   window.onload = function () {
     const oldver = store.settings.changelog;
-    const newver = '1.3.1';
+    const newver = '1.3.3';
     if (newver >= oldver) {
       console.log('Update is required.');
       // Nothing yet since we dont need to upgrade anything
@@ -99,7 +99,7 @@ export default observer(() => {
           What has been changed?
         </Description>
         <Description>
-          Introducing Fifo Final 2022 Update (v1.3.1)
+          Introducing Fifo Final 2022 Update (v1.3.3)
         </Description>
         <Description>- Add AMOLED Mode</Description>
         <Description>- Rewrite Setup System</Description>
