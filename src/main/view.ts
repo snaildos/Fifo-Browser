@@ -196,8 +196,7 @@ export class View {
       },
     );
 
-    this.webContents.addListener(
-      'new-window',
+    this.webContents.setWindowOpenHandler(
       async (e, url, frameName, disposition) => {
         if (disposition === 'new-window') {
           if (frameName === '_self') {
