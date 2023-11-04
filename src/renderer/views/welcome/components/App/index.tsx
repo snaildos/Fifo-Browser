@@ -320,10 +320,8 @@ export default observer(() => {
           >
             <div
               style={{
-                border: '1px solid rgb(95, 99, 104)',
                 background: `url(https://cdn.snaildos.com/logo/fifo/ddg.png)`,
                 backgroundSize: 'cover',
-                borderRadius: '50%',
                 display: 'flex',
                 height: '3rem',
                 marginBottom: '.50rem',
@@ -335,10 +333,8 @@ export default observer(() => {
           <Option onClick={() => engineset('google')} className="google">
             <div
               style={{
-                border: '1px solid rgb(95, 99, 104)',
                 background: `url(https://cdn.snaildos.com/logo/fifo/google.png)`,
                 backgroundSize: 'cover',
-                borderRadius: '50%',
                 display: 'flex',
                 height: '3rem',
                 marginBottom: '.50rem',
@@ -350,10 +346,8 @@ export default observer(() => {
           <Option onClick={() => engineset('bing')} className="bing">
             <div
               style={{
-                border: '1px solid #0000FF',
                 background: `url(https://cdn.snaildos.com/logo/fifo/bing.png)`,
                 backgroundSize: 'cover',
-                borderRadius: '50%',
                 display: 'flex',
                 height: '3rem',
                 marginBottom: '.50rem',
@@ -365,10 +359,8 @@ export default observer(() => {
           <Option onClick={() => engineset('ecosia')} className="ecosia">
             <div
               style={{
-                border: '1px solid rgb(95, 99, 104)',
                 background: `url(https://cdn.snaildos.com/logo/fifo/ecosia.png)`,
                 backgroundSize: 'cover',
-                borderRadius: '50%',
                 display: 'flex',
                 height: '3rem',
                 marginBottom: '.50rem',
