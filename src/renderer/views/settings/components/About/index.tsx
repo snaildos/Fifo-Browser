@@ -38,7 +38,7 @@ export const About = () => {
   return (
     <>
       <Header>About Fifo</Header>
-      <Title>Your version of Fifo is v1.3.0</Title>
+      <Title>Your version of Fifo is v1.3.1</Title>
       <Location />
     </>
   );

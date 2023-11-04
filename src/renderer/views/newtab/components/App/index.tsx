@@ -98,7 +98,7 @@ export default observer(() => {
   if (store.settings.notnew != 'false') {
     window.location.replace(getWebUIURL('welcome'));
   } else {
-    if (store.settings.changelog != '1.3.0') {
+    if (store.settings.changelog != '1.3.1') {
       window.location.replace(getWebUIURL('changelog'));
     }
   }

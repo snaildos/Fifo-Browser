@@ -1,7 +1,7 @@
 # Changelog
 
 <a name="1.3.1"></a>
-## 1.3.1 (2023-06-19)
+## 1.3.1 (2023-07-06)
 
 ### Fixed
 
@@ -9,6 +9,8 @@
 
 ### Miscellaneous
 
+-  v1.3.0 almost ready for deployment [[43d57d5](https://github.com/snaildos/Fifo-Browser/commit/43d57d511354561bdd9471dea67eefc04c290ed1)]
+-  FEAT: v1.2.3 [[5572b39](https://github.com/snaildos/Fifo-Browser/commit/5572b396f2412dd97fce707e58b908fac56f228a)]
 -  FEAT: Prettier README [[4fa70a1](https://github.com/snaildos/Fifo-Browser/commit/4fa70a16edd209fd9da0c2382de32f0a22c3ae22)]
 -  FIX: Electron [[c7852af](https://github.com/snaildos/Fifo-Browser/commit/c7852af55122e8e7f4d36d1448f4daf50e141807)]
 -  DOWNGRADE: Electron [[15d9443](https://github.com/snaildos/Fifo-Browser/commit/15d9443502a582c00472bf93cef05df030343757)]
@@ -46,6 +48,7 @@
 
 ### Miscellaneous
 
+-  Changelog [[951001e](https://github.com/snaildos/Fifo-Browser/commit/951001ea8337d4714f9828db7a307cd731074b2b)]
 -  FEAT: Fifo v1.3.0 [[40accbc](https://github.com/snaildos/Fifo-Browser/commit/40accbc99faf2fc6cf271b5e46f7e4003c8ab3ff)]
 -  Merge pull request [#250](https://github.com/snaildos/Fifo-Browser/issues/250) from snaildos/development [[b841615](https://github.com/snaildos/Fifo-Browser/commit/b841615b5a67d4497f57b4774c40dcfed04b058f)]
 -  FEAT: Fix Cloudflare Security [[eaf74e0](https://github.com/snaildos/Fifo-Browser/commit/eaf74e0aa68b5b327a4d8901e9a1eb52e80f728a)]
@@ -203,6 +206,7 @@
 
 ### Added
 
+- 🎉 Upload Changelog! [[d596786](https://github.com/snaildos/Fifo-Browser/commit/d5967867f325bc5a605e689ee94210dcfb34e3a2)]
 - 🎉 Dependency Update [[a94df9c](https://github.com/snaildos/Fifo-Browser/commit/a94df9c234eb516e49eeb4ffb306e2970ab90f66)]
 - 🎉 Changelog v1.2.2 [[c69b78a](https://github.com/snaildos/Fifo-Browser/commit/c69b78a6f5ae4936b0ba5815c20876c08319f7b0)]
 - 🎉 Dependency Update [[4f7eb78](https://github.com/snaildos/Fifo-Browser/commit/4f7eb78da3022e998710dc0ee522f862afa5da49)]
@@ -289,7 +293,7 @@
 
 
 <a name="1.2.1"></a>
-## 1.2.1 (2022-07-14)
+## 1.2.1 (2022-07-15)
 
 ### Added
 
@@ -312,6 +316,8 @@
 
 ### Miscellaneous
 
+-  Merge pull request [#115](https://github.com/snaildos/Fifo-Browser/issues/115) from snaildos/1.2.1 [[23cd2b6](https://github.com/snaildos/Fifo-Browser/commit/23cd2b6202486daffc5e1fedfb9205730fd7508d)]
+-  Release the v1.2.1 changelog [[15d6a83](https://github.com/snaildos/Fifo-Browser/commit/15d6a83c18dba498103fd45d9acdea9720d8f4d2)]
 - 🔨 Rewrite News [[db45c70](https://github.com/snaildos/Fifo-Browser/commit/db45c701f070fafd073aa7bf1708e6bb31d3c233)]
 - ‼️ Patch for Incognito mode [[3654363](https://github.com/snaildos/Fifo-Browser/commit/3654363c00e83648571748b83b368437bc3a4e40)]
 - ©️ Ensure Copyright notice is up to date [[279644a](https://github.com/snaildos/Fifo-Browser/commit/279644a77d79303590fa128d7fe8232204c574fe)]
@@ -322,7 +328,7 @@
 
 
 <a name="1.2.0"></a>
-## 1.2.0 (2022-06-19)
+## 1.2.0 (2022-06-28)
 
 ### Added
 
@@ -346,6 +352,7 @@
 
 ### Miscellaneous
 
+- 📖 Finish version 1.2.0 [[3e09b12](https://github.com/snaildos/Fifo-Browser/commit/3e09b12579d58e92a25f86a78f6b854c881a6959)]
 -  Update package.json [[abcea4a](https://github.com/snaildos/Fifo-Browser/commit/abcea4a201c6baa07af4e7128044205ef5849f67)]
 -  Merge pull request [#94](https://github.com/snaildos/Fifo-Browser/issues/94) from snaildos/renovate/electron-builder-22.x [[2cd973e](https://github.com/snaildos/Fifo-Browser/commit/2cd973e318217001e145ef9950c16d01f6784adf)]
 - 📖 Update changelog [[ae3337c](https://github.com/snaildos/Fifo-Browser/commit/ae3337c0c21f38765886019e74f3f1887617544c)]
@@ -415,10 +422,11 @@
 
 
 <a name="1.1.0"></a>
-## 1.1.0 (2022-02-05)
+## 1.1.0 (2022-02-09)
 
 ### Miscellaneous
 
+-  Update CHANGELOG.md [[f885622](https://github.com/snaildos/Fifo-Browser/commit/f885622c9f0a6184d15ebdb44ebe5d4b69275016)]
 -  Update node-fetch (security) [[0025d1c](https://github.com/snaildos/Fifo-Browser/commit/0025d1cb5554607fdb0deb33d8226e5c3fab7de9)]
 -  Update source-map [[89f3139](https://github.com/snaildos/Fifo-Browser/commit/89f3139dc78cab9cf94fda9163e7c568224ae903)]
 -  Update package.json [[5c463b8](https://github.com/snaildos/Fifo-Browser/commit/5c463b8c8a3a7c12652b9d8eec2310d0a798f214)]
@@ -492,10 +500,11 @@
 
 
 <a name="1.0.0"></a>
-## 1.0.0 (2021-10-06)
+## 1.0.0 (2021-10-07)
 
 ### Miscellaneous
 
+-  Update CHANGELOG.md [[3dc41c7](https://github.com/snaildos/Fifo-Browser/commit/3dc41c7f358b15876e01f64ee596ed26fb03685a)]
 -  Update themes.ts [[003cc07](https://github.com/snaildos/Fifo-Browser/commit/003cc07ac19294d078c6d69846d48ec5085d1f2b)]
 -  Final Bug Fixes! [[e0cdc7f](https://github.com/snaildos/Fifo-Browser/commit/e0cdc7f26ba33360c3437725643a22873297f23e)]
 -  Update Webpack to better version [[35cc0c0](https://github.com/snaildos/Fifo-Browser/commit/35cc0c0a9661e1d7f4c19af48a1fd721f8d0ff1d)]
@@ -530,6 +539,7 @@
 
 ### Miscellaneous
 
+-  Update changelog! [[922c2f4](https://github.com/snaildos/Fifo-Browser/commit/922c2f48f9f9c48e93ef9c67147bcc88d031b467)]
 -  Update package description [[1a8e47a](https://github.com/snaildos/Fifo-Browser/commit/1a8e47a7f78aced3dca582275c29e63415ebf95f)]
 -  Update Changelog! [[8ef0f19](https://github.com/snaildos/Fifo-Browser/commit/8ef0f19dd7905b6938de948e06e2a1ae755c2ea2)]
 -  Update Security, and ensure modules are up to date. [[6bdea74](https://github.com/snaildos/Fifo-Browser/commit/6bdea744d5bafaad223a7166b3fef9fc32dfdac0)]
@@ -543,6 +553,9 @@
 
 ### Miscellaneous
 
+-  LAST SECOND CHANGES [[0dba32c](https://github.com/snaildos/Fifo-Browser/commit/0dba32c551cc17d7e903cc55011371aaea09371e)]
+-  Linux Support [[bb266da](https://github.com/snaildos/Fifo-Browser/commit/bb266dae166ab67de5b3239d0e4ff3326d168061)]
+-  0.0.4 is here [[b06367c](https://github.com/snaildos/Fifo-Browser/commit/b06367c9f6b11c8bc5b4e05d17a7716a048cd0c4)]
 -  Bump the version up! [[edcee5c](https://github.com/snaildos/Fifo-Browser/commit/edcee5cc8d048e2eaaf3abd3c647af9ec0b9e4fd)]
 -  Major Logo Changes [[1705ff0](https://github.com/snaildos/Fifo-Browser/commit/1705ff005067e5733da17a4480fb0a1410b9887c)]
 -  Add curves, fixed blue background [[b3aae95](https://github.com/snaildos/Fifo-Browser/commit/b3aae95bc125c1b7bc975fb0d270d2bce9555aa0)]
@@ -585,6 +598,7 @@
 
 ### Miscellaneous
 
+-  Of course, we need to commit our Changelog! [[e99fa13](https://github.com/snaildos/Fifo-Browser/commit/e99fa139b402d9e384cdbaaaa301e7e90d52b483)]
 -  Privacy is really important! Let&#x27;s change some settings. [[3ebbee1](https://github.com/snaildos/Fifo-Browser/commit/3ebbee16403f3686b33191ec35c04285268b92ac)]
 -  Update v0.0.3 [[e19d7c1](https://github.com/snaildos/Fifo-Browser/commit/e19d7c1ed9b446dca9429b60e309ba4dea2b85ed)]
 -  Fix broken icon size [[00180cf](https://github.com/snaildos/Fifo-Browser/commit/00180cf9209fa963e4b4744cbc2e24de89deb196)]
@@ -611,6 +625,7 @@
 
 ### Miscellaneous
 
+-  Update v0.0.2 changelog! [[f037482](https://github.com/snaildos/Fifo-Browser/commit/f03748296c69f58f9519f13f8a75af9bc6eb7a9c)]
 -  Capitalise the name [[3765c97](https://github.com/snaildos/Fifo-Browser/commit/3765c97c0561a1975455c973c0a2f723fc4f628e)]
 -  Bumb it! [[c1ee998](https://github.com/snaildos/Fifo-Browser/commit/c1ee9981969d2cbea986962d6550e54de8a76455)]
 -  Merge pull request [#15](https://github.com/snaildos/Fifo-Browser/issues/15) from snaildos/renovate/pin-dependencies [[3343ddb](https://github.com/snaildos/Fifo-Browser/commit/3343ddb57309bba4a79d8454807b50f524383dee)]
@@ -646,6 +661,7 @@
 
 ### Miscellaneous
 
+-  More quick improvments! [[496590e](https://github.com/snaildos/Fifo-Browser/commit/496590efd72e147007e8ec6fe4c83b9d58ad0db5)]
 -  Major Improvments [[d9e01dc](https://github.com/snaildos/Fifo-Browser/commit/d9e01dc3f8f98c3da176d03e5ea03812db6b4bb2)]
 -  Changing official Logos! [[3a38e9f](https://github.com/snaildos/Fifo-Browser/commit/3a38e9f3789efa5ff7ae6a6c48f9b5b4b07ad8e8)]
 -  Silent makes things break, let&#x27;s remove [[ca79827](https://github.com/snaildos/Fifo-Browser/commit/ca798275d1ad1552c019a8c71013b6a32ea78672)]
