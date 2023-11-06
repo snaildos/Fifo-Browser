@@ -117,7 +117,7 @@ export default observer(() => {
           </NavigationDrawer.Item>
           <p>
             Keep in mind, This button only clears search history, not favicons
-            nor suggestions. Please go to settings for advance clear features.
+            nor suggestions. Please go to settings for advanced clear features.
           </p>
         </NavigationDrawer>
         <Content onScroll={onScroll}>

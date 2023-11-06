@@ -200,10 +200,9 @@ export class View {
       async (e, url, frameName, disposition) => {
         if (disposition === 'new-window') {
           if (frameName === '_self') {
-            e.preventDefault();
             await this.window.viewManager.selected.webContents.loadURL(url);
+            return { action: "deny" };
           } else if (frameName === '_blank') {
-            e.preventDefault();
             this.window.viewManager.create(
               {
                 url,
@@ -211,13 +210,14 @@ export class View {
               },
               true,
             );
+            return { action: "deny" };
           }
         } else if (disposition === 'foreground-tab') {
-          e.preventDefault();
           this.window.viewManager.create({ url, active: true }, true);
+          return { action: "deny" };
         } else if (disposition === 'background-tab') {
-          e.preventDefault();
           this.window.viewManager.create({ url, active: true }, true);
+          return { action: "deny" };
         }
       },
     );
