@@ -197,7 +197,7 @@ export class View {
     );
 
     this.webContents.setWindowOpenHandler(
-      async (e, url, frameName, disposition) => {
+      async (url, frameName, disposition) => {
         if (disposition === 'new-window') {
           if (frameName === '_self') {
             await this.window.viewManager.selected.webContents.loadURL(url);
