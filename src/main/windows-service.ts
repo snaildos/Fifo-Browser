@@ -3,7 +3,7 @@
 import { AppWindow } from './windows/app';
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { SessionsService } from './sessions-service';
-import { ElectronChromeExtensions } from 'electron-chrome-extensions';
+import { ElectronChromeExtensions } from '@snaildos/fel';
 
 export class WindowsService {
   public list: AppWindow[] = [];
@@ -15,14 +15,14 @@ export class WindowsService {
   constructor(sessions: SessionsService) {
     if (process.env.ENABLE_EXTENSIONS) {
       sessions.chromeExtensions = new ElectronChromeExtensions({
-        modulePath: `${app.getAppPath()}/node_modules/electron-chrome-extensions`,
+        modulePath: `${app.getAppPath()}/node_modules/@snaildos/fel`,
         session: sessions.view,
         createTab: async (details) => {
           const win =
             this.list.find((x) => x.win.id === details.windowId) ||
             this.lastFocused;
 
-          if (!win) throw new Error('Window not found');
+          if (!win) throw new Error('Window Not Found');
           const view = win.viewManager.create(details, false, false);
           win.webContents.send(
             'create-tab',
