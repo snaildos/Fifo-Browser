@@ -43,7 +43,7 @@
     "copyright": "copyright-header --templateId minimal --forceModificationYear 2022 --fix --copyrightHolder SnailDOS --include src"
   },
   "devDependencies": {
-    "@babel/core": "7.18.13",
+    "@babel/core": "7.29.6",
     "@cliqz/adblocker-electron": "1.26.5",
     "@electron/remote": "2.0.9",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
